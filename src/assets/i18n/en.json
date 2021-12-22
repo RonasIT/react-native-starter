@@ -1,0 +1,168 @@
+{
+  "PUBLIC": {
+    "NAVIGATION": {
+      "TEXT_LOG_IN": "Log in"
+    },
+    "LOGIN": {
+      "TEXT_LOGIN": "Email",
+      "TEXT_PASSWORD": "Password",
+      "BUTTON_SUBMIT": "Login"
+    }
+  },
+  "PRIVATE": {
+    "NAVIGATION": {
+      "TEXT_HOME": "Home",
+      "TEXT_PROFILE": "Profile"
+    },
+    "PROFILE": {
+      "TEXT_GREETING": "Hey, {{name}}!",
+      "BUTTON_LOGOUT": "Log out"
+    },
+    "SIGNALS": {
+      "SHARED": {
+        "SIGNAL_ITEM": {
+          "LINK_MORE_DETAILS": "More details"
+        }
+      }
+    },
+    "SIGNAL_VIEW": {
+      "TEXT_TITLE": "Details"
+    },
+    "LINKS": {
+      "SHARED": {
+        "LINK_ITEM": {
+          "TEXT_BROKER": "Broker",
+          "TEXT_BALANCE": "Balance",
+          "TEXT_EQUITY": "Equity",
+          "TEXT_PROFIT_LOSS": "Profit/Loss",
+          "TEXT_EMPTY_VALUE": "None"
+        },
+        "ACTION_SHEET": {
+          "BUTTON_START": "Start",
+          "BUTTON_STOP": "Stop",
+          "BUTTON_EDIT": "Edit",
+          "BUTTON_COPY": "Copy",
+          "BUTTON_DELETE": "Delete"
+        }
+      },
+      "TEXT_CONFIRM_REMOVAL": "Are you sure you want to delete this link?",
+      "LIMIT_REACHED_POPUP": {
+        "TEXT_TITLE": "You've reached your limit",
+        "TEXT_MESSAGE": "Click below to learn how to add additional Links",
+        "BUTTON_LEARN_MORE": "Learn more"
+      },
+      "LINK_UPSERT": {
+        "NAVIGATION": {
+          "TEXT_BROKER": "Broker",
+          "TEXT_SYMBOLS": "Symbols",
+          "TEXT_TRADERS": "Traders",
+          "BUTTON_RESET": "Reset"
+        },
+        "TEXT_TITLE_CREATE": "Create Link",
+        "TEXT_TITLE_EDIT": "Edit Link",
+        "TEXT_BROKER_INFO": "Broker info",
+        "TEXT_BROKER": "Broker",
+        "TEXT_BROKER_ACCOUNT_NUMBER": "Broker account number",
+        "TEXT_BROKER_ACCOUNT_PASSWORD": "Broker account password",
+        "TEXT_SETTINGS": "Settings",
+        "TEXT_TRADE_MANAGEMENT": "Trade management",
+        "TEXT_RISK": "Risk",
+        "TEXT_TRADERS": "Traders",
+        "TEXT_SYMBOLS": "Symbols",
+        "TEXT_SELECTED": "{{value}} selected",
+        "TEXT_ALL": "All",
+        "TEXT_SYMBOL_PREFIX": "Symbol prefix",
+        "TEXT_SYMBOL_SUFFIX": "Symbol suffix",
+        "TEXT_BREAK_EVEN_TRIGGER": "Break even trigger",
+        "TEXT_BREAK_EVEN_ADD_PIPS": "Break even add pips",
+        "TEXT_PARTIAL_CLOSE_TRIGGER": "Partial close trigger {{index}}",
+        "TEXT_PARTIAL_CLOSE_VALUE": "Partial close size {{index}}, %",
+        "TEXT_TAKE_PROFIT": "Take profit {{index}}",
+        "TEXT_PRESET": "Preset",
+        "TEXT_PRESET_CLOSE": "Close {{value}}%",
+        "TEXT_DISABLED": "Disabled",
+        "BUTTON_CREATE": "Create",
+        "BUTTON_SAVE": "Save changes",
+        "BUTTON_RESET_ALL": "Reset all",
+        "TEXT_CREATED": "Link created successfully",
+        "TEXT_UPDATED": "Link updated successfully"
+      }
+    }
+  },
+  "SHARED": {
+    "ACTION_SHEET": {
+      "BUTTON_CANCEL": "Cancel"
+    },
+    "ITEMS_LIST_EMPTY_STATE": {
+      "TEXT_NO_ITEMS": "No items"
+    },
+    "SELECT": {
+      "TEXT_PLACEHOLDER": "Not selected"
+    },
+    "SEARCH_INPUT": {
+      "TEXT_PLACEHOLDER": "Search"
+    },
+    "CLIPBOARD": {
+      "SERVICE": {
+        "TEXT_COPIED": "Successfully copied to clipboard!",
+        "TEXT_ERROR": "Failed to copy empty value to clipboard"
+      }
+    },
+    "LINK": {
+      "STATUS_BADGE": {
+        "TEXT_CONNECTING": "Connecting",
+        "TEXT_DISCONNECTING": "Disconnecting",
+        "TEXT_ACTIVE": "Active",
+        "TEXT_INACTIVE": "Inactive",
+        "TEXT_ERROR": "Error",
+        "TEXT_FAILED": "Error"
+      }
+    },
+    "SIGNAL": {
+      "BASE_INFO": {
+        "ENTRY_PRICE": "Entry price",
+        "BROKER": "Broker",
+        "TIMEFRAME": "Timeframe",
+        "RISK": "Risk",
+        "AUTHOR": "By {{author}}",
+        "BROKER_COPIED": "Broker name successfully copied to clipboard!",
+        "ENTRY_PRICE_COPIED": "Entry price successfully copied to clipboard!"
+      },
+      "UPGRADE_PLAN": {
+        "LOCKED_TITLE": "Signal locked",
+        "BUTTON_UNLOCK": "Click to learn how to unlock"
+      },
+      "NOTES": {
+        "TITLE": "Disclaimer"
+      },
+      "ANALYSIS": {
+        "TEXT_TITLE": "Analysis",
+        "TEXT_LINK": "Link"
+      },
+      "TAKE_PROFIT": {
+        "TAKE_PROFIT_TITLE": "Take Profit",
+        "STOP_LOSS_TITLE": "Stop Loss",
+        "TP_NUMBER": "TP #{{number}}",
+        "TEXT_STOP_LOSS": "SL",
+        "PIPS": "{{pips}} pips",
+        "BUTTONS": {
+          "COPY": "Copy"
+        },
+        "COPIED": "Data successfully copied to clipboard!"
+      }
+    }
+  },
+  "COMMON": {
+    "TEXT_APPLY": "Apply",
+    "TEXT_CANCEL": "Cancel",
+    "TEXT_YES": "Yes",
+    "TEXT_TITLE_ERROR": "Error",
+    "TEXT_CONFIRM_ACTION": "Please confirm action",
+    "TEXT_ERROR_MESSAGE": "Something went wrong! Please try again",
+    "VALIDATION": {
+      "TEXT_VALIDATION_REQUIRED_FIELD": "Please fill out this field",
+      "TEXT_VALIDATION_INVALID": "The value you entered is invalid",
+      "TEXT_VALIDATION_EMAIL": "Please enter a valid email address"
+    }
+  }
+}
