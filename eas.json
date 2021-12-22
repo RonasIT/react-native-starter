@@ -1,0 +1,18 @@
+{
+  "submit": {
+    "development": {
+      "ios": {
+        "appleId": "developerapp@yeptribe.com",
+        "ascAppId": "1595478478",
+        "appleTeamId": "BRAB2BF4V2"
+      }
+    },
+    "production": {
+      "ios": {
+        "appleId": "developerapp@yeptribe.com",
+        "ascAppId": "1588750429",
+        "appleTeamId": "BRAB2BF4V2"
+      }
+    }
+  }
+}
