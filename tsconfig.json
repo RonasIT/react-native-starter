@@ -34,14 +34,9 @@
       "@styles": [
         "src/styles"
       ],
-      "@configurations": [
-        "src/configurations/configuration"
-      ],
       "@app/*": [
         "src/app/*"
       ]
     }
   }
 }
-
-

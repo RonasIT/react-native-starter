@@ -4,6 +4,7 @@
       "TEXT_LOG_IN": "Log in"
     },
     "LOGIN": {
+      "TEXT_TITLE": "Welcome to {{value}}",
       "TEXT_LOGIN": "Email",
       "TEXT_PASSWORD": "Password",
       "BUTTON_SUBMIT": "Login"

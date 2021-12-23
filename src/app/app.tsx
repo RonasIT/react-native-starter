@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { useLanguage } from '@shared/i18n';
 import { authenticatedScreenListeners, navigationRef, navigationTheme } from '@shared/navigation';
-import { useLastPushNotificationResponse } from '@shared/push-notifications';
 import { variables } from '@styles';
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
@@ -25,7 +24,6 @@ const setLanguage = useLanguage(
 export function App(): ReactElement {
   const { isTokenLoaded, isAuthenticated } = appFacade;
   const statusBarHeight = useSafeAreaInsets().top;
-  useLastPushNotificationResponse();
   setLanguage('en');
 
   useEffect(() => {

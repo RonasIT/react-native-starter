@@ -15,7 +15,7 @@ export const defaultAppConfig = {
 };
 
 const defaultExpoConfig: ExpoConfig = {
-  name: 'RN Starter - Dev',
+  name: 'RN Starter Dev',
   slug: 'react-native-starter-dev',
   scheme: 'rnstarterdev',
   owner: 'ronas_it',
@@ -76,7 +76,7 @@ module.exports = () => {
 
   if (env === 'production') {
     return merge(defaultExpoConfig, <PartialConfig>{
-      name: 'RN Starter - Prod',
+      name: 'RN Starter Prod',
       slug: 'react-native-starter-dev-prod',
       scheme: 'rnstarter',
       extra: {

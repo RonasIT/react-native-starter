@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { configuration } from '@configurations';
+import { appConfig } from './constants';
 import { store } from '@store';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
@@ -12,9 +12,9 @@ import { App } from './app';
 
 export default function Root(): ReactElement {
   Sentry.init({
-    dsn: configuration.sentry.dsn,
+    dsn: appConfig.sentry.dsn,
     enableInExpoDevelopment: false,
-    debug: !configuration.production
+    debug: !appConfig.production
   });
 
   const [isFontsLoaded] = useFonts({
