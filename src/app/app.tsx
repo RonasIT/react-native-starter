@@ -32,16 +32,25 @@ export function App(): ReactElement {
 
   return (
     <SafeAreaView style={style.screen}>
-      <NavigationContainer linking={appLinking} theme={navigationTheme} ref={navigationRef}>
+      <NavigationContainer
+        linking={appLinking}
+        theme={navigationTheme}
+        ref={navigationRef}>
         <View style={{ height: statusBarHeight, marginTop: -statusBarHeight * 2 }}>
-          <StatusBar translucent={true} backgroundColor='transparent' style='light' />
+          <StatusBar
+            translucent={true}
+            backgroundColor='transparent'
+            style='light' />
         </View>
         {isTokenLoaded ? (
           <Stack.Navigator
             initialRouteName={isAuthenticated ? 'Private' : 'Public'}
             screenOptions={{ headerShown: false }}>
             <Stack.Screen name='Public' component={PublicNavigation} />
-            <Stack.Screen name='Private' component={PrivateNavigation} listeners={authenticatedScreenListeners} />
+            <Stack.Screen
+              name='Private'
+              component={PrivateNavigation}
+              listeners={authenticatedScreenListeners} />
           </Stack.Navigator>
         ) : (
           <AppActivityIndicator />

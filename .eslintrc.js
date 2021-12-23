@@ -58,8 +58,8 @@ module.exports = {
     ],
     'jsx-quotes': ['error', 'prefer-single'],
     'react/jsx-boolean-value': 'off',
-    'react/self-closing-comp': ['warn', { 'component': true, 'html': true }],
-    'react/jsx-max-props-per-line': [1, { 'maximum': 3 }],
+    'react/self-closing-comp': ['warn', { component: true, html: true }],
+    'react/jsx-max-props-per-line': [1, { maximum: { single: 2, multi: 1 } }],
     'react/jsx-first-prop-new-line': ['warn', 'multiline'],
     'react/prop-types': 'off'
   },
