@@ -1,4 +1,6 @@
-# Driven - React Native
+# React Native Starter
+
+Ronas IT template repository for React Native + Expo projects
 
 ## Development
 
