@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 import { appConfig } from './constants';
 import { store } from '@store';
 import { registerRootComponent } from 'expo';
@@ -17,14 +15,14 @@ export default function Root(): ReactElement {
     debug: !appConfig.production
   });
 
-  const [isFontsLoaded] = useFonts({
+  const [areFontsReady] = useFonts({
     SFProDisplayBold: require('@assets/fonts/SF-Pro-Display-Bold.otf'),
     SFProDisplayRegular: require('@assets/fonts/SF-Pro-Display-Regular.otf'),
     SFProTextRegular: require('@assets/fonts/SF-Pro-Text-Regular.otf'),
     SFProTextSemiBold: require('@assets/fonts/SF-Pro-Text-Semibold.otf')
   });
 
-  if (!isFontsLoaded) {
+  if (!areFontsReady) {
     return null;
   }
 

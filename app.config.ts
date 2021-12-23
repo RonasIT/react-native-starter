@@ -21,7 +21,6 @@ const defaultExpoConfig: ExpoConfig = {
   owner: 'ronas_it',
   version: '0.0.1',
   orientation: 'portrait',
-  entryPoint: './src/app/index.tsx',
   backgroundColor: '#000000',
   icon: './src/assets/images/icon.png',
   splash: {
