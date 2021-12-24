@@ -26,14 +26,6 @@
     },
     "SELECT": {
       "TEXT_PLACEHOLDER": "Not selected"
-    },
-    "ALERT": {
-      "TEXT_APPLY": "Apply",
-      "TEXT_CANCEL": "Cancel",
-      "TEXT_YES": "Yes",
-      "TEXT_TITLE_ERROR": "Error",
-      "TEXT_CONFIRM_ACTION": "Please confirm action",
-      "TEXT_ERROR_MESSAGE": "Something went wrong! Please try again"
     }
   },
   "COMMON": {
