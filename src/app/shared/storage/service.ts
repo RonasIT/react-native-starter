@@ -1,11 +1,7 @@
-import { AsyncStorageStringItem } from '../async-storage/models';
+import { AsyncStorageItem } from './models';
 
 class AppStorageService {
-  public token: AsyncStorageStringItem;
-
-  constructor() {
-    this.token = new AsyncStorageStringItem('token');
-  }
+  public token = new AsyncStorageItem('token');
 }
 
 export const appStorageService = new AppStorageService();
