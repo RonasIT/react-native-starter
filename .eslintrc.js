@@ -43,7 +43,6 @@ module.exports = {
     'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
     '@typescript-eslint/no-use-before-define': ['warn', { variables: false }],
     '@typescript-eslint/lines-between-class-members': ['warn', { exceptAfterSingleLine: true }],
-    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-inferrable-types': ['warn', { ignoreParameters: true }],
     '@typescript-eslint/explicit-module-boundary-types': ['warn', { allowArgumentsExplicitlyTypedAsAny: true }],
     '@typescript-eslint/no-explicit-any': 'off',
