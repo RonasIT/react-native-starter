@@ -6,7 +6,7 @@ import * as Localization from 'expo-localization';
 export function useLanguage<T extends typeof I18n['translations']>(
   translations: T,
   defaultLanguage: keyof typeof translations
-) {
+): (language?: keyof typeof translations) => void {
   I18n.translations = translations;
 
   return (language: keyof typeof translations = Localization.locale.split('-')[0]): void => {
