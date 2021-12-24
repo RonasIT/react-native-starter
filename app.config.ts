@@ -5,7 +5,7 @@ import { PartialDeep } from 'type-fest';
 export const defaultAppConfig = {
   production: false,
   sentry: {
-    dsn: 'https://5e6a12477b794063b327b170426114b9@sentry.ronasit.com/125'
+    dsn: 'https://your-sentry-dsn'
   },
   api: {
     root: 'https://dev.api.lainappi.ronasit.com/',
@@ -56,10 +56,10 @@ const defaultExpoConfig: ExpoConfig = {
       {
         file: 'sentry-expo/upload-sourcemaps',
         config: {
-          url: 'https://sentry.ronasit.com',
-          organization: 'sentry',
-          project: 'your-sentry-project-here',
-          authToken: 'dcbd7a4a79554b4d8e992d951e2fbc00e14ec29c122744ceba46f289fe9a02bf'
+          url: 'https://your-sentry-url',
+          organization: 'your-sentry-organization',
+          project: 'your-sentry-project',
+          authToken: 'your-sentry-token'
         }
       }
     ]
