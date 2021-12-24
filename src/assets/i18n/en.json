@@ -1,0 +1,46 @@
+{
+  "PUBLIC": {
+    "NAVIGATION": {
+      "TEXT_LOG_IN": "Log in"
+    },
+    "LOGIN": {
+      "TEXT_TITLE": "Welcome to {{value}}",
+      "TEXT_LOGIN": "Email",
+      "TEXT_PASSWORD": "Password",
+      "BUTTON_SUBMIT": "Login"
+    }
+  },
+  "PRIVATE": {
+    "NAVIGATION": {
+      "TEXT_HOME": "Home",
+      "TEXT_PROFILE": "Profile"
+    },
+    "PROFILE": {
+      "TEXT_GREETING": "Hey, {{name}}!",
+      "BUTTON_LOGOUT": "Log out"
+    }
+  },
+  "SHARED": {
+    "ITEMS_LIST_EMPTY_STATE": {
+      "TEXT_NO_ITEMS": "No items"
+    },
+    "SELECT": {
+      "TEXT_PLACEHOLDER": "Not selected"
+    },
+    "ALERT": {
+      "TEXT_APPLY": "Apply",
+      "TEXT_CANCEL": "Cancel",
+      "TEXT_YES": "Yes",
+      "TEXT_TITLE_ERROR": "Error",
+      "TEXT_CONFIRM_ACTION": "Please confirm action",
+      "TEXT_ERROR_MESSAGE": "Something went wrong! Please try again"
+    }
+  },
+  "COMMON": {
+    "VALIDATION": {
+      "TEXT_VALIDATION_REQUIRED_FIELD": "Please fill out this field",
+      "TEXT_VALIDATION_INVALID": "The value you entered is invalid",
+      "TEXT_VALIDATION_EMAIL": "Please enter a valid email address"
+    }
+  }
+}

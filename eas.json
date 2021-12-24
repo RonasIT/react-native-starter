@@ -1,0 +1,11 @@
+{
+  "submit": {
+    "development": {
+      "ios": {
+        "appleId": "your-apple.id@com",
+        "ascAppId": "123456789",
+        "appleTeamId": "APPLETEAMID"
+      }
+    }
+  }
+}
