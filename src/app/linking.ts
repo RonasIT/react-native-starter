@@ -5,13 +5,13 @@ import * as Linking from 'expo-linking';
 import { PublicNavigationParams } from './public/navigation';
 
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
-type ScreenRoutingOptions<T extends Object> = {
-  [key in keyof T]?: string | ScreenLinkingOptions | PathConfig<{}>;
+type ScreenRoutingOptions<T extends object> = {
+  [key in keyof T]?: string | ScreenLinkingOptions | PathConfig<object>;
 };
 
 const appLink = Linking.makeUrl('/');
 
-export const appLinking: LinkingOptions<{}> = {
+export const appLinking: LinkingOptions<object> = {
   prefixes: [appLink],
   config: {
     screens: {
