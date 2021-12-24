@@ -4,7 +4,9 @@ import { createStyles } from './extended-stylesheet';
 import { variables } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
-export const rem = 13;
+export const screenHeight = Dimensions.get('window').height;
+export const isSmallScreen = screenWidth <= 360;
+export const rem = isSmallScreen ? 13 : 16;
 
 EStyleSheet.build({
   $rem: rem,

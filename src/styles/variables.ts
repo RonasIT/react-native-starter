@@ -8,12 +8,12 @@ export const variables = {
     danger: '#FF003D'
   },
   fontSize: {
-    smallest: '0.85rem', // 11px
-    small: '1rem', // 13px
-    medium: '1.15rem', // 15px
-    larger: '1.4rem', // 17px
-    large: '1.55rem', // 20px
-    largest: '1.7rem' // 22px
+    smallest: '0.85rem',
+    small: '1rem',
+    medium: '1.15rem',
+    larger: '1.4rem',
+    large: '1.55rem',
+    largest: '1.7rem'
   },
   fontFamily: {
     sfProDisplayBold: 'SFProDisplayBold',

@@ -1,9 +1,9 @@
 import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-type Function<K> = () => K;
-type Value<T> = T | (string & {});
-type Variable<T> = Value<T> | Function<Value<T>>;
+type StyleFunction<K> = () => K;
+type Value<T> = T | (string | (number & object));
+type Variable<T> = Value<T> | StyleFunction<Value<T>>;
 type Extended<T> = { [K in keyof T]: Variable<T[K]> };
 type WebStyle = {
   outlineWidth?: number;
@@ -23,9 +23,9 @@ type StyleSet<T = any> = {
     ? T[K]
     : T[K] extends string
     ? T[K]
-    : T[K] extends Function<number>
+    : T[K] extends StyleFunction<number>
     ? number
-    : T[K] extends Function<string>
+    : T[K] extends StyleFunction<string>
     ? string
     : T[K] extends MediaQuery
     ? AnyStyleSet
