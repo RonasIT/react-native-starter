@@ -5,6 +5,7 @@ import { PartialDeep } from 'type-fest';
 export const defaultAppConfig = {
   production: false,
   sentry: {
+    enabled: false,
     dsn: 'https://your-sentry-dsn'
   },
   api: {
