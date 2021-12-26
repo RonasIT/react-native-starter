@@ -7,7 +7,10 @@ class UserService extends EntityService<User> {
   public delete = this.notImplementedMethod('update');
 
   constructor() {
-    super('/users', 'user');
+    super({
+      endpoint: '/users',
+      entityName: 'user'
+    });
   }
 }
 
