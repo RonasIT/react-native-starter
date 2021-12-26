@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { refreshTokenInterceptor, tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
 import { authService } from '../service';
-import { checkIsTokenExpired } from '../utils';
+import { checkIsTokenExpired } from '../utils/check-is-token-expired';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
