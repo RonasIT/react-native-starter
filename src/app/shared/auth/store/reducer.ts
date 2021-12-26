@@ -16,5 +16,13 @@ export const authReducer = createReducer(initialState, (handleAction) => [
   handleAction(AuthActions.tokenLoaded, (state) => ({
     ...state,
     isTokenLoaded: true
+  })),
+  handleAction(AuthActions.authorize, (state) => ({
+    ...state,
+    isAuthorizing: true
+  })),
+  handleAction([AuthActions.authorizeSuccess, AuthActions.authorizeFailure], (state) => ({
+    ...state,
+    isAuthorizing: false
   }))
 ]);

@@ -9,9 +9,9 @@ export const defaultAppConfig = {
     dsn: 'https://your-sentry-dsn'
   },
   api: {
-    root: 'https://dev.api.lainappi.ronasit.com/',
-    publicEndpoints: ['login'],
-    refreshTokenEndpoint: 'auth/refresh'
+    root: 'https://gorest.co.in/public/v1',
+    publicEndpoints: ['/login', '/users'],
+    refreshTokenEndpoint: '/auth/refresh'
   }
 };
 

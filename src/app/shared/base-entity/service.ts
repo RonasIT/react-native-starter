@@ -12,7 +12,7 @@ import { EntityPartial } from './types';
 
 export abstract class EntityService<
   TEntity extends Entity = Entity,
-  TSearchRequest extends Record<string, any> = Record<string, any>,
+  TSearchRequest extends Record<string, any> = PaginationRequest,
   TEntityRequest extends EntityRequest = EntityRequest
 > {
   protected actions: EntityStoreActions;

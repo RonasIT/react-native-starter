@@ -55,7 +55,7 @@ export const authEpics: Epics = {
 
   authorize: (action$) => action$.pipe(
     ofType(AuthActions.authorize),
-    exhaustMap((action) => authService.authorize({ ...action.payload }).pipe(
+    exhaustMap((action) => authService.demoAuthorize({ ...action.payload }).pipe(
       map((response) => AuthActions.authorizeSuccess(response)),
       catchError((error) => of(AuthActions.authorizeFailure(error)))
     ))
