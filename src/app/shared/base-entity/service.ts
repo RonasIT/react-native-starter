@@ -1,7 +1,7 @@
-import { apiService } from '@shared/api/service';
+import { apiService, ApiService } from '@shared/api/service';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { store } from '@store/store';
-import { ClassConstructor, classToPlain, plainToClass } from 'class-transformer';
+import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
 import { isObject, isUndefined, omitBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -12,38 +12,50 @@ import { EntityPartial } from './types';
 
 export abstract class EntityService<
   TEntity extends Entity = Entity,
-  TPaginationRequest extends PaginationRequest = PaginationRequest,
+  TSearchRequest extends Record<string, any> = Record<string, any>,
   TEntityRequest extends EntityRequest = EntityRequest
 > {
   protected actions: EntityStoreActions;
+  protected endpoint: string;
+  protected entityName: EntityName;
+  protected entitySearchRequestConstructor: ClassConstructor<TSearchRequest>;
+  protected entityGetRequestConstructor: ClassConstructor<TEntityRequest>;
+  protected apiService: ApiService;
 
-  constructor(
-    protected endpoint: string,
-    protected entityName: EntityName,
-    protected entityPaginationRequestConstructor: ClassConstructor<TPaginationRequest> = PaginationRequest as any,
-    protected entityRequestConstructor: ClassConstructor<TEntityRequest> = EntityRequest as any
-  ) {
-    this.actions = new EntityStoreActions(entityName);
+  constructor(options: {
+    endpoint: string;
+    entityName: EntityName;
+    entitySearchRequestConstructor?: ClassConstructor<TSearchRequest>;
+    entityGetRequestConstructor?: ClassConstructor<EntityRequest>;
+    apiService?: ApiService;
+  }) {
+    this.apiService = options.apiService || apiService;
+    this.endpoint = options.endpoint;
+    this.entityName = options.entityName;
+    this.entitySearchRequestConstructor =
+      options.entitySearchRequestConstructor || (PaginationRequest as ClassConstructor<any>);
+    this.entityGetRequestConstructor = options.entityGetRequestConstructor || (EntityRequest as ClassConstructor<any>);
+    this.actions = new EntityStoreActions(options.entityName);
   }
 
   public create(params: TEntity): Observable<TEntity> {
     const request = createEntityInstance(this.entityName, params);
 
-    return apiService.post<BaseEntityPlain>(this.endpoint, classToPlain(request)).pipe(
+    return this.apiService.post<BaseEntityPlain>(this.endpoint, instanceToPlain(request)).pipe(
       tap((response) => store.dispatch(this.actions.created({ item: response }))),
       map((response) => createEntityInstance<TEntity>(this.entityName, response))
     );
   }
 
-  public search(params: TPaginationRequest): Observable<PaginationResponse<TEntity>> {
-    const request = new this.entityPaginationRequestConstructor(omitBy<TPaginationRequest>(params, isUndefined));
+  public search(params: TSearchRequest): Observable<PaginationResponse<TEntity>> {
+    const request = new this.entitySearchRequestConstructor(omitBy<TSearchRequest>(params, isUndefined));
 
-    return apiService
-      .get<PaginationResponse<BaseEntityPlain>>(this.endpoint, classToPlain<TPaginationRequest>(request))
+    return this.apiService
+      .get<PaginationResponse<BaseEntityPlain>>(this.endpoint, instanceToPlain<TSearchRequest>(request))
       .pipe(
         tap((response) => store.dispatch(this.actions.loaded({ items: response?.data || [] }))),
         map((response) => {
-          const { data, ...pagination } = plainToClass(PaginationResponse, response);
+          const { data, ...pagination } = plainToInstance(PaginationResponse, response);
 
           return {
             ...pagination,
@@ -54,25 +66,27 @@ export abstract class EntityService<
   }
 
   public get(id: TEntity['id'], params?: TEntityRequest): Observable<TEntity> {
-    const request = new this.entityRequestConstructor(omitBy<TEntityRequest>(params, isUndefined));
+    const request = new this.entityGetRequestConstructor(omitBy<TEntityRequest>(params, isUndefined));
 
-    return apiService.get<BaseEntityPlain>(`${this.endpoint}/${id}`, classToPlain<TEntityRequest>(request)).pipe(
-      tap((response) => store.dispatch(this.actions.loaded({ items: [response] }))),
-      map((response) => createEntityInstance<TEntity>(this.entityName, response))
-    );
+    return this.apiService
+      .get<BaseEntityPlain>(`${this.endpoint}/${id}`, instanceToPlain<TEntityRequest>(request))
+      .pipe(
+        tap((response) => store.dispatch(this.actions.loaded({ items: [response] }))),
+        map((response) => createEntityInstance<TEntity>(this.entityName, response))
+      );
   }
 
   public update(params: EntityPartial<TEntity>): Observable<EntityPartial<TEntity>> {
-    const request: BaseEntityPlain = classToPlain(createEntityInstance(this.entityName, params)) as BaseEntityPlain;
+    const request: BaseEntityPlain = instanceToPlain(createEntityInstance(this.entityName, params)) as BaseEntityPlain;
 
-    return apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
+    return this.apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
       tap((response) => store.dispatch(this.actions.updated({ item: response || request }))),
       map((response) => createEntityInstance<TEntity>(this.entityName, isObject(response) ? response : request))
     );
   }
 
   public delete(id: number): Observable<void> {
-    return apiService
+    return this.apiService
       .delete(`${this.endpoint}/${id}`)
       .pipe(tap(() => store.dispatch(this.actions.deleted({ item: { id } }))));
   }

@@ -1,16 +1,10 @@
 import { appConfig } from '@app/constants';
-import { AxiosError, AxiosRequestConfig, Method } from 'axios';
+import { AxiosError, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import Axios from 'axios-observable';
 import { AxiosObservable } from 'axios-observable/dist/axios-observable.interface';
 import { Platform } from 'react-native';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {
-  formUrlencodedParamsInterceptor,
-  refreshTokenInterceptor,
-  tokenInterceptor,
-  unauthorizedInterceptor
-} from './interceptors';
 import { ApiCall } from './types';
 
 export class ApiService {
@@ -31,13 +25,6 @@ export class ApiService {
 
     this.httpClient = Axios.create(config);
 
-    if (config.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
-      this.httpClient.interceptors.request.use(formUrlencodedParamsInterceptor);
-    }
-    this.httpClient.interceptors.request.use(tokenInterceptor);
-    this.httpClient.interceptors.request.use(refreshTokenInterceptor);
-    this.httpClient.interceptors.response.use(undefined, unauthorizedInterceptor);
-
     this.post = this.request('post');
     this.get = this.request('get');
     this.patch = this.request('patch');
@@ -47,6 +34,23 @@ export class ApiService {
 
   public static isAxiosError<T>(error: AxiosError | any): error is AxiosError<T> {
     return error && error.isAxiosError;
+  }
+
+  public useInterceptors(interceptors: {
+    request?: Array<Parameters<AxiosInterceptorManager<AxiosRequestConfig>['use']>>;
+    response?: Array<Parameters<AxiosInterceptorManager<AxiosResponse>['use']>>;
+  }): void {
+    if (interceptors.request.length) {
+      interceptors.request.forEach((interceptorPair) => {
+        this.httpClient.interceptors.request.use(...interceptorPair);
+      });
+    }
+
+    if (interceptors.response.length) {
+      interceptors.response.forEach((interceptorPair) => {
+        this.httpClient.interceptors.response.use(...interceptorPair);
+      });
+    }
   }
 
   private request(method: Method, httpClient: Axios = this.httpClient): ApiCall {

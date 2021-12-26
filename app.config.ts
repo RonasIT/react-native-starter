@@ -10,7 +10,7 @@ export const defaultAppConfig = {
   },
   api: {
     root: 'https://dev.api.lainappi.ronasit.com/',
-    unauthorizedEndpoints: ['login'],
+    publicEndpoints: ['login'],
     refreshTokenEndpoint: 'auth/refresh'
   }
 };

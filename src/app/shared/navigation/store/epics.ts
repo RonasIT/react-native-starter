@@ -1,14 +1,13 @@
 import { AuthActions } from '@shared/auth/store/actions';
 import { AppActions } from '@store/actions';
-import { store } from '@store/store';
+import { Epics } from '@store/types/epics';
 import { ofType } from 'deox';
-import { Epic } from 'redux-observable';
 import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
 import { appNavigationService } from '../service';
 import { AppNavigationActions } from './actions';
 import { AppNavigationSelectors } from './selectors';
 
-export const appNavigationEpics: Record<string, Epic> = {
+export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$, state$) => action$.pipe(
     ofType(AuthActions.authorizeSuccess),
     delay(100),
@@ -25,10 +24,12 @@ export const appNavigationEpics: Record<string, Epic> = {
     map(() => AppNavigationActions.clearInterruptedNavigation())
   ),
 
-  interruptedNavigationSaving: (action$) => action$.pipe(
+  interruptedNavigationSaving: (action$, _, { useDispatch }) => action$.pipe(
     ofType(AuthActions.unauthorize),
     tap(({ payload }) => {
-      store.dispatch(
+      const dispatch = useDispatch();
+
+      dispatch(
         payload.keepInterruptedNavigation
           ? AppNavigationActions.saveInterruptedNavigation({
             navigationState: appNavigationService.currentState

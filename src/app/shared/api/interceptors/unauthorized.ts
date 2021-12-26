@@ -1,17 +1,17 @@
-import { AuthActions } from '@shared/auth/store/actions';
-import { store } from '@store/store';
 import { appConfig } from '@app/constants';
+import { AxiosError } from 'axios';
 import { ApiResponseStatus } from '../enums';
 
-export const unauthorizedInterceptor = (error: any): Promise<never> => {
-  const { unauthorizedEndpoints } = appConfig.api;
+export const unauthorizedInterceptor =
+  (options: { onError: (error?: AxiosError) => void }) => (error: any): Promise<never> => {
+    const { publicEndpoints } = appConfig.api;
 
-  if (
-    error.response?.status === ApiResponseStatus.UNAUTHORIZED &&
-    !unauthorizedEndpoints.includes(error.response.config.url)
-  ) {
-    store.dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }));
-  }
+    if (
+      error.response?.status === ApiResponseStatus.UNAUTHORIZED &&
+      !publicEndpoints.includes(error.response.config.url)
+    ) {
+      options.onError(error);
+    }
 
-  return Promise.reject(error);
-};
+    return Promise.reject(error);
+  };
