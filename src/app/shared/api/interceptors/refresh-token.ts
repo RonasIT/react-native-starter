@@ -1,38 +1,40 @@
 import { appConfig } from '@app/constants';
-import { authService } from '@shared/auth/service';
-import { AuthActions, AuthSelectors } from '@shared/auth/store';
-import { checkIsTokenExpired } from '@shared/auth/utils';
-import { store } from '@store';
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { lastValueFrom, throwError } from 'rxjs';
+import { lastValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiResponseStatus } from '../enums';
 
-export const refreshTokenInterceptor = (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  const state = store.getState();
-  const accessToken = AuthSelectors.token(state);
-  const isTokenExpired = checkIsTokenExpired(accessToken);
-  const shouldRefreshToken = isTokenExpired && !!accessToken;
+export const refreshTokenInterceptor =
+  (options: {
+    onSuccess: (token: string) => void;
+    onError: (error?: AxiosError) => void;
+    refreshToken: () => Observable<string>;
+    checkIsTokenExpired: (token: string) => boolean;
+    getToken: () => string;
+  }) => (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
+    const accessToken = options.getToken();
+    const isTokenExpired = options.checkIsTokenExpired(accessToken);
+    const shouldRefreshToken = isTokenExpired && !!accessToken && !appConfig.api.publicEndpoints.includes(config.url);
 
-  if (shouldRefreshToken && !config.url.includes(appConfig.api.refreshTokenEndpoint)) {
-    return lastValueFrom(
-      authService.refreshToken().pipe(
-        map((token) => {
-          store.dispatch(AuthActions.saveToken({ token }));
-          config.headers.Authorization = `Bearer ${token}`;
+    if (shouldRefreshToken && !config.url.includes(appConfig.api.refreshTokenEndpoint)) {
+      return lastValueFrom(
+        options.refreshToken().pipe(
+          map((token) => {
+            options.onSuccess(token);
+            config.headers.Authorization = `Bearer ${token}`;
 
-          return config;
-        }),
-        catchError((error: AxiosError) => {
-          if ([ApiResponseStatus.BAD_REQUEST, ApiResponseStatus.UNAUTHORIZED].includes(error?.response?.status)) {
-            store.dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }));
-          }
+            return config;
+          }),
+          catchError((error: AxiosError) => {
+            if ([ApiResponseStatus.BAD_REQUEST, ApiResponseStatus.UNAUTHORIZED].includes(error?.response?.status)) {
+              options.onError(error);
+            }
 
-          return throwError(() => error);
-        })
-      )
-    );
-  }
+            return throwError(() => error);
+          })
+        )
+      );
+    }
 
-  return Promise.resolve(config);
-};
+    return Promise.resolve(config);
+  };

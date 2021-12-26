@@ -1,5 +1,5 @@
-import { apiService } from '@shared/api/service';
 import { appConfig } from '@app/constants';
+import { apiService } from '@shared/api/service';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
