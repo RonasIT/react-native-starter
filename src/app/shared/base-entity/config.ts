@@ -1,5 +1,5 @@
 import { User } from '@shared/user/models/user';
-import { ClassConstructor, plainToClass } from 'class-transformer';
+import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
 import { BaseEntityPlain } from './models';
 import { EntityMap } from './types';
@@ -29,5 +29,5 @@ export const createEntityInstance = <TEntity extends Entity = Entity, TPlain ext
     return new ENTITIES_CONFIG[entityName](data) as TEntity;
   }
 
-  return plainToClass(ENTITIES_CONFIG[entityName] as ClassConstructor<TEntity>, data);
+  return plainToInstance(ENTITIES_CONFIG[entityName] as ClassConstructor<TEntity>, data);
 };

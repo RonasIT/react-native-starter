@@ -1,6 +1,6 @@
 import { appConfig } from '@app/constants';
 import { apiService } from '@shared/api/service';
-import { classToPlain, plainToClass } from 'class-transformer';
+import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
 import { AuthCredentials, AuthResponse } from './models';
@@ -12,8 +12,8 @@ class AuthService {
     const request = new AuthCredentials(credentials);
 
     return apiService
-      .post('login', classToPlain(request))
-      .pipe(map((response) => plainToClass(AuthResponse, response)));
+      .post('login', instanceToPlain(request))
+      .pipe(map((response) => plainToInstance(AuthResponse, response)));
   }
 
   public refreshToken(): Observable<string> {
