@@ -1,4 +1,4 @@
-import { Exclude, Type } from 'class-transformer';
+import { ClassConstructor, Exclude, Type } from 'class-transformer';
 import { Pagination } from '@shared/pagination/models/pagination';
 
 export class PaginationResponse<TEntity extends object = object> extends Pagination {
@@ -8,9 +8,9 @@ export class PaginationResponse<TEntity extends object = object> extends Paginat
   public data: Array<TEntity>;
 
   @Exclude()
-  private type: Function;
+  private type: ClassConstructor<TEntity>;
 
-  constructor(type: Function) {
+  constructor(type: ClassConstructor<TEntity>) {
     super();
     this.type = type;
   }
