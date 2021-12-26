@@ -5,11 +5,12 @@ import { PartialDeep } from 'type-fest';
 export const defaultAppConfig = {
   production: false,
   sentry: {
-    dsn: 'https://5e6a12477b794063b327b170426114b9@sentry.ronasit.com/125'
+    enabled: false,
+    dsn: 'https://your-sentry-dsn'
   },
   api: {
     root: 'https://dev.api.lainappi.ronasit.com/',
-    unauthorizedEndpoints: ['login'],
+    publicEndpoints: ['login'],
     refreshTokenEndpoint: 'auth/refresh'
   }
 };
