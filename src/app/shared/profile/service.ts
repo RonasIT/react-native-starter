@@ -1,5 +1,5 @@
 import { apiService } from '@shared/api/service';
-import { User } from '@shared/user';
+import { User } from '@shared/user/models/user';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
