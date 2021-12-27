@@ -3,7 +3,7 @@ import { createReducer } from 'deox';
 import { ProfileActions } from './actions';
 import { ProfileState } from './state';
 import { immutableMerge } from '@shared/immutable-merge';
-import { User } from '@shared/user';
+import { User } from '@shared/user/models/user';
 
 const initialState = new ProfileState();
 

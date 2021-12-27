@@ -1,7 +1,7 @@
 import { NavigationContainerRef, NavigationState, Route } from '@react-navigation/native';
 import * as React from 'react';
 
-export const navigationRef = React.createRef<NavigationContainerRef<{}>>();
+export const navigationRef = React.createRef<NavigationContainerRef<object>>();
 
 class AppNavigationService {
   public get currentRoute(): Route<string> | undefined {

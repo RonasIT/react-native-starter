@@ -9,11 +9,13 @@ import * as Sentry from 'sentry-expo';
 import { App } from './app';
 
 export default function Root(): ReactElement {
-  Sentry.init({
-    dsn: appConfig.sentry.dsn,
-    enableInExpoDevelopment: false,
-    debug: !appConfig.production
-  });
+  if (appConfig.sentry.enabled) {
+    Sentry.init({
+      dsn: appConfig.sentry.dsn,
+      enableInExpoDevelopment: false,
+      debug: !appConfig.production
+    });
+  }
 
   const [areFontsReady] = useFonts({
     SFProDisplayBold: require('@assets/fonts/SF-Pro-Display-Bold.otf'),

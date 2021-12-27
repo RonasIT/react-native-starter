@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { DateTime } from 'luxon';
 
-export function TransformDate(format?: string, withTime: boolean = true): Function {
+export function TransformDate(format?: string, withTime: boolean = true): (target: any, key: string) => void {
   const toPlain = Transform(
     ({ value }) => {
       if (DateTime.isDateTime(value)) {

@@ -1,8 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isNil } from 'lodash';
 
 export class AsyncStorageItem {
-  public set(value: string): Promise<void> {
-    return AsyncStorage.setItem(this.key, value);
+  public async set(value: string): Promise<void> {
+    if (isNil(value)) {
+      this.remove();
+    } else {
+      await AsyncStorage.setItem(this.key, value);
+    }
   }
 
   public get(): Promise<string | null> {

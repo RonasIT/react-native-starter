@@ -1,16 +1,47 @@
+import { apiService } from '@shared/api/service';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
 import { ofType } from 'deox';
 import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { refreshTokenInterceptor, tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
 import { authService } from '../service';
+import { checkIsTokenExpired } from '../utils';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
 export const authEpics: Epics = {
-  onInit: (action$) => action$.pipe(
+  onInit: (action$, _, { useDispatch, useGetState }) => action$.pipe(
     ofType(AppActions.init),
+    tap(() => {
+      const getState = useGetState();
+      const getToken = (): string => AuthSelectors.token(getState());
+      const dispatch = useDispatch();
+
+      apiService.useInterceptors({
+        request: [
+          [
+            refreshTokenInterceptor({
+              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
+              onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
+              getToken,
+              checkIsTokenExpired,
+              refreshToken: () => authService.refreshToken()
+            })
+          ],
+          [tokenInterceptor(getToken)]
+        ],
+        response: [
+          [
+            undefined,
+            unauthorizedInterceptor({
+              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }))
+            })
+          ]
+        ]
+      });
+    }),
     switchMap(() => appStorageService.token.get()),
     map((token) => AuthActions.saveToken({ token }))
   ),
