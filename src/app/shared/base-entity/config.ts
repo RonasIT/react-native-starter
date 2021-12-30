@@ -17,7 +17,8 @@ export const ENTITIES_CONFIG: { [key in EntityName]: ClassConstructor<Entities[k
 
 export const createEntityInstance = <TEntity extends Entity = Entity, TPlain extends object = object>(
   entityName: EntityName,
-  data: TPlain | Entity
+  data: TPlain | Entity,
+  options: { fromInstancePartial?: boolean } = { fromInstancePartial: false }
 ): TEntity => {
   if (!isFunction(ENTITIES_CONFIG[entityName])) {
     throw new Error(
@@ -25,7 +26,7 @@ export const createEntityInstance = <TEntity extends Entity = Entity, TPlain ext
     );
   }
 
-  if (data instanceof ENTITIES_CONFIG[entityName]) {
+  if (data instanceof ENTITIES_CONFIG[entityName] || options.fromInstancePartial) {
     return new ENTITIES_CONFIG[entityName](data) as TEntity;
   }
 

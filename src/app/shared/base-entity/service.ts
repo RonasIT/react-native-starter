@@ -1,8 +1,8 @@
-import { storeHandle } from '@store/store-handle';
 import { apiService, ApiService } from '@shared/api/service';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
+import { storeHandle } from '@store/store-handle';
 import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
-import { isObject, isUndefined, omitBy } from 'lodash';
+import { isUndefined, omitBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { createEntityInstance, Entity, EntityName } from './config';
@@ -39,7 +39,7 @@ export abstract class EntityService<
   }
 
   public create(params: TEntity): Observable<TEntity> {
-    const request = createEntityInstance(this.entityName, params);
+    const request = createEntityInstance(this.entityName, params, { fromInstancePartial: true });
 
     return this.apiService.post<BaseEntityPlain>(this.endpoint, instanceToPlain(request)).pipe(
       tap((response) => storeHandle.dispatch(this.actions.created({ item: response }))),
@@ -77,11 +77,12 @@ export abstract class EntityService<
   }
 
   public update(params: EntityPartial<TEntity>): Observable<EntityPartial<TEntity>> {
-    const request: BaseEntityPlain = instanceToPlain(createEntityInstance(this.entityName, params)) as BaseEntityPlain;
+    const updatedEntity = createEntityInstance(this.entityName, params, { fromInstancePartial: true }) as TEntity;
+    const request: BaseEntityPlain = instanceToPlain(updatedEntity) as BaseEntityPlain;
 
-    return this.apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
+    return apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
       tap((response) => storeHandle.dispatch(this.actions.updated({ item: response || request }))),
-      map((response) => createEntityInstance<TEntity>(this.entityName, isObject(response) ? response : request))
+      map((response) => (response ? createEntityInstance<TEntity>(this.entityName, response) : updatedEntity))
     );
   }
 
