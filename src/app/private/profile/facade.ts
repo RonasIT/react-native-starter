@@ -1,7 +1,7 @@
+import { storeHandle } from '@store/store-handle';
 import { AuthActions } from '@shared/auth';
 import { ProfileSelectors } from '@shared/profile';
 import { User } from '@shared/user';
-import { store } from '@store';
 import { useSelector } from 'react-redux';
 
 class ProfileScreenFacade {
@@ -10,7 +10,7 @@ class ProfileScreenFacade {
   }
 
   public logout(): void {
-    store.dispatch(AuthActions.unauthorize({}));
+    storeHandle.dispatch(AuthActions.unauthorize({}));
   }
 }
 
