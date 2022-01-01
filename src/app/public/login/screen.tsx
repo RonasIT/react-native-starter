@@ -6,7 +6,7 @@ import { AppText, TextTheme } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
 import Constants from 'expo-constants';
 import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
@@ -26,12 +26,6 @@ export function LoginScreen(): JSX.Element {
     onSubmit: formSubmitted
   });
   const { handleSubmit } = formik;
-
-  useEffect(() => {
-    return () => {
-      loginScreenFacade.reset();
-    };
-  }, []);
 
   return (
     <AppScreen style={[commonStyle.container, style.container]}>

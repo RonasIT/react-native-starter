@@ -39,7 +39,7 @@ export function FormGroup<T = AppTextInputProps>({
         </AppText>
       )}
       {children}
-      <AppText>{errors[name] || ''}</AppText>
+      <AppText testID='validation-error'>{errors[name] || ''}</AppText>
     </View>
   );
 }
