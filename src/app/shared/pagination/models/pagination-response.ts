@@ -8,7 +8,7 @@ export class PaginationResponse<TEntity extends object = object> extends Paginat
   public data: Array<TEntity>;
 
   @Exclude()
-  private type: ClassConstructor<TEntity>;
+  private type?: ClassConstructor<TEntity>;
 
   constructor(type: ClassConstructor<TEntity>) {
     super();

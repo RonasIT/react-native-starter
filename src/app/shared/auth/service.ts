@@ -1,5 +1,6 @@
 import { appConfig } from '@app/constants';
 import { apiService } from '@shared/api/service';
+import { profileService } from '@shared/profile';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
@@ -7,6 +8,16 @@ import { AuthCredentials, AuthResponse } from './models';
 
 class AuthService {
   private tokenRefresh$?: Observable<string>;
+
+  // TODO: Demo code. Remove in a real app.
+  public demoAuthorize(_: AuthCredentials): Observable<AuthResponse> {
+    return profileService.getDemoProfile().pipe(
+      map((response) => ({
+        user: response,
+        token: 'some-demo-token'
+      }))
+    );
+  }
 
   public authorize(credentials: AuthCredentials): Observable<AuthResponse> {
     const request = new AuthCredentials(credentials);

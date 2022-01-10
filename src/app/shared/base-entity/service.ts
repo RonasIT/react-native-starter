@@ -1,18 +1,18 @@
 import { apiService, ApiService } from '@shared/api/service';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
-import { store } from '@store/store';
+import { storeHandle } from '@store/store-handle';
 import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
-import { isObject, isUndefined, omitBy } from 'lodash';
+import { isUndefined, omitBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { createEntityInstance, Entity, EntityName } from './config';
 import { BaseEntityPlain, EntityRequest } from './models';
-import { EntityStoreActions } from './store';
+import { EntityStoreActions } from './store/actions';
 import { EntityPartial } from './types';
 
 export abstract class EntityService<
   TEntity extends Entity = Entity,
-  TSearchRequest extends Record<string, any> = Record<string, any>,
+  TSearchRequest extends Record<string, any> = PaginationRequest,
   TEntityRequest extends EntityRequest = EntityRequest
 > {
   protected actions: EntityStoreActions;
@@ -39,10 +39,10 @@ export abstract class EntityService<
   }
 
   public create(params: TEntity): Observable<TEntity> {
-    const request = createEntityInstance(this.entityName, params);
+    const request = createEntityInstance(this.entityName, params, { fromInstancePartial: true });
 
     return this.apiService.post<BaseEntityPlain>(this.endpoint, instanceToPlain(request)).pipe(
-      tap((response) => store.dispatch(this.actions.created({ item: response }))),
+      tap((response) => storeHandle.dispatch(this.actions.created({ item: response }))),
       map((response) => createEntityInstance<TEntity>(this.entityName, response))
     );
   }
@@ -53,7 +53,7 @@ export abstract class EntityService<
     return this.apiService
       .get<PaginationResponse<BaseEntityPlain>>(this.endpoint, instanceToPlain<TSearchRequest>(request))
       .pipe(
-        tap((response) => store.dispatch(this.actions.loaded({ items: response?.data || [] }))),
+        tap((response) => storeHandle.dispatch(this.actions.loaded({ items: response?.data || [] }))),
         map((response) => {
           const { data, ...pagination } = plainToInstance(PaginationResponse, response);
 
@@ -71,24 +71,25 @@ export abstract class EntityService<
     return this.apiService
       .get<BaseEntityPlain>(`${this.endpoint}/${id}`, instanceToPlain<TEntityRequest>(request))
       .pipe(
-        tap((response) => store.dispatch(this.actions.loaded({ items: [response] }))),
+        tap((response) => storeHandle.dispatch(this.actions.loaded({ items: [response] }))),
         map((response) => createEntityInstance<TEntity>(this.entityName, response))
       );
   }
 
   public update(params: EntityPartial<TEntity>): Observable<EntityPartial<TEntity>> {
-    const request: BaseEntityPlain = instanceToPlain(createEntityInstance(this.entityName, params)) as BaseEntityPlain;
+    const updatedEntity = createEntityInstance(this.entityName, params, { fromInstancePartial: true }) as TEntity;
+    const request: BaseEntityPlain = instanceToPlain(updatedEntity) as BaseEntityPlain;
 
-    return this.apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
-      tap((response) => store.dispatch(this.actions.updated({ item: response || request }))),
-      map((response) => createEntityInstance<TEntity>(this.entityName, isObject(response) ? response : request))
+    return apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
+      tap((response) => storeHandle.dispatch(this.actions.updated({ item: response || request }))),
+      map((response) => (response ? createEntityInstance<TEntity>(this.entityName, response) : updatedEntity))
     );
   }
 
   public delete(id: number): Observable<void> {
     return this.apiService
       .delete(`${this.endpoint}/${id}`)
-      .pipe(tap(() => store.dispatch(this.actions.deleted({ item: { id } }))));
+      .pipe(tap(() => storeHandle.dispatch(this.actions.deleted({ item: { id } }))));
   }
 
   protected notImplementedMethod(methodName: keyof EntityService<TEntity>): () => never {

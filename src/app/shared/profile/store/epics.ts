@@ -28,7 +28,7 @@ export const profileEpics: Epics = {
   refreshProfile: (action$, state$) => action$.pipe(
     ofType(ProfileActions.refreshProfile),
     filter(() => AuthSelectors.isAuthenticated(state$.value)),
-    exhaustMap(() => profileService.getProfile().pipe(
+    exhaustMap(() => profileService.getDemoProfile().pipe(
       map((user) => ProfileActions.refreshProfileSuccess(user)),
       catchError((error) => of(ProfileActions.refreshProfileFailure(error)))
     ))

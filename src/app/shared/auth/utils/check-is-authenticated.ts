@@ -1,11 +1,11 @@
-import { store } from '@store/store';
+import { storeHandle } from '@store/store-handle';
 import { AuthActions } from '../store/actions';
 import { AuthSelectors } from '../store/selectors';
 
 export function checkIsAuthenticated(unauthenticateOnFail = true): boolean {
-  const isAuthenticated = AuthSelectors.isAuthenticated(store.getState());
+  const isAuthenticated = AuthSelectors.isAuthenticated(storeHandle.getState());
   if (!isAuthenticated && unauthenticateOnFail) {
-    store.dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }));
+    storeHandle.dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }));
   }
 
   return isAuthenticated;

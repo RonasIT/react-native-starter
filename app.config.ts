@@ -9,9 +9,9 @@ export const defaultAppConfig = {
     dsn: 'https://your-sentry-dsn'
   },
   api: {
-    root: 'https://dev.api.lainappi.ronasit.com/',
-    publicEndpoints: ['login'],
-    refreshTokenEndpoint: 'auth/refresh'
+    root: 'https://gorest.co.in/public/v1',
+    publicEndpoints: ['/login', '/users'],
+    refreshTokenEndpoint: '/auth/refresh'
   }
 };
 
@@ -57,10 +57,10 @@ const defaultExpoConfig: ExpoConfig = {
       {
         file: 'sentry-expo/upload-sourcemaps',
         config: {
-          url: 'https://sentry.ronasit.com',
-          organization: 'sentry',
-          project: 'your-sentry-project-here',
-          authToken: 'dcbd7a4a79554b4d8e992d951e2fbc00e14ec29c122744ceba46f289fe9a02bf'
+          url: 'https://your-sentry-url',
+          organization: 'your-sentry-organization',
+          project: 'your-sentry-project',
+          authToken: 'your-sentry-token'
         }
       }
     ]

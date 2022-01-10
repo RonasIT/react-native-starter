@@ -19,4 +19,9 @@ export class AuthSelectors {
     selectFeature,
     (state) => state.isTokenLoaded
   );
+
+  public static isAuthorizing = createSelector(
+    selectFeature,
+    (state) => state.isAuthorizing
+  );
 }
