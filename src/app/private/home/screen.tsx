@@ -4,7 +4,7 @@ import { AppScreen } from '@shared/screen';
 import { User } from '@shared/user';
 import { commonStyle } from '@styles';
 import React, { ReactElement, useEffect } from 'react';
-import { HomeListItem } from './components';
+import { HomeListItem } from './shared/components';
 
 export function HomeScreen(): ReactElement {
   const { items, isLoading, isRefreshing, pagination } = homeScreenFacade;

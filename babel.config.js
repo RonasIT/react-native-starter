@@ -25,6 +25,7 @@ module.exports = function (api) {
             '@styles': './src/styles',
             '@configurations': './src/configurations/configuration',
             '@assets': './src/assets',
+            '@tests': './src/tests',
             '@app': './src/app'
           }
         }
