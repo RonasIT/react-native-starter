@@ -20,6 +20,7 @@ const defaultExpoConfig: ExpoConfig = {
   slug: 'react-native-starter-dev',
   scheme: 'rnstarterdev',
   owner: 'ronas_it',
+  entryPoint: 'index.js',
   version: '0.0.1',
   orientation: 'portrait',
   backgroundColor: '#000000',
@@ -52,20 +53,6 @@ const defaultExpoConfig: ExpoConfig = {
     config: 'metro.config.js',
     sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
   },
-  hooks: {
-    postPublish: [
-      {
-        file: 'sentry-expo/upload-sourcemaps',
-        config: {
-          url: 'https://your-sentry-url',
-          organization: 'your-sentry-organization',
-          project: 'your-sentry-project',
-          authToken: 'your-sentry-token'
-        }
-      }
-    ]
-  },
-  plugins: ['sentry-expo'],
   extra: defaultAppConfig
 };
 

@@ -1,4 +1,34 @@
 {
+  "build": {
+    "internal": {
+      "releaseChannel": "internal",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "development"
+      }
+    },
+    "development": {
+      "releaseChannel": "development",
+      "distribution": "store",
+      "env": {
+        "APP_ENV": "development"
+      }
+    },
+    "preview": {
+      "releaseChannel": "preview",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "production"
+      }
+    },
+    "production": {
+      "releaseChannel": "production",
+      "distribution": "store",
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  },
   "submit": {
     "development": {
       "ios": {
@@ -7,5 +37,8 @@
         "appleTeamId": "APPLETEAMID"
       }
     }
+  },
+  "cli": {
+    "version": ">= 0.44.0"
   }
 }

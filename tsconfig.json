@@ -1,5 +1,4 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
     "allowSyntheticDefaultImports": true,
@@ -41,5 +40,6 @@
         "src/app/*"
       ]
     }
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
