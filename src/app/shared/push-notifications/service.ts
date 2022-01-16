@@ -1,5 +1,4 @@
 import { apiService } from '@shared/api';
-import { Subscription } from 'expo-clipboard';
 import * as Linking from 'expo-linking';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
@@ -70,10 +69,6 @@ class PushNotificationsService {
     delete this._pushToken;
 
     return apiService.post('api/exponent/devices/unsubscribe');
-  }
-
-  public setupDefaultListeners(): Array<Subscription> {
-    return [Notifications.addNotificationResponseReceivedListener(this.handleNotificationResponse)];
   }
 
   public async handleLastNotificationResponse(): Promise<void> {
