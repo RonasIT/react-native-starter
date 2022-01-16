@@ -29,6 +29,7 @@ export function PrivateNavigation(): ReactElement {
           tabBarIcon: ({ focused }) => (
             <Icon name='home' stroke={focused ? variables.color.primary : variables.color.white} />
           ),
+          headerTitleAlign: 'left',
           title: translate('TEXT_HOME')
         }}
         component={HomeScreen}
@@ -39,6 +40,7 @@ export function PrivateNavigation(): ReactElement {
           tabBarIcon: ({ focused }) => (
             <Icon name='user' stroke={focused ? variables.color.primary : variables.color.white} />
           ),
+          headerTitleAlign: 'left',
           title: translate('TEXT_PROFILE')
         }}
         component={ProfileScreen}
