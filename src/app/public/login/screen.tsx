@@ -1,3 +1,4 @@
+import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
@@ -58,6 +59,7 @@ export function LoginScreen(): JSX.Element {
             onPress={() => handleSubmit()}
           />
         </View>
+        <AppVersion />
       </AppScreen>
     </KeyboardAwareScrollView>
   );
