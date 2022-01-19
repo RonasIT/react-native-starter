@@ -35,7 +35,7 @@ const defaultExpoConfig: ExpoConfig = {
   ios: {
     buildNumber: '1',
     supportsTablet: false,
-    bundleIdentifier: 'com.ronasit.rnstarter',
+    bundleIdentifier: 'com.ronasit.rnstarter.dev',
     backgroundColor: '#000000',
     config: {
       usesNonExemptEncryption: false
@@ -43,7 +43,7 @@ const defaultExpoConfig: ExpoConfig = {
   },
   android: {
     versionCode: 1,
-    package: 'com.ronasit.rnstarter',
+    package: 'com.ronasit.rnstarter.dev',
     permissions: []
   },
   web: {
@@ -53,6 +53,21 @@ const defaultExpoConfig: ExpoConfig = {
     config: 'metro.config.js',
     sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
   },
+  // TODO: Configure this to use Sentry or remove
+  // hooks: {
+  //   postPublish: [
+  //     {
+  //       file: 'sentry-expo/upload-sourcemaps',
+  //       config: {
+  //         url: 'https://your-sentry-url',
+  //         organization: 'your-sentry-organization',
+  //         project: 'your-sentry-project',
+  //         authToken: 'your-sentry-token'
+  //       }
+  //     }
+  //   ]
+  // },
+  // plugins: ['sentry-expo'],
   extra: defaultAppConfig
 };
 
@@ -64,7 +79,7 @@ module.exports = () => {
   if (env === 'production') {
     return merge(defaultExpoConfig, <PartialConfig>{
       name: 'RN Starter Prod',
-      slug: 'react-native-starter-dev-prod',
+      slug: 'react-native-starter-prod',
       scheme: 'rnstarter',
       extra: {
         production: true

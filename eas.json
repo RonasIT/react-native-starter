@@ -1,15 +1,13 @@
 {
   "build": {
-    "internal": {
-      "releaseChannel": "internal",
-      "distribution": "internal",
-      "env": {
-        "APP_ENV": "development"
-      }
-    },
     "development": {
       "releaseChannel": "development",
-      "distribution": "store",
+      "android": {
+        "distribution": "internal"
+      },
+      "ios": {
+        "distribution": "store"
+      },
       "env": {
         "APP_ENV": "development"
       }
@@ -33,8 +31,8 @@
     "development": {
       "ios": {
         "appleId": "your-apple.id@com",
-        "ascAppId": "123456789",
-        "appleTeamId": "APPLETEAMID"
+        "ascAppId": "1605476082",
+        "appleTeamId": "W78QWT9EXA"
       }
     }
   },
