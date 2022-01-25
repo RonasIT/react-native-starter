@@ -31,8 +31,8 @@
     "development": {
       "ios": {
         "appleId": "your-apple.id@com",
-        "ascAppId": "1605476082",
-        "appleTeamId": "W78QWT9EXA"
+        "ascAppId": "1234567890",
+        "appleTeamId": "YOURTEAMID"
       }
     }
   },
