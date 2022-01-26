@@ -1,11 +1,42 @@
 {
+  "build": {
+    "development": {
+      "releaseChannel": "development",
+      "android": {
+        "distribution": "internal"
+      },
+      "ios": {
+        "distribution": "store"
+      },
+      "env": {
+        "APP_ENV": "development"
+      }
+    },
+    "preview": {
+      "releaseChannel": "preview",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "production"
+      }
+    },
+    "production": {
+      "releaseChannel": "production",
+      "distribution": "store",
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  },
   "submit": {
     "development": {
       "ios": {
         "appleId": "your-apple.id@com",
-        "ascAppId": "123456789",
-        "appleTeamId": "APPLETEAMID"
+        "ascAppId": "1234567890",
+        "appleTeamId": "YOURTEAMID"
       }
     }
+  },
+  "cli": {
+    "version": ">= 0.44.0"
   }
 }

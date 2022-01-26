@@ -1,15 +1,10 @@
-const { getDefaultConfig } = require('expo/metro-config');
+/* eslint-disable */
+const { getDefaultConfig } = require('@expo/metro-config');
 
-module.exports = (async () => {
-  const { resolver: { sourceExts, assetExts } } = await getDefaultConfig('./');
+const defaultConfig = getDefaultConfig(__dirname);
 
-  return {
-    transformer: {
-      babelTransformerPath: require.resolve('react-native-svg-transformer')
-    },
-    resolver: {
-      assetExts: assetExts.filter((ext) => ext !== 'svg'),
-      sourceExts: [...sourceExts, 'svg']
-    }
-  };
-})();
+defaultConfig.transformer.babelTransformerPath = require.resolve('react-native-svg-transformer');
+defaultConfig.resolver.assetExts = defaultConfig.resolver.assetExts.filter(ext => ext !== 'svg');
+defaultConfig.resolver.sourceExts.push('svg');
+
+module.exports = defaultConfig;

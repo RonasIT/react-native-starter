@@ -18,6 +18,7 @@ export function PublicNavigation(): ReactElement {
         name='Login'
         component={LoginScreen}
         options={{
+          headerTitleAlign: 'left',
           title: I18n.t('PUBLIC.NAVIGATION.TEXT_LOG_IN')
         }}
       />
