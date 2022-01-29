@@ -1,6 +1,5 @@
 import { Svg } from '@shared/svg';
 
-/* eslint-disable @typescript-eslint/no-var-requires */
 export const Icons = {
   eye: Svg(require('./eye.svg')),
   eyeHide: Svg(require('./eye-hide.svg')),

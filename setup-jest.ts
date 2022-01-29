@@ -15,7 +15,6 @@ jest.mock('@shared/svg', () => ({ Svg: reactElementMock }));
 jest.mock('@assets/icons', () => ({ Icons: {} }));
 
 jest.mock('react-native-keyboard-aware-scroll-view', () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const KeyboardAwareScrollView = require('react-native').ScrollView;
 
   return { KeyboardAwareScrollView };
