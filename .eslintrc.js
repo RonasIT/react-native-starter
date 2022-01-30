@@ -12,7 +12,7 @@ module.exports = {
     'node_modules',
     'dist',
     'coverage',
-    '.eslintrc.js',
+    '**/*.js',
     '.expo',
     '.expo-shared',
     'web-build'

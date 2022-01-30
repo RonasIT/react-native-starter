@@ -35,8 +35,8 @@
     "lint": "eslint --ext .ts,.tsx ./",
     "test": "jest --config jest.config.js --detectOpenHandles",
     "prepare": "husky install",
-    "prepublishOnly": "cpy .gitignore gitignore --rename && cpy package-lock.json npm-shrinkwrap.json --rename",
-    "postpublish": "rimraf gitignore && rimraf npm-shrinkwrap.json",
+    "prepack": "node scripts/prepack.js",
+    "postpack": "node scripts/postpack.js",
     "postinstall": "npm run postinit",
     "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized"
   },
