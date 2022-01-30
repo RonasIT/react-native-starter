@@ -8,8 +8,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-
-# macOS
 .DS_Store
 .eslintcache
 .env
+
+# Added for compatibility with expo-cli. Please use app.config.ts instead.
+app.json
