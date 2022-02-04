@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/RonasIT/react-native-starter.git"
   },
-  "version": "1.0.5",
+  "version": "1.0.9",
   "scripts": {
     "start": "cross-env APP_ENV=development expo start",
     "start:prod": "cross-env APP_ENV=production expo start",
@@ -31,8 +31,8 @@
     "submit:ios:prod": "cross-env APP_ENV=production eas submit -p ios --profile=production",
     "eject": "expo eject",
     "compile": "npx tsc",
-    "format": "npx prettier --write **/*.{ts,tsx} && npx prettier --write *.{ts,tsx}",
     "lint": "eslint --ext .ts,.tsx ./",
+    "format": "npx prettier --write **/*.{ts,tsx} && npx prettier --write *.{ts,tsx} && npm run lint -- --fix",
     "test": "jest --config jest.config.js --detectOpenHandles",
     "prepare": "husky install",
     "prepack": "node scripts/prepack.js",

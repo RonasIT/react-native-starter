@@ -2,6 +2,7 @@ import { ExpoConfig } from '@expo/config';
 import { merge } from 'lodash';
 import { PartialDeep } from 'type-fest';
 
+// TODO: Demo configuration. Update in a real app
 export const defaultAppConfig = {
   production: false,
   sentry: {
