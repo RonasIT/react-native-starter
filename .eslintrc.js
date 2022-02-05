@@ -1,5 +1,8 @@
 module.exports = {
   root: true,
+  env: {
+    node: true
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
@@ -9,10 +12,16 @@ module.exports = {
     'node_modules',
     'dist',
     'coverage',
+    '**/*.js',
     '.expo',
     '.expo-shared',
     'web-build'
   ],
+  settings: {
+    react: {
+      version: 'latest'
+    }
+  },
   plugins: [
     '@typescript-eslint',
     'unused-imports',
@@ -48,6 +57,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-member-accessibility': ['warn', { accessibility: 'explicit', overrides: { constructors: 'no-public' } }],
     '@typescript-eslint/explicit-function-return-type': ['warn', { allowExpressions: true }],
+    '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/array-type': ['warn', { default: 'generic', readonly: 'generic' }],
     'unused-imports/no-unused-imports-ts': 'warn',

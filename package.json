@@ -1,4 +1,22 @@
 {
+  "name": "@ronas-it/react-native-starter",
+  "description": "React Native + Expo starter template: a demo app with configurations, project structure, testing setup, navigation, and some basic modules.",
+  "author": "Ronas IT",
+  "bugs": {
+    "url": "https://github.com/RonasIT/react-native-starter/issues"
+  },
+  "homepage": "https://github.com/RonasIT/react-native-starter/tree/main",
+  "keywords": [
+    "react-native",
+    "template",
+    "expo",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RonasIT/react-native-starter.git"
+  },
+  "version": "1.0.9",
   "scripts": {
     "start": "cross-env APP_ENV=development expo start",
     "start:prod": "cross-env APP_ENV=production expo start",
@@ -13,10 +31,14 @@
     "submit:ios:prod": "cross-env APP_ENV=production eas submit -p ios --profile=production",
     "eject": "expo eject",
     "compile": "npx tsc",
-    "format": "npx prettier --write **/*.{ts,tsx} && npx prettier --write *.{ts,tsx}",
     "lint": "eslint --ext .ts,.tsx ./",
+    "format": "npx prettier --write **/*.{ts,tsx} && npx prettier --write *.{ts,tsx} && npm run lint -- --fix",
     "test": "jest --config jest.config.js --detectOpenHandles",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepack": "node scripts/prepack.js",
+    "postpack": "node scripts/postpack.js",
+    "postinstall": "npm run postinit",
+    "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.15.15",
@@ -81,6 +103,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
+    "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
@@ -91,9 +114,11 @@
     "jest": "^26.6.3",
     "jest-expo": "^44.0.0",
     "lint-staged": "^11.2.6",
+    "path-exists-cli": "^2.0.0",
     "prettier": "^2.4.1",
     "react-test-renderer": "^17.0.2",
     "redux-devtools-extension": "^2.13.9",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.1.2",
     "type-fest": "^2.9.0",
     "typescript": "~4.3.5"
@@ -103,6 +128,5 @@
       "prettier --write",
       "eslint --cache --fix"
     ]
-  },
-  "private": true
+  }
 }

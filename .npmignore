@@ -1,3 +1,4 @@
+scripts/
 node_modules/
 .expo/
 npm-debug.*
@@ -11,6 +12,3 @@ web-build/
 .DS_Store
 .eslintcache
 .env
-
-# Added for compatibility with expo-cli. Please use app.config.ts instead.
-app.json

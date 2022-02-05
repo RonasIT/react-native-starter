@@ -13,3 +13,9 @@ jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation');
 const reactElementMock = (): React.ReactNode => View;
 jest.mock('@shared/svg', () => ({ Svg: reactElementMock }));
 jest.mock('@assets/icons', () => ({ Icons: {} }));
+
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+  const KeyboardAwareScrollView = require('react-native').ScrollView;
+
+  return { KeyboardAwareScrollView };
+});

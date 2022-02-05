@@ -6,8 +6,8 @@ import { Platform, TextStyle } from 'react-native';
 
 export function AppVersion(props: { style?: TextStyle }): ReactElement {
   const versionName = `v${Constants.manifest.version} (${Platform.select({
-    ios: Constants.manifest.ios.buildNumber,
-    android: String(Constants.manifest.android.versionCode)
+    ios: Constants.manifest.ios?.buildNumber,
+    android: String(Constants.manifest.android?.versionCode)
   })})`;
 
   return <AppText style={[style.versionText, props.style]}>{versionName}</AppText>;
