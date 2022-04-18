@@ -1,4 +1,4 @@
-import { storeHandle } from '@store/store-handle';
+import { storeRef } from '@store/store-ref';
 import { AuthActions } from '@shared/auth';
 import { ProfileSelectors } from '@shared/profile';
 import { User } from '@shared/user';
@@ -10,7 +10,7 @@ class ProfileScreenFacade {
   }
 
   public logout(): void {
-    storeHandle.dispatch(AuthActions.unauthorize({}));
+    storeRef.dispatch(AuthActions.unauthorize({}));
   }
 }
 

@@ -1,6 +1,6 @@
 import { apiService, ApiService } from '@shared/api/service';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
-import { storeHandle } from '@store/store-handle';
+import { storeRef } from '@store/store-ref';
 import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
 import { isUndefined, omitBy } from 'lodash';
 import { Observable } from 'rxjs';
@@ -42,7 +42,7 @@ export abstract class EntityService<
     const request = createEntityInstance(this.entityName, params, { fromInstancePartial: true });
 
     return this.apiService.post<BaseEntityPlain>(this.endpoint, instanceToPlain(request)).pipe(
-      tap((response) => storeHandle.dispatch(this.actions.created({ item: response }))),
+      tap((response) => storeRef.dispatch(this.actions.created({ item: response }))),
       map((response) => createEntityInstance<TEntity>(this.entityName, response))
     );
   }
@@ -53,7 +53,7 @@ export abstract class EntityService<
     return this.apiService
       .get<PaginationResponse<BaseEntityPlain>>(this.endpoint, instanceToPlain<TSearchRequest>(request))
       .pipe(
-        tap((response) => storeHandle.dispatch(this.actions.loaded({ items: response?.data || [] }))),
+        tap((response) => storeRef.dispatch(this.actions.loaded({ items: response?.data || [] }))),
         map((response) => {
           const { data, ...pagination } = plainToInstance(PaginationResponse, response);
 
@@ -71,7 +71,7 @@ export abstract class EntityService<
     return this.apiService
       .get<BaseEntityPlain>(`${this.endpoint}/${id}`, instanceToPlain<TEntityRequest>(request))
       .pipe(
-        tap((response) => storeHandle.dispatch(this.actions.loaded({ items: [response] }))),
+        tap((response) => storeRef.dispatch(this.actions.loaded({ items: [response] }))),
         map((response) => createEntityInstance<TEntity>(this.entityName, response))
       );
   }
@@ -81,7 +81,7 @@ export abstract class EntityService<
     const request: BaseEntityPlain = instanceToPlain(updatedEntity) as BaseEntityPlain;
 
     return apiService.put<void | BaseEntityPlain>(`${this.endpoint}/${request.id}`, request).pipe(
-      tap((response) => storeHandle.dispatch(this.actions.updated({ item: response || request }))),
+      tap((response) => storeRef.dispatch(this.actions.updated({ item: response || request }))),
       map((response) => (response ? createEntityInstance<TEntity>(this.entityName, response) : updatedEntity))
     );
   }
@@ -89,7 +89,7 @@ export abstract class EntityService<
   public delete(id: number): Observable<void> {
     return this.apiService
       .delete(`${this.endpoint}/${id}`)
-      .pipe(tap(() => storeHandle.dispatch(this.actions.deleted({ item: { id } }))));
+      .pipe(tap(() => storeRef.dispatch(this.actions.deleted({ item: { id } }))));
   }
 
   protected notImplementedMethod(methodName: keyof EntityService<TEntity>): () => never {

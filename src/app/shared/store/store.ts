@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic } from './epics';
 import { rootReducer } from './reducer';
-import { storeHandle } from './store-handle';
+import { storeRef } from './store-ref';
 
 const epicMiddleware = createEpicMiddleware({
   dependencies: {
@@ -16,7 +16,7 @@ export const store = createStore(rootReducer, composeWithDevTools(applyMiddlewar
 
 epicMiddleware.run(rootEpic);
 
-storeHandle.dispatch = store.dispatch;
-storeHandle.getState = store.getState;
+storeRef.dispatch = store.dispatch;
+storeRef.getState = store.getState;
 
 export type AppState = ReturnType<typeof store.getState>;
