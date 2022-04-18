@@ -9,7 +9,7 @@ import { profileScreenFacade } from './facade';
 
 export function ProfileScreen(): ReactElement {
   const { profile, logout } = profileScreenFacade;
-  const translate = useTranslation('PRIVATE.PROFILE');
+  const translate = useTranslation('MAIN.PROFILE');
 
   return (
     <AppScreen style={[commonStyle.container, style.container]}>

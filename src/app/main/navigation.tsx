@@ -7,16 +7,16 @@ import React, { ReactElement } from 'react';
 import { HomeScreen } from './home/screen';
 import { ProfileScreen } from './profile/screen';
 
-export type PrivateNavigationParams = {
+export type MainNavigationParams = {
   Home: undefined;
   Profile: undefined;
 };
 
-const Tab = createBottomTabNavigator<PrivateNavigationParams>();
+const Tab = createBottomTabNavigator<MainNavigationParams>();
 
-export function PrivateNavigation(): ReactElement {
+export function MainNavigation(): ReactElement {
   const initialRouteName = 'Home';
-  const translate = useTranslation('PRIVATE.NAVIGATION');
+  const translate = useTranslation('MAIN.NAVIGATION');
 
   return (
     <Tab.Navigator

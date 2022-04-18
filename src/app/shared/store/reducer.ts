@@ -1,4 +1,4 @@
-import { homeScreenReducer } from '@app/private/home/shared/store/reducer';
+import { homeScreenReducer } from '@app/main/home/shared/store/reducer';
 import { authReducer } from '@shared/auth/store/reducer';
 import { entityStoreReducer } from '@shared/base-entity/store/reducer';
 import { appNavigationReducer } from '@shared/navigation/store/reducer';

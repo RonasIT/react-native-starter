@@ -1,16 +1,17 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import I18n from 'i18n-js';
+import { useTranslation } from '@shared/i18n';
 import React, { ReactElement } from 'react';
 import { LoginScreen } from './login/screen';
 
-export type PublicNavigationParams = {
+export type AccountAccessNavigationParams = {
   Login: undefined;
 };
 
-const Stack = createStackNavigator<PublicNavigationParams>();
+const Stack = createStackNavigator<AccountAccessNavigationParams>();
 
-export function PublicNavigation(): ReactElement {
+export function AccountAccessNavigation(): ReactElement {
   const initialRouteName = 'Login';
+  const translate = useTranslation('ACCOUNT_ACCESS.NAVIGATION');
 
   return (
     <Stack.Navigator initialRouteName={initialRouteName}>
@@ -19,7 +20,7 @@ export function PublicNavigation(): ReactElement {
         component={LoginScreen}
         options={{
           headerTitleAlign: 'left',
-          title: I18n.t('PUBLIC.NAVIGATION.TEXT_LOG_IN')
+          title: translate('TEXT_LOG_IN')
         }}
       />
     </Stack.Navigator>

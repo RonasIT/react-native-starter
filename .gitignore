@@ -11,6 +11,9 @@ web-build/
 .DS_Store
 .eslintcache
 .env
+.vscode
+.idea
+.tmp
 
 # Added for compatibility with expo-cli. Please use app.config.ts instead.
 app.json

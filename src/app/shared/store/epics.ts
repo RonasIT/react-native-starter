@@ -1,4 +1,4 @@
-import { homeScreenEpics } from '@app/private/home/shared/store/epics';
+import { homeScreenEpics } from '@app/main/home/shared/store/epics';
 import { authEpics } from '@shared/auth/store/epics';
 import { appNavigationEpics } from '@shared/navigation/store/epics';
 import { profileEpics } from '@shared/profile/store/epics';

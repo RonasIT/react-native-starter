@@ -1,4 +1,4 @@
-import { PublicNavigation } from '@app/public/navigation';
+import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppActivityIndicator } from '@shared/activity-indicator';
@@ -11,7 +11,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { appFacade } from './facade';
 import { appLinking } from './linking';
-import { PrivateNavigation } from './private/navigation';
+import { MainNavigation } from './main/navigation';
 
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
@@ -44,12 +44,12 @@ export function App(): ReactElement {
         </View>
         {isTokenLoaded ? (
           <Stack.Navigator
-            initialRouteName={isAuthenticated ? 'Private' : 'Public'}
+            initialRouteName={isAuthenticated ? 'Main' : 'AccountAccess'}
             screenOptions={{ headerShown: false }}>
-            <Stack.Screen name='Public' component={PublicNavigation} />
+            <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
             <Stack.Screen
-              name='Private'
-              component={PrivateNavigation}
+              name='Main'
+              component={MainNavigation}
               listeners={authenticatedScreenListeners} />
           </Stack.Navigator>
         ) : (
