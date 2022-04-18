@@ -2,18 +2,10 @@ import { ExpoConfig } from '@expo/config';
 import { merge } from 'lodash';
 import { PartialDeep } from 'type-fest';
 
-// TODO: Demo configuration. Update in a real app
-export const defaultAppConfig = {
-  production: false,
-  sentry: {
-    enabled: false,
-    dsn: 'https://your-sentry-dsn'
-  },
-  api: {
-    root: 'https://gorest.co.in/public/v1',
-    publicEndpoints: ['/login', '/users'],
-    refreshTokenEndpoint: '/auth/refresh'
-  }
+type AppEnv = 'development' | 'production';
+
+export const appEnvConfig = {
+  env: 'development' as AppEnv
 };
 
 const defaultExpoConfig: ExpoConfig = {
@@ -69,13 +61,13 @@ const defaultExpoConfig: ExpoConfig = {
   //   ]
   // },
   // plugins: ['sentry-expo'],
-  extra: defaultAppConfig
+  extra: appEnvConfig
 };
 
-type PartialConfig = PartialDeep<ExpoConfig & { extra: typeof defaultAppConfig }>;
+type PartialConfig = PartialDeep<ExpoConfig & { extra: typeof appEnvConfig }>;
 
 module.exports = () => {
-  const env = process.env.APP_ENV;
+  const env = process.env.APP_ENV as AppEnv;
 
   if (env === 'production') {
     return merge(defaultExpoConfig, <PartialConfig>{
@@ -83,13 +75,10 @@ module.exports = () => {
       slug: 'react-native-starter-prod',
       scheme: 'rnstarter',
       extra: {
-        production: true
+        env: 'production'
       }
     });
   } else {
-    return {
-      ...defaultExpoConfig,
-      extra: defaultAppConfig
-    };
+    return defaultExpoConfig;
   }
 };
