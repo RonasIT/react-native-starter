@@ -1,7 +1,7 @@
 import { AuthSelectors } from '@shared/auth';
 import { AppActions } from '@store';
 import { useSelector } from 'react-redux';
-import { storeHandle } from '@store/store-handle';
+import { storeRef } from '@store/store-ref';
 
 class AppFacade {
   public get isAuthenticated(): boolean {
@@ -13,7 +13,7 @@ class AppFacade {
   }
 
   public init(): void {
-    storeHandle.dispatch(AppActions.init());
+    storeRef.dispatch(AppActions.init());
   }
 }
 

@@ -1,8 +1,8 @@
-import { PrivateNavigationParams } from '@app/private/navigation';
+import { MainNavigationParams } from '@app/main/navigation';
 import { getStateFromPath, PathConfig } from '@react-navigation/native';
 import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/types';
 import * as Linking from 'expo-linking';
-import { PublicNavigationParams } from './public/navigation';
+import { AccountAccessNavigationParams } from './account-access/navigation';
 
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
 type ScreenRoutingOptions<T extends object> = {
@@ -15,15 +15,15 @@ export const appLinking: LinkingOptions<object> = {
   prefixes: [appLink],
   config: {
     screens: {
-      Public: {
+      AccountAccess: {
         initialRouteName: 'Login',
-        screens: <ScreenRoutingOptions<PublicNavigationParams>>{
+        screens: <ScreenRoutingOptions<AccountAccessNavigationParams>>{
           Login: 'login'
         }
       },
-      Private: {
-        initialRouteName: 'Main',
-        screens: <ScreenRoutingOptions<PrivateNavigationParams>>{
+      Main: {
+        initialRouteName: 'Home',
+        screens: <ScreenRoutingOptions<MainNavigationParams>>{
           Home: 'tab-one',
           Profile: 'tab-two'
         }

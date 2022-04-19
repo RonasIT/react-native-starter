@@ -1,5 +1,5 @@
 {
-  "PUBLIC": {
+  "ACCOUNT_ACCESS": {
     "NAVIGATION": {
       "TEXT_LOG_IN": "Log in"
     },
@@ -10,7 +10,7 @@
       "BUTTON_SUBMIT": "Login"
     }
   },
-  "PRIVATE": {
+  "MAIN": {
     "NAVIGATION": {
       "TEXT_HOME": "Home",
       "TEXT_PROFILE": "Profile"

@@ -1,4 +1,4 @@
-import { homeScreenFacade } from '@app/private/home/facade';
+import { homeScreenFacade } from '@app/main/home/facade';
 import { ItemsList } from '@shared/items-list';
 import { AppScreen } from '@shared/screen';
 import { User } from '@shared/user';

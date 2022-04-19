@@ -1,4 +1,4 @@
-import { storeHandle } from '@store/store-handle';
+import { storeRef } from '@store/store-ref';
 import { AuthCredentials } from '@shared/auth/models';
 import { AuthActions, AuthSelectors } from '@shared/auth/store';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ class LoginScreenFacade {
   }
 
   public authorize(values: LoginForm): void {
-    storeHandle.dispatch(AuthActions.authorize(new AuthCredentials(values)));
+    storeRef.dispatch(AuthActions.authorize(new AuthCredentials(values)));
   }
 }
 

@@ -14,7 +14,7 @@ import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
 
 export function LoginScreen(): JSX.Element {
-  const translate = useTranslation('PUBLIC.LOGIN');
+  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
   const { isSubmitting } = loginScreenFacade;
   const appName = Constants.manifest.name;
 

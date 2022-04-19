@@ -18,7 +18,7 @@ export const appNavigationEpics: Epics = {
       if (interruptedNavigation) {
         appNavigationService.resetToState(interruptedNavigation);
       } else {
-        appNavigationService.resetToRoute('Private');
+        appNavigationService.resetToRoute('Main');
       }
     }),
     map(() => AppNavigationActions.clearInterruptedNavigation())
@@ -37,7 +37,7 @@ export const appNavigationEpics: Epics = {
           : AppNavigationActions.clearInterruptedNavigation()
       );
     }),
-    tap(() => appNavigationService.resetToRoute('Public')),
+    tap(() => appNavigationService.resetToRoute('AccountAccess')),
     map(() => AppActions.noop())
   )
 };
