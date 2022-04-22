@@ -20,6 +20,28 @@ class AppNavigationService {
     return navigationRef.current?.navigate;
   }
 
+  public get savedState(): NavigationState {
+    return this._savedState;
+  }
+
+  private _savedState?: NavigationState;
+
+  public saveCurrentState(options: { overwriteSaved: boolean } = { overwriteSaved: false }): void {
+    if (!this._savedState || options.overwriteSaved) {
+      this._savedState = this.currentState;
+    }
+  }
+
+  public clearSavedState(): void {
+    delete this._savedState;
+  }
+
+  public tryRestoreSavedState(): void {
+    if (this._savedState) {
+      this.resetToState(this._savedState);
+    }
+  }
+
   public goBack(): void {
     navigationRef.current?.goBack();
   }
@@ -29,6 +51,8 @@ class AppNavigationService {
   }
 
   public resetToState(state: NavigationState): void {
+    this.clearSavedState();
+
     navigationRef.current?.reset(state);
   }
 }
