@@ -2,18 +2,15 @@ import { AuthActions } from '@shared/auth/store/actions';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types/epics';
 import { ofType } from 'deox';
-import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 import { appNavigationService } from '../service';
-import { AppNavigationActions } from './actions';
-import { AppNavigationSelectors } from './selectors';
 
 export const appNavigationEpics: Epics = {
-  authorizeSuccessNavigation: (action$, state$) => action$.pipe(
+  authorizeSuccessNavigation: (action$) => action$.pipe(
     ofType(AuthActions.authorizeSuccess),
     delay(100),
-    withLatestFrom(state$),
-    tap(([_, state]) => {
-      const interruptedNavigation = AppNavigationSelectors.interruptedNavigation(state);
+    tap(() => {
+      const interruptedNavigation = appNavigationService.savedState;
 
       if (interruptedNavigation) {
         appNavigationService.resetToState(interruptedNavigation);
@@ -21,21 +18,17 @@ export const appNavigationEpics: Epics = {
         appNavigationService.resetToRoute('Main');
       }
     }),
-    map(() => AppNavigationActions.clearInterruptedNavigation())
+    map(() => AppActions.noop())
   ),
 
-  interruptedNavigationSaving: (action$, _, { useDispatch }) => action$.pipe(
+  interruptedNavigationSaving: (action$) => action$.pipe(
     ofType(AuthActions.unauthorize),
     tap(({ payload }) => {
-      const dispatch = useDispatch();
-
-      dispatch(
-        payload.keepInterruptedNavigation
-          ? AppNavigationActions.saveInterruptedNavigation({
-            navigationState: appNavigationService.currentState
-          })
-          : AppNavigationActions.clearInterruptedNavigation()
-      );
+      if (payload.keepInterruptedNavigation) {
+        appNavigationService.saveCurrentState();
+      } else {
+        appNavigationService.clearSavedState();
+      }
     }),
     tap(() => appNavigationService.resetToRoute('AccountAccess')),
     map(() => AppActions.noop())
