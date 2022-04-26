@@ -1,13 +1,18 @@
 import { AppState } from '@store';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { ProfileState } from './state';
+import { plainToInstance } from 'class-transformer';
+import { User } from '@shared/user';
 
-const selectFeature = (state: AppState): ProfileState => state.user;
+const selectFeature = (state: AppState): ProfileState => state.profile;
 
 export class ProfileSelectors {
   public static profile = createSelector(
     selectFeature,
-    (state) => state.profile
+    (state) => plainToInstance(
+      User,
+      state.profile
+    )
   );
 
   public static isRefreshing = createSelector(

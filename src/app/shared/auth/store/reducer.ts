@@ -1,28 +1,30 @@
-import { createReducer } from 'deox';
+import { createReducer } from '@reduxjs/toolkit';
 import { AuthActions } from './actions';
 import { AuthState } from './state';
 
-const initialState = new AuthState();
+const initialState = {
+  isTokenLoaded: false,
+  isAuthorizing: false
+} as AuthState;
 
-export const authReducer = createReducer(initialState, (handleAction) => [
-  handleAction(AuthActions.clearToken, (state) => ({
-    ...state,
-    token: null
-  })),
-  handleAction(AuthActions.saveToken, (state, { payload }) => ({
-    ...state,
-    token: payload.token
-  })),
-  handleAction(AuthActions.tokenLoaded, (state) => ({
-    ...state,
-    isTokenLoaded: true
-  })),
-  handleAction(AuthActions.authorize, (state) => ({
-    ...state,
-    isAuthorizing: true
-  })),
-  handleAction([AuthActions.authorizeSuccess, AuthActions.authorizeFailure], (state) => ({
-    ...state,
-    isAuthorizing: false
-  }))
-]);
+export const authReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(AuthActions.clearToken, (state) => {
+      state.token = null;
+    })
+    .addCase(AuthActions.saveToken, (state, { payload }) => {
+      state.token = payload.token;
+    })
+    .addCase(AuthActions.tokenLoaded, (state) => {
+      state.isTokenLoaded = true;
+    })
+    .addCase(AuthActions.authorize, (state) => {
+      state.isAuthorizing = true;
+    })
+    .addCase(AuthActions.authorizeSuccess, (state) => {
+      state.isAuthorizing = false;
+    })
+    .addCase(AuthActions.authorizeFailure, (state) => {
+      state.isAuthorizing = false;
+    });
+});

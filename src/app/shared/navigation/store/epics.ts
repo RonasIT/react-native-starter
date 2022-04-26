@@ -1,9 +1,10 @@
-import { AuthActions } from '@shared/auth/store/actions';
+import { AuthActions, unauthorizePayload } from '@shared/auth/store/actions';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types/epics';
 import { ofType } from 'deox';
 import { delay, map, tap } from 'rxjs/operators';
 import { appNavigationService } from '../service';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$) => action$.pipe(
@@ -23,7 +24,7 @@ export const appNavigationEpics: Epics = {
 
   interruptedNavigationSaving: (action$) => action$.pipe(
     ofType(AuthActions.unauthorize),
-    tap(({ payload }) => {
+    tap<PayloadAction<unauthorizePayload>>(({ payload }) => {
       if (payload.keepInterruptedNavigation) {
         appNavigationService.saveCurrentState();
       } else {

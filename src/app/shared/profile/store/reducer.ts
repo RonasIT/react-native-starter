@@ -1,49 +1,43 @@
 import { AuthActions } from '@shared/auth/store/actions';
-import { createReducer } from 'deox';
+import { createReducer } from '@reduxjs/toolkit';
 import { ProfileActions } from './actions';
 import { ProfileState } from './state';
-import { immutableMerge } from '@shared/immutable-merge';
-import { User } from '@shared/user/models/user';
+import { User } from '@shared/user';
+import { merge } from 'lodash';
 
-const initialState = new ProfileState();
+const initialState = {
+  profile: null
+} as ProfileState;
 
-export const profileReducer = createReducer(initialState, (handleAction) => [
-  handleAction(ProfileActions.refreshProfile, (state) => ({
-    ...state,
-    isRefreshing: true
-  })),
-  handleAction(ProfileActions.refreshProfileSuccess, (state, { payload }) => ({
-    ...state,
-    profile: payload,
-    isRefreshing: false
-  })),
-  handleAction(ProfileActions.refreshProfileFailure, (state) => ({
-    ...state,
-    isRefreshing: false
-  })),
-  handleAction(ProfileActions.updateProfile, (state) => ({
-    ...state,
-    isUpdating: true
-  })),
-  handleAction(ProfileActions.updateProfileSuccess, (state, { payload }) => ({
-    ...state,
-    profile: payload,
-    isUpdating: false
-  })),
-  handleAction(ProfileActions.updateProfileFailure, (state) => ({
-    ...state,
-    isUpdating: false
-  })),
-  handleAction(ProfileActions.patchProfileState, (state, { payload }) => ({
-    ...state,
-    profile: new User(immutableMerge(state.profile, payload))
-  })),
-  handleAction(AuthActions.authorizeSuccess, (state, { payload }) => ({
-    ...state,
-    profile: payload.user
-  })),
-  handleAction(AuthActions.unauthorize, (state) => ({
-    ...state,
-    profile: null
-  }))
-]);
+export const profileReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(ProfileActions.refreshProfile, (state) => {
+      state.isRefreshing = true;
+    })
+    .addCase(ProfileActions.refreshProfileSuccess, (state, { payload }) => {
+      state.isRefreshing = false;
+      state.profile = payload;
+    })
+    .addCase(ProfileActions.refreshProfileFailure, (state) => {
+      state.isRefreshing = false;
+    })
+    .addCase(ProfileActions.updateProfile, (state) => {
+      state.isUpdating = true;
+    })
+    .addCase(ProfileActions.updateProfileSuccess, (state, { payload }) => {
+      state.isUpdating = false;
+      state.profile = payload;
+    })
+    .addCase(ProfileActions.updateProfileFailure, (state) => {
+      state.isUpdating = false;
+    })
+    .addCase(ProfileActions.patchProfileState, (state, { payload }) => {
+      state.profile = new User(merge(state.profile, payload));
+    })
+    .addCase(AuthActions.authorizeSuccess, (state, { payload }) => {
+      state.profile = payload.user;
+    })
+    .addCase(AuthActions.unauthorize, (state) => {
+      state.profile = null;
+    });
+});
