@@ -1,5 +1,5 @@
 import { BaseListedEntityActions } from '@shared/base-listed-entity-store/store/actions';
-import { HomeScreenState } from './state';
+import { HomeScreenState } from './reducer';
 
 class HomeScreenActions extends BaseListedEntityActions<HomeScreenState> {
   constructor() {

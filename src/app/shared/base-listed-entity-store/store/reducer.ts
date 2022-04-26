@@ -1,4 +1,4 @@
-import { CreateHandlerMap } from 'deox/dist/create-handler-map';
+import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntityState } from './state';
 
@@ -10,52 +10,49 @@ export const baseEntityStoreReducer = <
 >(
     initialState: TState,
     actions: TActions,
-    handleAction: CreateHandlerMap<TState>
-  ) => [
-    handleAction(actions.resetState, () => initialState),
-    handleAction(actions.refreshItems, (state) => ({
-      ...state,
-      isRefreshing: true
-    })),
-    handleAction(actions.loadItems, (state) => ({
-      ...state,
-      isLoading: true
-    })),
-    handleAction(actions.loadItemsSuccess, (state, { payload: { data, ...pagination } }) => ({
-      ...state,
-      isLoading: false,
-      isRefreshing: false,
-      itemIDs:
-      state.pagination.currentPage < pagination.currentPage
-        ? state.itemIDs.concat(data.map((item) => item.id))
-        : data.map((item) => item.id),
-      pagination
-    })),
-    handleAction(actions.loadItemsFailure, (state) => ({
-      ...state,
-      isLoading: false,
-      isRefreshing: false
-    })),
-    handleAction(actions.changeFilter, (state, { payload }) => ({
-      ...state,
-      filters: {
-        ...state.filters,
-        ...payload
-      }
-    })),
-    handleAction(actions.changeSearchQuery, (state, { payload }) => ({
-      ...state,
-      filters: {
+    builder: ActionReducerMapBuilder<TState>
+  ) => builder
+    .addCase(actions.resetState, () => initialState)
+    .addCase(actions.refreshItems, (state) => {
+      state.isRefreshing = true;
+    })
+    .addCase(actions.loadItems, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(actions.loadItemsSuccess, (state, { payload: { data, ...pagination } }) => {
+      state.isLoading = false;
+      state.isRefreshing = false;
+      state.itemIDs =
+        state.pagination.currentPage < pagination.currentPage
+          ? state.itemIDs.concat(data.map((item) => item.id))
+          : data.map((item) => item.id);
+      state.pagination = pagination;
+    })
+    .addCase(actions.loadItemsFailure, (state) => {
+      state.isLoading = false;
+      state.isRefreshing = false;
+    })
+    .addCase(actions.changeFilter, (state, { payload }) => {
+      state.filters = { ...state.filters, ...payload };
+    })
+    .addCase(actions.changeSearchQuery, (state, { payload }) => {
+      state.filters = {
         ...state.filters,
         query: payload.query
-      }
-    })),
-    handleAction(actions.resetFilter, (state) => ({
+      };
+    })
+    .addCase(actions.resetFilter, (state) => {
+      state.filters = initialState.filters;
+    })
+    .addCase(actions.deleted, (state, { payload }) => ({
       ...state,
-      filters: initialState.filters
-    })),
-    handleAction([actions.deleteItemSuccess, actions.deleted], (state, { payload }) => ({
-      ...state,
-      itemIDs: state.itemIDs.filter((itemID) => itemID !== payload.item.id)
+      itemIDs: deleteItem(state.itemIDs, payload.item.id)
     }))
-  ];
+    .addCase(actions.deleteItemSuccess, (state, { payload }) => ({
+      ...state,
+      itemIDs: deleteItem(state.itemIDs, payload.item.id)
+    }));
+
+const deleteItem = <TID = string | number>(itemsIDs: Array<TID>, deletedItemID: TID): Array<TID> => {
+  return itemsIDs.filter((itemID) => itemID !== deletedItemID);
+};

@@ -1,4 +1,4 @@
-import { AnyAction } from 'deox';
+import { AnyAction } from '@reduxjs/toolkit';
 import { Epic } from 'redux-observable';
 import { AppState } from '../store';
 

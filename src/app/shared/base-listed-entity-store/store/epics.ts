@@ -1,9 +1,8 @@
 import { Entity } from '@shared/base-entity/config';
 import { EntityService } from '@shared/base-entity/service';
 import { Epics } from '@store/types';
-import { ofType } from 'deox';
 import { of } from 'rxjs';
-import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, filter, map, switchMap } from 'rxjs/operators';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntitySelectors } from './selectors';
 
@@ -13,7 +12,7 @@ export const baseListedEntityEpics: <TEntity extends Entity = Entity>(
   entityService: EntityService<TEntity>
 ) => Epics = (actions, selectors, entityService) => ({
   loadItems: (action$, state$) => action$.pipe(
-    ofType([actions.loadItems, actions.refreshItems]),
+    filter((action) => [actions.loadItems.type, actions.refreshItems.type].includes(action.type)),
     switchMap((action) => entityService
       .search({
         ...(selectors.filters(state$.value) || {}),
@@ -26,12 +25,12 @@ export const baseListedEntityEpics: <TEntity extends Entity = Entity>(
   ),
 
   changeFilter: (action$) => action$.pipe(
-    ofType([actions.changeFilter, actions.resetFilter]),
+    filter((action) => [actions.changeFilter.type, actions.resetFilter.type].includes(action.type)),
     map(() => actions.loadItems({ page: 1 }))
   ),
 
   changeSearchQuery: (action$) => action$.pipe(
-    ofType(actions.changeSearchQuery),
+    filter(actions.changeSearchQuery.match),
     debounceTime(400),
     map(({ payload }) => actions.changeFilter(payload))
   )
