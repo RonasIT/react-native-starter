@@ -2,10 +2,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic } from './epics';
 import { storeRef } from './store-ref';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '@shared/auth/store/reducer';
-import { profileReducer } from '@shared/profile/store/reducer';
-import { entityStoreReducer } from '@shared/base-entity/store/reducer';
-import { homeScreenReducer } from '@app/main/home/shared/store/reducer';
+import { rootReducer } from './reducer';
 
 const epicMiddleware = createEpicMiddleware({
   dependencies: {
@@ -15,12 +12,7 @@ const epicMiddleware = createEpicMiddleware({
 });
 
 export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    profile: profileReducer,
-    entityStore: entityStoreReducer,
-    homeScreen: homeScreenReducer
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware)
 });
 
