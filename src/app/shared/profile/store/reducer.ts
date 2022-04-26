@@ -1,9 +1,14 @@
 import { AuthActions } from '@shared/auth/store/actions';
 import { createReducer } from '@reduxjs/toolkit';
 import { ProfileActions } from './actions';
-import { ProfileState } from './state';
 import { User } from '@shared/user';
 import { merge } from 'lodash';
+
+export interface ProfileState {
+  profile: User;
+  isRefreshing: boolean;
+  isUpdating: boolean;
+}
 
 const initialState = {
   profile: null

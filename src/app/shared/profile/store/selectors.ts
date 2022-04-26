@@ -1,6 +1,6 @@
 import { AppState } from '@store';
 import { createSelector } from '@reduxjs/toolkit';
-import { ProfileState } from './state';
+import { ProfileState } from './reducer';
 import { plainToInstance } from 'class-transformer';
 import { User } from '@shared/user';
 
