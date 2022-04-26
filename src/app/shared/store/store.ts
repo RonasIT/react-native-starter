@@ -4,6 +4,7 @@ import { storeRef } from './store-ref';
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from '@shared/auth/store/reducer';
 import { profileReducer } from '@shared/profile/store/reducer';
+import { entityStoreReducer } from '@shared/base-entity/store/reducer';
 
 const epicMiddleware = createEpicMiddleware({
   dependencies: {
@@ -15,7 +16,8 @@ const epicMiddleware = createEpicMiddleware({
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    entityStore: entityStoreReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware)
 });
