@@ -47,6 +47,11 @@ describe('Home screen', () => {
     usersList = component.getByTestId('users-list');
   });
 
+  it('should match the snapshot', () => {
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   it('should render list items', () => {
     const listItems = component.getAllByTestId('user-item');
     expect(listItems).toHaveLength(userPaginationResponse.data.length);
