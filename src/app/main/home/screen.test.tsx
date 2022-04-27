@@ -1,5 +1,5 @@
 import { store } from '@store/store';
-import { render, RenderAPI } from '@testing-library/react-native';
+import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { userPaginationResponse } from '@tests/fixtures';
 import { safeAreaProviderMetrics } from '@tests/helpers';
 import React from 'react';
@@ -10,6 +10,7 @@ import { apiService } from '@shared/api';
 import { of } from 'rxjs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { userService } from '@shared/user';
 
 describe('Home screen', () => {
   let component: RenderAPI;
@@ -43,7 +44,32 @@ describe('Home screen', () => {
   });
 
   it('should render list items', () => {
-    const listItems = component.getAllByTestId('home-list-item');
+    const listItems = component.getAllByTestId('user-item');
     expect(listItems).toHaveLength(userPaginationResponse.data.length);
+  });
+
+  it('should render more items after the list end reached', async () => {
+    const eventData = {
+      nativeEvent: {
+        contentOffset: {
+          y: 200
+        },
+        contentSize: {
+          height: 200,
+          width: 100
+        },
+        layoutMeasurement: {
+          height: 100,
+          width: 100
+        }
+      }
+    };
+    const usersSearchSpy = jest.spyOn(userService, 'search');
+    const list = component.getByTestId('users-list');
+    fireEvent.scroll(list, eventData);
+
+    await waitFor(() => {
+      expect(usersSearchSpy).toHaveBeenCalledWith({ page: 2 });
+    });
   });
 });

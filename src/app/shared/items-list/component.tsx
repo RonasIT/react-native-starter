@@ -14,6 +14,7 @@ export interface ItemsListProps<T> extends FlatListProps<T> {
   canLoadMore?: boolean;
   onRefresh?: () => void;
   containerStyle?: ViewStyle;
+  testID?: string;
 }
 
 const defaultKeyExtractor = <T extends BaseEntity>(item: T): string => String(item.id);
@@ -28,6 +29,7 @@ export function ItemsList<T extends BaseEntity>({
   onEndReached = noop,
   onRefresh = noop,
   containerStyle,
+  testID,
   ...restProps
 }: ItemsListProps<T>): ReactElement {
   const scrollableViewRef = useRef(null);
@@ -58,6 +60,7 @@ export function ItemsList<T extends BaseEntity>({
       onEndReached={listEndReached}
       refreshControl={<AppRefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}
       keyExtractor={listKeyExtractor}
+      testID={testID}
       {...restProps}
     />
   );

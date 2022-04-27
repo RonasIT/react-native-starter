@@ -27,6 +27,7 @@ export function HomeScreen(): ReactElement {
         onRefresh={refreshItems}
         containerStyle={commonStyle.container}
         numColumns={1}
+        testID='users-list'
       />
     </AppScreen>
   );
