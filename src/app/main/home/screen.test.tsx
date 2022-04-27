@@ -1,7 +1,7 @@
 import { store } from '@store/store';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { userPaginationResponse } from '@tests/fixtures';
-import { safeAreaProviderMetrics } from '@tests/helpers';
+import { safeAreaProviderMetrics, scrollDownEventData, scrollUpEventData } from '@tests/helpers';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
@@ -11,9 +11,12 @@ import { of } from 'rxjs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { userService } from '@shared/user';
+import { ReactTestInstance } from 'react-test-renderer';
 
 describe('Home screen', () => {
   let component: RenderAPI;
+  let usersList: ReactTestInstance;
+  const searchUsersSpy = jest.spyOn(userService, 'search');
 
   function initComponent(): RenderAPI {
     const { Screen, Navigator } = createStackNavigator();
@@ -41,6 +44,7 @@ describe('Home screen', () => {
 
   beforeEach(() => {
     component = initComponent();
+    usersList = component.getByTestId('users-list');
   });
 
   it('should render list items', () => {
@@ -48,28 +52,19 @@ describe('Home screen', () => {
     expect(listItems).toHaveLength(userPaginationResponse.data.length);
   });
 
-  it('should render more items after the list end reached', async () => {
-    const eventData = {
-      nativeEvent: {
-        contentOffset: {
-          y: 200
-        },
-        contentSize: {
-          height: 200,
-          width: 100
-        },
-        layoutMeasurement: {
-          height: 100,
-          width: 100
-        }
-      }
-    };
-    const usersSearchSpy = jest.spyOn(userService, 'search');
-    const list = component.getByTestId('users-list');
-    fireEvent.scroll(list, eventData);
+  it('should load more items after the list end reached', async () => {
+    fireEvent.scroll(usersList, scrollDownEventData);
 
     await waitFor(() => {
-      expect(usersSearchSpy).toHaveBeenCalledWith({ page: 2 });
+      expect(searchUsersSpy).toHaveBeenCalledWith({ page: 2 });
+    });
+  });
+
+  it('should load the first page of users on the list refresh ', async () => {
+    fireEvent.scroll(usersList, scrollUpEventData);
+
+    await waitFor(() => {
+      expect(searchUsersSpy).toHaveBeenCalledWith({});
     });
   });
 });
