@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { ReactTestInstance } from 'react-test-renderer';
 import { LoginScreen } from './screen';
+import { profileService } from '@shared/profile';
 
 describe('Login screen', () => {
   let component: RenderAPI;
@@ -73,6 +74,7 @@ describe('Login screen', () => {
 
   it('should init authorization with valid credentials and subscribe to push notifications', async () => {
     const demoAuthorizeSpy = jest.spyOn(authService, 'demoAuthorize');
+    const getDemoProfileSpy = jest.spyOn(profileService, 'getDemoProfile');
 
     fireEvent.changeText(emailInput, validCredentials.email);
     fireEvent.changeText(passwordInput, validCredentials.password);
@@ -80,6 +82,7 @@ describe('Login screen', () => {
 
     await waitFor(() => {
       expect(demoAuthorizeSpy).toHaveBeenCalledWith(validCredentials);
+      expect(getDemoProfileSpy).toHaveBeenCalled();
     });
   });
 });
