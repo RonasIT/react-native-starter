@@ -4,12 +4,7 @@ import { store } from '@store';
 import React from 'react';
 import { App } from './app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { apiService } from '@shared/api';
-import { of } from 'rxjs';
-import { userPaginationResponse } from '@tests/fixtures';
-import { profileService } from '@shared/profile';
-import { plainToInstance } from 'class-transformer';
-import { User } from '@shared/user';
+import { ReactTestInstance } from 'react-test-renderer';
 
 jest.mock('react-native-safe-area-context', () => {
   const actualContext = jest.requireActual('react-native-safe-area-context');
@@ -22,6 +17,7 @@ jest.mock('react-native-safe-area-context', () => {
 
 describe('App', () => {
   let component: RenderAPI;
+  let tabBarItems: Array<ReactTestInstance>;
 
   function initComponent(): RenderAPI {
     return render(
@@ -37,39 +33,29 @@ describe('App', () => {
         return Promise.resolve('some-demo-token');
       }
     });
-    jest
-      .spyOn(profileService, 'getDemoProfile')
-      .mockReturnValue(of(plainToInstance(User, userPaginationResponse.data[0])));
-    jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
-      if (endpoint === '/users') {
-        return of(userPaginationResponse) as any;
-      }
-    });
   });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     component = initComponent();
+
+    await waitFor(() => {
+      tabBarItems = component.getAllByTestId('tab-bar-item');
+    });
   });
 
   it('should render two tab bar items', async () => {
-    await waitFor(() => {
-      const tabBarItems = component.getAllByTestId('tab-bar-item');
-      expect(tabBarItems).toHaveLength(2);
-    });
+    expect(tabBarItems).toHaveLength(2);
   });
 
   it('should navigate to Profile and Home screens by press on the tab bar items', async () => {
-    await waitFor(async () => {
-      const tabBarItems = component.getAllByTestId('tab-bar-item');
-      fireEvent.press(tabBarItems[1]);
+    fireEvent.press(tabBarItems[1]);
 
-      const profileScreen = component.getByTestId('profile-screen');
-      expect(profileScreen).not.toBeNull();
+    const profileScreen = component.getByTestId('profile-screen');
+    expect(profileScreen).not.toBeNull();
 
-      fireEvent.press(tabBarItems[0]);
+    fireEvent.press(tabBarItems[0]);
 
-      const homeScreen = component.getByTestId('home-screen');
-      expect(homeScreen).not.toBeNull();
-    });
+    const homeScreen = component.getByTestId('home-screen');
+    expect(homeScreen).not.toBeNull();
   });
 });
