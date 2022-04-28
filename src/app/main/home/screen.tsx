@@ -16,7 +16,7 @@ export function HomeScreen(): ReactElement {
   }, []);
 
   return (
-    <AppScreen>
+    <AppScreen testID='home-screen'>
       <ItemsList<User>
         data={items}
         renderItem={HomeListItem}

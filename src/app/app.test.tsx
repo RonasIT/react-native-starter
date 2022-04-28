@@ -1,4 +1,4 @@
-import { render, RenderAPI, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import { store } from '@store';
 import React from 'react';
@@ -53,8 +53,23 @@ describe('App', () => {
 
   it('should render two tab bar items', async () => {
     await waitFor(() => {
-      const tabBarItems = component.queryAllByTestId('tab-bar-item');
+      const tabBarItems = component.getAllByTestId('tab-bar-item');
       expect(tabBarItems).toHaveLength(2);
+    });
+  });
+
+  it('should navigate to Profile and Home screens by press on the tab bar items', async () => {
+    await waitFor(async () => {
+      const tabBarItems = component.getAllByTestId('tab-bar-item');
+      fireEvent.press(tabBarItems[1]);
+
+      const profileScreen = component.getByTestId('profile-screen');
+      expect(profileScreen).not.toBeNull();
+
+      fireEvent.press(tabBarItems[0]);
+
+      const homeScreen = component.getByTestId('home-screen');
+      expect(homeScreen).not.toBeNull();
     });
   });
 });

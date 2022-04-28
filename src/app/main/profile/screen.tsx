@@ -12,7 +12,7 @@ export function ProfileScreen(): ReactElement {
   const translate = useTranslation('MAIN.PROFILE');
 
   return (
-    <AppScreen style={[commonStyle.container, style.container]}>
+    <AppScreen style={[commonStyle.container, style.container]} testID='profile-screen'>
       {profile ? (
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
       ) : (
