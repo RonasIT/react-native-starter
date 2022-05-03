@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { TestRootComponent } from '@tests/helpers/test-component';
+import { TestRootComponent } from '@tests/helpers';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { App } from './app';
