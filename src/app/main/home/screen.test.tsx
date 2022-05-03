@@ -1,17 +1,15 @@
-import { store } from '@store/store';
-import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { userPaginationResponse } from '@tests/fixtures';
-import { safeAreaProviderMetrics, scrollDownEventData, scrollUpEventData } from '@tests/helpers';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
-import { HomeScreen } from './screen';
-import { apiService } from '@shared/api';
-import { of } from 'rxjs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { apiService } from '@shared/api';
 import { userService } from '@shared/user';
-import { ReactTestInstance } from 'react-test-renderer';
+import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
+import { userPaginationResponse } from '@tests/fixtures';
+import { scrollDownEventData } from '@tests/helpers';
+import { TestRootComponent } from '@tests/helpers/test-component';
+import React from 'react';
+import { act, ReactTestInstance } from 'react-test-renderer';
+import { of } from 'rxjs';
+import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
   let component: RenderAPI;
@@ -22,15 +20,13 @@ describe('Home screen', () => {
     const { Screen, Navigator } = createStackNavigator();
 
     return render(
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={safeAreaProviderMetrics}>
-          <NavigationContainer>
-            <Navigator>
-              <Screen name='Home' component={HomeScreen} />
-            </Navigator>
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </Provider>
+      <TestRootComponent>
+        <NavigationContainer>
+          <Navigator>
+            <Screen name='Home' component={HomeScreen} />
+          </Navigator>
+        </NavigationContainer>
+      </TestRootComponent>
     );
   }
 
@@ -66,10 +62,13 @@ describe('Home screen', () => {
   });
 
   it('should load the first page of users on the list refresh ', async () => {
-    fireEvent.scroll(usersList, scrollUpEventData);
+    const { refreshControl } = usersList.props;
+    act(() => {
+      refreshControl.props.onRefresh();
+    });
 
     await waitFor(() => {
-      expect(searchUsersSpy).toHaveBeenCalledWith({});
+      expect(searchUsersSpy).toHaveBeenCalledWith({ page: 1 });
     });
   });
 });

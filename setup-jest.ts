@@ -20,3 +20,13 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
 
   return { KeyboardAwareScrollView };
 });
+
+jest.mock('react-native-safe-area-context', () => {
+  const actualContext = jest.requireActual('react-native-safe-area-context');
+  const { safeAreaProviderMetrics } = require('@tests/helpers/safe-area-provider-metrics');
+
+  return {
+    ...actualContext,
+    useSafeAreaInsets: jest.fn().mockReturnValue(safeAreaProviderMetrics.insets)
+  };
+});
