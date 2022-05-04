@@ -1,3 +1,6 @@
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import { PartialDeep } from 'type-fest';
+
 const contentSize = {
   height: 200,
   width: 100
@@ -8,17 +11,18 @@ const layoutMeasurement = {
   width: 100
 };
 
-export const scrollDownEventData = {
+export const scrollDownEventData: PartialDeep<NativeSyntheticEvent<NativeScrollEvent>> = {
   nativeEvent: {
     contentOffset: {
-      y: 200
+      x: 0,
+      y: contentSize.height
     },
     contentSize,
     layoutMeasurement
   }
 };
 
-export const scrollUpEventData = {
+export const scrollUpEventData: PartialDeep<NativeSyntheticEvent<NativeScrollEvent>> = {
   nativeEvent: {
     contentOffset: {
       y: -1

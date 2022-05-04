@@ -323,6 +323,7 @@ exports[`Home screen should match the snapshot 1`] = `
                               Object {},
                             ]
                           }
+                          testID="home-screen"
                         >
                           <RCTScrollView
                             ListEmptyComponent={<ItemsListEmptyState />}

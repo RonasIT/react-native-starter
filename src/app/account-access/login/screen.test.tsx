@@ -1,14 +1,11 @@
 import { authService } from '@shared/auth';
-import { store } from '@store/store';
+import { appNavigationService } from '@shared/navigation';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { validCredentials } from '@tests/fixtures';
-import { safeAreaProviderMetrics, setDefaultLanguage } from '@tests/helpers';
+import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
 import { ReactTestInstance } from 'react-test-renderer';
 import { LoginScreen } from './screen';
-import { appNavigationService } from '@shared/navigation';
 
 describe('Login screen', () => {
   let component: RenderAPI;
@@ -19,11 +16,9 @@ describe('Login screen', () => {
 
   function initComponent(): RenderAPI {
     return render(
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={safeAreaProviderMetrics}>
-          <LoginScreen />
-        </SafeAreaProvider>
-      </Provider>
+      <TestRootComponent>
+        <LoginScreen />
+      </TestRootComponent>
     );
   }
 
