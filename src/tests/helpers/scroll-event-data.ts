@@ -25,7 +25,8 @@ export const scrollDownEventData: PartialDeep<NativeSyntheticEvent<NativeScrollE
 export const scrollUpEventData: PartialDeep<NativeSyntheticEvent<NativeScrollEvent>> = {
   nativeEvent: {
     contentOffset: {
-      y: -1
+      x: 0,
+      y: -contentSize.height
     },
     contentSize,
     layoutMeasurement
