@@ -7,7 +7,7 @@ import { userPaginationResponse } from '@tests/fixtures';
 import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
@@ -32,7 +32,7 @@ describe('Home screen', () => {
   beforeAll(() => {
     jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
       if (endpoint === '/users') {
-        return of(userPaginationResponse) as any;
+        return of(userPaginationResponse) as Observable<any>;
       }
     });
   });
