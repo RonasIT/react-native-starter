@@ -32,7 +32,8 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           key={route.name}
           onLongPress={onLongPress}
           style={style.tabButton}
-          activeOpacity={0.8}>
+          activeOpacity={0.8}
+          testID='tab-bar-item'>
           {options.tabBarIcon({ focused: isFocused, color: tabItemColor, size: 30 })}
           <AppText theme={TextTheme.SMALLEST} style={[style.tabItemText, { color: tabItemColor }]}>
             {label}

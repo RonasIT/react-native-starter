@@ -6,7 +6,7 @@ import { View } from 'react-native';
 
 export function HomeListItem({ item }: { item: User }): ReactElement {
   return (
-    <View style={style.itemContainer}>
+    <View style={style.itemContainer} testID='user-item'>
       <AppText theme={TextTheme.LARGER} numberOfLines={1}>
         #{item.id}: {item.name}
       </AppText>

@@ -16,7 +16,7 @@ export function HomeScreen(): ReactElement {
   }, []);
 
   return (
-    <AppScreen>
+    <AppScreen testID='home-screen'>
       <ItemsList<User>
         data={items}
         renderItem={HomeListItem}
@@ -27,6 +27,7 @@ export function HomeScreen(): ReactElement {
         onRefresh={refreshItems}
         containerStyle={commonStyle.container}
         numColumns={1}
+        testID='users-list'
       />
     </AppScreen>
   );

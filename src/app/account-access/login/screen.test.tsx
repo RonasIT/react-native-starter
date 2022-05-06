@@ -1,11 +1,9 @@
 import { authService } from '@shared/auth';
-import { store } from '@store/store';
+import { appNavigationService } from '@shared/navigation';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { validCredentials } from '@tests/fixtures';
-import { safeAreaProviderMetrics, setDefaultLanguage } from '@tests/helpers';
+import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
 import { ReactTestInstance } from 'react-test-renderer';
 import { LoginScreen } from './screen';
 
@@ -18,11 +16,9 @@ describe('Login screen', () => {
 
   function initComponent(): RenderAPI {
     return render(
-      <Provider store={store}>
-        <SafeAreaProvider initialMetrics={safeAreaProviderMetrics}>
-          <LoginScreen />
-        </SafeAreaProvider>
-      </Provider>
+      <TestRootComponent>
+        <LoginScreen />
+      </TestRootComponent>
     );
   }
 
@@ -73,13 +69,18 @@ describe('Login screen', () => {
 
   it('should init authorization with valid credentials and subscribe to push notifications', async () => {
     const demoAuthorizeSpy = jest.spyOn(authService, 'demoAuthorize');
+    const navigateSpy = jest.spyOn(appNavigationService, 'resetToRoute');
 
     fireEvent.changeText(emailInput, validCredentials.email);
     fireEvent.changeText(passwordInput, validCredentials.password);
     fireEvent.press(submitButton);
 
-    await waitFor(() => {
-      expect(demoAuthorizeSpy).toHaveBeenCalledWith(validCredentials);
-    });
+    await waitFor(
+      () => {
+        expect(demoAuthorizeSpy).toHaveBeenCalledWith(validCredentials);
+        expect(navigateSpy).toHaveBeenCalledWith('Main');
+      },
+      { timeout: 7000 }
+    );
   });
 });
