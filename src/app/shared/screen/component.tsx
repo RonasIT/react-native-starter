@@ -6,10 +6,15 @@ interface Props {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   isHeaderLess?: boolean;
+  testID?: string;
 }
 
-export function AppScreen({ children, style: elementStyle = {} }: Props): ReactElement {
-  return <View style={[style.screen, elementStyle]}>{children}</View>;
+export function AppScreen({ children, style: elementStyle = {}, testID }: Props): ReactElement {
+  return (
+    <View style={[style.screen, elementStyle]} testID={testID}>
+      {children}
+    </View>
+  );
 }
 
 const style = createStyles({

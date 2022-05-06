@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js';
 import '@testing-library/jest-native/extend-expect';
 import { View } from 'react-native';
+import 'react-native-gesture-handler/jestSetup';
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
@@ -18,4 +19,14 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
   const KeyboardAwareScrollView = require('react-native').ScrollView;
 
   return { KeyboardAwareScrollView };
+});
+
+jest.mock('react-native-safe-area-context', () => {
+  const actualContext = jest.requireActual('react-native-safe-area-context');
+  const { safeAreaProviderMetrics } = require('@tests/helpers/safe-area-provider-metrics');
+
+  return {
+    ...actualContext,
+    useSafeAreaInsets: jest.fn().mockReturnValue(safeAreaProviderMetrics.insets)
+  };
 });
