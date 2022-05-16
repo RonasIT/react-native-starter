@@ -41,6 +41,7 @@ exports[`Home screen should match the snapshot 1`] = `
         }
       >
         <View
+          collapsable={false}
           pointerEvents="box-none"
           style={
             Object {
@@ -56,6 +57,7 @@ exports[`Home screen should match the snapshot 1`] = `
             style={null}
           >
             <View
+              collapsable={false}
               pointerEvents="box-none"
               style={
                 Object {
@@ -70,6 +72,7 @@ exports[`Home screen should match the snapshot 1`] = `
               }
             >
               <View
+                collapsable={false}
                 style={
                   Object {
                     "backgroundColor": "rgb(255, 255, 255)",
@@ -87,6 +90,7 @@ exports[`Home screen should match the snapshot 1`] = `
               />
             </View>
             <View
+              collapsable={false}
               pointerEvents="box-none"
               style={
                 Object {
@@ -117,6 +121,7 @@ exports[`Home screen should match the snapshot 1`] = `
                 }
               >
                 <View
+                  collapsable={false}
                   pointerEvents="box-none"
                   style={
                     Object {
@@ -130,6 +135,7 @@ exports[`Home screen should match the snapshot 1`] = `
                   }
                 />
                 <View
+                  collapsable={false}
                   pointerEvents="box-none"
                   style={
                     Object {
@@ -143,6 +149,7 @@ exports[`Home screen should match the snapshot 1`] = `
                   <Text
                     accessibilityRole="header"
                     aria-level="1"
+                    collapsable={false}
                     numberOfLines={1}
                     onLayout={[Function]}
                     style={
@@ -157,6 +164,7 @@ exports[`Home screen should match the snapshot 1`] = `
                   </Text>
                 </View>
                 <View
+                  collapsable={false}
                   pointerEvents="box-none"
                   style={
                     Object {
@@ -173,7 +181,7 @@ exports[`Home screen should match the snapshot 1`] = `
             </View>
           </View>
         </View>
-        <View
+        <RNSScreenContainer
           onLayout={[Function]}
           style={
             Object {
@@ -181,7 +189,10 @@ exports[`Home screen should match the snapshot 1`] = `
             }
           }
         >
-          <View
+          <RNSScreen
+            activityState={2}
+            collapsable={false}
+            forwardedRef={[Function]}
             pointerEvents="box-none"
             style={
               Object {
@@ -256,6 +267,7 @@ exports[`Home screen should match the snapshot 1`] = `
               }
             >
               <View
+                collapsable={false}
                 pointerEvents="box-none"
                 style={
                   Object {
@@ -365,17 +377,13 @@ exports[`Home screen should match the snapshot 1`] = `
                                 },
                               ]
                             }
-                            disableVirtualization={false}
                             getItem={[Function]}
                             getItemCount={[Function]}
-                            horizontal={false}
-                            initialNumToRender={10}
                             keyExtractor={[Function]}
-                            maxToRenderPerBatch={10}
                             onContentSizeChange={[Function]}
                             onEndReached={[Function]}
-                            onEndReachedThreshold={2}
                             onLayout={[Function]}
+                            onMomentumScrollBegin={[Function]}
                             onMomentumScrollEnd={[Function]}
                             onScroll={[Function]}
                             onScrollBeginDrag={[Function]}
@@ -391,9 +399,7 @@ exports[`Home screen should match the snapshot 1`] = `
                             scrollEventThrottle={50}
                             stickyHeaderIndices={Array []}
                             testID="users-list"
-                            updateCellsBatchingPeriod={50}
                             viewabilityConfigCallbackPairs={Array []}
-                            windowSize={21}
                           >
                             <RCTRefreshControl />
                             <View>
@@ -529,8 +535,8 @@ exports[`Home screen should match the snapshot 1`] = `
                 </View>
               </View>
             </View>
-          </View>
-        </View>
+          </RNSScreen>
+        </RNSScreenContainer>
       </View>
     </View>
   </View>
