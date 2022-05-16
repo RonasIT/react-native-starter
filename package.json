@@ -41,14 +41,14 @@
     "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-async-storage/async-storage": "~1.17.4",
     "@react-native-community/hooks": "^2.8.1",
-    "@react-native-community/netinfo": "8.2.0",
+    "@react-native-community/netinfo": "~8.2.0",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
     "@reduxjs/toolkit": "^1.8.1",
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "axios-observable": "^1.4.0",
     "class-transformer": "^0.5.1",
     "expo": "^45.0.0",
