@@ -1,37 +1,37 @@
 import { User } from '@shared/user';
-import { createAction } from '@reduxjs/toolkit';
+import { defineAction } from '@store/utils';
 import { AxiosError } from 'axios';
 
 export class ProfileActions {
-  public static refreshProfile = createAction(
+  public static refreshProfile = defineAction(
     '[Profile] Refresh Profile'
   );
 
-  public static refreshProfileSuccess = createAction<User>(
+  public static refreshProfileSuccess = defineAction<User>(
     '[Profile] Refresh Profile Success'
   );
 
-  public static refreshProfileFailure = createAction<AxiosError>(
+  public static refreshProfileFailure = defineAction<AxiosError>(
     '[Profile] Refresh Profile Failure'
   );
 
-  public static patchProfileState = createAction<Partial<User>>(
+  public static patchProfileState = defineAction<Partial<User>>(
     '[Profile] Patch profile state'
   );
 
-  public static updateProfile = createAction(
+  public static updateProfile = defineAction(
     '[Profile] Update Profile'
   );
 
-  public static updateProfileSuccess = createAction<User>(
+  public static updateProfileSuccess = defineAction<User>(
     '[Profile] Update Profile Success'
   );
 
-  public static updateProfileFailure = createAction<AxiosError>(
+  public static updateProfileFailure = defineAction<AxiosError>(
     '[Profile] Update Profile Failure'
   );
 
-  public static clearProfile = createAction(
+  public static clearProfile = defineAction(
     '[Profile] Clear profile'
   );
 }

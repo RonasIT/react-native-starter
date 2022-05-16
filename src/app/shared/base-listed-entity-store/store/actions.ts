@@ -2,7 +2,7 @@ import { Entity, EntityName } from '@shared/base-entity/config';
 import { EntityStoreActions } from '@shared/base-entity/store';
 import { EntityPartial } from '@shared/base-entity/types';
 import { PaginationResponse } from '@shared/pagination';
-import { createAction } from '@reduxjs/toolkit';
+import { defineAction } from '@store/utils';
 import { AxiosError } from 'axios';
 import { BaseListedEntityState } from './state';
 
@@ -10,59 +10,59 @@ export abstract class BaseListedEntityActions<
   TState extends BaseListedEntityState = BaseListedEntityState,
   TEntity extends Entity = Entity
 > extends EntityStoreActions {
-  public resetState = createAction(
+  public resetState = defineAction(
     `[${this.storeTag}] Reset state`
   );
 
-  public refreshItems = createAction<{ page?: number } & TState['filters']>(
+  public refreshItems = defineAction<{ page?: number } & TState['filters']>(
     `[${this.storeTag}] Refresh items`
   );
 
-  public loadItems = createAction<{ page?: number } & TState['filters']>(
+  public loadItems = defineAction<{ page?: number } & TState['filters']>(
     `[${this.storeTag}] Load items`
   );
 
-  public loadItemsSuccess = createAction<PaginationResponse<TEntity>>(
+  public loadItemsSuccess = defineAction<PaginationResponse<TEntity>>(
     `[${this.storeTag}] Load items success`
   );
 
-  public loadItemsFailure = createAction<AxiosError>(
+  public loadItemsFailure = defineAction<AxiosError>(
     `[${this.storeTag}] Load items failure`
   );
 
-  public changeFilter = createAction<TState['filters']>(
+  public changeFilter = defineAction<TState['filters']>(
     `[${this.storeTag}] Change filter`
   );
 
-  public resetFilter = createAction(
+  public resetFilter = defineAction(
     `[${this.storeTag}] Reset filter`
   );
 
-  public changeSearchQuery = createAction<{ query: string }>(
+  public changeSearchQuery = defineAction<{ query: string }>(
     `[${this.storeTag}] Change search query`
   );
 
-  public deleteItem = createAction<{ item: TEntity }>(
+  public deleteItem = defineAction<{ item: TEntity }>(
     `[${this.storeTag}] Delete item`
   );
 
-  public deleteItemSuccess = createAction<{ item: { id: TEntity['id'] } & Partial<TEntity> }>(
+  public deleteItemSuccess = defineAction<{ item: { id: TEntity['id'] } & Partial<TEntity> }>(
     `[${this.storeTag}] Delete item success`
   );
 
-  public deleteItemFailure = createAction<{ item: TEntity; error: AxiosError }>(
+  public deleteItemFailure = defineAction<{ item: TEntity; error: AxiosError }>(
     `[${this.storeTag}] Delete item failure`
   );
 
-  public updateItem = createAction<{ item: EntityPartial<TEntity> }>(
+  public updateItem = defineAction<{ item: EntityPartial<TEntity> }>(
     `[${this.storeTag}] Update item`
   );
 
-  public updateItemSuccess = createAction<{ item: EntityPartial<TEntity> }>(
+  public updateItemSuccess = defineAction<{ item: EntityPartial<TEntity> }>(
     `[${this.storeTag}] Update item success`
   );
 
-  public updateItemFailure = createAction<{ item: EntityPartial<TEntity>; error: AxiosError }>(
+  public updateItemFailure = defineAction<{ item: EntityPartial<TEntity>; error: AxiosError }>(
     `[${this.storeTag}] Update item failure`
   );
 
