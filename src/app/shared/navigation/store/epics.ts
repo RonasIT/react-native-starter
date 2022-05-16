@@ -1,13 +1,12 @@
 import { AuthActions } from '@shared/auth/store/actions';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types/epics';
-import { ofType } from 'deox';
-import { delay, map, tap } from 'rxjs/operators';
+import { delay, filter, map, tap } from 'rxjs/operators';
 import { appNavigationService } from '../service';
 
 export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$) => action$.pipe(
-    ofType(AuthActions.authorizeSuccess),
+    filter(AuthActions.authorizeSuccess.match),
     delay(100),
     tap(() => {
       const interruptedNavigation = appNavigationService.savedState;
@@ -22,7 +21,7 @@ export const appNavigationEpics: Epics = {
   ),
 
   interruptedNavigationSaving: (action$) => action$.pipe(
-    ofType(AuthActions.unauthorize),
+    filter(AuthActions.unauthorize.match),
     tap(({ payload }) => {
       if (payload.keepInterruptedNavigation) {
         appNavigationService.saveCurrentState();

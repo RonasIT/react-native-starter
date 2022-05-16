@@ -1,5 +1,5 @@
 import { immutableMerge } from '@shared/immutable-merge';
-import { createReducer } from 'deox';
+import { createReducer } from '@reduxjs/toolkit';
 import { compact, omit } from 'lodash';
 import { BaseEntityPlain } from '../models';
 import { EntityMap } from '../types';
@@ -8,43 +8,38 @@ import { entityNames, initEntitiesStore } from './state';
 
 const initialState = initEntitiesStore();
 
-export const entityStoreReducer = createReducer(initialState, (handleAction) => [
+export const entityStoreReducer = createReducer(initialState, (builder) => [
   ...entityNames.flatMap((entityName) => {
     const actions = new EntityStoreActions(entityName);
 
-    return [
-      handleAction(actions.created, (state, { payload }) => ({
+    builder
+      .addCase(actions.created, (state, { payload }) => ({
         ...state,
         [entityName]: {
           ...state[entityName],
           [payload.item.id]: payload.item
         }
-      })),
-      handleAction(actions.loaded, (state, { payload }) => {
+      }))
+      .addCase(actions.loaded, (state, { payload }) => {
         const entityItemsMap: EntityMap<BaseEntityPlain> = {};
         compact(payload?.items).forEach((item) => {
           entityItemsMap[item.id] = immutableMerge(state[entityName][item.id as number], item);
         });
 
-        return {
-          ...state,
-          [entityName]: {
-            ...state[entityName],
-            ...(entityItemsMap as EntityMap<BaseEntityPlain<any>>)
-          }
+        state[entityName] = {
+          ...state[entityName],
+          ...(entityItemsMap as EntityMap<BaseEntityPlain<any>>)
         };
-      }),
-      handleAction(actions.updated, (state, { payload }) => ({
+      })
+      .addCase(actions.updated, (state, { payload }) => ({
         ...state,
         [entityName]: {
           ...state[entityName],
           [payload.item.id]: immutableMerge(state[entityName][payload.item.id as number], payload.item)
         }
-      })),
-      handleAction(actions.deleted, (state, { payload }) => ({
-        ...state,
-        [entityName]: omit(state[entityName], payload.item.id)
       }))
-    ];
+      .addCase(actions.deleted, (state, { payload }) => {
+        state[entityName] = omit(state[entityName], payload.item.id);
+      });
   })
 ]);

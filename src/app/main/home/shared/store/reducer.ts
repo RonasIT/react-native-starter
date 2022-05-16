@@ -1,8 +1,16 @@
-import { baseEntityStoreReducer } from '@shared/base-listed-entity-store/store';
-import { createReducer } from 'deox';
+import {
+  baseEntityStoreReducer,
+  BaseListedEntityState,
+  baseListedInitialState
+} from '@shared/base-listed-entity-store/store';
+import { createReducer } from '@reduxjs/toolkit';
 import { homeScreenActions } from './actions';
-import { HomeScreenState } from './state';
+import { User } from '@shared/user';
 
-const initialState = new HomeScreenState();
+export type HomeScreenState = BaseListedEntityState<User>;
 
-export const homeScreenReducer = createReducer(initialState, (handleAction) => baseEntityStoreReducer(initialState, homeScreenActions, handleAction));
+const initialState: HomeScreenState = {
+  ...baseListedInitialState
+};
+
+export const homeScreenReducer = createReducer(initialState, (builder) => baseEntityStoreReducer(initialState, homeScreenActions, builder));
