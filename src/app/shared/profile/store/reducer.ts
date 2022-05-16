@@ -10,9 +10,11 @@ export interface ProfileState {
   isUpdating: boolean;
 }
 
-const initialState = {
-  profile: null
-} as ProfileState;
+const initialState: ProfileState = {
+  profile: null,
+  isRefreshing: false,
+  isUpdating: false
+};
 
 export const profileReducer = createReducer(initialState, (builder) => {
   builder

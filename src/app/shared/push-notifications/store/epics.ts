@@ -1,3 +1,4 @@
+import { isAnyOf } from '@reduxjs/toolkit';
 import { AuthActions } from '@shared/auth/store/actions';
 import { AuthSelectors } from '@shared/auth/store/selectors';
 import { ProfileActions } from '@shared/profile/store/actions';
@@ -12,11 +13,13 @@ const RETRY_DELAY = 20 * 1000;
 
 export const pushNotificationsEpics: Epics = {
   subscribe: (action$, state$, { useDispatch }) => action$.pipe(
-    filter((action) => [
-      AuthActions.authorizeSuccess.type,
-      ProfileActions.refreshProfileSuccess.type,
-      PushNotificationsActions.reSubscribe.type
-    ].includes(action.type)),
+    filter(
+      isAnyOf(
+        AuthActions.authorizeSuccess,
+        ProfileActions.refreshProfileSuccess,
+        PushNotificationsActions.reSubscribe
+      )
+    ),
     filter(() => AuthSelectors.isAuthenticated(state$.value)),
     filter(() => !pushNotificationsService.pushToken),
     switchMap(async () => {

@@ -9,12 +9,12 @@ export interface BaseListedEntityState<
   isRefreshing: boolean;
   itemIDs: Array<TEntity['id']>;
   pagination: Pagination;
-  filters: TFilters;
+  filters?: TFilters;
 }
 
-export const baseListedInitialState = {
+export const baseListedInitialState: BaseListedEntityState = {
   itemIDs: [],
   pagination: new Pagination(),
   isLoading: false,
   isRefreshing: false
-} as BaseListedEntityState;
+};

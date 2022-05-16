@@ -7,10 +7,10 @@ export interface AuthState {
   isAuthorizing: boolean;
 }
 
-const initialState = {
+const initialState: AuthState = {
   isTokenLoaded: false,
   isAuthorizing: false
-} as AuthState;
+};
 
 export const authReducer = createReducer(initialState, (builder) => {
   builder

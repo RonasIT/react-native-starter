@@ -9,8 +9,8 @@ import { User } from '@shared/user';
 
 export type HomeScreenState = BaseListedEntityState<User>;
 
-const initialState = {
+const initialState: HomeScreenState = {
   ...baseListedInitialState
-} as HomeScreenState;
+};
 
 export const homeScreenReducer = createReducer(initialState, (builder) => baseEntityStoreReducer(initialState, homeScreenActions, builder));
