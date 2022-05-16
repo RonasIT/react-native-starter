@@ -1,35 +1,33 @@
-import { createAction } from '@reduxjs/toolkit';
+import { defineAction } from '@store/utils';
 import { AxiosError } from 'axios';
 import { AuthCredentials, AuthResponse } from '../models';
 
-export type unauthorizePayload = { keepInterruptedNavigation?: boolean };
-
 export class AuthActions {
-  public static authorize = createAction<AuthCredentials>(
+  public static authorize = defineAction<AuthCredentials>(
     '[Auth] Authorize'
   );
 
-  public static authorizeSuccess = createAction<AuthResponse>(
+  public static authorizeSuccess = defineAction<AuthResponse>(
     '[Auth] Authorize Success'
   );
 
-  public static authorizeFailure = createAction<AxiosError>(
+  public static authorizeFailure = defineAction<AxiosError>(
     '[Auth] Authorize Failure'
   );
 
-  public static unauthorize = createAction<unauthorizePayload>(
+  public static unauthorize = defineAction<{ keepInterruptedNavigation?: boolean }>(
     '[Auth] Unauthorize'
   );
 
-  public static saveToken = createAction<{ token: string }>(
+  public static saveToken = defineAction<{ token: string }>(
     '[Auth] Save token'
   );
 
-  public static tokenLoaded = createAction(
+  public static tokenLoaded = defineAction(
     '[Auth] Token loaded'
   );
 
-  public static clearToken = createAction(
+  public static clearToken = defineAction(
     '[Auth] Clear token'
   );
 }

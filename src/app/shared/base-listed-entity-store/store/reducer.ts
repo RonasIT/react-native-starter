@@ -1,4 +1,5 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import { without } from 'lodash';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntityState } from './state';
 
@@ -46,13 +47,9 @@ export const baseEntityStoreReducer = <
     })
     .addCase(actions.deleted, (state, { payload }) => ({
       ...state,
-      itemIDs: deleteItem(state.itemIDs, payload.item.id)
+      itemIDs: without(state.itemIDs, payload.item.id)
     }))
     .addCase(actions.deleteItemSuccess, (state, { payload }) => ({
       ...state,
-      itemIDs: deleteItem(state.itemIDs, payload.item.id)
+      itemIDs: without(state.itemIDs, payload.item.id)
     }));
-
-const deleteItem = <TID = string | number>(itemsIDs: Array<TID>, deletedItemID: TID): Array<TID> => {
-  return itemsIDs.filter((itemID) => itemID !== deletedItemID);
-};

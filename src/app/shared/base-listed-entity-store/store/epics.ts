@@ -1,3 +1,4 @@
+import { isAnyOf } from '@reduxjs/toolkit';
 import { Entity } from '@shared/base-entity/config';
 import { EntityService } from '@shared/base-entity/service';
 import { Epics } from '@store/types';
@@ -12,7 +13,7 @@ export const baseListedEntityEpics: <TEntity extends Entity = Entity>(
   entityService: EntityService<TEntity>
 ) => Epics = (actions, selectors, entityService) => ({
   loadItems: (action$, state$) => action$.pipe(
-    filter((action) => [actions.loadItems.type, actions.refreshItems.type].includes(action.type)),
+    filter(isAnyOf(actions.loadItems, actions.refreshItems)),
     switchMap((action) => entityService
       .search({
         ...(selectors.filters(state$.value) || {}),
@@ -25,7 +26,7 @@ export const baseListedEntityEpics: <TEntity extends Entity = Entity>(
   ),
 
   changeFilter: (action$) => action$.pipe(
-    filter((action) => [actions.changeFilter.type, actions.resetFilter.type].includes(action.type)),
+    filter(isAnyOf(actions.changeFilter, actions.resetFilter)),
     map(() => actions.loadItems({ page: 1 }))
   ),
 

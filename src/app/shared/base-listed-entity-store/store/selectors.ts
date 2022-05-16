@@ -2,7 +2,7 @@ import { Entity, EntityName } from '@shared/base-entity/config';
 import { entityStoreSelectors } from '@shared/base-entity/store';
 import { AppState } from '@store';
 import { createSelector, Selector } from '@reduxjs/toolkit';
-import { BaseListedEntityState } from './reducer';
+import { BaseListedEntityState } from './state';
 
 export abstract class BaseListedEntitySelectors<
   TEntity extends Entity = Entity,
