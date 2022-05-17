@@ -3,6 +3,7 @@ import { rootEpic } from './epics';
 import { storeRef } from './store-ref';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './reducer';
+import { userAPI } from '@shared/user/api';
 
 const epicMiddleware = createEpicMiddleware({
   dependencies: {
@@ -13,7 +14,7 @@ const epicMiddleware = createEpicMiddleware({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware, userAPI.middleware)
 });
 
 epicMiddleware.run(rootEpic);
