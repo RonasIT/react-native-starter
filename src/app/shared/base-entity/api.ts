@@ -40,12 +40,13 @@ export function createBaseEntityAPI<
     delete: MutationDefinition<number, BaseQueryFunction, never, void, EntityName>;
   },
   EntityName,
-  never,
+  EntityName,
   typeof coreModuleName | typeof reactHooksModuleName
 > {
   return createApi({
     reducerPath: entityName,
     baseQuery: fetchBaseQuery({ baseUrl: appConfig.api.root }),
+    tagTypes: [entityName],
     endpoints: (builder) => ({
       create: builder.mutation<TEntity, TEntity>({
         query: (params) => {
@@ -57,7 +58,8 @@ export function createBaseEntityAPI<
             params: instanceToPlain(request)
           };
         },
-        transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response)
+        transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response),
+        invalidatesTags: (result, error, arg) => [{ type: entityName, id: arg.id }]
       }),
       search: builder.query<PaginationResponse<TEntity>, TSearchRequest>({
         query: (params) => {
@@ -76,7 +78,8 @@ export function createBaseEntityAPI<
             ...pagination,
             data: data.map((item) => createEntityInstance<TEntity>(entityName, item))
           } as PaginationResponse<TEntity>;
-        }
+        },
+        providesTags: (result) => result?.data ? result.data.map(({ id }) => ({ type: entityName, id })) : [entityName]
       }),
       get: builder.query<TEntity, { id: TEntity['id']; params?: TEntityRequest }>({
         query: ({ id, params }) => {
@@ -88,7 +91,8 @@ export function createBaseEntityAPI<
             body: instanceToPlain<TEntityRequest>(request)
           };
         },
-        transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response)
+        transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response),
+        providesTags: ({ id }) => [{ type: entityName, id }]
       }),
       update: builder.mutation<EntityPartial<TEntity>, EntityPartial<TEntity>>({
         query: (params) => {
@@ -101,15 +105,17 @@ export function createBaseEntityAPI<
             body: request
           };
         },
-        transformResponse: (response: BaseEntityPlain, _, arg) => response
+        transformResponse: (response: BaseEntityPlain, error, arg) => response
           ? createEntityInstance<TEntity>(entityName, response)
-          : (createEntityInstance(entityName, arg, { fromInstancePartial: true }) as TEntity)
+          : (createEntityInstance(entityName, arg, { fromInstancePartial: true }) as TEntity),
+        invalidatesTags: (result, error, arg) => [{ type: entityName, id: arg.id }]
       }),
       delete: builder.mutation<void, number>({
         query: (id) => ({
           method: 'delete',
           url: `endpoint/${id}`
-        })
+        }),
+        invalidatesTags: [entityName]
       })
     })
   });
