@@ -1,15 +1,32 @@
 import { AppScreen } from '@shared/screen';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { userAPI } from '@shared/user/api';
-import { AppText } from '@shared/text';
+import { ItemsList } from '@shared/items-list';
+import { HomeListItem } from './shared/components';
+import { User } from '@shared/user';
+import { commonStyle } from '@styles';
 
 export function HomeScreen(): ReactElement {
+  const [page, setPage] = useState(1);
   const { useSearchQuery } = userAPI;
-  const { data, isLoading, error } = useSearchQuery({ page: 1 });
+  const { data, isLoading } = useSearchQuery({ page });
+
+  const refreshItems = (): void => setPage(1);
+  const loadMore = (): void => setPage(page + 1);
 
   return (
     <AppScreen testID='home-screen'>
-      <AppText>Home</AppText>
+      <ItemsList<User>
+        data={data?.data || []}
+        renderItem={HomeListItem}
+        isLoading={isLoading}
+        canLoadMore={data?.currentPage < data?.lastPage}
+        containerStyle={commonStyle.container}
+        onRefresh={refreshItems}
+        onEndReached={loadMore}
+        numColumns={1}
+        testID='users-list'
+      />
     </AppScreen>
   );
 }
