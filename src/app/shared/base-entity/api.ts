@@ -1,4 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  Api,
+  BaseQueryFn,
+  createApi,
+  FetchArgs,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+  MutationDefinition,
+  QueryDefinition
+} from '@reduxjs/toolkit/query/react';
 import { createEntityInstance, Entity, EntityName } from './config';
 import { appConfig } from '@app/constants';
 import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
@@ -6,6 +16,10 @@ import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { BaseEntityPlain, EntityRequest } from './models';
 import { isUndefined, omitBy } from 'lodash';
 import { EntityPartial } from './types';
+import { coreModuleName } from '@reduxjs/toolkit/dist/query/core/module';
+import { reactHooksModuleName } from '@reduxjs/toolkit/dist/query/react/module';
+
+type BaseQueryFunction = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, object, FetchBaseQueryMeta>;
 
 export function createBaseEntityAPI<
   TEntity extends Entity = Entity,
@@ -16,7 +30,19 @@ export function createBaseEntityAPI<
   entityName: EntityName,
   entitySearchRequestConstructor: ClassConstructor<TSearchRequest> = PaginationRequest as ClassConstructor<any>,
   entityGetRequestConstructor: ClassConstructor<TEntityRequest> = EntityRequest as ClassConstructor<any>
-): any {
+): Api<
+  BaseQueryFunction,
+  {
+    create: MutationDefinition<TEntity, BaseQueryFunction, never, TEntity, EntityName>;
+    search: QueryDefinition<TSearchRequest, BaseQueryFunction, never, PaginationResponse<TEntity>, EntityName>;
+    get: QueryDefinition<{ id: TEntity['id']; params?: TEntityRequest }, BaseQueryFunction, never, TEntity, EntityName>;
+    update: MutationDefinition<EntityPartial<TEntity>, BaseQueryFunction, never, EntityPartial<TEntity>, EntityName>;
+    delete: MutationDefinition<number, BaseQueryFunction, never, void, EntityName>;
+  },
+  EntityName,
+  never,
+  typeof coreModuleName | typeof reactHooksModuleName
+> {
   return createApi({
     reducerPath: entityName,
     baseQuery: fetchBaseQuery({ baseUrl: appConfig.api.root }),
