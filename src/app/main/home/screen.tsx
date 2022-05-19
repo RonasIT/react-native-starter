@@ -5,6 +5,7 @@ import { ItemsList } from '@shared/items-list';
 import { HomeListItem } from './shared/components';
 import { User } from '@shared/user';
 import { commonStyle } from '@styles';
+import { AppButton } from '@shared/button';
 
 export function HomeScreen(): ReactElement {
   const [page, setPage] = useState(1);
@@ -23,9 +24,9 @@ export function HomeScreen(): ReactElement {
         canLoadMore={data?.currentPage < data?.lastPage}
         containerStyle={commonStyle.container}
         onRefresh={refreshItems}
-        onEndReached={loadMore}
         numColumns={1}
         testID='users-list'
+        ListHeaderComponent={<AppButton title='Next' onPress={loadMore} />}
       />
     </AppScreen>
   );
