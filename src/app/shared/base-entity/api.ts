@@ -55,7 +55,7 @@ export function createBaseEntityAPI<
           return {
             method: 'post',
             url: endpoint,
-            params: instanceToPlain(request)
+            body: instanceToPlain(request)
           };
         },
         transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response),
@@ -87,8 +87,8 @@ export function createBaseEntityAPI<
 
           return {
             method: 'get',
-            url: `endpoint/${id}`,
-            body: instanceToPlain<TEntityRequest>(request)
+            url: `${endpoint}/${id}`,
+            params: instanceToPlain<TEntityRequest>(request)
           };
         },
         transformResponse: (response: BaseEntityPlain) => createEntityInstance<TEntity>(entityName, response),
@@ -101,7 +101,7 @@ export function createBaseEntityAPI<
 
           return {
             method: 'put',
-            url: `endpoint/${request.id}`,
+            url: `${endpoint}/${request.id}`,
             body: request
           };
         },
@@ -113,7 +113,7 @@ export function createBaseEntityAPI<
       delete: builder.mutation<void, number>({
         query: (id) => ({
           method: 'delete',
-          url: `endpoint/${id}`
+          url: `${endpoint}/${id}`
         }),
         invalidatesTags: [entityName]
       })
