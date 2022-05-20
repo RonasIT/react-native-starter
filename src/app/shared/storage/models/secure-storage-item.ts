@@ -1,7 +1,8 @@
-import * as SecureStore from 'expo-secure-store';
+import { StorageItem } from './item';
 import { isNil } from 'lodash';
+import * as SecureStore from 'expo-secure-store';
 
-export class SecureStorageItem {
+export class SecureStorageItem implements StorageItem {
   public async set(value: string): Promise<void> {
     if (isNil(value)) {
       await this.remove();

@@ -1,5 +1,5 @@
 import { apiService } from '@shared/api/service';
-import { secureStorageService } from '@shared/secure-storage';
+import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
 import { of } from 'rxjs';
@@ -41,7 +41,7 @@ export const authEpics: Epics = {
         ]
       });
     }),
-    switchMap(() => secureStorageService.token.get()),
+    switchMap(() => appStorageService.token.get()),
     map((token) => AuthActions.saveToken({ token }))
   ),
 

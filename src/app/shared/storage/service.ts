@@ -1,7 +1,7 @@
 import { SecureStorageItem } from './models';
 
-class SecureStorageService {
+class AppStorageService {
   public token = new SecureStorageItem('token');
 }
 
-export const secureStorageService = new SecureStorageService();
+export const appStorageService = new AppStorageService();
