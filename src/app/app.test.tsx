@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { TestRootComponent } from '@tests/helpers';
 import React from 'react';
@@ -18,7 +18,7 @@ describe('App', () => {
   }
 
   beforeAll(() => {
-    jest.spyOn(AsyncStorage, 'getItem').mockImplementation((key) => {
+    jest.spyOn(SecureStore, 'getItemAsync').mockImplementation((key) => {
       if (key === 'token') {
         return Promise.resolve('some-demo-token');
       }
