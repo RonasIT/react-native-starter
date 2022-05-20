@@ -2,18 +2,18 @@ import { AuthActions } from '@shared/auth/store/actions';
 import { Epics } from '@store';
 import { AppActions } from '@store/actions';
 import { filter, map } from 'rxjs/operators';
-import { appStorageService } from '../service';
+import { secureStorageService } from '../service';
 
-export const appStorageEpics: Epics = {
+export const secureStorageEpics: Epics = {
   authorizeSuccess: (action$) => action$.pipe(
     filter(AuthActions.saveToken.match),
-    map(({ payload }) => appStorageService.token.set(payload.token)),
+    map(({ payload }) => secureStorageService.token.set(payload.token)),
     map(() => AppActions.noop())
   ),
 
   unauthorize: (action$) => action$.pipe(
     filter(AuthActions.clearToken.match),
-    map(() => appStorageService.token.remove()),
+    map(() => secureStorageService.token.remove()),
     map(() => AppActions.noop())
   )
 };
