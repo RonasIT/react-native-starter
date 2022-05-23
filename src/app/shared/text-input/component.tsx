@@ -1,32 +1,20 @@
-import { createStyles, commonStyle, variables } from '@styles';
-import { FormikProps, FormikValues } from 'formik';
-import { get, noop } from 'lodash';
+import { commonStyle, createStyles, variables } from '@styles';
+import { noop } from 'lodash';
 import React, { ForwardedRef, ReactElement, RefObject, useMemo, useRef, useState } from 'react';
-import {
-  NativeSyntheticEvent,
-  StyleProp,
-  TextInput,
-  TextInputFocusEventData,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-  ViewStyle
-} from 'react-native';
+import { StyleProp, TextInput, TextInputProps, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Icon } from '@shared/icon';
+import { Control, useController } from 'react-hook-form';
 
-type FormikInputPropertiesToExclude = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
-type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesToExclude>>;
-
-export interface AppTextInputProps extends InputProps {
+export interface AppTextInputProps extends TextInputProps {
+  control?: Control;
   name?: string;
-  disabled?: boolean;
-  hasError?: boolean;
   isPassword?: boolean;
-  icon?: ReactElement;
+  disabled?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
-  onClickIcon?: () => void;
+  icon?: ReactElement;
   onTouchEnd?: () => void;
   inputLeft?: ReactElement;
+  onClickIcon?: () => void;
 }
 
 export const AppTextInput = React.forwardRef(function Component(
@@ -34,48 +22,27 @@ export const AppTextInput = React.forwardRef(function Component(
   ref: ForwardedRef<TextInput> & Partial<RefObject<TextInput>>
 ): ReactElement {
   const {
-    style: elementStyle = {},
-    disabled,
-    hasError,
-    isPassword,
-    handleChange,
-    handleBlur,
-    values,
     name,
-    icon,
+    control,
+    isPassword,
+    disabled,
+    style: elementStyle = {},
     containerStyle,
-    onFocus = noop,
-    onBlur = noop,
+    icon,
     onTouchEnd = noop,
-    onClickIcon,
     inputLeft,
+    onClickIcon,
     ...restProps
   } = props;
 
-  const [isSecured, setSecurity] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
+  const [isSecured, setSecurity] = useState(true);
+  const { field, fieldState } = useController({
+    control,
+    name
+  });
 
   const inputRef = ref || useRef<TextInput>();
-  const value = get(values, name);
-
-  const commonInputProps: TextInputProps = {
-    value: value ? String(value) : '',
-    onChangeText: handleChange?.(name),
-    onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
-      onFocus(event);
-      setIsFocused(true);
-    },
-    onBlur: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
-      onBlur(event);
-      setIsFocused(false);
-      if (handleBlur) {
-        handleBlur(name)(event);
-      }
-    },
-    editable: !disabled,
-    underlineColorAndroid: 'transparent',
-    style: [commonStyle.formInput, elementStyle, disabled && commonStyle.formInputDisabled]
-  };
 
   const onTouchStart = (): void => inputRef?.current?.focus();
 
@@ -108,7 +75,7 @@ export const AppTextInput = React.forwardRef(function Component(
       onTouchEnd={onTouchEnd}
       style={[
         commonStyle.formControl,
-        hasError && commonStyle.formControlError,
+        fieldState.error && commonStyle.formControlError,
         isFocused && commonStyle.formControlFocus,
         isPassword && style.textInputPassword,
         icon && style.textInputWithIcon,
@@ -116,10 +83,19 @@ export const AppTextInput = React.forwardRef(function Component(
       ]}>
       {inputLeft}
       <TextInput
-        ref={inputRef}
         secureTextEntry={isSecured && isPassword}
         placeholderTextColor={variables.color.white + '80'}
-        {...commonInputProps}
+        editable={!disabled}
+        underlineColorAndroid='transparent'
+        style={[commonStyle.formInput, elementStyle, disabled && commonStyle.formInputDisabled]}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => {
+          setIsFocused(false);
+          field.onBlur();
+        }}
+        ref={inputRef}
+        onChangeText={field.onChange}
+        value={field.value}
         {...restProps}
       />
       {renderedEyeIcon}

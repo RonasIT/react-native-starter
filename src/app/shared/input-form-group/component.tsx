@@ -1,34 +1,28 @@
 import { FormGroup, FormGroupProps } from '@shared/form-group';
 import { AppTextInput, AppTextInputProps } from '@shared/text-input';
-import React, { ReactElement, useState } from 'react';
-import { FormikProps, FormikValues } from 'formik';
+import React, { ReactElement } from 'react';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
 
 type FormGroupAndControlProps<T> = FormGroupProps<T> & AppTextInputProps;
 
-export interface InputFormGroupProps<T = FormikValues> extends FormGroupAndControlProps<T> {
-  formik: FormikProps<T>;
+export interface InputFormGroupProps<T = FieldValues> extends FormGroupAndControlProps<T> {
+  form: UseFormReturn<T>;
 }
 
-export function InputFormGroup<T = FormikValues>({
+export function InputFormGroup<T = FieldValues>({
   label,
   name,
-  formik,
+  form,
   ...restProps
 }: InputFormGroupProps<T>): ReactElement {
-  const [hasError, setError] = useState(false);
-
   return (
     <FormGroup
       label={label}
       name={name}
-      errors={formik.errors}
-      touched={formik.touched}
-      isSubmitted={formik.submitCount > 0}
-      onErrorStateChange={setError}>
+      errors={form.formState.errors}>
       <AppTextInput
         name={name}
-        hasError={hasError}
-        {...formik}
+        {...form}
         {...restProps} />
     </FormGroup>
   );
