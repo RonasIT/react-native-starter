@@ -99,7 +99,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   "position": "relative",
                   "width": "100%",
                 },
-                false,
+                undefined,
                 false,
                 undefined,
                 undefined,
@@ -109,41 +109,12 @@ exports[`Login screen should match the snapshot 1`] = `
           >
             <TextInput
               autoCapitalize="none"
-              dirty={false}
               editable={true}
-              errors={Object {}}
-              getFieldHelpers={[Function]}
-              getFieldMeta={[Function]}
-              getFieldProps={[Function]}
-              handleReset={[Function]}
-              handleSubmit={[Function]}
-              initialErrors={Object {}}
-              initialTouched={Object {}}
-              initialValues={
-                LoginForm {
-                  "email": "",
-                  "password": "",
-                }
-              }
-              isSubmitting={false}
-              isValid={true}
-              isValidating={false}
               keyboardType="email-address"
               onBlur={[Function]}
               onChangeText={[Function]}
               onFocus={[Function]}
               placeholderTextColor="#FFFFFF80"
-              registerField={[Function]}
-              resetForm={[Function]}
-              setErrors={[Function]}
-              setFieldError={[Function]}
-              setFieldTouched={[Function]}
-              setFieldValue={[Function]}
-              setFormikState={[Function]}
-              setStatus={[Function]}
-              setSubmitting={[Function]}
-              setTouched={[Function]}
-              setValues={[Function]}
               style={
                 Array [
                   Object {
@@ -158,17 +129,8 @@ exports[`Login screen should match the snapshot 1`] = `
                   undefined,
                 ]
               }
-              submitCount={0}
-              submitForm={[Function]}
               testID="email-input"
-              touched={Object {}}
               underlineColorAndroid="transparent"
-              unregisterField={[Function]}
-              validateField={[Function]}
-              validateForm={[Function]}
-              validateOnBlur={true}
-              validateOnChange={true}
-              validateOnMount={false}
               value=""
             />
           </View>
@@ -239,7 +201,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   "position": "relative",
                   "width": "100%",
                 },
-                false,
+                undefined,
                 false,
                 Object {
                   "paddingRight": 50,
@@ -250,41 +212,12 @@ exports[`Login screen should match the snapshot 1`] = `
             }
           >
             <TextInput
-              dirty={false}
               editable={true}
-              errors={Object {}}
-              getFieldHelpers={[Function]}
-              getFieldMeta={[Function]}
-              getFieldProps={[Function]}
-              handleReset={[Function]}
-              handleSubmit={[Function]}
-              initialErrors={Object {}}
-              initialTouched={Object {}}
-              initialValues={
-                LoginForm {
-                  "email": "",
-                  "password": "",
-                }
-              }
-              isSubmitting={false}
-              isValid={true}
-              isValidating={false}
               onBlur={[Function]}
               onChangeText={[Function]}
               onFocus={[Function]}
               placeholderTextColor="#FFFFFF80"
-              registerField={[Function]}
-              resetForm={[Function]}
               secureTextEntry={true}
-              setErrors={[Function]}
-              setFieldError={[Function]}
-              setFieldTouched={[Function]}
-              setFieldValue={[Function]}
-              setFormikState={[Function]}
-              setStatus={[Function]}
-              setSubmitting={[Function]}
-              setTouched={[Function]}
-              setValues={[Function]}
               style={
                 Array [
                   Object {
@@ -299,17 +232,8 @@ exports[`Login screen should match the snapshot 1`] = `
                   undefined,
                 ]
               }
-              submitCount={0}
-              submitForm={[Function]}
               testID="password-input"
-              touched={Object {}}
               underlineColorAndroid="transparent"
-              unregisterField={[Function]}
-              validateField={[Function]}
-              validateForm={[Function]}
-              validateOnBlur={true}
-              validateOnChange={true}
-              validateOnMount={false}
               value=""
             />
             <View
