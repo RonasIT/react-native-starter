@@ -1,20 +1,30 @@
 import { commonStyle, createStyles, variables } from '@styles';
 import { noop } from 'lodash';
 import React, { ForwardedRef, ReactElement, RefObject, useMemo, useRef, useState } from 'react';
-import { StyleProp, TextInput, TextInputProps, TouchableOpacity, View, ViewStyle } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  StyleProp,
+  TextInput,
+  TextInputFocusEventData,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+  ViewStyle
+} from 'react-native';
 import { Icon } from '@shared/icon';
 import { Control, useController } from 'react-hook-form';
 
 export interface AppTextInputProps extends TextInputProps {
   control?: Control;
   name?: string;
-  isPassword?: boolean;
   disabled?: boolean;
-  containerStyle?: StyleProp<ViewStyle>;
+  hasError?: boolean;
+  isPassword?: boolean;
   icon?: ReactElement;
+  containerStyle?: StyleProp<ViewStyle>;
+  onClickIcon?: () => void;
   onTouchEnd?: () => void;
   inputLeft?: ReactElement;
-  onClickIcon?: () => void;
 }
 
 export const AppTextInput = React.forwardRef(function Component(
@@ -22,16 +32,19 @@ export const AppTextInput = React.forwardRef(function Component(
   ref: ForwardedRef<TextInput> & Partial<RefObject<TextInput>>
 ): ReactElement {
   const {
-    name,
     control,
-    isPassword,
-    disabled,
     style: elementStyle = {},
-    containerStyle,
+    disabled,
+    hasError,
+    isPassword,
+    name,
     icon,
+    containerStyle,
+    onFocus = noop,
+    onBlur = noop,
     onTouchEnd = noop,
-    inputLeft,
     onClickIcon,
+    inputLeft,
     ...restProps
   } = props;
 
@@ -43,6 +56,23 @@ export const AppTextInput = React.forwardRef(function Component(
   });
 
   const inputRef = ref || useRef<TextInput>();
+
+  const commonInputProps: TextInputProps = {
+    value: field.value,
+    onChangeText: field.onChange,
+    onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      onFocus(event);
+      setIsFocused(true);
+    },
+    onBlur: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      onBlur(event);
+      setIsFocused(false);
+      field.onBlur();
+    },
+    editable: !disabled,
+    underlineColorAndroid: 'transparent',
+    style: [commonStyle.formInput, elementStyle, disabled && commonStyle.formInputDisabled]
+  };
 
   const onTouchStart = (): void => inputRef?.current?.focus();
 
@@ -83,19 +113,10 @@ export const AppTextInput = React.forwardRef(function Component(
       ]}>
       {inputLeft}
       <TextInput
+        ref={inputRef}
         secureTextEntry={isSecured && isPassword}
         placeholderTextColor={variables.color.white + '80'}
-        editable={!disabled}
-        underlineColorAndroid='transparent'
-        style={[commonStyle.formInput, elementStyle, disabled && commonStyle.formInputDisabled]}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => {
-          setIsFocused(false);
-          field.onBlur();
-        }}
-        ref={inputRef}
-        onChangeText={field.onChange}
-        value={field.value}
+        {...commonInputProps}
         {...restProps}
       />
       {renderedEyeIcon}
