@@ -1,8 +1,10 @@
+import { AppEnvConfig } from 'app.config';
 import Constants from 'expo-constants';
-import { appEnvConfig } from 'app.config';
-import { immutableMerge } from '@shared/immutable-merge';
+import { merge } from 'lodash';
+import { PartialDeep } from 'type-fest';
 
-export const appEnv = (Constants.manifest.extra as typeof appEnvConfig).env;
+export const appEnvConfig = Constants.manifest.extra as AppEnvConfig;
+export const appEnv = appEnvConfig.env;
 
 function createConfig(): typeof defaultAppConfig {
   // TODO: Demo configuration. Update in a real app
@@ -18,16 +20,20 @@ function createConfig(): typeof defaultAppConfig {
       refreshTokenEndpoint: '/auth/refresh'
     }
   };
+  let envAppConfig: PartialDeep<typeof defaultAppConfig> = {};
 
   switch (appEnv) {
     case 'production':
-      return immutableMerge(defaultAppConfig, {
+      envAppConfig = {
         production: true
-      });
+      };
+      break;
     case 'development':
     default:
-      return defaultAppConfig;
+      break;
   }
+
+  return merge(defaultAppConfig, envAppConfig);
 }
 
 export const appConfig = createConfig();
