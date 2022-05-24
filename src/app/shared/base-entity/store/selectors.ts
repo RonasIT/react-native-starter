@@ -31,13 +31,24 @@ export class EntityItemsSelectors<TEntity extends Entity> {
     return createSelector(
       this.selectFeature,
       selectIDs,
-      (state, ids) => entityAdapterSelectors
-        .selectAll(state)
-        .filter((item) => ids.includes(item.id))
-        .map((item) => createEntityInstance<TEntity>(
-          this.entityName,
-          item
-        ))
+      (state, ids) => {
+        const allIDs = entityAdapterSelectors.selectIds(state);
+        const items: Array<TEntity> = [];
+
+        ids.forEach((id) => {
+          if (allIDs.includes(id)) {
+            items.push(createEntityInstance<TEntity>(
+              this.entityName,
+              entityAdapterSelectors.selectById(
+                state,
+                id
+              )
+            ));
+          }
+        });
+
+        return items;
+      }
     );
   };
 
