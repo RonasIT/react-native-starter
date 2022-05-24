@@ -1,10 +1,10 @@
 import { AppState } from '@store';
 import { isFunction } from 'lodash';
 import { createSelector, Selector } from '@reduxjs/toolkit';
-import { createEntityInstance, Entities, EntitiesState, Entity, EntityName } from '../config';
+import { createEntityInstance, Entities, Entity, EntityName } from '../config';
 import { entityNames } from './state';
+import { entityAdapterSelectors } from './adapter';
 
-const selectFeature = (state: AppState): EntitiesState => state.entityStore;
 const castSelector = <TData>(dataOrSelector: TData | Selector<AppState, TData>): Selector<AppState, TData> => {
   return isFunction(dataOrSelector) ? dataOrSelector : () => dataOrSelector;
 };
@@ -13,11 +13,14 @@ export class EntityItemsSelectors<TEntity extends Entity> {
     const selectID = castSelector<TEntity['id']>(itemID);
 
     return createSelector(
-      selectFeature,
+      this.selectFeature,
       selectID,
       (state, id) => createEntityInstance<TEntity>(
         this.entityName,
-        state[this.entityName].entities[id]
+        entityAdapterSelectors.selectById(
+          state,
+          id
+        )
       )
     );
   };
@@ -26,25 +29,21 @@ export class EntityItemsSelectors<TEntity extends Entity> {
     const selectIDs = castSelector<Array<TEntity['id']>>(itemIDs);
 
     return createSelector(
-      selectFeature,
+      this.selectFeature,
       selectIDs,
-      (state, ids) => {
-        const items: Array<TEntity> = [];
-        ids.forEach((id) => {
-          if (state[this.entityName].entities[id]) {
-            items.push(createEntityInstance<TEntity>(
-              this.entityName,
-              state[this.entityName].entities[id]
-            ));
-          }
-        });
-
-        return items;
-      }
+      (state, ids) => entityAdapterSelectors
+        .selectAll(state)
+        .filter((item) => ids.includes(item.id))
+        .map((item) => createEntityInstance<TEntity>(
+          this.entityName,
+          item
+        ))
     );
   };
 
   constructor(private entityName: EntityName) {}
+
+  private selectFeature = (state: AppState) => state.entityStore[this.entityName];
 }
 
 type EntityStoreSelectors = { [key in EntityName]: EntityItemsSelectors<Entities[key]> };

@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { EntityStoreActions } from './actions';
-import { entityAdapter, entityNames, initEntitiesStore } from './state';
+import { entityNames, initEntitiesStore } from './state';
+import { entityAdapter } from './adapter';
 
 const initialState = initEntitiesStore();
 
