@@ -1,4 +1,4 @@
 import { Store } from '@reduxjs/toolkit';
-import { AppState } from './store';
+import { AppState } from './types';
 
-export const storeRef: Partial<Store<AppState>> = {};
+export const storeRef = {} as Pick<Store<AppState>, 'dispatch' | 'getState'>;

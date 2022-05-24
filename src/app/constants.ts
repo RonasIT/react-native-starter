@@ -16,8 +16,8 @@ function createConfig(): typeof defaultAppConfig {
     },
     api: {
       root: 'https://gorest.co.in/public/v1',
-      publicEndpoints: ['/login', '/users'],
-      refreshTokenEndpoint: '/auth/refresh'
+      publicEndpoints: ['login', 'users'],
+      refreshTokenEndpoint: 'auth/refresh'
     }
   };
   let envAppConfig: PartialDeep<typeof defaultAppConfig> = {};

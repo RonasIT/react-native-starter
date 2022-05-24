@@ -1,7 +1,7 @@
 import { homeScreenActions, homeScreenSelectors, HomeScreenState } from '@app/main/home/shared/store';
 import { BaseListedEntityFacade } from '@shared/base-listed-entity-store/facade';
 import { User } from '@shared/user';
-import { store } from '@store/store';
+import { storeRef } from '@store';
 
 class HomeScreenFacade extends BaseListedEntityFacade<
   HomeScreenState,
@@ -10,7 +10,7 @@ class HomeScreenFacade extends BaseListedEntityFacade<
   typeof homeScreenSelectors
 > {
   constructor() {
-    super(store, homeScreenActions, homeScreenSelectors);
+    super(storeRef, homeScreenActions, homeScreenSelectors);
   }
 }
 

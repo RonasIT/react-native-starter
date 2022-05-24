@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { store } from '@store';
+import { createStore } from '@store/store';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
 import { App } from './app';
 import { appConfig, appEnv } from './constants';
+
+const store = createStore();
 
 export default function Root(): ReactElement {
   if (appConfig.sentry.enabled) {
