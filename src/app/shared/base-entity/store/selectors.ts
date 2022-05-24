@@ -17,7 +17,7 @@ export class EntityItemsSelectors<TEntity extends Entity> {
       selectID,
       (state, id) => createEntityInstance<TEntity>(
         this.entityName,
-        state[this.entityName][id]
+        state[this.entityName].entities[id]
       )
     );
   };
@@ -31,10 +31,10 @@ export class EntityItemsSelectors<TEntity extends Entity> {
       (state, ids) => {
         const items: Array<TEntity> = [];
         ids.forEach((id) => {
-          if (state[this.entityName][id]) {
+          if (state[this.entityName].entities[id]) {
             items.push(createEntityInstance<TEntity>(
               this.entityName,
-              state[this.entityName][id]
+              state[this.entityName].entities[id]
             ));
           }
         });
