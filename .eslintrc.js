@@ -24,14 +24,23 @@ module.exports = {
     react: {
       version: 'latest'
     },
-    'react-native/style-sheet-object-names': ['EStyleSheet']
+    'react-native/style-sheet-object-names': ['EStyleSheet'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true
+      }
+    }
   },
   plugins: [
     '@typescript-eslint',
     'unused-imports',
     'react',
     'react-hooks',
-    'react-native'
+    'react-native',
+    'import'
   ],
   extends: [
     'eslint:recommended',
@@ -133,7 +142,13 @@ module.exports = {
     'react/prop-types': 'off',
     'react-native/no-unused-styles': 'warn',
     'react-native/no-inline-styles': 'warn',
-    'react-native/no-single-element-style-arrays': 'warn'
+    'react-native/no-single-element-style-arrays': 'warn',
+    'import/no-unresolved': 'error',
+    'import/order': ['warn', {
+      groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+      alphabetize: { order: 'asc' }
+    }],
+    'import/no-duplicates': 'error'
   },
   overrides: [
     {
