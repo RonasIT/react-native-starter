@@ -1,10 +1,10 @@
-import { authService } from '@shared/auth';
-import { appNavigationService } from '@shared/navigation';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { validCredentials } from '@tests/fixtures';
-import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
+import { authService } from '@shared/auth';
+import { appNavigationService } from '@shared/navigation';
+import { validCredentials } from '@tests/fixtures';
+import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { LoginScreen } from './screen';
 
 describe('Login screen', () => {

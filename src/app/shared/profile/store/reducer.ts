@@ -1,8 +1,8 @@
-import { AuthActions } from '@shared/auth/store/actions';
 import { createReducer } from '@reduxjs/toolkit';
-import { ProfileActions } from './actions';
-import { User } from '@shared/user';
 import { merge } from 'lodash';
+import { AuthActions } from '@shared/auth/store/actions';
+import { User } from '@shared/user';
+import { ProfileActions } from './actions';
 
 export interface ProfileState {
   profile: User;

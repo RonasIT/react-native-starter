@@ -1,6 +1,6 @@
-import { immutableMerge } from '@shared/immutable-merge';
 import { createReducer } from '@reduxjs/toolkit';
 import { compact, omit } from 'lodash';
+import { immutableMerge } from '@shared/immutable-merge';
 import { BaseEntityPlain } from '../models';
 import { EntityMap } from '../types';
 import { EntityStoreActions } from './actions';

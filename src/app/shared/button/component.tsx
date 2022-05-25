@@ -1,8 +1,8 @@
+import React, { ReactElement, useMemo } from 'react';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { AppText } from '@shared/text';
 import { createStyles, variables } from '@styles';
-import React, { ReactElement, useMemo } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 interface Props extends TouchableOpacityProps {
   title?: string;

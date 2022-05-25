@@ -30,7 +30,10 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true
+        alwaysTryTypes: true,
+      },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
     }
   },

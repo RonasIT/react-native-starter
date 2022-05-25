@@ -1,11 +1,11 @@
 import { isAnyOf } from '@reduxjs/toolkit';
+import { of } from 'rxjs';
+import { catchError, delay, exhaustMap, filter, map, switchMap } from 'rxjs/operators';
 import { AuthActions } from '@shared/auth/store/actions';
 import { AuthSelectors } from '@shared/auth/store/selectors';
 import { ProfileActions } from '@shared/profile/store/actions';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
-import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, filter, map, switchMap } from 'rxjs/operators';
 import { pushNotificationsService } from '../service';
 import { PushNotificationsActions } from './actions';
 

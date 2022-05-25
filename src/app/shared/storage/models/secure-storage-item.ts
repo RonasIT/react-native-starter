@@ -1,6 +1,6 @@
-import { StorageItem } from './item';
-import { isNil } from 'lodash';
 import * as SecureStore from 'expo-secure-store';
+import { isNil } from 'lodash';
+import { StorageItem } from './item';
 
 export class SecureStorageItem implements StorageItem {
   constructor(private key: string) {}

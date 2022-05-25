@@ -1,13 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { apiService } from '@shared/api';
-import { userService } from '@shared/user';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { userPaginationResponse } from '@tests/fixtures';
-import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import { apiService } from '@shared/api';
+import { userService } from '@shared/user';
+import { userPaginationResponse } from '@tests/fixtures';
+import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import { HomeScreen } from './screen';
 
 describe('Home screen', () => {

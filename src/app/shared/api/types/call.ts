@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
 import { AxiosRequestConfig } from 'axios';
 import { AxiosObservable } from 'axios-observable/dist/axios-observable.interface';
+import { Observable } from 'rxjs';
 
 type DataOnly = <T = any>(
   endpoint: string,

@@ -1,6 +1,6 @@
-import { createStyles, variables } from '@styles';
 import React, { ReactElement } from 'react';
 import { Text, TextProps } from 'react-native';
+import { createStyles, variables } from '@styles';
 import { TextTheme } from './enums';
 
 interface Props extends TextProps {

@@ -1,6 +1,6 @@
-import { AppState } from '@store';
-import { isFunction } from 'lodash';
 import { createSelector, Selector } from '@reduxjs/toolkit';
+import { isFunction } from 'lodash';
+import { AppState } from '@store';
 import { createEntityInstance, Entities, EntitiesState, Entity, EntityName } from '../config';
 import { entityNames } from './state';
 
