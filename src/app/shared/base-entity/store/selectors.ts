@@ -9,6 +9,8 @@ const castSelector = <TData>(dataOrSelector: TData | Selector<AppState, TData>):
   return isFunction(dataOrSelector) ? dataOrSelector : () => dataOrSelector;
 };
 export class EntityItemsSelectors<TEntity extends Entity> {
+  constructor(private entityName: EntityName) {}
+
   public item = (itemID: TEntity['id'] | Selector<AppState, TEntity['id']>) => {
     const selectID = castSelector<TEntity['id']>(itemID);
 
@@ -43,8 +45,6 @@ export class EntityItemsSelectors<TEntity extends Entity> {
       }
     );
   };
-
-  constructor(private entityName: EntityName) {}
 }
 
 type EntityStoreSelectors = { [key in EntityName]: EntityItemsSelectors<Entities[key]> };

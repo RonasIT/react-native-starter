@@ -3,6 +3,8 @@ import { isNil } from 'lodash';
 import * as SecureStore from 'expo-secure-store';
 
 export class SecureStorageItem implements StorageItem {
+  constructor(private key: string) {}
+
   public async set(value: string): Promise<void> {
     if (isNil(value)) {
       await this.remove();
@@ -18,6 +20,4 @@ export class SecureStorageItem implements StorageItem {
   public async remove(): Promise<void> {
     await SecureStore.deleteItemAsync(this.key);
   }
-
-  constructor(private key: string) {}
 }

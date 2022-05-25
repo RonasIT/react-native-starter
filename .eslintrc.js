@@ -6,7 +6,10 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
-    project: 'tsconfig.json'
+    project: 'tsconfig.json',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   ignorePatterns: [
     'node_modules',
@@ -20,13 +23,15 @@ module.exports = {
   settings: {
     react: {
       version: 'latest'
-    }
+    },
+    'react-native/style-sheet-object-names': ['EStyleSheet']
   },
   plugins: [
     '@typescript-eslint',
     'unused-imports',
     'react',
-    'react-hooks'
+    'react-hooks',
+    'react-native'
   ],
   extends: [
     'eslint:recommended',
@@ -60,6 +65,61 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/array-type': ['warn', { default: 'generic', readonly: 'generic' }],
+    '@typescript-eslint/member-ordering': [
+      'error',
+      {
+        'default': [
+          'public-static-field',
+          'protected-static-field',
+          'private-static-field',
+          'public-instance-field',
+          'protected-instance-field',
+          'private-instance-field',
+          'public-constructor',
+          'protected-constructor',
+          'private-constructor',
+          'public-static-method',
+          'public-instance-method',
+          'protected-static-method',
+          'protected-instance-method',
+          'private-static-method',
+          'private-instance-method'
+        ]
+      }
+    ],
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        'selector': 'typeLike',
+        'format': ['PascalCase']
+      },
+      {
+        'selector': ['parameter'],
+        'format': ['camelCase', 'PascalCase'],
+        leadingUnderscore: 'allow'
+      },
+      {
+        'selector': ['classProperty'],
+        'format': ['camelCase', 'snake_case'],
+        leadingUnderscore: 'allow'
+      },
+      {
+        'selector': ['method', 'accessor'],
+        'format': ['camelCase']
+      },
+      {
+        'selector': ['function', 'typeProperty'],
+        'format': ['camelCase', 'PascalCase']
+      },
+      {
+        'selector': 'variable',
+        'format': ['camelCase', 'PascalCase', 'UPPER_CASE']
+      },
+      {
+        'selector': 'enumMember',
+        'format': ['UPPER_CASE']
+      }
+    ],
     'unused-imports/no-unused-imports-ts': 'warn',
     'unused-imports/no-unused-vars-ts': [
       'warn',
@@ -70,7 +130,10 @@ module.exports = {
     'react/self-closing-comp': ['warn', { component: true, html: true }],
     'react/jsx-max-props-per-line': [1, { maximum: { single: 2, multi: 1 } }],
     'react/jsx-first-prop-new-line': ['warn', 'multiline'],
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'react-native/no-unused-styles': 'warn',
+    'react-native/no-inline-styles': 'warn',
+    'react-native/no-single-element-style-arrays': 'warn'
   },
   overrides: [
     {

@@ -31,7 +31,7 @@ export function LoginScreen(): JSX.Element {
 
   return (
     <KeyboardAwareScrollView>
-      <AppScreen style={[commonStyle.container]}>
+      <AppScreen style={commonStyle.container}>
         <AppText style={style.title} theme={TextTheme.LARGEST}>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
