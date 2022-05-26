@@ -1,9 +1,9 @@
+import { AxiosError } from 'axios';
 import { Entity, EntityName } from '@shared/base-entity/config';
 import { EntityStoreActions } from '@shared/base-entity/store';
 import { EntityPartial } from '@shared/base-entity/types';
 import { PaginationResponse } from '@shared/pagination';
 import { defineAction } from '@store/utils';
-import { AxiosError } from 'axios';
 import { BaseListedEntityState } from './state';
 
 export abstract class BaseListedEntityActions<

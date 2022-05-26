@@ -1,9 +1,9 @@
 import { isAnyOf } from '@reduxjs/toolkit';
+import { of } from 'rxjs';
+import { catchError, debounceTime, filter, map, switchMap } from 'rxjs/operators';
 import { Entity } from '@shared/base-entity/config';
 import { EntityService } from '@shared/base-entity/service';
 import { Epics } from '@store/types';
-import { of } from 'rxjs';
-import { catchError, debounceTime, filter, map, switchMap } from 'rxjs/operators';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntitySelectors } from './selectors';
 

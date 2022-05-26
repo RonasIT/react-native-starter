@@ -1,7 +1,7 @@
+import { FormikProps, FormikValues } from 'formik';
+import React, { ReactElement, useState } from 'react';
 import { FormGroup, FormGroupProps } from '@shared/form-group';
 import { AppTextInput, AppTextInputProps } from '@shared/text-input';
-import React, { ReactElement, useState } from 'react';
-import { FormikProps, FormikValues } from 'formik';
 
 type FormGroupAndControlProps<T> = FormGroupProps<T> & AppTextInputProps;
 

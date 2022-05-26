@@ -1,6 +1,6 @@
-import { createStyles } from '@styles';
 import React, { ReactElement } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
+import { createStyles } from '@styles';
 
 interface Props {
   children: React.ReactNode;

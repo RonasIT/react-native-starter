@@ -1,5 +1,5 @@
-import { appConfig } from '@app/constants';
 import { AxiosError } from 'axios';
+import { appConfig } from '@app/constants';
 import { ApiResponseStatus } from '../enums';
 
 export const unauthorizedInterceptor =
