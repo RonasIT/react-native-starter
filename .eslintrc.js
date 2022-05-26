@@ -22,7 +22,7 @@ module.exports = {
   ],
   settings: {
     react: {
-      version: 'latest'
+      version: 'detect'
     },
     'react-native/style-sheet-object-names': ['EStyleSheet'],
     'import/parsers': {
@@ -54,7 +54,7 @@ module.exports = {
   ],
   rules: {
     'indent': ['warn', 2, { SwitchCase: 1 }],
-    'quotes': ['error', 'single'],
+    'quotes': ['warn', 'single'],
     'arrow-parens': ['warn', 'always'],
     'comma-dangle': ['warn', 'never'],
     'no-var': 'error',
@@ -78,7 +78,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/array-type': ['warn', { default: 'generic', readonly: 'generic' }],
     '@typescript-eslint/member-ordering': [
-      'error',
+      'warn',
       {
         'default': [
           'public-static-field',
@@ -100,7 +100,7 @@ module.exports = {
       }
     ],
     '@typescript-eslint/naming-convention': [
-      'error',
+      'warn',
       {
         'selector': 'typeLike',
         'format': ['PascalCase']
@@ -137,7 +137,7 @@ module.exports = {
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true },
     ],
-    'jsx-quotes': ['error', 'prefer-single'],
+    'jsx-quotes': ['warn', 'prefer-single'],
     'react/jsx-boolean-value': 'off',
     'react/self-closing-comp': ['warn', { component: true, html: true }],
     'react/jsx-max-props-per-line': [1, { maximum: { single: 2, multi: 1 } }],
@@ -146,12 +146,12 @@ module.exports = {
     'react-native/no-unused-styles': 'warn',
     'react-native/no-inline-styles': 'warn',
     'react-native/no-single-element-style-arrays': 'warn',
-    'import/no-unresolved': 'error',
+    'import/no-unresolved': 'warn',
     'import/order': ['warn', {
       groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
       alphabetize: { order: 'asc' }
     }],
-    'import/no-duplicates': 'error'
+    'import/no-duplicates': 'warn'
   },
   overrides: [
     {
