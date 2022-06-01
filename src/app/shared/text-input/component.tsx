@@ -1,4 +1,3 @@
-import { createStyles, commonStyle, variables } from '@styles';
 import { FormikProps, FormikValues } from 'formik';
 import { get, noop } from 'lodash';
 import React, { ForwardedRef, ReactElement, RefObject, useMemo, useRef, useState } from 'react';
@@ -13,6 +12,7 @@ import {
   ViewStyle
 } from 'react-native';
 import { Icon } from '@shared/icon';
+import { createStyles, commonStyle, variables } from '@styles';
 
 type FormikInputPropertiesToExclude = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
 type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesToExclude>>;

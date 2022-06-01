@@ -1,6 +1,6 @@
+import { AxiosError } from 'axios';
 import { User } from '@shared/user';
 import { defineAction } from '@store/utils';
-import { AxiosError } from 'axios';
 
 export class ProfileActions {
   public static refreshProfile = defineAction(

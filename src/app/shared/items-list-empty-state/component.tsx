@@ -1,8 +1,8 @@
-import { AppText } from '@shared/text';
-import { createStyles, variables } from '@styles';
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { useTranslation } from '@shared/i18n';
+import { AppText } from '@shared/text';
+import { createStyles, variables } from '@styles';
 
 interface Props {
   title?: string;

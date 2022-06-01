@@ -1,9 +1,9 @@
-import { AppText, TextTheme } from '@shared/text';
-import { AppTextInputProps } from '@shared/text-input';
-import { createStyles } from '@styles';
 import { FormikProps } from 'formik';
 import React, { ReactElement, useEffect } from 'react';
 import { View, ViewStyle } from 'react-native';
+import { AppText, TextTheme } from '@shared/text';
+import { AppTextInputProps } from '@shared/text-input';
+import { createStyles } from '@styles';
 
 export interface FormGroupProps<T extends Record<string, any> = Record<string, any>>
   extends Partial<Pick<FormikProps<T>, 'errors' | 'touched'>> {

@@ -1,8 +1,8 @@
-import { apiService } from '@shared/api/service';
-import { User } from '@shared/user/models/user';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { apiService } from '@shared/api/service';
+import { User } from '@shared/user/models/user';
 
 class ProfileService {
   // TODO: Demo code. Remove in a real app.

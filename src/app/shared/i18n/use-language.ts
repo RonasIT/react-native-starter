@@ -1,7 +1,7 @@
-import { appNavigationService } from '@shared/navigation';
+import * as Localization from 'expo-localization';
 import I18n from 'i18n-js';
 import { useEffect } from 'react';
-import * as Localization from 'expo-localization';
+import { appNavigationService } from '@shared/navigation';
 
 export function useLanguage<T extends typeof I18n['translations']>(
   translations: T,

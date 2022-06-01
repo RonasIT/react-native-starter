@@ -1,11 +1,11 @@
+import { createReducer } from '@reduxjs/toolkit';
 import {
   baseEntityStoreReducer,
   BaseListedEntityState,
   baseListedInitialState
 } from '@shared/base-listed-entity-store/store';
-import { createReducer } from '@reduxjs/toolkit';
-import { homeScreenActions } from './actions';
 import { User } from '@shared/user';
+import { homeScreenActions } from './actions';
 
 export type HomeScreenState = BaseListedEntityState<User>;
 
