@@ -9,6 +9,7 @@ import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
 import { AppText, TextTheme } from '@shared/text';
+import { User } from '@shared/user';
 import { userAPI } from '@shared/user/api';
 import { commonStyle, createStyles } from '@styles';
 import { UserForm } from './shared/forms';
@@ -16,8 +17,11 @@ import { UserForm } from './shared/forms';
 export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User'> }): JSX.Element {
   const id = props.route.params?.id;
   const translate = useTranslation('MAIN.USER');
-  const { useLazyGetQuery } = userAPI;
+  const { useLazyGetQuery, useCreateMutation, useUpdateMutation, useDeleteMutation } = userAPI;
   const [loadUser, { data: user }] = useLazyGetQuery();
+  const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = useCreateMutation();
+  const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = useUpdateMutation();
+  const [deleteUser, { isLoading: isDeleting }] = useDeleteMutation();
 
   useEffect(() => {
     if (id) {
@@ -29,17 +33,23 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
     if (user) {
       formik.setValues({
         email: user.email,
-        name: user.name
+        name: user.name,
+        gender: user.gender,
+        status: user.status
       });
     }
   }, [user]);
 
   function formSubmitted(values: UserForm): void {
-    console.log(values);
+    if (id) {
+      updateUser(new User({ id, ...values }));
+    } else {
+      createUser(new User(values));
+    }
   }
 
   function deleteButtonPressed(): void {
-    console.log('Delete');
+    deleteUser(user.id);
   }
 
   const formik = useFormik({
@@ -66,9 +76,24 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
           label={translate('TEXT_NAME')}
           name='name'
           formik={formik} />
+        <InputFormGroup
+          label={translate('TEXT_GENDER')}
+          name='gender'
+          formik={formik} />
+        <InputFormGroup
+          label={translate('TEXT_STATUS')}
+          name='status'
+          formik={formik} />
+        {error && (
+          <AppText>
+            {translate('TEXT_ERROR')}: {JSON.stringify(error)}
+          </AppText>
+        )}
+        {(isCreateSuccess || isUpdateSuccess) && <AppText>{translate('TEXT_SUCCESS')}</AppText>}
         <View style={style.footer}>
           {id && (
             <AppButton
+              isLoading={isDeleting}
               title={translate('BUTTON_DELETE')}
               onPress={deleteButtonPressed}
               style={[style.button, style.deleteButton]}
@@ -76,6 +101,7 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
             />
           )}
           <AppButton
+            isLoading={isCreating || isUpdating}
             isDisabled={!formik.isValid && formik.submitCount > 0}
             title={translate('BUTTON_SAVE')}
             onPress={() => handleSubmit()}

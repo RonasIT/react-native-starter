@@ -91,7 +91,9 @@ export function createBaseEntityAPI<
             data: data.map((item) => createEntityInstance<TEntity>(entityName, item))
           } as PaginationResponse<TEntity>;
         },
-        providesTags: (result) => result?.data ? result.data.map(({ id }) => ({ type: entityName, id })) : [entityName]
+        providesTags: (result) => result?.data
+          ? [...result.data.map(({ id }) => ({ type: entityName, id })), { type: entityName, id: 'list' }]
+          : [entityName]
       }),
       get: builder.query<TEntity, { id: TEntity['id']; params?: TEntityRequest }>({
         query: ({ id, params }) => {
@@ -127,7 +129,7 @@ export function createBaseEntityAPI<
           method: 'delete',
           url: `${endpoint}/${id}`
         }),
-        invalidatesTags: [entityName]
+        invalidatesTags: [{ type: entityName, id: 'list' }]
       })
     })
   });

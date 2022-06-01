@@ -4,6 +4,8 @@ import { useTranslation } from '@shared/i18n';
 export class UserForm {
   public email: string;
   public name: string;
+  public gender: string;
+  public status: string;
 
   public static get validationSchema(): Yup.AnySchema {
     const translate = useTranslation('COMMON.VALIDATION');
@@ -12,12 +14,16 @@ export class UserForm {
       email: Yup.string()
         .email(translate('TEXT_VALIDATION_EMAIL'))
         .required(translate('TEXT_VALIDATION_REQUIRED_FIELD')),
-      name: Yup.string().required(translate('TEXT_VALIDATION_REQUIRED_FIELD'))
+      name: Yup.string().required(translate('TEXT_VALIDATION_REQUIRED_FIELD')),
+      gender: Yup.string().required(translate('TEXT_VALIDATION_REQUIRED_FIELD')),
+      status: Yup.string().required(translate('TEXT_VALIDATION_REQUIRED_FIELD'))
     });
   }
 
   constructor() {
     this.email = '';
     this.name = '';
+    this.gender = '';
+    this.status = '';
   }
 }

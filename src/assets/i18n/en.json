@@ -24,6 +24,10 @@
       "TEXT_EDIT": "Edit user",
       "TEXT_EMAIL": "Email",
       "TEXT_NAME": "Name",
+      "TEXT_GENDER": "Gender",
+      "TEXT_STATUS": "Status",
+      "TEXT_ERROR": "Error",
+      "TEXT_SUCCESS": "Success",
       "BUTTON_SAVE": "Save",
       "BUTTON_DELETE": "Delete"
     }

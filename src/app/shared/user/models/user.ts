@@ -8,7 +8,13 @@ export class User extends BaseEntity<number> {
   @Expose()
   public email: string;
 
-  constructor(user: User) {
+  @Expose()
+  public gender: string;
+
+  @Expose()
+  public status: string;
+
+  constructor(user: Partial<User>) {
     super(user);
     Object.assign(this, user);
   }
