@@ -18,6 +18,14 @@
     "PROFILE": {
       "TEXT_GREETING": "Hey, {{name}}!",
       "BUTTON_LOGOUT": "Log out"
+    },
+    "USER": {
+      "TEXT_CREATE": "Create user",
+      "TEXT_EDIT": "Edit user",
+      "TEXT_EMAIL": "Email",
+      "TEXT_NAME": "Name",
+      "BUTTON_SAVE": "Save",
+      "BUTTON_DELETE": "Delete"
     }
   },
   "SHARED": {

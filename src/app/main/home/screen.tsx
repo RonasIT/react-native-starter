@@ -1,11 +1,13 @@
-import { AppScreen } from '@shared/screen';
 import React, { ReactElement, useState } from 'react';
-import { userAPI } from '@shared/user/api';
-import { ItemsList } from '@shared/items-list';
-import { HomeListItem } from './shared/components';
-import { User } from '@shared/user';
-import { commonStyle } from '@styles';
+import { View } from 'react-native';
 import { AppButton } from '@shared/button';
+import { ItemsList } from '@shared/items-list';
+import { appNavigationService } from '@shared/navigation';
+import { AppScreen } from '@shared/screen';
+import { User } from '@shared/user';
+import { userAPI } from '@shared/user/api';
+import { commonStyle } from '@styles';
+import { HomeListItem } from './shared/components';
 
 export function HomeScreen(): ReactElement {
   const [page, setPage] = useState(1);
@@ -14,6 +16,8 @@ export function HomeScreen(): ReactElement {
 
   const refreshItems = (): void => setPage(1);
   const loadMore = (): void => setPage(page + 1);
+
+  const navigateToUser = (): void => appNavigationService.navigate('User');
 
   return (
     <AppScreen testID='home-screen'>
@@ -26,7 +30,12 @@ export function HomeScreen(): ReactElement {
         onRefresh={refreshItems}
         numColumns={1}
         testID='users-list'
-        ListHeaderComponent={<AppButton title='Next' onPress={loadMore} />}
+        ListHeaderComponent={
+          <View>
+            <AppButton title='New user' onPress={navigateToUser} />
+            <AppButton title='Next' onPress={loadMore} />
+          </View>
+        }
       />
     </AppScreen>
   );
