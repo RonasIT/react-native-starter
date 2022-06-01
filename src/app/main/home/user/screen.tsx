@@ -17,22 +17,22 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
   const id = props.route.params?.id;
   const translate = useTranslation('MAIN.USER');
   const { useLazyGetQuery } = userAPI;
-  const [trigger, result] = useLazyGetQuery();
+  const [loadUser, { data: user }] = useLazyGetQuery();
 
   useEffect(() => {
     if (id) {
-      trigger({ id });
+      loadUser({ id });
     }
   }, []);
 
   useEffect(() => {
-    if (result?.data) {
+    if (user) {
       formik.setValues({
-        email: result.data.email,
-        name: result.data.name
+        email: user.email,
+        name: user.name
       });
     }
-  }, [result]);
+  }, [user]);
 
   function formSubmitted(values: UserForm): void {
     console.log(values);
