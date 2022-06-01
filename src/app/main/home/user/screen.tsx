@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { HomeNavigationParams } from '@app/main/home/navigation';
@@ -9,12 +9,30 @@ import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
 import { AppText, TextTheme } from '@shared/text';
+import { userAPI } from '@shared/user/api';
 import { commonStyle, createStyles } from '@styles';
 import { UserForm } from './shared/forms';
 
 export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User'> }): JSX.Element {
   const id = props.route.params?.id;
   const translate = useTranslation('MAIN.USER');
+  const { useLazyGetQuery } = userAPI;
+  const [trigger, result] = useLazyGetQuery();
+
+  useEffect(() => {
+    if (id) {
+      trigger({ id });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (result?.data) {
+      formik.setValues({
+        email: result.data.email,
+        name: result.data.name
+      });
+    }
+  }, [result]);
 
   function formSubmitted(values: UserForm): void {
     console.log(values);

@@ -1,7 +1,7 @@
-import { createBaseEntityAPI } from '@shared/base-entity/api';
-import { User } from '@shared/user/models';
-import { Pagination, PaginationResponse } from '@shared/pagination';
 import { plainToInstance } from 'class-transformer';
+import { createBaseEntityAPI } from '@shared/base-entity/api';
+import { Pagination, PaginationResponse } from '@shared/pagination';
+import { User } from '@shared/user/models';
 
 export const userAPI = createBaseEntityAPI<User>('/users', 'user').enhanceEndpoints({
   endpoints: {
@@ -18,6 +18,13 @@ export const userAPI = createBaseEntityAPI<User>('/users', 'user').enhanceEndpoi
         });
 
         return { data: instancesData, ...pagination };
+      }
+    },
+    get: {
+      transformResponse: (response) => {
+        const { data } = response;
+
+        return plainToInstance(User, data);
       }
     }
   }

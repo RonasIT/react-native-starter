@@ -14,7 +14,7 @@ class AuthService {
     return profileService.getDemoProfile().pipe(
       map((response) => ({
         user: response,
-        token: '1d606297f5cb48a0bd5dff4fb04f4922c7844478e32cfe1ac293a4393bd1887f'
+        token: 'some-demo-token'
       }))
     );
   }
