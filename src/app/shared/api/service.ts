@@ -1,10 +1,11 @@
-import { AxiosError, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import { AxiosError, AxiosRequestConfig, Method } from 'axios';
 import Axios from 'axios-observable';
 import { AxiosObservable } from 'axios-observable/dist/axios-observable.interface';
 import { Platform } from 'react-native';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { appConfig } from '@app/constants';
+import { Interceptors } from './interfaces';
 import { ApiCall } from './types';
 
 export class ApiService {
@@ -36,10 +37,7 @@ export class ApiService {
     return error && error.isAxiosError;
   }
 
-  public useInterceptors(interceptors: {
-    request?: Array<Parameters<AxiosInterceptorManager<AxiosRequestConfig>['use']>>;
-    response?: Array<Parameters<AxiosInterceptorManager<AxiosResponse>['use']>>;
-  }): void {
+  public useInterceptors(interceptors: Interceptors): void {
     if (interceptors.request.length) {
       interceptors.request.forEach((interceptorPair) => {
         this.httpClient.interceptors.request.use(...interceptorPair);

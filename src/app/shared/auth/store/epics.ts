@@ -1,12 +1,13 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { Interceptors } from '@shared/api/interfaces';
 import { apiService } from '@shared/api/service';
+import { useAxiosBaseQueryInterceptors } from '@shared/base-entity/utils/axios-base-query';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
-import { refreshTokenInterceptor, tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
+import { tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
 import { authService } from '../service';
-import { checkIsTokenExpired } from '../utils/check-is-token-expired';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
@@ -18,9 +19,10 @@ export const authEpics: Epics = {
       const getToken = (): string => AuthSelectors.token(getState());
       const dispatch = useDispatch();
 
-      apiService.useInterceptors({
+      const interceptors: Interceptors = {
         request: [
-          [
+          // TODO: use this interceptor in a real app
+          /*[
             refreshTokenInterceptor({
               onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
               onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
@@ -28,7 +30,7 @@ export const authEpics: Epics = {
               checkIsTokenExpired,
               refreshToken: () => authService.refreshToken()
             })
-          ],
+          ],*/
           [tokenInterceptor(getToken)]
         ],
         response: [
@@ -39,7 +41,10 @@ export const authEpics: Epics = {
             })
           ]
         ]
-      });
+      };
+
+      apiService.useInterceptors(interceptors);
+      useAxiosBaseQueryInterceptors(interceptors);
     }),
     switchMap(() => appStorageService.token.get()),
     map((token) => AuthActions.saveToken({ token }))

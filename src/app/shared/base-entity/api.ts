@@ -1,25 +1,13 @@
 import { coreModuleName } from '@reduxjs/toolkit/dist/query/core/module';
 import { reactHooksModuleName } from '@reduxjs/toolkit/dist/query/react/module';
-import {
-  Api,
-  BaseQueryFn,
-  createApi,
-  FetchArgs,
-  fetchBaseQuery,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta,
-  MutationDefinition,
-  QueryDefinition
-} from '@reduxjs/toolkit/query/react';
+import { Api, createApi, MutationDefinition, QueryDefinition } from '@reduxjs/toolkit/query/react';
 import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transformer';
 import { isUndefined, omitBy } from 'lodash';
-import { appConfig } from '@app/constants';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { createEntityInstance, Entity, EntityName } from './config';
 import { BaseEntityPlain, EntityRequest } from './models';
 import { EntityPartial } from './types';
-
-type BaseQueryFunction = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, object, FetchBaseQueryMeta>;
+import { axiosBaseQuery, BaseQueryFunction } from './utils';
 
 export function createBaseEntityAPI<
   TEntity extends Entity = Entity,
@@ -45,19 +33,7 @@ export function createBaseEntityAPI<
 > {
   const api = createApi({
     reducerPath: entityName,
-    baseQuery: fetchBaseQuery({
-      baseUrl: appConfig.api.root,
-      prepareHeaders: (headers, { getState }) => {
-        //const token = (getState() as AppState).auth.token
-        const token = '1d606297f5cb48a0bd5dff4fb04f4922c7844478e32cfe1ac293a4393bd1887f';
-
-        if (token) {
-          headers.set('authorization', `Bearer ${token}`);
-        }
-
-        return headers;
-      }
-    }),
+    baseQuery: axiosBaseQuery(),
     tagTypes: [entityName],
     endpoints: (builder) => ({
       create: builder.mutation<TEntity, TEntity>({
