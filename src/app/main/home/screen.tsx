@@ -1,18 +1,18 @@
 import React, { ReactElement, useState } from 'react';
-import { View } from 'react-native';
 import { AppButton } from '@shared/button';
 import { ItemsList } from '@shared/items-list';
 import { appNavigationService } from '@shared/navigation';
 import { AppScreen } from '@shared/screen';
-import { User } from '@shared/user';
 import { userAPI } from '@shared/user/api';
 import { commonStyle } from '@styles';
+import { homeScreenFacade } from './facade';
 import { HomeListItem } from './shared/components';
 
 export function HomeScreen(): ReactElement {
   const [page, setPage] = useState(1);
   const { useSearchQuery } = userAPI;
-  const { data, isLoading } = useSearchQuery({ page });
+  const { isLoading } = useSearchQuery({ page });
+  const { itemsIDs, pagination } = homeScreenFacade;
 
   const refreshItems = (): void => setPage(1);
   const loadMore = (): void => setPage(page + 1);
@@ -21,21 +21,17 @@ export function HomeScreen(): ReactElement {
 
   return (
     <AppScreen testID='home-screen'>
-      <ItemsList<User>
-        data={data?.data || []}
-        renderItem={HomeListItem}
+      <ItemsList
+        data={itemsIDs}
+        renderItem={({ item }) => <HomeListItem userID={item} />}
         isLoading={isLoading}
-        canLoadMore={data?.currentPage < data?.lastPage}
-        containerStyle={commonStyle.container}
+        canLoadMore={pagination.currentPage < pagination.lastPage}
+        onEndReached={loadMore}
         onRefresh={refreshItems}
+        containerStyle={commonStyle.container}
         numColumns={1}
         testID='users-list'
-        ListHeaderComponent={
-          <View>
-            <AppButton title='New user' onPress={navigateToUser} />
-            <AppButton title='Next' onPress={loadMore} />
-          </View>
-        }
+        ListHeaderComponent={<AppButton title='New user' onPress={navigateToUser} />}
       />
     </AppScreen>
   );

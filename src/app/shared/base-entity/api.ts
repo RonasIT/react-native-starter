@@ -43,7 +43,7 @@ export function createBaseEntityAPI<
   EntityName,
   typeof coreModuleName | typeof reactHooksModuleName
 > {
-  return createApi({
+  const api = createApi({
     reducerPath: entityName,
     baseQuery: fetchBaseQuery({
       baseUrl: appConfig.api.root,
@@ -74,6 +74,16 @@ export function createBaseEntityAPI<
         invalidatesTags: (result, error, arg) => [{ type: entityName, id: arg.id }]
       }),
       search: builder.query<PaginationResponse<TEntity>, TSearchRequest>({
+        async onQueryStarted(_, { dispatch, queryFulfilled }) {
+          const { data: response } = await queryFulfilled;
+          for (const user of response.data) {
+            dispatch(
+              api.util.updateQueryData('get', { id: user.id }, (draft) => {
+                Object.assign(draft, user);
+              })
+            );
+          }
+        },
         query: (params) => {
           const request = new entitySearchRequestConstructor(omitBy<TSearchRequest>(params, isUndefined));
 
@@ -133,4 +143,6 @@ export function createBaseEntityAPI<
       })
     })
   });
+
+  return api;
 }

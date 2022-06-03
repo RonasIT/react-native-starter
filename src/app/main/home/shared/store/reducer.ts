@@ -1,16 +1,25 @@
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  baseEntityStoreReducer,
-  BaseListedEntityState,
-  baseListedInitialState
-} from '@shared/base-listed-entity-store/store';
-import { User } from '@shared/user';
-import { homeScreenActions } from './actions';
+import { Pagination } from '@shared/pagination';
+import { HomeScreenActions } from './actions';
 
-export type HomeScreenState = BaseListedEntityState<User>;
+export interface HomeScreenState {
+  itemIDs: Array<number>;
+  pagination: Pagination;
+}
 
 const initialState: HomeScreenState = {
-  ...baseListedInitialState
+  itemIDs: [],
+  pagination: new Pagination()
 };
 
-export const homeScreenReducer = createReducer(initialState, (builder) => baseEntityStoreReducer(initialState, homeScreenActions, builder));
+export const homeScreenReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(HomeScreenActions.resetState, () => initialState)
+    .addCase(HomeScreenActions.loadItemsSuccess, (state, { payload: { data, ...pagination } }) => {
+      state.itemIDs =
+        state.pagination.currentPage < pagination.currentPage
+          ? state.itemIDs.concat(data.map((item) => item.id))
+          : data.map((item) => item.id);
+      state.pagination = pagination;
+    });
+});

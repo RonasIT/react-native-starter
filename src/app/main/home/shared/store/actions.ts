@@ -1,13 +1,13 @@
-import { BaseListedEntityActions } from '@shared/base-listed-entity-store/store/actions';
-import { HomeScreenState } from './reducer';
+import { PaginationResponse } from '@shared/pagination';
+import { User } from '@shared/user';
+import { defineAction } from '@store/utils';
 
-class HomeScreenActions extends BaseListedEntityActions<HomeScreenState> {
-  constructor() {
-    super(
-      'Home Screen',
-      'user'
-    );
-  }
+export class HomeScreenActions {
+  public static resetState = defineAction(
+    '[Home Screen] Reset State'
+  );
+
+  public static loadItemsSuccess = defineAction<PaginationResponse<User>>(
+    '[Home Screen] Load items success'
+  );
 }
-
-export const homeScreenActions = new HomeScreenActions();

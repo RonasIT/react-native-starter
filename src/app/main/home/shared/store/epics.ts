@@ -1,9 +1,11 @@
-import { baseListedEntityEpics } from '@shared/base-listed-entity-store/store/epics';
-import { userService } from '@shared/user/service';
+import { filter, map } from 'rxjs/operators';
+import { userAPI } from '@shared/user/api';
 import { Epics } from '@store/types';
-import { homeScreenActions } from './actions';
-import { homeScreenSelectors } from './selectors';
+import { HomeScreenActions } from './actions';
 
 export const homeScreenEpics: Epics = {
-  ...baseListedEntityEpics(homeScreenActions, homeScreenSelectors, userService)
+  loadItemsSuccess: (action$) => action$.pipe(
+    filter(userAPI.endpoints.search.matchFulfilled),
+    map(({ payload }) => HomeScreenActions.loadItemsSuccess(payload))
+  )
 };

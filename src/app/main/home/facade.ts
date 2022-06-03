@@ -1,16 +1,18 @@
-import { homeScreenActions, homeScreenSelectors, HomeScreenState } from '@app/main/home/shared/store';
-import { BaseListedEntityFacade } from '@shared/base-listed-entity-store/facade';
-import { User } from '@shared/user';
-import { store } from '@store/store';
+import { useSelector } from 'react-redux';
+import { Pagination } from '@shared/pagination';
+import { HomeScreenSelectors } from './shared/store';
 
-class HomeScreenFacade extends BaseListedEntityFacade<
-  HomeScreenState,
-  User,
-  typeof homeScreenActions,
-  typeof homeScreenSelectors
-> {
-  constructor() {
-    super(store, homeScreenActions, homeScreenSelectors);
+class HomeScreenFacade {
+  public get pagination(): Pagination {
+    return useSelector(HomeScreenSelectors.pagination);
+  }
+
+  public get itemsIDs(): Array<number> {
+    return useSelector(HomeScreenSelectors.itemIDs);
+  }
+
+  public get hasNextPage(): boolean {
+    return useSelector(HomeScreenSelectors.hasNextPage);
   }
 }
 

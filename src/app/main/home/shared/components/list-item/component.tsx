@@ -2,12 +2,15 @@ import React, { ReactElement } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { appNavigationService } from '@shared/navigation';
 import { AppText, TextTheme } from '@shared/text';
-import { User } from '@shared/user';
+import { userAPI } from '@shared/user/api';
 import { createStyles, variables } from '@styles';
 
-export function HomeListItem({ item }: { item: User }): ReactElement {
+export function HomeListItem({ userID }: { userID: number }): ReactElement {
+  const { useGetQuery } = userAPI;
+  const { data } = useGetQuery({ id: userID });
+
   function navigateToUser(): void {
-    appNavigationService.navigate('User', { id: item.id });
+    appNavigationService.navigate('User', { id: userID });
   }
 
   return (
@@ -15,10 +18,14 @@ export function HomeListItem({ item }: { item: User }): ReactElement {
       onPress={navigateToUser}
       style={style.itemContainer}
       testID='user-item'>
-      <AppText theme={TextTheme.LARGER} numberOfLines={1}>
-        #{item.id}: {item.name}
-      </AppText>
-      <AppText numberOfLines={1}>Email: {item.email}</AppText>
+      {data && (
+        <>
+          <AppText theme={TextTheme.LARGER} numberOfLines={1}>
+            #{data.id}: {data.name}
+          </AppText>
+          <AppText numberOfLines={1}>Email: {data.email}</AppText>
+        </>
+      )}
     </TouchableOpacity>
   );
 }

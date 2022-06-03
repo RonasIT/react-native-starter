@@ -17,9 +17,9 @@ export interface ItemsListProps<T> extends FlatListProps<T> {
   testID?: string;
 }
 
-const defaultKeyExtractor = <T extends BaseEntity>(item: T): string => String(item.id);
+const defaultKeyExtractor = <T extends BaseEntity['id']>(item: T): string => String(item);
 
-export function ItemsList<T extends BaseEntity>({
+export function ItemsList<T extends BaseEntity['id']>({
   data,
   isLoading,
   isRefreshing = false,
