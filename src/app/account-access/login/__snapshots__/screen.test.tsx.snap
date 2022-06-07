@@ -20,11 +20,9 @@ exports[`Login screen should match the snapshot 1`] = `
             Object {
               "flex": 1,
             },
-            Array [
-              Object {
-                "paddingHorizontal": 24,
-              },
-            ],
+            Object {
+              "paddingHorizontal": 24,
+            },
           ]
         }
       >
@@ -99,7 +97,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   "position": "relative",
                   "width": "100%",
                 },
-                undefined,
+                false,
                 false,
                 undefined,
                 undefined,
@@ -131,7 +129,6 @@ exports[`Login screen should match the snapshot 1`] = `
               }
               testID="email-input"
               underlineColorAndroid="transparent"
-              value=""
             />
           </View>
           <Text
@@ -148,9 +145,7 @@ exports[`Login screen should match the snapshot 1`] = `
               ]
             }
             testID="validation-error"
-          >
-            
-          </Text>
+          />
         </View>
         <View
           style={
@@ -201,7 +196,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   "position": "relative",
                   "width": "100%",
                 },
-                undefined,
+                false,
                 false,
                 Object {
                   "paddingRight": 50,
@@ -234,7 +229,6 @@ exports[`Login screen should match the snapshot 1`] = `
               }
               testID="password-input"
               underlineColorAndroid="transparent"
-              value=""
             />
             <View
               accessible={true}
@@ -274,9 +268,7 @@ exports[`Login screen should match the snapshot 1`] = `
               ]
             }
             testID="validation-error"
-          >
-            
-          </Text>
+          />
         </View>
         <View
           style={
