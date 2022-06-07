@@ -17,7 +17,7 @@ export const entityStoreReducer = createReducer(initialState, (builder) => [
         entityAdapter.upsertMany(state[entityName], payload.items);
       })
       .addCase(actions.updated, (state, { payload }) => {
-        entityAdapter.updateOne(state[entityName], { id: payload.item.id, changes: payload.item });
+        entityAdapter.upsertOne(state[entityName], payload.item);
       })
       .addCase(actions.deleted, (state, { payload }) => {
         entityAdapter.removeOne(state[entityName], payload.item.id);

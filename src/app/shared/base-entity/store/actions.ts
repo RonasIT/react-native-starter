@@ -1,9 +1,9 @@
 import { defineAction } from '@store/utils';
-import { Entities, EntityName } from '../config';
+import { EntityName } from '../config';
 import { BaseEntityPlain } from '../models';
 import { EntityPartial } from '../types';
 
-export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlain & Partial<Entities[keyof Entities]>> {
+export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlain> {
   public created = defineAction<{ item: TEntity }>(
     `[@entities/${this.entityName}] defined`
   );
@@ -12,7 +12,7 @@ export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlai
     `[@entities/${this.entityName}] Loaded`
   );
 
-  public updated = defineAction<{ item: EntityPartial<TEntity> }>(
+  public updated = defineAction<{ item: TEntity }>(
     `[@entities/${this.entityName}] Updated`
   );
 

@@ -9,7 +9,7 @@ export type Entities = {
 };
 export type EntityName = keyof Entities;
 export type Entity = Entities[EntityName];
-export type EntitiesState = { [key in EntityName]: EntityState<BaseEntityPlain & Partial<Entities[key]>> };
+export type EntitiesState = { [key in EntityName]: EntityState<BaseEntityPlain> };
 
 export const ENTITIES_CONFIG: { [key in EntityName]: ClassConstructor<Entities[key]> } = {
   user: User
