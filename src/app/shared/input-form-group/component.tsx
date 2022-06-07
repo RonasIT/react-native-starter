@@ -1,7 +1,7 @@
-import { FormGroup, FormGroupProps } from '@shared/form-group';
-import { AppTextInput, AppTextInputProps } from '@shared/text-input';
 import React, { ReactElement } from 'react';
 import { Control, FieldValues, UseFormReturn } from 'react-hook-form';
+import { FormGroup, FormGroupProps } from '@shared/form-group';
+import { AppTextInput, AppTextInputProps } from '@shared/text-input';
 
 type FormGroupAndControlProps<T> = FormGroupProps<T> & AppTextInputProps;
 

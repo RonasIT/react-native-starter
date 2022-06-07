@@ -1,9 +1,9 @@
+import { of } from 'rxjs';
+import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { apiService } from '@shared/api/service';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
-import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { refreshTokenInterceptor, tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
 import { authService } from '../service';
 import { checkIsTokenExpired } from '../utils/check-is-token-expired';

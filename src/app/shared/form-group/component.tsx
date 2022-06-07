@@ -1,9 +1,9 @@
+import React, { ReactElement } from 'react';
+import { FieldErrors } from 'react-hook-form';
+import { View, ViewStyle } from 'react-native';
 import { AppText, TextTheme } from '@shared/text';
 import { AppTextInputProps } from '@shared/text-input';
 import { createStyles } from '@styles';
-import React, { ReactElement } from 'react';
-import { View, ViewStyle } from 'react-native';
-import { FieldErrors } from 'react-hook-form';
 
 export interface FormGroupProps<T extends Record<string, any> = Record<string, any>> {
   label?: string;

@@ -1,6 +1,6 @@
-import { User } from '@shared/user/models/user';
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
+import { User } from '@shared/user/models/user';
 import { BaseEntityPlain } from './models';
 import { EntityMap } from './types';
 

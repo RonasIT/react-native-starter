@@ -87,7 +87,7 @@
     "redux-observable": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5",
-    "sentry-expo": "^4.0.0",
+    "sentry-expo": "^4.2.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -109,8 +109,11 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-react-native": "^4.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^7.0.4",
     "jest": "^27.1.2",

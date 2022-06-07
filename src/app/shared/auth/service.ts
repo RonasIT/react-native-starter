@@ -1,9 +1,9 @@
-import { appConfig } from '@app/constants';
-import { apiService } from '@shared/api/service';
-import { profileService } from '@shared/profile';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
+import { appConfig } from '@app/constants';
+import { apiService } from '@shared/api/service';
+import { profileService } from '@shared/profile';
 import { AuthCredentials, AuthResponse } from './models';
 
 class AuthService {
