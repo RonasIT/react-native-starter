@@ -27,7 +27,7 @@ export function LoginScreen(): JSX.Element {
     defaultValues: new LoginForm(),
     resolver: yupResolver(LoginForm.validationSchema)
   });
-  const { handleSubmit, formState } = form;
+  const { handleSubmit, formState, control } = form;
 
   return (
     <KeyboardAwareScrollView>
@@ -41,14 +41,14 @@ export function LoginScreen(): JSX.Element {
           testID='email-input'
           autoCapitalize='none'
           keyboardType='email-address'
-          form={form}
+          control={control}
         />
         <InputFormGroup<LoginForm>
           isPassword={true}
           testID='password-input'
           label={translate('TEXT_PASSWORD')}
           name='password'
-          form={form}
+          control={control}
         />
         <View style={style.footer}>
           <AppButton

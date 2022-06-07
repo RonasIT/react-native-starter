@@ -41,7 +41,7 @@
     "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized"
   },
   "dependencies": {
-    "@hookform/resolvers": "^2.8.10",
+    "@hookform/resolvers": "^2.9.0",
     "@react-native-async-storage/async-storage": "~1.17.4",
     "@react-native-community/hooks": "^2.8.1",
     "@react-native-community/netinfo": "~8.2.0",
@@ -73,7 +73,7 @@
     "qs": "^6.10.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.31.1",
+    "react-hook-form": "^7.31.3",
     "react-native": "0.68.2",
     "react-native-expo-image-cache": "^4.1.0",
     "react-native-extended-stylesheet": "^0.12.0",

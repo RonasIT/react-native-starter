@@ -1,21 +1,18 @@
 import React, { ReactElement } from 'react';
-import { FieldErrors } from 'react-hook-form';
 import { View, ViewStyle } from 'react-native';
 import { AppText, TextTheme } from '@shared/text';
 import { AppTextInputProps } from '@shared/text-input';
 import { createStyles } from '@styles';
 
-export interface FormGroupProps<T extends Record<string, any> = Record<string, any>> {
+export interface FormGroupProps {
   label?: string;
-  name: keyof T;
-  errors?: FieldErrors;
+  error?: string;
   containerStyle?: ViewStyle;
   children?: ReactElement;
 }
 
 export function FormGroup<T = AppTextInputProps>({
-  errors,
-  name,
+  error,
   label,
   containerStyle,
   children
@@ -28,7 +25,7 @@ export function FormGroup<T = AppTextInputProps>({
         </AppText>
       )}
       {children}
-      <AppText testID='validation-error'>{errors?.[name]?.message || ''}</AppText>
+      <AppText testID='validation-error'>{error}</AppText>
     </View>
   );
 }

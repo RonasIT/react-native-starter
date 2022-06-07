@@ -1,29 +1,32 @@
 import React, { ReactElement } from 'react';
-import { Control, FieldValues, UseFormReturn } from 'react-hook-form';
+import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { FormGroup, FormGroupProps } from '@shared/form-group';
 import { AppTextInput, AppTextInputProps } from '@shared/text-input';
 
-type FormGroupAndControlProps<T> = FormGroupProps<T> & AppTextInputProps;
+type FormGroupAndControlProps = FormGroupProps & AppTextInputProps;
 
-export interface InputFormGroupProps<T = FieldValues> extends FormGroupAndControlProps<T> {
-  form: UseFormReturn<T>;
+export interface InputFormGroupProps<T = FieldValues> extends FormGroupAndControlProps {
+  name: Path<T>;
+  control: Control<T>;
 }
 
 export function InputFormGroup<T = FieldValues>({
   label,
   name,
-  form,
+  control,
   ...restProps
 }: InputFormGroupProps<T>): ReactElement {
+  const { field, fieldState } = useController({ control, name });
+
   return (
-    <FormGroup
-      label={label}
-      name={name}
-      errors={form.formState.errors}>
+    <FormGroup label={label} error={fieldState.error?.message}>
       <AppTextInput
-        name={name}
-        control={form.control as Control}
-        {...restProps} />
+        value={field.value}
+        onChangeText={field.onChange}
+        onBlur={field.onBlur}
+        hasError={!!fieldState.error}
+        {...restProps}
+      />
     </FormGroup>
   );
 }

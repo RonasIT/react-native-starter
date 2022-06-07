@@ -1,4 +1,3 @@
-import { commonStyle, createStyles, variables } from '@styles';
 import { noop } from 'lodash';
 import React, { ForwardedRef, ReactElement, RefObject, useMemo, useRef, useState } from 'react';
 import {
@@ -12,11 +11,9 @@ import {
   ViewStyle
 } from 'react-native';
 import { Icon } from '@shared/icon';
-import { Control, useController } from 'react-hook-form';
+import { commonStyle, createStyles, variables } from '@styles';
 
 export interface AppTextInputProps extends TextInputProps {
-  control?: Control;
-  name?: string;
   disabled?: boolean;
   hasError?: boolean;
   isPassword?: boolean;
@@ -32,12 +29,10 @@ export const AppTextInput = React.forwardRef(function Component(
   ref: ForwardedRef<TextInput> & Partial<RefObject<TextInput>>
 ): ReactElement {
   const {
-    control,
     style: elementStyle = {},
     disabled,
     hasError,
     isPassword,
-    name,
     icon,
     containerStyle,
     onFocus = noop,
@@ -45,21 +40,16 @@ export const AppTextInput = React.forwardRef(function Component(
     onTouchEnd = noop,
     onClickIcon,
     inputLeft,
+    value,
     ...restProps
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
   const [isSecured, setSecurity] = useState(true);
-  const { field, fieldState } = useController({
-    control,
-    name
-  });
 
   const inputRef = ref || useRef<TextInput>();
 
   const commonInputProps: TextInputProps = {
-    value: field.value,
-    onChangeText: field.onChange,
     onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
       onFocus(event);
       setIsFocused(true);
@@ -67,7 +57,6 @@ export const AppTextInput = React.forwardRef(function Component(
     onBlur: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
       onBlur(event);
       setIsFocused(false);
-      field.onBlur();
     },
     editable: !disabled,
     underlineColorAndroid: 'transparent',
@@ -105,7 +94,7 @@ export const AppTextInput = React.forwardRef(function Component(
       onTouchEnd={onTouchEnd}
       style={[
         commonStyle.formControl,
-        fieldState.error && commonStyle.formControlError,
+        hasError && commonStyle.formControlError,
         isFocused && commonStyle.formControlFocus,
         isPassword && style.textInputPassword,
         icon && style.textInputWithIcon,

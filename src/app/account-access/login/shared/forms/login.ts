@@ -5,7 +5,7 @@ export class LoginForm {
   public email: string;
   public password: string;
 
-  public static get validationSchema(): Yup.AnyObjectSchema {
+  public static get validationSchema(): Yup.SchemaOf<LoginForm> {
     const translate = useTranslation('COMMON.VALIDATION');
 
     return Yup.object().shape({
