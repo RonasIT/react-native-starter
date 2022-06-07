@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
-import { appEnvConfig } from 'app.config';
 import { immutableMerge } from '@shared/immutable-merge';
+import { appEnvConfig } from 'app.config';
 
 export const appEnv = (Constants.manifest.extra as typeof appEnvConfig).env;
 

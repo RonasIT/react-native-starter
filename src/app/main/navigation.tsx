@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { ReactElement } from 'react';
 import { useTranslation } from '@shared/i18n';
 import { Icon } from '@shared/icon';
 import { AppTabBar } from '@shared/tab-bar';
 import { variables } from '@styles';
-import React, { ReactElement } from 'react';
 import { HomeScreen } from './home/screen';
 import { ProfileScreen } from './profile/screen';
 

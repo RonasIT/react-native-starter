@@ -1,12 +1,12 @@
-import { appConfig } from './constants';
-import { store } from '@store';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
+import { store } from '@store';
 import { App } from './app';
+import { appConfig } from './constants';
 
 export default function Root(): ReactElement {
   if (appConfig.sentry.enabled) {

@@ -1,8 +1,8 @@
+import { of } from 'rxjs';
+import { catchError, exhaustMap, filter, map, withLatestFrom } from 'rxjs/operators';
 import { AuthActions } from '@shared/auth/store/actions';
 import { AuthSelectors } from '@shared/auth/store/selectors';
 import { Epics } from '@store/types';
-import { of } from 'rxjs';
-import { catchError, exhaustMap, filter, map, withLatestFrom } from 'rxjs/operators';
 import { profileService } from '../service';
 import { ProfileActions } from './actions';
 

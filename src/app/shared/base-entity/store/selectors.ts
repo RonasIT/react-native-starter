@@ -1,14 +1,16 @@
-import { AppState } from '@store';
-import { isFunction } from 'lodash';
 import { createSelector, Selector } from '@reduxjs/toolkit';
+import { isFunction } from 'lodash';
+import { AppState } from '@store';
 import { createEntityInstance, Entities, Entity, EntityName } from '../config';
-import { entityNames } from './state';
 import { entityAdapterSelectors } from './adapter';
+import { entityNames } from './state';
 
 const castSelector = <TData>(dataOrSelector: TData | Selector<AppState, TData>): Selector<AppState, TData> => {
   return isFunction(dataOrSelector) ? dataOrSelector : () => dataOrSelector;
 };
 export class EntityItemsSelectors<TEntity extends Entity> {
+  constructor(private entityName: EntityName) {}
+
   public item = (itemID: TEntity['id'] | Selector<AppState, TEntity['id']>) => {
     const selectID = castSelector<TEntity['id']>(itemID);
 
@@ -51,8 +53,6 @@ export class EntityItemsSelectors<TEntity extends Entity> {
       }
     );
   };
-
-  constructor(private entityName: EntityName) {}
 
   private selectFeature = (state: AppState) => state.entityStore[this.entityName];
 }

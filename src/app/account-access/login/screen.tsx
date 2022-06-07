@@ -1,3 +1,8 @@
+import Constants from 'expo-constants';
+import { useFormik } from 'formik';
+import React from 'react';
+import { View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
@@ -5,11 +10,6 @@ import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
 import { AppText, TextTheme } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
-import Constants from 'expo-constants';
-import { useFormik } from 'formik';
-import React from 'react';
-import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
 
@@ -31,7 +31,7 @@ export function LoginScreen(): JSX.Element {
 
   return (
     <KeyboardAwareScrollView>
-      <AppScreen style={[commonStyle.container]}>
+      <AppScreen style={commonStyle.container}>
         <AppText style={style.title} theme={TextTheme.LARGEST}>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>

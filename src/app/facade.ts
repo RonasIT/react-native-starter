@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import { AuthSelectors } from '@shared/auth';
 import { AppActions } from '@store';
-import { useSelector } from 'react-redux';
 import { storeRef } from '@store/store-ref';
 
 class AppFacade {
