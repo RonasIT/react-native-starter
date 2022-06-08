@@ -2,8 +2,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Constants from 'expo-constants';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { ScrollView, View } from 'react-native';
+import { Keyboard } from 'react-native-ui-lib';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
@@ -30,8 +30,8 @@ export function LoginScreen(): JSX.Element {
   const { handleSubmit, formState, control } = form;
 
   return (
-    <KeyboardAwareScrollView>
-      <AppScreen style={commonStyle.container}>
+    <AppScreen style={commonStyle.container}>
+      <ScrollView>
         <AppText style={style.title} theme={TextTheme.LARGEST}>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
@@ -60,8 +60,9 @@ export function LoginScreen(): JSX.Element {
           />
         </View>
         <AppVersion />
-      </AppScreen>
-    </KeyboardAwareScrollView>
+        <Keyboard.KeyboardAwareInsetsView />
+      </ScrollView>
+    </AppScreen>
   );
 }
 
