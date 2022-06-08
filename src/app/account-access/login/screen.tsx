@@ -1,6 +1,7 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import Constants from 'expo-constants';
-import { useFormik } from 'formik';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AppVersion } from '@shared/app-version';
@@ -22,12 +23,11 @@ export function LoginScreen(): JSX.Element {
     loginScreenFacade.authorize(values);
   }
 
-  const formik = useFormik({
-    initialValues: new LoginForm(),
-    validationSchema: LoginForm.validationSchema,
-    onSubmit: formSubmitted
+  const form = useForm<LoginForm>({
+    defaultValues: new LoginForm(),
+    resolver: yupResolver(LoginForm.validationSchema)
   });
-  const { handleSubmit } = formik;
+  const { handleSubmit, formState, control } = form;
 
   return (
     <KeyboardAwareScrollView>
@@ -41,22 +41,22 @@ export function LoginScreen(): JSX.Element {
           testID='email-input'
           autoCapitalize='none'
           keyboardType='email-address'
-          formik={formik}
+          control={control}
         />
         <InputFormGroup<LoginForm>
           isPassword={true}
           testID='password-input'
           label={translate('TEXT_PASSWORD')}
           name='password'
-          formik={formik}
+          control={control}
         />
         <View style={style.footer}>
           <AppButton
             isLoading={isSubmitting}
-            isDisabled={!formik.isValid && formik.submitCount > 0}
+            isDisabled={!formState.isValid && formState.isSubmitted}
             testID='submit-button'
             title={translate('BUTTON_SUBMIT')}
-            onPress={() => handleSubmit()}
+            onPress={handleSubmit(formSubmitted)}
           />
         </View>
         <AppVersion />

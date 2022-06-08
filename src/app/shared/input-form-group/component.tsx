@@ -1,35 +1,32 @@
-import { FormikProps, FormikValues } from 'formik';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
+import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { FormGroup, FormGroupProps } from '@shared/form-group';
 import { AppTextInput, AppTextInputProps } from '@shared/text-input';
 
-type FormGroupAndControlProps<T> = FormGroupProps<T> & AppTextInputProps;
+type FormGroupAndControlProps = FormGroupProps & AppTextInputProps;
 
-export interface InputFormGroupProps<T = FormikValues> extends FormGroupAndControlProps<T> {
-  formik: FormikProps<T>;
+export interface InputFormGroupProps<T = FieldValues> extends FormGroupAndControlProps {
+  name: Path<T>;
+  control: Control<T>;
 }
 
-export function InputFormGroup<T = FormikValues>({
+export function InputFormGroup<T = FieldValues>({
   label,
   name,
-  formik,
+  control,
   ...restProps
 }: InputFormGroupProps<T>): ReactElement {
-  const [hasError, setError] = useState(false);
+  const { field, fieldState } = useController({ control, name });
 
   return (
-    <FormGroup
-      label={label}
-      name={name}
-      errors={formik.errors}
-      touched={formik.touched}
-      isSubmitted={formik.submitCount > 0}
-      onErrorStateChange={setError}>
+    <FormGroup label={label} error={fieldState.error?.message}>
       <AppTextInput
-        name={name}
-        hasError={hasError}
-        {...formik}
-        {...restProps} />
+        value={field.value}
+        onChangeText={field.onChange}
+        onBlur={field.onBlur}
+        hasError={!!fieldState.error}
+        {...restProps}
+      />
     </FormGroup>
   );
 }
