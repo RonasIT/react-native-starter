@@ -1,15 +1,15 @@
+import { EntityState } from '@reduxjs/toolkit';
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
 import { User } from '@shared/user/models/user';
 import { BaseEntityPlain } from './models';
-import { EntityMap } from './types';
 
 export type Entities = {
   user: User;
 };
 export type EntityName = keyof Entities;
 export type Entity = Entities[EntityName];
-export type EntitiesState = { [key in EntityName]: EntityMap<BaseEntityPlain & Partial<Entities[key]>> };
+export type EntitiesState = { [key in EntityName]: EntityState<BaseEntityPlain> };
 
 export const ENTITIES_CONFIG: { [key in EntityName]: ClassConstructor<Entities[key]> } = {
   user: User

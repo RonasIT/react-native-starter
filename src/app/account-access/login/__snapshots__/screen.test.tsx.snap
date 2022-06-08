@@ -20,11 +20,9 @@ exports[`Login screen should match the snapshot 1`] = `
             Object {
               "flex": 1,
             },
-            Array [
-              Object {
-                "paddingHorizontal": 24,
-              },
-            ],
+            Object {
+              "paddingHorizontal": 24,
+            },
           ]
         }
       >
