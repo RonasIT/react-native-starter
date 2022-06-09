@@ -1,7 +1,7 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { AppText, TextTheme } from '@shared/text';
+import { AppText } from '@shared/text';
 import { createStyles, variables } from '@styles';
 
 export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps): ReactElement {
@@ -35,7 +35,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           activeOpacity={0.8}
           testID='tab-bar-item'>
           {options.tabBarIcon({ focused: isFocused, color: tabItemColor, size: 30 })}
-          <AppText theme={TextTheme.SMALLEST} style={[style.tabItemText, { color: tabItemColor }]}>
+          <AppText smallest style={[style.tabItemText, { color: tabItemColor }]}>
             {label}
           </AppText>
         </TouchableOpacity>

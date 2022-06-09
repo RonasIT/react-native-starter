@@ -9,7 +9,7 @@ import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
-import { AppText, TextTheme } from '@shared/text';
+import { AppText } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
@@ -32,7 +32,7 @@ export function LoginScreen(): JSX.Element {
   return (
     <AppScreen style={commonStyle.container}>
       <ScrollView>
-        <AppText style={style.title} theme={TextTheme.LARGEST}>
+        <AppText style={style.title} largest>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
         <InputFormGroup<LoginForm>

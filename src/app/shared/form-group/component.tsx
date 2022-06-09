@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { View, ViewStyle } from 'react-native';
-import { AppText, TextTheme } from '@shared/text';
+import { AppText } from '@shared/text';
 import { AppTextInputProps } from '@shared/text-input';
 import { createStyles } from '@styles';
 
@@ -20,12 +20,14 @@ export function FormGroup<T = AppTextInputProps>({
   return (
     <View style={[style.formGroup, containerStyle]}>
       {!!label && (
-        <AppText theme={TextTheme.LARGER} style={style.formGroupLabel}>
+        <AppText style={style.formGroupLabel} larger>
           {label}
         </AppText>
       )}
       {children}
-      <AppText testID='validation-error'>{error}</AppText>
+      <AppText danger testID='validation-error'>
+        {error}
+      </AppText>
     </View>
   );
 }

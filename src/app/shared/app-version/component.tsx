@@ -17,7 +17,6 @@ const style = createStyles({
   versionText: {
     width: '100%',
     textAlign: 'right',
-    color: variables.color.white,
     fontSize: variables.fontSize.smallest
   }
 });

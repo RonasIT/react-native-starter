@@ -3,7 +3,7 @@ import { AppActivityIndicator } from '@shared/activity-indicator';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { AppScreen } from '@shared/screen';
-import { AppText, TextTheme } from '@shared/text';
+import { AppText } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
 import { profileScreenFacade } from './facade';
 
@@ -14,7 +14,7 @@ export function ProfileScreen(): ReactElement {
   return (
     <AppScreen style={[commonStyle.container, style.container]} testID='profile-screen'>
       {profile ? (
-        <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
+        <AppText largest>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
       ) : (
         <AppActivityIndicator />
       )}
