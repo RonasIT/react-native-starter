@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Constants from 'expo-constants';
+import { isEmpty } from 'lodash';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
@@ -53,7 +54,7 @@ export function LoginScreen(): JSX.Element {
         <View style={style.footer}>
           <AppButton
             isLoading={isSubmitting}
-            isDisabled={!formState.isValid && formState.isSubmitted}
+            isDisabled={!isEmpty(formState.errors) && formState.isSubmitted}
             testID='submit-button'
             title={translate('BUTTON_SUBMIT')}
             onPress={handleSubmit(formSubmitted)}
