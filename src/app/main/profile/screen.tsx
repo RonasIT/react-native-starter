@@ -18,7 +18,7 @@ export function ProfileScreen(): ReactElement {
       ) : (
         <AppActivityIndicator />
       )}
-      <AppButton title={translate('BUTTON_LOGOUT')} onPress={logout} />
+      <AppButton label={translate('BUTTON_LOGOUT')} onPress={logout} />
     </AppScreen>
   );
 }
