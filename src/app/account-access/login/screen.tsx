@@ -3,8 +3,8 @@ import Constants from 'expo-constants';
 import { isEmpty } from 'lodash';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { ScrollView, View } from 'react-native';
-import { Keyboard } from 'react-native-ui-lib';
+import { ScrollView, View, Image } from 'react-native';
+import { Assets, Keyboard } from 'react-native-ui-lib';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
@@ -32,7 +32,8 @@ export function LoginScreen(): JSX.Element {
 
   return (
     <AppScreen style={commonStyle.container}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={style.content}>
+        <Image source={Assets.images.logo} style={style.logo} />
         <AppText style={style.title} largest>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
@@ -68,8 +69,15 @@ export function LoginScreen(): JSX.Element {
 }
 
 const style = createStyles({
+  content: {
+    paddingTop: '1rem'
+  },
+  logo: {
+    width: '3.5rem',
+    height: '3.5rem'
+  },
   title: {
-    marginVertical: '4rem'
+    marginVertical: '2rem'
   },
   footer: {
     marginTop: '2rem'

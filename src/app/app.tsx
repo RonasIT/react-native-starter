@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Assets } from 'react-native-ui-lib';
 import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { useLanguage } from '@shared/i18n';
@@ -20,6 +21,10 @@ const setLanguage = useLanguage(
   },
   'en'
 );
+
+Assets.loadAssetsGroup('images', {
+  logo: require('@assets/images/logo.png')
+});
 
 export function App(): ReactElement {
   const { isTokenLoaded, isAuthenticated } = appFacade;
