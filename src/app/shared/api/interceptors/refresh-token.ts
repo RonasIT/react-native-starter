@@ -1,7 +1,7 @@
-import { appConfig } from '@app/constants';
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import { lastValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { appConfig } from '@app/constants';
 import { ApiResponseStatus } from '../enums';
 
 export const refreshTokenInterceptor =

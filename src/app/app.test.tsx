@@ -1,8 +1,8 @@
-import * as SecureStore from 'expo-secure-store';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { TestRootComponent } from '@tests/helpers';
+import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
+import { TestRootComponent } from '@tests/helpers';
 import { App } from './app';
 
 describe('App', () => {

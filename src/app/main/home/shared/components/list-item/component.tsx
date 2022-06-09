@@ -1,8 +1,8 @@
+import React, { ReactElement } from 'react';
+import { View } from 'react-native';
 import { AppText, TextTheme } from '@shared/text';
 import { User } from '@shared/user';
 import { createStyles, variables } from '@styles';
-import React, { ReactElement } from 'react';
-import { View } from 'react-native';
 
 export function HomeListItem({ item }: { item: User }): ReactElement {
   return (

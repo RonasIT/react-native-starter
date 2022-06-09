@@ -1,23 +1,28 @@
-import { AppState } from '@store';
-import { isFunction } from 'lodash';
 import { createSelector, Selector } from '@reduxjs/toolkit';
-import { createEntityInstance, Entities, EntitiesState, Entity, EntityName } from '../config';
+import { isFunction } from 'lodash';
+import { AppState } from '@store';
+import { createEntityInstance, Entities, Entity, EntityName } from '../config';
+import { entityAdapterSelectors } from './adapter';
 import { entityNames } from './state';
 
-const selectFeature = (state: AppState): EntitiesState => state.entityStore;
 const castSelector = <TData>(dataOrSelector: TData | Selector<AppState, TData>): Selector<AppState, TData> => {
   return isFunction(dataOrSelector) ? dataOrSelector : () => dataOrSelector;
 };
 export class EntityItemsSelectors<TEntity extends Entity> {
+  constructor(private entityName: EntityName) {}
+
   public item = (itemID: TEntity['id'] | Selector<AppState, TEntity['id']>) => {
     const selectID = castSelector<TEntity['id']>(itemID);
 
     return createSelector(
-      selectFeature,
+      this.selectFeature,
       selectID,
       (state, id) => createEntityInstance<TEntity>(
         this.entityName,
-        state[this.entityName][id]
+        entityAdapterSelectors.selectById(
+          state,
+          id
+        )
       )
     );
   };
@@ -26,15 +31,20 @@ export class EntityItemsSelectors<TEntity extends Entity> {
     const selectIDs = castSelector<Array<TEntity['id']>>(itemIDs);
 
     return createSelector(
-      selectFeature,
+      this.selectFeature,
       selectIDs,
       (state, ids) => {
+        const allIDs = entityAdapterSelectors.selectIds(state);
         const items: Array<TEntity> = [];
+
         ids.forEach((id) => {
-          if (state[this.entityName][id]) {
+          if (allIDs.includes(id)) {
             items.push(createEntityInstance<TEntity>(
               this.entityName,
-              state[this.entityName][id]
+              entityAdapterSelectors.selectById(
+                state,
+                id
+              )
             ));
           }
         });
@@ -44,7 +54,7 @@ export class EntityItemsSelectors<TEntity extends Entity> {
     );
   };
 
-  constructor(private entityName: EntityName) {}
+  private selectFeature = (state: AppState) => state.entityStore[this.entityName];
 }
 
 type EntityStoreSelectors = { [key in EntityName]: EntityItemsSelectors<Entities[key]> };

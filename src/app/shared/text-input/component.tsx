@@ -1,6 +1,4 @@
-import { createStyles, commonStyle, variables } from '@styles';
-import { FormikProps, FormikValues } from 'formik';
-import { get, noop } from 'lodash';
+import { noop } from 'lodash';
 import React, { ForwardedRef, ReactElement, RefObject, useMemo, useRef, useState } from 'react';
 import {
   NativeSyntheticEvent,
@@ -13,12 +11,9 @@ import {
   ViewStyle
 } from 'react-native';
 import { Icon } from '@shared/icon';
+import { commonStyle, createStyles, variables } from '@styles';
 
-type FormikInputPropertiesToExclude = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
-type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesToExclude>>;
-
-export interface AppTextInputProps extends InputProps {
-  name?: string;
+export interface AppTextInputProps extends TextInputProps {
   disabled?: boolean;
   hasError?: boolean;
   isPassword?: boolean;
@@ -38,10 +33,6 @@ export const AppTextInput = React.forwardRef(function Component(
     disabled,
     hasError,
     isPassword,
-    handleChange,
-    handleBlur,
-    values,
-    name,
     icon,
     containerStyle,
     onFocus = noop,
@@ -49,18 +40,16 @@ export const AppTextInput = React.forwardRef(function Component(
     onTouchEnd = noop,
     onClickIcon,
     inputLeft,
+    value,
     ...restProps
   } = props;
 
-  const [isSecured, setSecurity] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
+  const [isSecured, setSecurity] = useState(true);
 
   const inputRef = ref || useRef<TextInput>();
-  const value = get(values, name);
 
   const commonInputProps: TextInputProps = {
-    value: value ? String(value) : '',
-    onChangeText: handleChange?.(name),
     onFocus: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
       onFocus(event);
       setIsFocused(true);
@@ -68,9 +57,6 @@ export const AppTextInput = React.forwardRef(function Component(
     onBlur: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
       onBlur(event);
       setIsFocused(false);
-      if (handleBlur) {
-        handleBlur(name)(event);
-      }
     },
     editable: !disabled,
     underlineColorAndroid: 'transparent',

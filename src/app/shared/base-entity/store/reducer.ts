@@ -1,9 +1,6 @@
-import { immutableMerge } from '@shared/immutable-merge';
 import { createReducer } from '@reduxjs/toolkit';
-import { compact, omit } from 'lodash';
-import { BaseEntityPlain } from '../models';
-import { EntityMap } from '../types';
 import { EntityStoreActions } from './actions';
+import { entityAdapter } from './adapter';
 import { entityNames, initEntitiesStore } from './state';
 
 const initialState = initEntitiesStore();
@@ -13,33 +10,17 @@ export const entityStoreReducer = createReducer(initialState, (builder) => [
     const actions = new EntityStoreActions(entityName);
 
     builder
-      .addCase(actions.created, (state, { payload }) => ({
-        ...state,
-        [entityName]: {
-          ...state[entityName],
-          [payload.item.id]: payload.item
-        }
-      }))
-      .addCase(actions.loaded, (state, { payload }) => {
-        const entityItemsMap: EntityMap<BaseEntityPlain> = {};
-        compact(payload?.items).forEach((item) => {
-          entityItemsMap[item.id] = immutableMerge(state[entityName][item.id as number], item);
-        });
-
-        state[entityName] = {
-          ...state[entityName],
-          ...(entityItemsMap as EntityMap<BaseEntityPlain<any>>)
-        };
+      .addCase(actions.created, (state, { payload }) => {
+        entityAdapter.addOne(state[entityName], payload.item);
       })
-      .addCase(actions.updated, (state, { payload }) => ({
-        ...state,
-        [entityName]: {
-          ...state[entityName],
-          [payload.item.id]: immutableMerge(state[entityName][payload.item.id as number], payload.item)
-        }
-      }))
+      .addCase(actions.loaded, (state, { payload }) => {
+        entityAdapter.upsertMany(state[entityName], payload.items);
+      })
+      .addCase(actions.updated, (state, { payload }) => {
+        entityAdapter.upsertOne(state[entityName], payload.item);
+      })
       .addCase(actions.deleted, (state, { payload }) => {
-        state[entityName] = omit(state[entityName], payload.item.id);
+        entityAdapter.removeOne(state[entityName], payload.item.id);
       });
   })
 ]);
