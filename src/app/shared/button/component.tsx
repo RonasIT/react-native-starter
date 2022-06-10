@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { ButtonProps, Colors, Typography } from 'react-native-ui-lib';
-import Button from 'react-native-ui-lib/button';
+import { ButtonProps, Colors, Typography, Button } from 'react-native-ui-lib';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { createStyles, variables } from '@styles';
 

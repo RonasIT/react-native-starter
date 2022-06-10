@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { TextProps } from 'react-native-ui-lib';
-import Text from 'react-native-ui-lib/text';
+import { TextProps, Text } from 'react-native-ui-lib';
 
 export function AppText({ children, ...restProps }: TextProps): ReactElement {
   return (
