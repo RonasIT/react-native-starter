@@ -4,12 +4,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Assets } from 'react-native-ui-lib';
+import { Assets, Colors } from 'react-native-ui-lib';
 import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { useLanguage } from '@shared/i18n';
 import { authenticatedScreenListeners, navigationRef, navigationTheme } from '@shared/navigation';
-import { variables } from '@styles';
 import { appFacade } from './facade';
 import { appLinking } from './linking';
 import { MainNavigation } from './main/navigation';
@@ -68,6 +67,6 @@ export function App(): ReactElement {
 const style = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: variables.color.background
+    backgroundColor: Colors.background
   }
 });

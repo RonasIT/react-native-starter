@@ -14,14 +14,6 @@ EStyleSheet.build({
   $screenWidth: screenWidth
 });
 
-Colors.loadColors({
-  background: '#000000',
-  backgroundSecondary: '#18191F',
-  white: '#FFFFFF',
-  primary: '#26a0f8',
-  danger: '#FF003D'
-});
-
 Typography.loadTypographies({
   smallest: {
     fontSize: 0.85 * rem,
@@ -60,7 +52,7 @@ export const commonStyle = createStyles({
     paddingHorizontal: variables.contentOffset
   },
   formInput: {
-    color: variables.color.white,
+    color: Colors.white,
     fontSize: variables.fontSize.medium,
     height: 54,
     paddingTop: 15,
@@ -81,8 +73,8 @@ export const commonStyle = createStyles({
   formControl: {
     position: 'relative',
     borderWidth: 1,
-    backgroundColor: variables.color.backgroundSecondary,
-    borderColor: variables.color.backgroundSecondary,
+    backgroundColor: Colors.backgroundSecondary,
+    borderColor: Colors.backgroundSecondary,
     borderRadius: 10,
     flexDirection: 'row',
     paddingLeft: 20,
@@ -91,10 +83,10 @@ export const commonStyle = createStyles({
     alignItems: 'center'
   },
   formControlError: {
-    borderColor: variables.color.danger
+    borderColor: Colors.danger
   },
   formControlFocus: {
-    borderColor: variables.color.primary
+    borderColor: Colors.primary
   },
   formGroup: {
     marginBottom: '1.2rem'

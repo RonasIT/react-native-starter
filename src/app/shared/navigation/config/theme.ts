@@ -1,14 +1,14 @@
 import { DefaultTheme, Theme } from '@react-navigation/native';
-import { variables } from '@styles';
+import { Colors } from 'react-native-ui-lib';
 
 export const navigationTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    text: variables.color.white,
-    primary: variables.color.background,
-    card: variables.color.background,
-    border: variables.color.background,
-    background: variables.color.background
+    text: Colors.white,
+    primary: Colors.background,
+    card: Colors.background,
+    border: Colors.background,
+    background: Colors.background
   }
 };

@@ -1,12 +1,15 @@
+import { Colors } from 'react-native-ui-lib';
+
+Colors.loadColors({
+  background: '#000000',
+  backgroundSecondary: '#18191F',
+  white: '#FFFFFF',
+  primary: '#26a0f8',
+  danger: '#FF003D'
+});
+
 export const variables = {
   contentOffset: '1.5rem',
-  color: {
-    background: '#000000',
-    backgroundSecondary: '#18191F',
-    white: '#FFFFFF',
-    primary: '#26a0f8',
-    danger: '#FF003D'
-  },
   fontSize: {
     smallest: '0.85rem',
     small: '1rem',
