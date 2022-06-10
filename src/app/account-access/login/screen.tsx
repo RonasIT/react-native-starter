@@ -70,7 +70,7 @@ export function LoginScreen(): JSX.Element {
 
 const style = createStyles({
   content: {
-    paddingTop: '1rem'
+    paddingTop: '2rem'
   },
   logo: {
     width: '3.5rem',

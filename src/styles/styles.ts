@@ -96,6 +96,14 @@ export const commonStyle = createStyles({
   formControlFocus: {
     borderColor: variables.color.primary
   },
+  formGroup: {
+    marginBottom: '1.2rem'
+  },
+  formGroupLabel: {
+    marginBottom: '0.5rem',
+    color: Colors.white,
+    ...Typography.larger
+  },
   row: {
     display: 'flex',
     flexDirection: 'row',
