@@ -14,6 +14,14 @@ EStyleSheet.build({
   $screenWidth: screenWidth
 });
 
+Colors.loadColors({
+  background: '#000000',
+  backgroundSecondary: '#18191F',
+  white: '#FFFFFF',
+  primary: '#26a0f8',
+  danger: '#FF003D'
+});
+
 Typography.loadTypographies({
   smallest: {
     fontSize: 0.85 * rem,
@@ -53,7 +61,7 @@ export const commonStyle = createStyles({
   },
   formInput: {
     color: Colors.white,
-    fontSize: variables.fontSize.medium,
+    fontSize: Typography.medium.fontSize,
     height: 54,
     paddingTop: 15,
     paddingBottom: 15,

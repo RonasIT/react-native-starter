@@ -1,8 +1,9 @@
 import Constants from 'expo-constants';
 import React, { ReactElement } from 'react';
 import { Platform, TextStyle } from 'react-native';
+import { Typography } from 'react-native-ui-lib';
 import { AppText } from '@shared/text';
-import { createStyles, variables } from '@styles';
+import { createStyles } from '@styles';
 
 export function AppVersion(props: { style?: TextStyle }): ReactElement {
   const versionName = `v${Constants.manifest.version} (${Platform.select({
@@ -17,6 +18,6 @@ const style = createStyles({
   versionText: {
     width: '100%',
     textAlign: 'right',
-    fontSize: variables.fontSize.smallest
+    fontSize: Typography.smallest.fontSize
   }
 });

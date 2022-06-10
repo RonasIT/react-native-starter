@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { ButtonProps, Colors } from 'react-native-ui-lib';
+import { ButtonProps, Colors, Typography } from 'react-native-ui-lib';
 import Button from 'react-native-ui-lib/button';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { createStyles, variables } from '@styles';
@@ -59,7 +59,7 @@ const textStyle = createStyles({
   button: {
     lineHeight: 30,
     fontFamily: variables.fontFamily.sfProTextSemiBold,
-    fontSize: variables.fontSize.medium,
+    fontSize: Typography.medium.fontSize,
     fontWeight: '600',
     textAlign: 'center'
   },
