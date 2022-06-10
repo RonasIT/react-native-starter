@@ -2,7 +2,7 @@ import { noop } from 'lodash';
 import React, { ComponentProps, ReactElement, useMemo, useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { NativeSyntheticEvent, TextInputFocusEventData, TouchableOpacity, View } from 'react-native';
-import { Incubator, TextField, Typography } from 'react-native-ui-lib';
+import { Incubator, TextField } from 'react-native-ui-lib';
 import { Icon } from '@shared/icon';
 import { commonStyle, createStyles } from '@styles';
 
@@ -85,7 +85,7 @@ export function InputFormGroup<T = FieldValues>({
         fieldStyle
       ]}
       style={[commonStyle.formInput, inputStyle, disabled && commonStyle.formInputDisabled]}
-      validationMessageStyle={Typography.small}
+      validationMessageStyle={commonStyle.formGroupError}
       secureTextEntry={isSecured && isPassword}
       trailingAccessory={
         <>

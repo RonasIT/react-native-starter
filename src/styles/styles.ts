@@ -104,6 +104,10 @@ export const commonStyle = createStyles({
     color: Colors.white,
     ...Typography.larger
   },
+  formGroupError: {
+    color: Colors.danger,
+    ...Typography.small
+  },
   row: {
     display: 'flex',
     flexDirection: 'row',
