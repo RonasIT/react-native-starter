@@ -4,7 +4,8 @@ import { isEmpty } from 'lodash';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
-import { Assets, Image, Keyboard } from 'react-native-ui-lib';
+import { Image, Keyboard } from 'react-native-ui-lib';
+import { assets } from '@assets/index';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
@@ -33,7 +34,7 @@ export function LoginScreen(): JSX.Element {
   return (
     <AppScreen style={commonStyle.container}>
       <ScrollView contentContainerStyle={style.content}>
-        <Image source={Assets.images.logo} style={style.logo} />
+        <Image source={assets.brand.logo} style={style.logo} />
         <AppText style={style.title} largest>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
