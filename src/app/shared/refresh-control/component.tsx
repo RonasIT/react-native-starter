@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { RefreshControl, RefreshControlProps } from 'react-native';
-import { Colors } from 'react-native-ui-lib';
+import { colors } from '@styles';
 
 export function AppRefreshControl(props: RefreshControlProps): ReactElement {
   return <RefreshControl
-    colors={[Colors.primary]}
-    tintColor={Colors.primary}
+    colors={[colors.primary]}
+    tintColor={colors.primary}
     {...props} />;
 }

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { ButtonProps, Colors, Typography, Button } from 'react-native-ui-lib';
+import { Button, ButtonProps, Typography } from 'react-native-ui-lib';
 import { AppActivityIndicator } from '@shared/activity-indicator';
-import { createStyles, variables } from '@styles';
+import { colors, createStyles, fontFamilies } from '@styles';
 
 type Props = ButtonProps & {
   isLoading?: boolean;
@@ -17,9 +17,9 @@ export function AppButton({
   ...restProps
 }: Props): ReactElement {
   const backgroundColor = {
-    primary: Colors.primary,
-    secondary: Colors.backgroundSecondary,
-    default: Colors.white + '1A'
+    primary: colors.primary,
+    secondary: colors.backgroundSecondary,
+    default: colors.white + '1A'
   }[mode];
 
   return (
@@ -28,13 +28,13 @@ export function AppButton({
       style={[style.button, elementStyle]}
       backgroundColor={backgroundColor}
       disabled={disabled || isLoading}
-      disabledBackgroundColor={isLoading ? backgroundColor : Colors.backgroundSecondary + '8B'}
+      disabledBackgroundColor={isLoading ? backgroundColor : colors.backgroundSecondary + '8B'}
       label={isLoading ? '' : label}
       labelStyle={[textStyle.button, textStyle.buttonPrimary, disabled && textStyle.buttonDisabled]}
       {...restProps}>
       {isLoading && <AppActivityIndicator
         size={'small'}
-        color={Colors.white}
+        color={colors.white}
         style={style.activityIndicator} />}
     </Button>
   );
@@ -57,16 +57,16 @@ const style = createStyles({
 const textStyle = createStyles({
   button: {
     lineHeight: 30,
-    fontFamily: variables.fontFamily.sfProTextSemiBold,
+    fontFamily: fontFamilies.sfProTextSemiBold,
     fontSize: Typography.medium.fontSize,
     fontWeight: '600',
     textAlign: 'center'
   },
   buttonPrimary: {
-    color: Colors.white
+    color: colors.white
   },
   buttonDisabled: {
-    color: Colors.white,
+    color: colors.white,
     opacity: 0.5
   }
 });

@@ -2,12 +2,11 @@ import { useScrollToTop } from '@react-navigation/native';
 import { noop } from 'lodash';
 import React, { ReactElement, useCallback, useRef } from 'react';
 import { FlatList, FlatListProps, ViewStyle } from 'react-native';
-import { Colors } from 'react-native-ui-lib';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { BaseEntity } from '@shared/base-entity/models';
 import { ItemsListEmptyState } from '@shared/items-list-empty-state';
 import { AppRefreshControl } from '@shared/refresh-control';
-import { createStyles } from '@styles';
+import { colors, createStyles } from '@styles';
 
 export interface ItemsListProps<T> extends FlatListProps<T> {
   isLoading?: boolean;
@@ -54,7 +53,7 @@ export function ItemsList<T extends BaseEntity>({
         isLoading && <AppActivityIndicator
           size={'large'}
           style={style.activityIndicator}
-          color={Colors.primary} />
+          color={colors.primary} />
       }
       onEndReached={listEndReached}
       refreshControl={<AppRefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}

@@ -1,9 +1,8 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { Colors } from 'react-native-ui-lib';
 import { AppText } from '@shared/text';
-import { createStyles } from '@styles';
+import { colors, createStyles } from '@styles';
 
 export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps): ReactElement {
   const tabBarItems = useMemo(
@@ -11,7 +10,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
       const { options } = descriptors[route.key];
       const label = options.tabBarLabel || options.title || route.name;
       const isFocused = state.index === index;
-      const tabItemColor = isFocused ? Colors.primary : Colors.white;
+      const tabItemColor = isFocused ? colors.primary : colors.white;
 
       const onPress = (): void => {
         const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
@@ -54,7 +53,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
 
 const style = createStyles({
   tabBarContainer: {
-    backgroundColor: Colors.background
+    backgroundColor: colors.background
   },
   tabBar: {
     flexDirection: 'row'

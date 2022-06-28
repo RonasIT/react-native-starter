@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { ReactElement } from 'react';
-import { Colors } from 'react-native-ui-lib';
 import { useTranslation } from '@shared/i18n';
 import { Icon } from '@shared/icon';
 import { AppTabBar } from '@shared/tab-bar';
+import { colors } from '@styles';
 import { HomeScreen } from './home/screen';
 import { ProfileScreen } from './profile/screen';
 
@@ -26,7 +26,7 @@ export function MainNavigation(): ReactElement {
       <Tab.Screen
         name='Home'
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='home' stroke={focused ? Colors.primary : Colors.white} />,
+          tabBarIcon: ({ focused }) => <Icon name='home' stroke={focused ? colors.primary : colors.white} />,
           headerTitleAlign: 'left',
           title: translate('TEXT_HOME')
         }}
@@ -35,7 +35,7 @@ export function MainNavigation(): ReactElement {
       <Tab.Screen
         name='Profile'
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='user' stroke={focused ? Colors.primary : Colors.white} />,
+          tabBarIcon: ({ focused }) => <Icon name='user' stroke={focused ? colors.primary : colors.white} />,
           headerTitleAlign: 'left',
           title: translate('TEXT_PROFILE')
         }}

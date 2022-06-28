@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { Colors } from 'react-native-ui-lib';
 import { AppText } from '@shared/text';
 import { User } from '@shared/user';
-import { createStyles } from '@styles';
+import { colors, createStyles } from '@styles';
 
 export function HomeListItem({ item }: { item: User }): ReactElement {
   return (
@@ -20,6 +19,6 @@ const style = createStyles({
   itemContainer: {
     paddingVertical: '0.5rem',
     borderBottomWidth: 2,
-    borderBottomColor: Colors.white
+    borderBottomColor: colors.white
   }
 });
