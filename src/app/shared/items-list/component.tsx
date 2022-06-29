@@ -6,7 +6,7 @@ import { AppActivityIndicator } from '@shared/activity-indicator';
 import { BaseEntity } from '@shared/base-entity/models';
 import { ItemsListEmptyState } from '@shared/items-list-empty-state';
 import { AppRefreshControl } from '@shared/refresh-control';
-import { createStyles, variables } from '@styles';
+import { colors, createStyles } from '@styles';
 
 export interface ItemsListProps<T> extends FlatListProps<T> {
   isLoading?: boolean;
@@ -50,12 +50,10 @@ export function ItemsList<T extends BaseEntity>({
       contentContainerStyle={[style.itemsList, containerStyle]}
       ListEmptyComponent={!isLoading && ListEmptyComponent}
       ListFooterComponent={
-        isLoading && (
-          <AppActivityIndicator
-            size={'large'}
-            style={style.activityIndicator}
-            color={variables.color.primary} />
-        )
+        isLoading && <AppActivityIndicator
+          size={'large'}
+          style={style.activityIndicator}
+          color={colors.primary} />
       }
       onEndReached={listEndReached}
       refreshControl={<AppRefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}

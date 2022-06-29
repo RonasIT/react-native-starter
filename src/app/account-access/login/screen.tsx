@@ -3,14 +3,15 @@ import Constants from 'expo-constants';
 import { isEmpty } from 'lodash';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { ScrollView, View } from 'react-native';
+import { Image, Keyboard } from 'react-native-ui-lib';
+import { assets } from '@assets/index';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
-import { AppText, TextTheme } from '@shared/text';
+import { AppText } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
@@ -31,9 +32,10 @@ export function LoginScreen(): JSX.Element {
   const { handleSubmit, formState, control } = form;
 
   return (
-    <KeyboardAwareScrollView>
-      <AppScreen style={commonStyle.container}>
-        <AppText style={style.title} theme={TextTheme.LARGEST}>
+    <AppScreen style={commonStyle.container}>
+      <ScrollView contentContainerStyle={style.content}>
+        <Image source={assets.brand.logo} style={style.logo} />
+        <AppText style={style.title} variant='largest'>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
         <InputFormGroup<LoginForm>
@@ -54,21 +56,29 @@ export function LoginScreen(): JSX.Element {
         <View style={style.footer}>
           <AppButton
             isLoading={isSubmitting}
-            isDisabled={!isEmpty(formState.errors) && formState.isSubmitted}
+            disabled={!isEmpty(formState.errors) && formState.isSubmitted}
             testID='submit-button'
-            title={translate('BUTTON_SUBMIT')}
+            label={translate('BUTTON_SUBMIT')}
             onPress={handleSubmit(formSubmitted)}
           />
         </View>
         <AppVersion />
-      </AppScreen>
-    </KeyboardAwareScrollView>
+        <Keyboard.KeyboardAwareInsetsView />
+      </ScrollView>
+    </AppScreen>
   );
 }
 
 const style = createStyles({
+  content: {
+    paddingTop: '2rem'
+  },
+  logo: {
+    width: '3.5rem',
+    height: '3.5rem'
+  },
   title: {
-    marginVertical: '4rem'
+    marginVertical: '2rem'
   },
   footer: {
     marginTop: '2rem'
