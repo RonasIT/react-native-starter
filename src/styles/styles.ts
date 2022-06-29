@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createStyles } from './extended-stylesheet';
-import { colors, fontSizes, spacings } from './variables';
+import { colors, fontSizes, spacings, typographies } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
@@ -59,10 +59,12 @@ export const commonStyle = createStyles({
   },
   formGroupLabel: {
     marginBottom: '0.5rem',
-    color: colors.white
+    color: colors.white,
+    ...typographies.larger
   },
   formGroupError: {
-    color: colors.danger
+    color: colors.danger,
+    ...typographies.small
   },
   row: {
     display: 'flex',

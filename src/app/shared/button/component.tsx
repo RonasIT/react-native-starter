@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { Button, ButtonProps } from 'react-native-ui-lib';
+import { BackgroundColorModifier, Button, ButtonProps, MarginModifiers } from 'react-native-ui-lib';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { colors, createStyles, fontFamilies, fontSizes } from '@styles';
 
-type Props = ButtonProps & {
+type AppButtonProps = Omit<ButtonProps, keyof MarginModifiers | keyof BackgroundColorModifier> & {
   isLoading?: boolean;
   theme?: 'primary' | 'secondary' | 'default';
 };
@@ -15,7 +15,7 @@ export function AppButton({
   isLoading,
   theme: mode = 'primary',
   ...restProps
-}: Props): ReactElement {
+}: AppButtonProps): ReactElement {
   const backgroundColor = {
     primary: colors.primary,
     secondary: colors.backgroundSecondary,

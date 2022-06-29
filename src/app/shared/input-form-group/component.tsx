@@ -2,11 +2,14 @@ import { noop } from 'lodash';
 import React, { ComponentProps, ReactElement, useMemo, useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { NativeSyntheticEvent, TextInputFocusEventData, TouchableOpacity, View } from 'react-native';
-import { Incubator, TextField } from 'react-native-ui-lib';
+import { ColorsModifiers, Incubator, MarginModifiers, TextField, TypographyModifiers } from 'react-native-ui-lib';
 import { Icon } from '@shared/icon';
-import { commonStyle, createStyles, typographies } from '@styles';
+import { commonStyle, createStyles } from '@styles';
 
-export type InputFormGroupProps<T = FieldValues> = ComponentProps<typeof TextField> & {
+export type InputFormGroupProps<T = FieldValues> = Omit<
+  ComponentProps<typeof TextField>,
+  keyof TypographyModifiers | keyof ColorsModifiers | keyof MarginModifiers
+> & {
   name: Path<T>;
   control: Control<T>;
   disabled?: boolean;
@@ -72,7 +75,7 @@ export function InputFormGroup<T = FieldValues>({
       onFocus={handleFocus}
       editable={!disabled}
       underlineColorAndroid='transparent'
-      labelStyle={[typographies.larger, commonStyle.formGroupLabel]}
+      labelStyle={commonStyle.formGroupLabel}
       enableErrors
       validationMessage={fieldState.error?.message}
       containerStyle={commonStyle.formGroup}
@@ -85,7 +88,7 @@ export function InputFormGroup<T = FieldValues>({
         fieldStyle
       ]}
       style={[commonStyle.formInput, inputStyle, disabled && commonStyle.formInputDisabled]}
-      validationMessageStyle={[typographies.small, commonStyle.formGroupError]}
+      validationMessageStyle={commonStyle.formGroupError}
       secureTextEntry={isSecured && isPassword}
       trailingAccessory={
         <>
