@@ -4,7 +4,7 @@ import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { NativeSyntheticEvent, TextInputFocusEventData, TouchableOpacity, View } from 'react-native';
 import { Incubator, TextField } from 'react-native-ui-lib';
 import { Icon } from '@shared/icon';
-import { commonStyle, createStyles } from '@styles';
+import { commonStyle, createStyles, typographies } from '@styles';
 
 export type InputFormGroupProps<T = FieldValues> = ComponentProps<typeof TextField> & {
   name: Path<T>;
@@ -72,7 +72,7 @@ export function InputFormGroup<T = FieldValues>({
       onFocus={handleFocus}
       editable={!disabled}
       underlineColorAndroid='transparent'
-      labelStyle={commonStyle.formGroupLabel}
+      labelStyle={[typographies.larger, commonStyle.formGroupLabel]}
       enableErrors
       validationMessage={fieldState.error?.message}
       containerStyle={commonStyle.formGroup}
@@ -85,7 +85,7 @@ export function InputFormGroup<T = FieldValues>({
         fieldStyle
       ]}
       style={[commonStyle.formInput, inputStyle, disabled && commonStyle.formInputDisabled]}
-      validationMessageStyle={commonStyle.formGroupError}
+      validationMessageStyle={[typographies.small, commonStyle.formGroupError]}
       secureTextEntry={isSecured && isPassword}
       trailingAccessory={
         <>

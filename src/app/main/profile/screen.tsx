@@ -14,7 +14,7 @@ export function ProfileScreen(): ReactElement {
   return (
     <AppScreen style={[commonStyle.container, style.container]} testID='profile-screen'>
       {profile ? (
-        <AppText largest>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
+        <AppText variant='largest'>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
       ) : (
         <AppActivityIndicator />
       )}

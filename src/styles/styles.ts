@@ -1,8 +1,7 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Typography } from 'react-native-ui-lib';
 import { createStyles } from './extended-stylesheet';
-import { colors, fontFamilies, spacings } from './variables';
+import { colors, fontSizes, spacings } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
@@ -14,46 +13,13 @@ EStyleSheet.build({
   $screenWidth: screenWidth
 });
 
-Typography.loadTypographies({
-  smallest: {
-    fontSize: 0.85 * rem,
-    lineHeight: 1.38 * rem,
-    fontFamily: fontFamilies.sfProTextRegular
-  },
-  small: {
-    fontSize: rem,
-    lineHeight: 1.84 * rem,
-    fontFamily: fontFamilies.sfProTextRegular
-  },
-  medium: {
-    fontSize: 1.15 * rem,
-    lineHeight: 1.54 * rem,
-    fontFamily: fontFamilies.sfProTextRegular
-  },
-  larger: {
-    fontSize: 1.4 * rem,
-    lineHeight: 1.54 * rem,
-    fontFamily: fontFamilies.sfProDisplayRegular
-  },
-  large: {
-    fontSize: 1.55 * rem,
-    lineHeight: 2.46 * rem,
-    fontFamily: fontFamilies.sfProDisplayBold
-  },
-  largest: {
-    fontSize: 1.7 * rem,
-    lineHeight: 2.46 * rem,
-    fontFamily: fontFamilies.sfProDisplayBold
-  }
-});
-
 export const commonStyle = createStyles({
   container: {
     paddingHorizontal: spacings.contentOffset
   },
   formInput: {
     color: colors.white,
-    fontSize: Typography.medium.fontSize,
+    fontSize: fontSizes.medium,
     height: 54,
     paddingTop: 15,
     paddingBottom: 15,
@@ -93,12 +59,10 @@ export const commonStyle = createStyles({
   },
   formGroupLabel: {
     marginBottom: '0.5rem',
-    color: colors.white,
-    ...Typography.larger
+    color: colors.white
   },
   formGroupError: {
-    color: colors.danger,
-    ...Typography.small
+    color: colors.danger
   },
   row: {
     display: 'flex',

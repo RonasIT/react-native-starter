@@ -35,7 +35,7 @@ export function LoginScreen(): JSX.Element {
     <AppScreen style={commonStyle.container}>
       <ScrollView contentContainerStyle={style.content}>
         <Image source={assets.brand.logo} style={style.logo} />
-        <AppText style={style.title} largest>
+        <AppText style={style.title} variant='largest'>
           {translate('TEXT_TITLE', { value: appName })}
         </AppText>
         <InputFormGroup<LoginForm>

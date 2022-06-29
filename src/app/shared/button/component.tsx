@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { Button, ButtonProps, Typography } from 'react-native-ui-lib';
+import { Button, ButtonProps } from 'react-native-ui-lib';
 import { AppActivityIndicator } from '@shared/activity-indicator';
-import { colors, createStyles, fontFamilies } from '@styles';
+import { colors, createStyles, fontFamilies, fontSizes } from '@styles';
 
 type Props = ButtonProps & {
   isLoading?: boolean;
@@ -58,7 +58,7 @@ const textStyle = createStyles({
   button: {
     lineHeight: 30,
     fontFamily: fontFamilies.sfProTextSemiBold,
-    fontSize: Typography.medium.fontSize,
+    fontSize: fontSizes.medium,
     fontWeight: '600',
     textAlign: 'center'
   },

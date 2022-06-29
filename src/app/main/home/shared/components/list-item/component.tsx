@@ -7,7 +7,7 @@ import { colors, createStyles } from '@styles';
 export function HomeListItem({ item }: { item: User }): ReactElement {
   return (
     <View style={style.itemContainer} testID='user-item'>
-      <AppText larger numberOfLines={1}>
+      <AppText variant='larger' numberOfLines={1}>
         #{item.id}: {item.name}
       </AppText>
       <AppText numberOfLines={1}>Email: {item.email}</AppText>

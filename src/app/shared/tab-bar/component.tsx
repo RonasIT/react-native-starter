@@ -35,7 +35,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           activeOpacity={0.8}
           testID='tab-bar-item'>
           {options.tabBarIcon({ focused: isFocused, color: tabItemColor, size: 30 })}
-          <AppText smallest style={[style.tabItemText, { color: tabItemColor }]}>
+          <AppText variant='smallest' style={[style.tabItemText, { color: tabItemColor }]}>
             {label}
           </AppText>
         </TouchableOpacity>
