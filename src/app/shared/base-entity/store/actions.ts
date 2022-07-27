@@ -5,7 +5,7 @@ import { EntityPartial } from '../types';
 
 export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlain> {
   public created = defineAction<{ item: TEntity }>(
-    `[@entities/${this.entityName}] defined`
+    `[@entities/${this.entityName}] Created`
   );
 
   public loaded = defineAction<{ items: Array<TEntity> }>(

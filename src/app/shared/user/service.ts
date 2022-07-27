@@ -6,7 +6,7 @@ import { User } from './models';
 class UserService extends EntityService<User> {
   public create = this.notImplementedMethod('create');
   public update = this.notImplementedMethod('update');
-  public delete = this.notImplementedMethod('update');
+  public delete = this.notImplementedMethod('delete');
 
   constructor() {
     super({
