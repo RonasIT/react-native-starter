@@ -22,6 +22,7 @@ export const userAPI = createBaseEntityAPI<User>('/users', 'user').enhanceEndpoi
     },
     get: {
       transformResponse: (response) => {
+        // TODO: Fix types
         const { data } = response;
 
         return plainToInstance(User, data);

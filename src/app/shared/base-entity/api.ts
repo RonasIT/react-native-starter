@@ -28,7 +28,7 @@ export function createBaseEntityAPI<
     delete: MutationDefinition<number, BaseQueryFunction, never, void, EntityName>;
   },
   EntityName,
-  EntityName,
+  EntityName, // TODO: Avoid duplicated entity name pass
   typeof coreModuleName | typeof reactHooksModuleName
 > {
   const api = createApi({
