@@ -8,7 +8,7 @@ export abstract class BaseListedEntityFacade<
   TState extends BaseListedEntityState = BaseListedEntityState,
   TEntity extends Entity = Entity,
   TActions extends BaseListedEntityActions = BaseListedEntityActions,
-  TSelectors extends BaseListedEntitySelectors = BaseListedEntitySelectors
+  TSelectors extends BaseListedEntitySelectors<TEntity, TState> = BaseListedEntitySelectors<TEntity, TState>
 > {
   public get pagination(): Pagination {
     return useSelector(this.selectors.pagination);

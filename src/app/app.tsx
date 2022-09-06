@@ -8,7 +8,7 @@ import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { useLanguage } from '@shared/i18n';
 import { authenticatedScreenListeners, navigationRef, navigationTheme } from '@shared/navigation';
-import { variables } from '@styles';
+import { colors } from '@styles';
 import { appFacade } from './facade';
 import { appLinking } from './linking';
 import { MainNavigation } from './main/navigation';
@@ -63,6 +63,6 @@ export function App(): ReactElement {
 const style = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: variables.color.background
+    backgroundColor: colors.background
   }
 });

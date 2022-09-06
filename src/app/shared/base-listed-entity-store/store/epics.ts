@@ -6,10 +6,14 @@ import { EntityService } from '@shared/base-entity/service';
 import { Epics } from '@store/types';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntitySelectors } from './selectors';
+import { BaseListedEntityState } from './state';
 
-export const baseListedEntityEpics: <TEntity extends Entity = Entity>(
+export const baseListedEntityEpics: <
+  TEntity extends Entity = Entity,
+  TState extends BaseListedEntityState = BaseListedEntityState
+>(
   actions: BaseListedEntityActions,
-  selectors: BaseListedEntitySelectors,
+  selectors: BaseListedEntitySelectors<TEntity, TState>,
   entityService: EntityService<TEntity>
 ) => Epics = (actions, selectors, entityService) => ({
   loadItems: (action$, state$) => action$.pipe(
