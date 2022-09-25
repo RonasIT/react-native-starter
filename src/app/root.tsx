@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { createStore } from '@store/store';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
+import { createStore } from '@store/store';
 import { App } from './app';
 import { appConfig, appEnv } from './constants';
 

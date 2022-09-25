@@ -1,7 +1,7 @@
-import { AppEnvConfig } from 'app.config';
 import Constants from 'expo-constants';
 import { merge } from 'lodash';
 import { PartialDeep } from 'type-fest';
+import { AppEnvConfig } from 'app.config';
 
 export const appEnvConfig = Constants.manifest.extra as AppEnvConfig;
 export const appEnv = appEnvConfig.env;
