@@ -30,12 +30,13 @@ expo init your-app-name --npm -t @ronas-it/react-native-starter@latest
 
 See `package.json` for pre-defined scripts. You can run them using `npm run {script}` or `yarn {script}`:
 
-- Run using Expo: `start`
+- Start local `development`-env version using Expo: `start`
+- Run locally for other environments: `start:{environment}`
 - Lint code: `lint`
 - Format code: `format`
 - Run tests: `test`
-- Build for Android: `build:android:{environment}`
-- Build for iOS: `build:ios:{environment}`
+- Run necessary pre-build checks: `prebuild`
+- Run builds for _both_ platforms: `build:{environment}`. Pass `-p {android|ios}` to run a platform-specific build.
 - Submit iOS build to AppStore Connect: `submit:ios:{environment}`
 - Publish OTA-update: `publish:{environment}`
 

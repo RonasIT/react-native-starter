@@ -1,6 +1,6 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import { Epic } from 'redux-observable';
-import { AppState } from '../store';
+import { AppState } from './state';
 
 export type Epics = {
   [key: string]: Epic<

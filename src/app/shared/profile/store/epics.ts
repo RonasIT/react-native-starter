@@ -5,17 +5,13 @@ import { AuthSelectors } from '@shared/auth/store/selectors';
 import { Epics } from '@store/types';
 import { profileService } from '../service';
 import { ProfileActions } from './actions';
+import { ProfileSelectors } from './selectors';
 
 export const profileEpics: Epics = {
-  tokenLoaded: (action$, state$) => action$.pipe(
-    filter(AuthActions.tokenLoaded.match),
-    withLatestFrom(state$),
-    filter(([_, state]) => AuthSelectors.isAuthenticated(state)),
-    map(() => ProfileActions.refreshProfile())
-  ),
-
-  saveToken: (action$) => action$.pipe(
+  refreshOnSaveToken: (action$, state$) => action$.pipe(
     filter(AuthActions.saveToken.match),
+    withLatestFrom(state$),
+    filter(([_, state]) => !ProfileSelectors.profile(state)),
     map(() => ProfileActions.refreshProfile())
   ),
 

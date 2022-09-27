@@ -38,7 +38,7 @@ export abstract class BaseListedEntityFacade<
     return useSelector(this.selectors.isRefreshing);
   }
 
-  constructor(protected store: Store, protected actions: TActions, protected selectors: TSelectors) {}
+  constructor(protected store: Pick<Store, 'dispatch'>, protected actions: TActions, protected selectors: TSelectors) {}
 
   public changeSearchQuery(query: string): void {
     this.store.dispatch(this.actions.changeSearchQuery({ query }));
