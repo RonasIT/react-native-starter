@@ -181,7 +181,7 @@ exports[`Home screen should match the snapshot 1`] = `
             </View>
           </View>
         </View>
-        <RNSScreenContainer
+        <View
           onLayout={[Function]}
           style={
             Object {
@@ -189,10 +189,7 @@ exports[`Home screen should match the snapshot 1`] = `
             }
           }
         >
-          <RNSScreen
-            activityState={2}
-            collapsable={false}
-            forwardedRef={[Function]}
+          <View
             pointerEvents="box-none"
             style={
               Object {
@@ -278,6 +275,8 @@ exports[`Home screen should match the snapshot 1`] = `
                 <View
                   collapsable={false}
                   forwardedRef={[Function]}
+                  handlerTag={1}
+                  handlerType="PanGestureHandler"
                   needsOffscreenAlphaCompositing={false}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -422,17 +421,29 @@ exports[`Home screen should match the snapshot 1`] = `
                                     style={
                                       Array [
                                         Object {
-                                          "color": "#FFFFFF",
-                                          "fontFamily": "SFProTextRegular",
-                                          "fontSize": 16,
-                                          "lineHeight": 29.44,
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
                                         },
-                                        Object {
-                                          "fontFamily": "SFProDisplayRegular",
-                                          "fontSize": 22.4,
-                                          "lineHeight": 24.64,
-                                        },
-                                        Object {},
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        Array [
+                                          Object {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          Object {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -446,13 +457,29 @@ exports[`Home screen should match the snapshot 1`] = `
                                     style={
                                       Array [
                                         Object {
-                                          "color": "#FFFFFF",
-                                          "fontFamily": "SFProTextRegular",
-                                          "fontSize": 16,
-                                          "lineHeight": 29.44,
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
                                         },
                                         undefined,
-                                        Object {},
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        Array [
+                                          Object {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          Object {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -480,17 +507,29 @@ exports[`Home screen should match the snapshot 1`] = `
                                     style={
                                       Array [
                                         Object {
-                                          "color": "#FFFFFF",
-                                          "fontFamily": "SFProTextRegular",
-                                          "fontSize": 16,
-                                          "lineHeight": 29.44,
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
                                         },
-                                        Object {
-                                          "fontFamily": "SFProDisplayRegular",
-                                          "fontSize": 22.4,
-                                          "lineHeight": 24.64,
-                                        },
-                                        Object {},
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        Array [
+                                          Object {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          Object {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -504,13 +543,29 @@ exports[`Home screen should match the snapshot 1`] = `
                                     style={
                                       Array [
                                         Object {
-                                          "color": "#FFFFFF",
-                                          "fontFamily": "SFProTextRegular",
-                                          "fontSize": 16,
-                                          "lineHeight": 29.44,
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
                                         },
                                         undefined,
-                                        Object {},
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        Array [
+                                          Object {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          Object {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
                                       ]
                                     }
                                   >
@@ -535,8 +590,8 @@ exports[`Home screen should match the snapshot 1`] = `
                 </View>
               </View>
             </View>
-          </RNSScreen>
-        </RNSScreenContainer>
+          </View>
+        </View>
       </View>
     </View>
   </View>

@@ -1,9 +1,11 @@
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
+import { Observable, of } from 'rxjs';
+import { apiService } from '@shared/api';
 import { authService } from '@shared/auth';
 import { appNavigationService } from '@shared/navigation';
-import { validCredentials } from '@tests/fixtures';
+import { userPaginationResponse, validCredentials } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { LoginScreen } from './screen';
 
@@ -23,6 +25,11 @@ describe('Login screen', () => {
   }
 
   beforeAll(() => {
+    jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
+      if (endpoint === '/users') {
+        return of(userPaginationResponse) as Observable<any>;
+      }
+    });
     translation = setDefaultLanguage();
   });
 
@@ -51,9 +58,10 @@ describe('Login screen', () => {
     fireEvent.press(submitButton);
 
     await waitFor(() => {
-      const errors = component.getAllByTestId('validation-error');
-      expect(errors[0].children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
-      expect(errors[1].children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
+      const emailError = component.getByTestId('email-input.validationMessage');
+      const passwordError = component.getByTestId('password-input.validationMessage');
+      expect(emailError.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
+      expect(passwordError.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
     });
   });
 
@@ -62,7 +70,7 @@ describe('Login screen', () => {
     fireEvent.press(submitButton);
 
     await waitFor(() => {
-      const error = component.getAllByTestId('validation-error')[0];
+      const error = component.getByTestId('email-input.validationMessage');
       expect(error.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_EMAIL);
     });
   });
