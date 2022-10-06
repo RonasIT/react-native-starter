@@ -295,6 +295,7 @@ exports[`Home screen should match the snapshot 1`] = `
                   }
                 >
                   <View
+                    pointerEvents="box-none"
                     style={
                       Array [
                         Object {
