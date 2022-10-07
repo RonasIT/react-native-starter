@@ -8,7 +8,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
   const tabBarItems = useMemo(
     () => state.routes.map((route, index) => {
       const { options } = descriptors[route.key];
-      const label = options.tabBarLabel || options.title || route.name;
+      const label = (options.tabBarLabel as string) || options.title || route.name;
       const isFocused = state.index === index;
       const tabItemColor = isFocused ? colors.primary : colors.white;
 
