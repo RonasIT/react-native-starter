@@ -16,7 +16,7 @@ function createConfig(): typeof defaultAppConfig {
     },
     api: {
       root: 'https://gorest.co.in/public/v1',
-      publicEndpoints: ['login', 'users'],
+      publicEndpoints: ['/login', '/users'],
       refreshTokenEndpoint: 'auth/refresh'
     }
   };
