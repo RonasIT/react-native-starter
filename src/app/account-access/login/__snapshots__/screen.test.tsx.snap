@@ -87,7 +87,7 @@ exports[`Login screen should match the snapshot 1`] = `
             ]
           }
         >
-          Welcome to [missing {{value}} value]
+          Welcome to [missing "{{value}}" value]
         </Text>
         <View
           style={

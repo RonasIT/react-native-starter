@@ -1,12 +1,12 @@
-import I18n from 'i18n-js';
+import { i18n } from '@shared/i18n/i18n';
 
 export function setDefaultLanguage(): object {
   const defaultLanguage = 'en';
   const translation = require(`../../assets/i18n/${defaultLanguage}.json`);
-  I18n.translations = {
+  i18n.translations = {
     en: translation
   };
-  I18n.locale = defaultLanguage;
+  i18n.locale = defaultLanguage;
 
   return translation;
 }

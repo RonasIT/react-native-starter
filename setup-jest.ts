@@ -29,3 +29,7 @@ jest.mock('react-native-safe-area-context', () => {
     useSafeAreaInsets: jest.fn().mockReturnValue(safeAreaProviderMetrics.insets)
   };
 });
+
+jest.mock('i18n-js', () => {
+  return jest.requireActual('i18n-js/dist/require/index');
+});
