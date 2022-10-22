@@ -6,8 +6,17 @@ export type AppEnv = 'development' | 'staging' | 'production';
 export type AppEnvConfig = typeof defaultAppEnvConfig;
 export type AppExpoConfig = ExpoConfig & { extra: AppEnvConfig };
 
+const projectID: Record<AppEnv, string> = {
+  development: 'DEVELOPMENT_PROJECT_ID',
+  staging: 'STAGING_PROJECT_ID',
+  production: 'PRODUCTION_PROJECT_ID'
+};
+
 const defaultAppEnvConfig = {
-  env: <AppEnv>'development'
+  env: <AppEnv>'development',
+  eas: {
+    projectId: projectID.development
+  }
 };
 
 const defaultExpoConfig: ExpoConfig = {
@@ -17,6 +26,12 @@ const defaultExpoConfig: ExpoConfig = {
   owner: 'ronas_it',
   entryPoint: 'index.js',
   version: '0.0.1',
+  runtimeVersion: {
+    policy: 'sdkVersion'
+  },
+  updates: {
+    url: `https://u.expo.dev/${projectID.development}`
+  },
   orientation: 'portrait',
   backgroundColor: '#000000',
   icon: './src/assets/images/icon.png',
@@ -76,8 +91,12 @@ module.exports = () => {
         name: 'RN Starter Prod',
         slug: 'react-native-starter-prod',
         scheme: 'rnstarter',
+        updates: {
+          url: `https://u.expo.dev/${projectID[env]}`
+        },
         extra: {
-          env: 'production'
+          env: 'production',
+          eas: { projectId: projectID[env] }
         }
       };
       break;

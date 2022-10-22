@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 import { PartialDeep } from 'type-fest';
 import { AppEnvConfig } from 'app.config';
 
-export const appEnvConfig = Constants.manifest.extra as AppEnvConfig;
+export const appEnvConfig = Constants.expoConfig.extra as AppEnvConfig;
 export const appEnv = appEnvConfig.env;
 
 function createConfig(): typeof defaultAppConfig {

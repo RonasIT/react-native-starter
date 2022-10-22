@@ -19,7 +19,7 @@ import { LoginForm } from './shared/forms';
 export function LoginScreen(): JSX.Element {
   const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
   const { isSubmitting } = loginScreenFacade;
-  const appName = Constants.manifest.name;
+  const appName = Constants.expoConfig.name;
 
   function formSubmitted(values: LoginForm): void {
     loginScreenFacade.authorize(values);
