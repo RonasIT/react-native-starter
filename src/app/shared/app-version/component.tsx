@@ -5,9 +5,9 @@ import { AppText } from '@shared/text';
 import { createStyles, fontSizes } from '@styles';
 
 export function AppVersion(props: { style?: TextStyle }): ReactElement {
-  const versionName = `v${Constants.manifest.version} (${Platform.select({
-    ios: Constants.manifest.ios?.buildNumber,
-    android: String(Constants.manifest.android?.versionCode)
+  const versionName = `v${Constants.expoConfig.version} (${Platform.select({
+    ios: Constants.expoConfig.ios?.buildNumber,
+    android: String(Constants.expoConfig.android?.versionCode)
   })})`;
 
   return <AppText style={[style.versionText, props.style]}>{versionName}</AppText>;
