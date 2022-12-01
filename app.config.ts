@@ -7,7 +7,7 @@ export type AppEnvConfig = typeof defaultAppEnvConfig;
 export type AppExpoConfig = ExpoConfig & { extra: AppEnvConfig };
 
 const projectID: Record<AppEnv, string> = {
-  development: 'DEVELOPMENT_PROJECT_ID',
+  development: '46e76b70-a4ff-4935-83ca-aaae5a36d7f0',
   staging: 'STAGING_PROJECT_ID',
   production: 'PRODUCTION_PROJECT_ID'
 };
