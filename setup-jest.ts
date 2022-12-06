@@ -33,3 +33,40 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('i18n-js', () => {
   return jest.requireActual('i18n-js/dist/require/index');
 });
+
+jest.mock('expo-linking', () => {
+  const module: typeof import('expo-linking') = {
+    ...jest.requireActual('expo-linking'),
+    createURL: jest.fn()
+  };
+
+  return module;
+});
+
+jest.mock('expo-constants', () => {
+  const ConstantsModule = jest.requireActual('expo-constants');
+  const { default: Constants } = ConstantsModule;
+
+  return {
+    ...ConstantsModule,
+    __esModule: true,
+    default: {
+      ...Constants,
+      manifest: {
+        ...Constants.manifest
+      },
+      expoConfig: {
+        extra: { env: 'development' }
+      }
+    }
+  };
+}); //TODO workaround https://github.com/expo/expo/pull/17402#issuecomment-1217663263
+
+jest.mock('expo-linking', () => {
+  const module: typeof import('expo-linking') = {
+    ...jest.requireActual('expo-linking'),
+    createURL: jest.fn()
+  };
+
+  return module;
+}); //TODO workaround https://github.com/expo/expo/issues/18742#issuecomment-1234290449
