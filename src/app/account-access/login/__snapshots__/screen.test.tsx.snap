@@ -4,8 +4,8 @@ exports[`Login screen should match the snapshot 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,11 +14,11 @@ exports[`Login screen should match the snapshot 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "flex": 1,
         },
-        Object {
+        {
           "paddingHorizontal": 24,
         },
       ]
@@ -26,7 +26,7 @@ exports[`Login screen should match the snapshot 1`] = `
   >
     <RCTScrollView
       contentContainerStyle={
-        Object {
+        {
           "paddingTop": 32,
         }
       }
@@ -39,7 +39,7 @@ exports[`Login screen should match the snapshot 1`] = `
           onError={[Function]}
           source={1}
           style={
-            Array [
+            [
               undefined,
               undefined,
               undefined,
@@ -47,7 +47,7 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               false,
-              Object {
+              {
                 "height": 56,
                 "width": 56,
               },
@@ -57,8 +57,8 @@ exports[`Login screen should match the snapshot 1`] = `
         />
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
                 "color": "#20303C",
                 "textAlign": "left",
@@ -71,16 +71,16 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               undefined,
-              Array [
-                Object {
+              [
+                {
                   "fontFamily": "SFProDisplayBold",
                   "fontSize": 27.2,
                   "lineHeight": 39.36,
                 },
-                Object {
+                {
                   "color": "#FFFFFF",
                 },
-                Object {
+                {
                   "marginVertical": 32,
                 },
               ],
@@ -91,7 +91,7 @@ exports[`Login screen should match the snapshot 1`] = `
         </Text>
         <View
           style={
-            Array [
+            [
               undefined,
               undefined,
               undefined,
@@ -99,10 +99,10 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               undefined,
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
-                Object {
+                {
                   "marginBottom": 19.2,
                 },
               ],
@@ -112,14 +112,14 @@ exports[`Login screen should match the snapshot 1`] = `
           <Text
             color="#20303C"
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "color": "#20303C",
                   "textAlign": "left",
                 },
                 undefined,
-                Object {
+                {
                   "color": "#20303C",
                 },
                 undefined,
@@ -128,11 +128,11 @@ exports[`Login screen should match the snapshot 1`] = `
                 undefined,
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "minHeight": 20,
                   },
-                  Object {
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "SFProDisplayRegular",
                     "fontSize": 22.4,
@@ -151,22 +151,22 @@ exports[`Login screen should match the snapshot 1`] = `
             centerV={true}
             row={true}
             style={
-              Array [
+              [
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                Object {},
-                Object {},
-                Object {
+                {},
+                {},
+                {
                   "alignItems": "center",
                   "flexDirection": "row",
                 },
-                Array [
-                  Object {},
-                  Array [
-                    Array [
-                      Object {
+                [
+                  {},
+                  [
+                    [
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#18191F",
                         "borderColor": "#18191F",
@@ -193,23 +193,23 @@ exports[`Login screen should match the snapshot 1`] = `
             <View
               flexG={true}
               style={
-                Array [
+                [
                   undefined,
                   undefined,
-                  Object {
+                  {
                     "flexGrow": 1,
                   },
                   undefined,
-                  Object {},
-                  Object {},
-                  Object {},
+                  {},
+                  {},
+                  {},
                   undefined,
                 ]
               }
             >
               <TextInput
                 accessibilityState={
-                  Object {
+                  {
                     "disabled": false,
                   }
                 }
@@ -220,21 +220,21 @@ exports[`Login screen should match the snapshot 1`] = `
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "flexGrow": 1,
                       "paddingBottom": 0,
                       "paddingTop": 0,
                       "textAlign": "left",
                     },
-                    Object {
+                    {
                       "color": "#20303C",
                     },
-                    Array [
-                      Object {},
+                    [
+                      {},
                       undefined,
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#FFFFFF",
                           "flex": 1,
                           "fontSize": 18.4,
@@ -242,7 +242,7 @@ exports[`Login screen should match the snapshot 1`] = `
                           "paddingBottom": 15,
                           "paddingTop": 15,
                         },
-                        Object {},
+                        {},
                         undefined,
                       ],
                     ],
@@ -258,14 +258,14 @@ exports[`Login screen should match the snapshot 1`] = `
             row={true}
             spread={true}
             style={
-              Array [
+              [
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                Object {},
-                Object {},
-                Object {
+                {},
+                {},
+                {
                   "flexDirection": "row",
                   "justifyContent": "space-between",
                 },
@@ -276,27 +276,27 @@ exports[`Login screen should match the snapshot 1`] = `
             <Text
               $textDangerLight={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "color": "#20303C",
                     "textAlign": "left",
                   },
                   undefined,
-                  Object {
+                  {
                     "color": "#FC3D2F",
                   },
                   undefined,
                   undefined,
-                  Object {},
+                  {},
                   undefined,
                   undefined,
                   undefined,
-                  Array [
-                    Object {
+                  [
+                    {
                       "minHeight": 20,
                     },
-                    Object {
+                    {
                       "color": "#FF003D",
                       "fontFamily": "SFProTextRegular",
                       "fontSize": 16,
@@ -311,7 +311,7 @@ exports[`Login screen should match the snapshot 1`] = `
         </View>
         <View
           style={
-            Array [
+            [
               undefined,
               undefined,
               undefined,
@@ -319,10 +319,10 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               undefined,
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
-                Object {
+                {
                   "marginBottom": 19.2,
                 },
               ],
@@ -332,14 +332,14 @@ exports[`Login screen should match the snapshot 1`] = `
           <Text
             color="#20303C"
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "transparent",
                   "color": "#20303C",
                   "textAlign": "left",
                 },
                 undefined,
-                Object {
+                {
                   "color": "#20303C",
                 },
                 undefined,
@@ -348,11 +348,11 @@ exports[`Login screen should match the snapshot 1`] = `
                 undefined,
                 undefined,
                 undefined,
-                Array [
-                  Object {
+                [
+                  {
                     "minHeight": 20,
                   },
-                  Object {
+                  {
                     "color": "#FFFFFF",
                     "fontFamily": "SFProDisplayRegular",
                     "fontSize": 22.4,
@@ -371,22 +371,22 @@ exports[`Login screen should match the snapshot 1`] = `
             centerV={true}
             row={true}
             style={
-              Array [
+              [
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                Object {},
-                Object {},
-                Object {
+                {},
+                {},
+                {
                   "alignItems": "center",
                   "flexDirection": "row",
                 },
-                Array [
-                  Object {},
-                  Array [
-                    Array [
-                      Object {
+                [
+                  {},
+                  [
+                    [
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#18191F",
                         "borderColor": "#18191F",
@@ -400,7 +400,7 @@ exports[`Login screen should match the snapshot 1`] = `
                       },
                       false,
                       false,
-                      Object {
+                      {
                         "paddingRight": 50,
                       },
                       undefined,
@@ -415,23 +415,23 @@ exports[`Login screen should match the snapshot 1`] = `
             <View
               flexG={true}
               style={
-                Array [
+                [
                   undefined,
                   undefined,
-                  Object {
+                  {
                     "flexGrow": 1,
                   },
                   undefined,
-                  Object {},
-                  Object {},
-                  Object {},
+                  {},
+                  {},
+                  {},
                   undefined,
                 ]
               }
             >
               <TextInput
                 accessibilityState={
-                  Object {
+                  {
                     "disabled": false,
                   }
                 }
@@ -441,21 +441,21 @@ exports[`Login screen should match the snapshot 1`] = `
                 onFocus={[Function]}
                 secureTextEntry={true}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "flexGrow": 1,
                       "paddingBottom": 0,
                       "paddingTop": 0,
                       "textAlign": "left",
                     },
-                    Object {
+                    {
                       "color": "#20303C",
                     },
-                    Array [
-                      Object {},
+                    [
+                      {},
                       undefined,
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#FFFFFF",
                           "flex": 1,
                           "fontSize": 18.4,
@@ -463,7 +463,7 @@ exports[`Login screen should match the snapshot 1`] = `
                           "paddingBottom": 15,
                           "paddingTop": 15,
                         },
-                        Object {},
+                        {},
                         undefined,
                       ],
                     ],
@@ -486,7 +486,7 @@ exports[`Login screen should match the snapshot 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "height": "100%",
                   "justifyContent": "center",
                   "opacity": 0.5,
@@ -502,14 +502,14 @@ exports[`Login screen should match the snapshot 1`] = `
             row={true}
             spread={true}
             style={
-              Array [
+              [
                 undefined,
                 undefined,
                 undefined,
                 undefined,
-                Object {},
-                Object {},
-                Object {
+                {},
+                {},
+                {
                   "flexDirection": "row",
                   "justifyContent": "space-between",
                 },
@@ -520,27 +520,27 @@ exports[`Login screen should match the snapshot 1`] = `
             <Text
               $textDangerLight={true}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "color": "#20303C",
                     "textAlign": "left",
                   },
                   undefined,
-                  Object {
+                  {
                     "color": "#FC3D2F",
                   },
                   undefined,
                   undefined,
-                  Object {},
+                  {},
                   undefined,
                   undefined,
                   undefined,
-                  Array [
-                    Object {
+                  [
+                    {
                       "minHeight": 20,
                     },
-                    Object {
+                    {
                       "color": "#FF003D",
                       "fontFamily": "SFProTextRegular",
                       "fontSize": 16,
@@ -555,7 +555,7 @@ exports[`Login screen should match the snapshot 1`] = `
         </View>
         <View
           style={
-            Object {
+            {
               "marginTop": 32,
             }
           }
@@ -563,7 +563,7 @@ exports[`Login screen should match the snapshot 1`] = `
           <View
             accessibilityRole="button"
             accessibilityState={
-              Object {
+              {
                 "disabled": false,
               }
             }
@@ -579,7 +579,7 @@ exports[`Login screen should match the snapshot 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "#26a0f8",
                 "borderRadius": 12,
@@ -597,8 +597,8 @@ exports[`Login screen should match the snapshot 1`] = `
             <Text
               numberOfLines={1}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "backgroundColor": "transparent",
                     "color": "#20303C",
                     "textAlign": "left",
@@ -611,8 +611,8 @@ exports[`Login screen should match the snapshot 1`] = `
                   undefined,
                   undefined,
                   undefined,
-                  Array [
-                    Object {
+                  [
+                    {
                       "backgroundColor": "transparent",
                       "flex": 0,
                       "flexDirection": "row",
@@ -621,20 +621,20 @@ exports[`Login screen should match the snapshot 1`] = `
                       "fontWeight": "400",
                       "lineHeight": 24,
                     },
-                    Object {
+                    {
                       "color": "#FFFFFF",
                     },
                     undefined,
                     undefined,
-                    Array [
-                      Object {
+                    [
+                      {
                         "fontFamily": "SFProTextSemiBold",
                         "fontSize": 18.4,
                         "fontWeight": "600",
                         "lineHeight": 30,
                         "textAlign": "center",
                       },
-                      Object {
+                      {
                         "color": "#FFFFFF",
                       },
                       false,
@@ -650,8 +650,8 @@ exports[`Login screen should match the snapshot 1`] = `
         </View>
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "transparent",
                 "color": "#20303C",
                 "textAlign": "left",
@@ -664,17 +664,17 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               undefined,
-              Array [
-                Object {
+              [
+                {
                   "fontFamily": "SFProTextRegular",
                   "fontSize": 16,
                   "lineHeight": 29.44,
                 },
-                Object {
+                {
                   "color": "#FFFFFF",
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "fontSize": 13.6,
                     "textAlign": "right",
                     "width": "100%",
@@ -691,7 +691,7 @@ exports[`Login screen should match the snapshot 1`] = `
           pointerEvents="none"
           scrollToFocusedInput={true}
           style={
-            Object {
+            {
               "backgroundColor": "transparent",
               "bottom": 0,
               "height": 0.5,

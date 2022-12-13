@@ -10,10 +10,10 @@ export const useAppState = (onChangeState?: (state: AppStateStatus) => void): Ap
   }
 
   useEffect(() => {
-    AppState.addEventListener('change', handleStateChange);
+    const listener = AppState.addEventListener('change', handleStateChange);
 
     return () => {
-      AppState.removeEventListener('change', handleStateChange);
+      listener.remove();
     };
   }, []);
 

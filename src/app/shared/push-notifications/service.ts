@@ -77,7 +77,7 @@ class PushNotificationsService {
   }
 
   public handleNotificationResponse = (_: Notifications.NotificationResponse): void => {
-    Linking.openURL(Linking.makeUrl('/'));
+    Linking.openURL(Linking.createURL('/'));
   };
 }
 

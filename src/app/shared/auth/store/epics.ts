@@ -1,5 +1,6 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { formDataInterceptor } from '@shared/api/interceptors/form-data';
 import { apiService } from '@shared/api/service';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
@@ -29,7 +30,8 @@ export const authEpics: Epics = {
               refreshToken: () => authService.refreshToken()
             })
           ],
-          [tokenInterceptor(getToken)]
+          [tokenInterceptor(getToken)],
+          [formDataInterceptor()]
         ],
         response: [
           [
