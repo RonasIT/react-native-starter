@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
-import { Image, Keyboard } from 'react-native-ui-lib';
+import { Image } from 'react-native-ui-lib';
 import { assets } from '@assets/index';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
@@ -63,7 +63,7 @@ export function LoginScreen(): JSX.Element {
           />
         </View>
         <AppVersion />
-        <Keyboard.KeyboardAwareInsetsView />
+        {/* <Keyboard.KeyboardAwareInsetsView /> */}
       </ScrollView>
     </AppScreen>
   );

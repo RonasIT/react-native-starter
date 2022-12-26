@@ -31,5 +31,8 @@ export const authReducer = createReducer(initialState, (builder) => {
     })
     .addCase(AuthActions.authorizeFailure, (state) => {
       state.isAuthorizing = false;
+    })
+    .addCase(AuthActions.unauthorize, (state) => {
+      state.token = null;
     });
 });

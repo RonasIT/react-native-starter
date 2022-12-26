@@ -2,14 +2,15 @@ import { of } from 'rxjs';
 import { catchError, exhaustMap, filter, map, withLatestFrom } from 'rxjs/operators';
 import { AuthActions } from '@shared/auth/store/actions';
 import { AuthSelectors } from '@shared/auth/store/selectors';
+import { LocalAuthActions } from '@shared/local-auth/store/actions';
 import { Epics } from '@store/types';
 import { profileService } from '../service';
 import { ProfileActions } from './actions';
 import { ProfileSelectors } from './selectors';
 
 export const profileEpics: Epics = {
-  refreshOnSaveToken: (action$, state$) => action$.pipe(
-    filter(AuthActions.saveToken.match),
+  refreshOnLocalAuthSuccess: (action$, state$) => action$.pipe(
+    filter(LocalAuthActions.localAuthSuccess.match),
     withLatestFrom(state$),
     filter(([_, state]) => !ProfileSelectors.profile(state)),
     map(() => ProfileActions.refreshProfile())

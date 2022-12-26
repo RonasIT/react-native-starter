@@ -6,5 +6,7 @@ export const Icons = {
   user: Svg(require('./user.svg')),
   home: Svg(require('./home.svg')),
   check: Svg(require('./check.svg')),
-  chevronDown: Svg(require('./chevron-down.svg'))
+  chevronDown: Svg(require('./chevron-down.svg')),
+  keyboardBack: Svg(require('./keyboard-back.svg')),
+  faceID: Svg(require('./face-id.svg'))
 };

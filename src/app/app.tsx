@@ -22,7 +22,7 @@ const setLanguage = useLanguage(
 );
 
 export function App(): ReactElement {
-  const { isTokenLoaded, isAuthenticated } = appFacade;
+  const { isTokenLoaded, isLocalAuthenticated } = appFacade;
   const statusBarHeight = useSafeAreaInsets().top;
   setLanguage('en');
 
@@ -44,7 +44,7 @@ export function App(): ReactElement {
         </View>
         {isTokenLoaded ? (
           <Stack.Navigator
-            initialRouteName={isAuthenticated ? 'Main' : 'AccountAccess'}
+            initialRouteName={isLocalAuthenticated ? 'Main' : 'AccountAccess'}
             screenOptions={{ headerShown: false }}>
             <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
             <Stack.Screen

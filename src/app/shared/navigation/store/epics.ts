@@ -1,5 +1,7 @@
-import { delay, filter, map, tap } from 'rxjs/operators';
+import { isAnyOf } from '@reduxjs/toolkit';
+import { filter, map, tap } from 'rxjs/operators';
 import { AuthActions } from '@shared/auth/store/actions';
+import { LocalAuthActions } from '@shared/local-auth';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types/epics';
 import { appNavigationService } from '../service';
@@ -7,15 +9,22 @@ import { appNavigationService } from '../service';
 export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$) => action$.pipe(
     filter(AuthActions.authorizeSuccess.match),
-    delay(100),
     tap(() => {
       const interruptedNavigation = appNavigationService.savedState;
 
       if (interruptedNavigation) {
         appNavigationService.resetToState(interruptedNavigation);
       } else {
-        appNavigationService.resetToRoute('Main');
+        appNavigationService.navigate('Pin', { isPinSet: false });
       }
+    }),
+    map(() => AppActions.noop())
+  ),
+
+  localAuthSuccess: (action$) => action$.pipe(
+    filter(isAnyOf(LocalAuthActions.setPin.match, LocalAuthActions.localAuthSuccess.match)),
+    tap(() => {
+      appNavigationService.resetToRoute('Main');
     }),
     map(() => AppActions.noop())
   ),
@@ -29,7 +38,7 @@ export const appNavigationEpics: Epics = {
         appNavigationService.clearSavedState();
       }
     }),
-    tap(() => appNavigationService.resetToRoute('AccountAccess')),
+    tap(() => appNavigationService.resetToRoute('AccountAccess', [{ name: 'Login' }])),
     map(() => AppActions.noop())
   )
 };
