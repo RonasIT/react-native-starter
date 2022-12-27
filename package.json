@@ -18,7 +18,7 @@
   },
   "version": "1.0.9",
   "scripts": {
-    "start": "cross-env APP_ENV=development expo start",
+    "start": "expo start --dev-client",
     "start:prod": "cross-env APP_ENV=production expo start",
     "prebuild": "npm run check:ts && npm run check:cycles",
     "build:dev": "npm run prebuild && eas build --no-wait --non-interactive -p all --profile=development",
@@ -37,7 +37,9 @@
     "prepack": "node scripts/prepack.js",
     "postpack": "node scripts/postpack.js",
     "postinstall": "npm run postinit",
-    "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized"
+    "postinit": "path-exists app.json && (cpy npm-shrinkwrap.json package-lock.json --no-overwrite --rename && rimraf npm-shrinkwrap.json && rimraf app.json) || echo Project is already initialized",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
@@ -48,6 +50,7 @@
     "@react-navigation/native": "^6.0.16",
     "@react-navigation/stack": "^6.3.7",
     "@reduxjs/toolkit": "^1.9.1",
+    "@types/react-native-auth0": "^2.14.0",
     "axios": "^1.2.0",
     "axios-observable": "^2.0.0",
     "class-transformer": "^0.5.1",
@@ -74,6 +77,7 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.3",
     "react-native": "0.70.5",
+    "react-native-auth0": "^2.16.0",
     "react-native-expo-image-cache": "^4.1.0",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-gesture-handler": "~2.8.0",
@@ -89,7 +93,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.7",
     "sentry-expo": "~5.0.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "expo-clipboard": "~4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

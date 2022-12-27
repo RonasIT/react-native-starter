@@ -63,6 +63,14 @@ const defaultExpoConfig: ExpoConfig = {
     config: 'metro.config.js',
     sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
   },
+  plugins: [
+    [
+      'react-native-auth0',
+      {
+        domain: 'dev-qpqu0fmdg4ta1x4l.us.auth0.com'
+      }
+    ]
+  ],
   // TODO: Configure this to use Sentry or remove
   // hooks: {
   //   postPublish: [
