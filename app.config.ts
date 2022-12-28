@@ -90,7 +90,8 @@ const defaultExpoConfig: ExpoConfig = {
 };
 
 module.exports = () => {
-  const env = process.env.APP_ENV as AppEnv;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const env = (process.env as unknown as { APP_ENV: AppEnv }).APP_ENV;
   let envExpoConfig: PartialDeep<AppExpoConfig> = {};
 
   switch (env) {

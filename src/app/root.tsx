@@ -18,8 +18,8 @@ const Home = (): ReactElement => {
   const onLogin = async (): Promise<void> => {
     try {
       await authorize({ scope: 'openid profile email' });
-      const { accessToken } = await getCredentials();
-      setToken(accessToken);
+      const { idToken } = await getCredentials();
+      setToken(idToken);
     } catch (e) {
       console.log(e);
     }
@@ -37,7 +37,7 @@ const Home = (): ReactElement => {
 
   return (
     <View style={styles.container}>
-      {!!token && <Button onPress={handleCopyToken} title='Copy token' />}
+      {!!token && <Button onPress={handleCopyToken} title='Copy idu token' />}
       <Text style={styles.header}> Auth0Sample - Login </Text>
       {user && <Text>You are logged in as {user.name}</Text>}
       {!user && <Text>You are not logged in</Text>}
