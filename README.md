@@ -24,21 +24,22 @@ expo init your-app-name --npm -t @ronas-it/react-native-starter@latest
 
 ```
 
-3. Follow `TODO`s in the code to update app configuration and clean up demo code.
+3. Follow `TODO`s in generated project to update app configuration and clean up demo code.
 
 ## Useful scripts
 
 See `package.json` for pre-defined scripts. You can run them using `npm run {script}` or `yarn {script}`:
 
-- Start local `development`-env version using Expo: `start`
-- Run locally for other environments: `start:{environment}`
-- Lint code: `lint`
-- Format code: `format`
-- Run tests: `test`
-- Run necessary pre-build checks: `prebuild`
+- Start local `development`-env version using Expo: `start`.
+- Run locally for other environments: `start:{environment}`.
+- Lint code: `lint`.
+- Format code: `format`.
+- Run tests: `test`.
+- Run necessary code checks: `verify`. Run `verify:ts` to verify Typescript, and `verify:cycles`
+for circular dependencies check.
 - Run builds for _both_ platforms: `build:{environment}`. Pass `-p {android|ios}` to run a platform-specific build.
-- Submit iOS build to AppStore Connect: `submit:ios:{environment}`
-- Publish OTA-update: `publish:{environment}`
+- Submit iOS build to AppStore Connect: `submit:ios:{environment}`.
+- Publish OTA-update: `update:{environment}`.
 
 ## Demo app
 
