@@ -34,8 +34,8 @@
     "verify:cycles": "dpdm --no-warning --no-tree --transform --progress false index.js --exclude \".*?/?models/.*\\.tsx?|node_modules\" --exit-code circular:1",
     "test": "jest --config jest.config.js --detectOpenHandles",
     "prepare": "husky install",
-    "prepack": "node scripts/prepack.js",
-    "postpack": "node scripts/postpack.js && npm pkg set 'scripts.postinstall'='npx rimraf app.json scripts && npm pkg delete 'scripts.prepack' 'scripts.postpack' 'scripts.postinstall''"
+    "prepack": "node scripts/prepack.js && npm pkg set 'scripts.postinstall'='npx rimraf app.json scripts && npm pkg delete 'scripts.prepack' 'scripts.postpack' 'scripts.postinstall''",
+    "postpack": "node scripts/postpack.js && npm pkg delete 'scripts.postinstall'"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
