@@ -8,4 +8,3 @@ console.log('Package published. Clean up repository...')
 
 deleteFile('app.json');
 deleteFile('gitignore');
-deleteFile('npm-shrinkwrap.json');
