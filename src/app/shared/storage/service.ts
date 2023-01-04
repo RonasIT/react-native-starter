@@ -1,7 +1,7 @@
-import { AsyncStorageItem } from './models';
+import { SecureStorageItem } from './models';
 
 class AppStorageService {
-  public token = new AsyncStorageItem('token');
+  public token = new SecureStorageItem('token');
 }
 
 export const appStorageService = new AppStorageService();

@@ -1,12 +1,12 @@
+import { map, Observable } from 'rxjs';
 import { EntityService } from '@shared/base-entity/service';
 import { Pagination, PaginationResponse } from '@shared/pagination';
-import { map, Observable } from 'rxjs';
 import { User } from './models';
 
 class UserService extends EntityService<User> {
   public create = this.notImplementedMethod('create');
   public update = this.notImplementedMethod('update');
-  public delete = this.notImplementedMethod('update');
+  public delete = this.notImplementedMethod('delete');
 
   constructor() {
     super({

@@ -1,16 +1,16 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { AppText, TextTheme } from '@shared/text';
-import { createStyles, variables } from '@styles';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import { AppText } from '@shared/text';
+import { colors, createStyles } from '@styles';
 
 export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps): ReactElement {
   const tabBarItems = useMemo(
     () => state.routes.map((route, index) => {
       const { options } = descriptors[route.key];
-      const label = options.tabBarLabel || options.title || route.name;
+      const label = options.title || route.name;
       const isFocused = state.index === index;
-      const tabItemColor = isFocused ? variables.color.primary : variables.color.white;
+      const tabItemColor = isFocused ? colors.primary : colors.white;
 
       const onPress = (): void => {
         const event = navigation.emit({ type: 'tabPress', target: route.key, canPreventDefault: true });
@@ -35,7 +35,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           activeOpacity={0.8}
           testID='tab-bar-item'>
           {options.tabBarIcon({ focused: isFocused, color: tabItemColor, size: 30 })}
-          <AppText theme={TextTheme.SMALLEST} style={[style.tabItemText, { color: tabItemColor }]}>
+          <AppText variant='smallest' style={[style.tabItemText, { color: tabItemColor }]}>
             {label}
           </AppText>
         </TouchableOpacity>
@@ -53,7 +53,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
 
 const style = createStyles({
   tabBarContainer: {
-    backgroundColor: variables.color.background
+    backgroundColor: colors.background
   },
   tabBar: {
     flexDirection: 'row'

@@ -1,10 +1,10 @@
-import { apiService } from '@shared/api';
 import * as Linking from 'expo-linking';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import { Platform } from 'react-native';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { apiService } from '@shared/api';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -44,7 +44,7 @@ class PushNotificationsService {
 
     if (Platform.OS === 'android') {
       Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
+        name: 'Default',
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: '#FF231F7C'
@@ -77,7 +77,7 @@ class PushNotificationsService {
   }
 
   public handleNotificationResponse = (_: Notifications.NotificationResponse): void => {
-    Linking.openURL(Linking.makeUrl('/'));
+    Linking.openURL(Linking.createURL('/'));
   };
 }
 

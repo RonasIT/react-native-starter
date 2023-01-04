@@ -1,7 +1,7 @@
 {
   "build": {
     "development": {
-      "releaseChannel": "development",
+      "channel": "development",
       "android": {
         "distribution": "internal"
       },
@@ -13,14 +13,14 @@
       }
     },
     "preview": {
-      "releaseChannel": "preview",
+      "channel": "preview",
       "distribution": "internal",
       "env": {
         "APP_ENV": "production"
       }
     },
     "production": {
-      "releaseChannel": "production",
+      "channel": "production",
       "distribution": "store",
       "env": {
         "APP_ENV": "production"
@@ -37,6 +37,7 @@
     }
   },
   "cli": {
-    "version": ">= 0.44.0"
+    "version": ">= 0.44.0",
+    "requireCommit": false
   }
 }

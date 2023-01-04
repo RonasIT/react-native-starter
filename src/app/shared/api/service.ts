@@ -1,10 +1,10 @@
-import { appConfig } from '@app/constants';
 import { AxiosError, AxiosInterceptorManager, AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import Axios from 'axios-observable';
 import { AxiosObservable } from 'axios-observable/dist/axios-observable.interface';
 import { Platform } from 'react-native';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { appConfig } from '@app/constants';
 import { ApiCall } from './types';
 
 export class ApiService {

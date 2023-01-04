@@ -2,10 +2,21 @@ import { ExpoConfig } from '@expo/config';
 import { merge } from 'lodash';
 import { PartialDeep } from 'type-fest';
 
-type AppEnv = 'development' | 'production';
+export type AppEnv = 'development' | 'staging' | 'production';
+export type AppEnvConfig = typeof defaultAppEnvConfig;
+export type AppExpoConfig = ExpoConfig & { extra: AppEnvConfig };
 
-export const appEnvConfig = {
-  env: 'development' as AppEnv
+const projectID: Record<AppEnv, string> = {
+  development: '46e76b70-a4ff-4935-83ca-aaae5a36d7f0',
+  staging: 'STAGING_PROJECT_ID',
+  production: 'PRODUCTION_PROJECT_ID'
+};
+
+const defaultAppEnvConfig = {
+  env: <AppEnv>'development',
+  eas: {
+    projectId: projectID.development
+  }
 };
 
 const defaultExpoConfig: ExpoConfig = {
@@ -15,6 +26,12 @@ const defaultExpoConfig: ExpoConfig = {
   owner: 'ronas_it',
   entryPoint: 'index.js',
   version: '0.0.1',
+  runtimeVersion: {
+    policy: 'sdkVersion'
+  },
+  updates: {
+    url: `https://u.expo.dev/${projectID.development}`
+  },
   orientation: 'portrait',
   backgroundColor: '#000000',
   icon: './src/assets/images/icon.png',
@@ -61,24 +78,32 @@ const defaultExpoConfig: ExpoConfig = {
   //   ]
   // },
   // plugins: ['sentry-expo'],
-  extra: appEnvConfig
+  extra: defaultAppEnvConfig
 };
-
-type PartialConfig = PartialDeep<ExpoConfig & { extra: typeof appEnvConfig }>;
 
 module.exports = () => {
   const env = process.env.APP_ENV as AppEnv;
+  let envExpoConfig: PartialDeep<AppExpoConfig> = {};
 
-  if (env === 'production') {
-    return merge(defaultExpoConfig, <PartialConfig>{
-      name: 'RN Starter Prod',
-      slug: 'react-native-starter-prod',
-      scheme: 'rnstarter',
-      extra: {
-        env: 'production'
-      }
-    });
-  } else {
-    return defaultExpoConfig;
+  switch (env) {
+    case 'production':
+      envExpoConfig = {
+        name: 'RN Starter Prod',
+        slug: 'react-native-starter-prod',
+        scheme: 'rnstarter',
+        updates: {
+          url: `https://u.expo.dev/${projectID[env]}`
+        },
+        extra: {
+          env: 'production',
+          eas: { projectId: projectID[env] }
+        }
+      };
+      break;
+    case 'development':
+    default:
+      break;
   }
+
+  return merge(defaultExpoConfig, envExpoConfig);
 };

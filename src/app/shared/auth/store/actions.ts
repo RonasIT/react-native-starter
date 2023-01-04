@@ -1,33 +1,33 @@
-import { action, actionWithPayload } from '@store/action-factory';
 import { AxiosError } from 'axios';
+import { defineAction } from '@store/utils';
 import { AuthCredentials, AuthResponse } from '../models';
 
 export class AuthActions {
-  public static authorize = actionWithPayload<AuthCredentials>(
+  public static authorize = defineAction<AuthCredentials>(
     '[Auth] Authorize'
   );
 
-  public static authorizeSuccess = actionWithPayload<AuthResponse>(
+  public static authorizeSuccess = defineAction<AuthResponse>(
     '[Auth] Authorize Success'
   );
 
-  public static authorizeFailure = actionWithPayload<AxiosError>(
+  public static authorizeFailure = defineAction<AxiosError>(
     '[Auth] Authorize Failure'
   );
 
-  public static unauthorize = actionWithPayload<{ keepInterruptedNavigation?: boolean }>(
+  public static unauthorize = defineAction<{ keepInterruptedNavigation?: boolean }>(
     '[Auth] Unauthorize'
   );
 
-  public static saveToken = actionWithPayload<{ token: string }>(
+  public static saveToken = defineAction<{ token: string }>(
     '[Auth] Save token'
   );
 
-  public static tokenLoaded = action(
+  public static tokenLoaded = defineAction(
     '[Auth] Token loaded'
   );
 
-  public static clearToken = action(
+  public static clearToken = defineAction(
     '[Auth] Clear token'
   );
 }

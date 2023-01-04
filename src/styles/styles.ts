@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createStyles } from './extended-stylesheet';
-import { variables } from './variables';
+import { colors, fontSizes, spacings, typographies } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
@@ -15,11 +15,11 @@ EStyleSheet.build({
 
 export const commonStyle = createStyles({
   container: {
-    paddingHorizontal: variables.contentOffset
+    paddingHorizontal: spacings.contentOffset
   },
   formInput: {
-    color: variables.color.white,
-    fontSize: variables.fontSize.medium,
+    color: colors.white,
+    fontSize: fontSizes.medium,
     height: 54,
     paddingTop: 15,
     paddingBottom: 15,
@@ -39,8 +39,8 @@ export const commonStyle = createStyles({
   formControl: {
     position: 'relative',
     borderWidth: 1,
-    backgroundColor: variables.color.backgroundSecondary,
-    borderColor: variables.color.backgroundSecondary,
+    backgroundColor: colors.backgroundSecondary,
+    borderColor: colors.backgroundSecondary,
     borderRadius: 10,
     flexDirection: 'row',
     paddingLeft: 20,
@@ -49,10 +49,22 @@ export const commonStyle = createStyles({
     alignItems: 'center'
   },
   formControlError: {
-    borderColor: variables.color.danger
+    borderColor: colors.danger
   },
   formControlFocus: {
-    borderColor: variables.color.primary
+    borderColor: colors.primary
+  },
+  formGroup: {
+    marginBottom: '1.2rem'
+  },
+  formGroupLabel: {
+    marginBottom: '0.5rem',
+    color: colors.white,
+    ...typographies.larger
+  },
+  formGroupError: {
+    color: colors.danger,
+    ...typographies.small
   },
   row: {
     display: 'flex',

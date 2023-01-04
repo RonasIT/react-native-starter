@@ -1,19 +1,21 @@
-import { appConfig } from './constants';
-import { store } from '@store';
-import { registerRootComponent } from 'expo';
+import 'reflect-metadata';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
+import { createStore } from '@store/store';
 import { App } from './app';
+import { appConfig, appEnv } from './constants';
+
+const store = createStore();
 
 export default function Root(): ReactElement {
   if (appConfig.sentry.enabled) {
     Sentry.init({
+      environment: appEnv,
       dsn: appConfig.sentry.dsn,
-      enableInExpoDevelopment: false,
-      debug: !appConfig.production
+      enableInExpoDevelopment: false
     });
   }
 
@@ -36,5 +38,3 @@ export default function Root(): ReactElement {
     </SafeAreaProvider>
   );
 }
-
-registerRootComponent(Root);

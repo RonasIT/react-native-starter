@@ -1,7 +1,7 @@
-import { Entity } from '@shared/base-entity/config';
-import { Pagination } from '@shared/pagination';
 import { useSelector } from 'react-redux';
 import { Store } from 'redux';
+import { Entity } from '@shared/base-entity/config';
+import { Pagination } from '@shared/pagination';
 import { BaseListedEntityActions, BaseListedEntitySelectors, BaseListedEntityState } from './store';
 
 export abstract class BaseListedEntityFacade<
@@ -38,7 +38,7 @@ export abstract class BaseListedEntityFacade<
     return useSelector(this.selectors.isRefreshing);
   }
 
-  constructor(protected store: Store, protected actions: TActions, protected selectors: TSelectors) {}
+  constructor(protected store: Pick<Store, 'dispatch'>, protected actions: TActions, protected selectors: TSelectors) {}
 
   public changeSearchQuery(query: string): void {
     this.store.dispatch(this.actions.changeSearchQuery({ query }));

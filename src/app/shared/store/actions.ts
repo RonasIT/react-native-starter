@@ -1,11 +1,11 @@
-import { action } from './action-factory';
+import { createAction } from '@reduxjs/toolkit';
 
 export class AppActions {
-  public static init = action(
+  public static init = createAction(
     '[App] Init'
   );
 
-  public static noop = action(
+  public static noop = createAction(
     '[App] Noop'
   );
 }

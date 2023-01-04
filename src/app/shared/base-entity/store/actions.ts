@@ -1,22 +1,22 @@
-import { actionWithPayload } from '@store/action-factory';
+import { defineAction } from '@store/utils';
 import { EntityName } from '../config';
 import { BaseEntityPlain } from '../models';
 import { EntityPartial } from '../types';
 
-export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlain & Record<string, any>> {
-  public created = actionWithPayload<{ item: TEntity }>(
+export class EntityStoreActions<TEntity extends BaseEntityPlain = BaseEntityPlain> {
+  public created = defineAction<{ item: TEntity }>(
     `[@entities/${this.entityName}] Created`
   );
 
-  public loaded = actionWithPayload<{ items: Array<TEntity> }>(
+  public loaded = defineAction<{ items: Array<TEntity> }>(
     `[@entities/${this.entityName}] Loaded`
   );
 
-  public updated = actionWithPayload<{ item: EntityPartial<TEntity> }>(
+  public updated = defineAction<{ item: TEntity }>(
     `[@entities/${this.entityName}] Updated`
   );
 
-  public deleted = actionWithPayload<{ item: EntityPartial<TEntity> }>(
+  public deleted = defineAction<{ item: EntityPartial<TEntity> }>(
     `[@entities/${this.entityName}] Deleted`
   );
 

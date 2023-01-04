@@ -1,8 +1,8 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { AppState } from '@store';
-import { createSelector } from 'reselect';
-import { ProfileState } from './state';
+import { ProfileState } from './reducer';
 
-const selectFeature = (state: AppState): ProfileState => state.user;
+const selectFeature = (state: AppState): ProfileState => state.profile;
 
 export class ProfileSelectors {
   public static profile = createSelector(

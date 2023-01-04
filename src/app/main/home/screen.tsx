@@ -1,9 +1,9 @@
+import React, { ReactElement, useEffect } from 'react';
 import { homeScreenFacade } from '@app/main/home/facade';
 import { ItemsList } from '@shared/items-list';
 import { AppScreen } from '@shared/screen';
 import { User } from '@shared/user';
 import { commonStyle } from '@styles';
-import React, { ReactElement, useEffect } from 'react';
 import { HomeListItem } from './shared/components';
 
 export function HomeScreen(): ReactElement {

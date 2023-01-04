@@ -1,52 +1,25 @@
-import { createStyles, variables } from '@styles';
 import React, { ReactElement } from 'react';
-import { Text, TextProps } from 'react-native';
-import { TextTheme } from './enums';
+import { ColorsModifiers, MarginModifiers, Text, TextProps, TypographyModifiers } from 'react-native-ui-lib';
+import { colors, typographies } from '@styles';
 
-interface Props extends TextProps {
-  children?: React.ReactNode;
-  theme?: TextTheme;
-}
+export type AppTextProps = Omit<
+  TextProps,
+  keyof TypographyModifiers | keyof ColorsModifiers | keyof MarginModifiers
+> & {
+  variant?: keyof typeof typographies;
+  color?: keyof typeof colors;
+};
 
-export function AppText({ style: elementStyle = {}, theme, children, ...restProps }: Props): ReactElement {
+export function AppText({
+  children,
+  color = 'white',
+  variant = 'small',
+  style,
+  ...restProps
+}: AppTextProps): ReactElement {
   return (
-    <Text style={[appTextStyle.text, theme && appTextStyle[theme], elementStyle]} {...restProps}>
+    <Text style={[typographies[variant], { color: colors[color] }, style]} {...restProps}>
       {children}
     </Text>
   );
 }
-
-export const appTextStyle = createStyles({
-  text: {
-    fontSize: variables.fontSize.small,
-    color: variables.color.white,
-    fontFamily: variables.fontFamily.sfProTextRegular,
-    lineHeight: '1.84rem'
-  },
-  textSmallest: {
-    fontSize: variables.fontSize.smallest,
-    lineHeight: '1.38rem'
-  },
-  textSmall: {
-    fontSize: variables.fontSize.small
-  },
-  textMedium: {
-    fontSize: variables.fontSize.medium,
-    lineHeight: '1.54rem'
-  },
-  textLarger: {
-    fontSize: variables.fontSize.larger,
-    lineHeight: '1.54rem',
-    fontFamily: variables.fontFamily.sfProDisplayRegular
-  },
-  textLarge: {
-    fontSize: variables.fontSize.large,
-    fontFamily: variables.fontFamily.sfProDisplayBold,
-    lineHeight: '2.46rem'
-  },
-  textLargest: {
-    fontSize: variables.fontSize.largest,
-    fontFamily: variables.fontFamily.sfProDisplayBold,
-    lineHeight: '2.46rem'
-  }
-});

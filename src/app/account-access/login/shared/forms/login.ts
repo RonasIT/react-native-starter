@@ -1,11 +1,11 @@
-import { useTranslation } from '@shared/i18n';
 import * as Yup from 'yup';
+import { useTranslation } from '@shared/i18n';
 
 export class LoginForm {
   public email: string;
   public password: string;
 
-  public static get validationSchema(): Yup.AnySchema {
+  public static get validationSchema(): Yup.SchemaOf<LoginForm> {
     const translate = useTranslation('COMMON.VALIDATION');
 
     return Yup.object().shape({
