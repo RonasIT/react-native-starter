@@ -9,4 +9,3 @@ fs.writeFile(
 );
 
 fs.copyFile('.gitignore', 'gitignore', () => console.log(' - gitignore copied'));
-fs.copyFile('package-lock.json', 'npm-shrinkwrap.json', () => console.log(' - package-lock.json copied'));
