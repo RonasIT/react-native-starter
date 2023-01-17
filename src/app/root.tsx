@@ -60,7 +60,7 @@ export default function Root(): ReactElement {
 
   return (
     <SafeAreaProvider>
-      <Auth0Provider domain={'dev-qpqu0fmdg4ta1x4l.us.auth0.com'} clientId={'NinpDU6xKYFr9ueXRXMvFYLhAKF77k5t'}>
+      <Auth0Provider domain={'dev-qpqu0fmdg4ta1x4l.us.auth0.com'} clientId={'sb8YSkPOq0urwCtzRqG82m1fpj2cc2fb'}>
         <Home />
       </Auth0Provider>
     </SafeAreaProvider>
