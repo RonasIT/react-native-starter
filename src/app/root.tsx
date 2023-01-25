@@ -8,18 +8,24 @@ import { useAuth0, Auth0Provider } from 'react-native-auth0';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Home = (): ReactElement => {
-  const [token, setToken] = useState('');
+  const [idToken, setIdToken] = useState('');
+  const [accessToken, setAccessToken] = useState('');
   const { authorize, clearSession, user, getCredentials } = useAuth0();
 
-  const handleCopyToken = async (): Promise<void> => {
-    await Clipboard.setStringAsync(token);
+  const handleCopyIdToken = async (): Promise<void> => {
+    await Clipboard.setStringAsync(idToken);
+  };
+
+  const handleCopyAccessToken = async (): Promise<void> => {
+    await Clipboard.setStringAsync(accessToken);
   };
 
   const onLogin = async (): Promise<void> => {
     try {
       await authorize({ scope: 'openid profile email' });
-      const { idToken } = await getCredentials();
-      setToken(idToken);
+      const { idToken, accessToken } = await getCredentials();
+      setIdToken(idToken);
+      setAccessToken(accessToken);
     } catch (e) {
       console.log(e);
     }
@@ -37,7 +43,8 @@ const Home = (): ReactElement => {
 
   return (
     <View style={styles.container}>
-      {!!token && <Button onPress={handleCopyToken} title='Copy idu token' />}
+      {!!idToken && <Button onPress={handleCopyIdToken} title='Copy id token' />}
+      {!!accessToken && <Button onPress={handleCopyAccessToken} title='Copy access token' />}
       <Text style={styles.header}> Auth0Sample - Login </Text>
       {user && <Text>You are logged in as {user.name}</Text>}
       {!user && <Text>You are not logged in</Text>}
