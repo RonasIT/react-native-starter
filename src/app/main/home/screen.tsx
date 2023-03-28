@@ -3,11 +3,14 @@ import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { isUndefined, omitBy } from 'lodash';
 import React, { ReactElement, useState } from 'react';
 import { apiPromiseService } from '@shared/api/promise-service';
+import { AppButton } from '@shared/button';
+import { useTranslation } from '@shared/i18n';
 import { ItemsList } from '@shared/items-list';
+import { appNavigationService } from '@shared/navigation';
 import { Pagination, PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { AppScreen } from '@shared/screen';
 import { User } from '@shared/user';
-import { commonStyle } from '@styles';
+import { commonStyle, createStyles } from '@styles';
 import { HomeListItem } from './shared/components';
 
 const searchUsers = async (params: { page?: number }): Promise<PaginationResponse<User>> => {
@@ -34,6 +37,7 @@ const searchUsers = async (params: { page?: number }): Promise<PaginationRespons
 };
 
 export function HomeScreen(): ReactElement {
+  const translate = useTranslation('MAIN.HOME');
   const [isRefetching, setIsRefetching] = useState<boolean>(false);
 
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage, refetch } = useInfiniteQuery({
@@ -53,6 +57,8 @@ export function HomeScreen(): ReactElement {
     }
   };
 
+  const navigateToUser = (): void => appNavigationService.navigate('User');
+
   return (
     <AppScreen testID='home-screen'>
       <ItemsList<User>
@@ -63,6 +69,12 @@ export function HomeScreen(): ReactElement {
         canLoadMore={hasNextPage}
         onEndReached={() => fetchNextPage()}
         onRefresh={refetchItems}
+        ListHeaderComponent={
+          <AppButton
+            label={translate('TEXT_CREATE_USER')}
+            onPress={navigateToUser}
+            style={style.createUserButton} />
+        }
         containerStyle={commonStyle.container}
         numColumns={1}
         testID='users-list'
@@ -70,3 +82,9 @@ export function HomeScreen(): ReactElement {
     </AppScreen>
   );
 }
+
+const style = createStyles({
+  createUserButton: {
+    marginBottom: '1rem'
+  }
+});

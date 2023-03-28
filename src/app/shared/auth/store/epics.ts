@@ -6,9 +6,8 @@ import { apiService } from '@shared/api/service';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
 import { Epics } from '@store/types';
-import { refreshTokenInterceptor, tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
+import { tokenInterceptor, unauthorizedInterceptor } from '../../api/interceptors';
 import { authService } from '../service';
-import { checkIsTokenExpired } from '../utils/check-is-token-expired';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
@@ -22,7 +21,7 @@ export const authEpics: Epics = {
 
       apiService.useInterceptors({
         request: [
-          [
+          /*[
             refreshTokenInterceptor({
               onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
               onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
@@ -30,7 +29,7 @@ export const authEpics: Epics = {
               checkIsTokenExpired,
               refreshToken: () => authService.refreshToken()
             })
-          ],
+          ],*/
           [tokenInterceptor(getToken)],
           [formDataInterceptor()]
         ],
@@ -45,7 +44,7 @@ export const authEpics: Epics = {
       });
       apiPromiseService.useInterceptors({
         request: [
-          [
+          /*[
             refreshTokenInterceptor({
               onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
               onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
@@ -53,7 +52,7 @@ export const authEpics: Epics = {
               checkIsTokenExpired,
               refreshToken: () => authService.refreshToken()
             })
-          ],
+          ],*/
           [tokenInterceptor(getToken)],
           [formDataInterceptor()]
         ],
