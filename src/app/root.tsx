@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -30,11 +31,15 @@ export default function Root(): ReactElement {
     return null;
   }
 
+  const queryClient = new QueryClient();
+
   return (
     <SafeAreaProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

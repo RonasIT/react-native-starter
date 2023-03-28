@@ -1,6 +1,7 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { formDataInterceptor } from '@shared/api/interceptors/form-data';
+import { apiPromiseService } from '@shared/api/promise-service';
 import { apiService } from '@shared/api/service';
 import { appStorageService } from '@shared/storage';
 import { AppActions } from '@store/actions';
@@ -20,6 +21,29 @@ export const authEpics: Epics = {
       const dispatch = useDispatch();
 
       apiService.useInterceptors({
+        request: [
+          [
+            refreshTokenInterceptor({
+              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
+              onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
+              getToken,
+              checkIsTokenExpired,
+              refreshToken: () => authService.refreshToken()
+            })
+          ],
+          [tokenInterceptor(getToken)],
+          [formDataInterceptor()]
+        ],
+        response: [
+          [
+            undefined,
+            unauthorizedInterceptor({
+              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }))
+            })
+          ]
+        ]
+      });
+      apiPromiseService.useInterceptors({
         request: [
           [
             refreshTokenInterceptor({
