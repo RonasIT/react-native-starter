@@ -1,48 +1,23 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RouteProp } from '@react-navigation/native';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { merge } from 'lodash';
 import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Keyboard } from 'react-native-ui-lib';
 import { useDispatch } from 'react-redux';
-import { apiPromiseService } from '@shared/api/promise-service';
+import { EntityPartial } from '@shared/base-entity/types';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
 import { AppText } from '@shared/text';
-import { User } from '@shared/user';
+import { User, userPromiseService } from '@shared/user';
 import { colors, commonStyle, createStyles } from '@styles';
 import { HomeNavigationParams } from '../navigation';
 import { UserForm } from './shared/forms';
 import { UserScreenActions } from './shared/store';
-
-const getUser = async (id: number): Promise<User> => {
-  const response = await apiPromiseService.get(`/users/${id}`);
-
-  return plainToInstance(User, (response as any).data as object);
-};
-
-const createUser = async (params: User): Promise<User> => {
-  const request = new User(params);
-  const response = await apiPromiseService.post('/users', instanceToPlain(request));
-
-  return plainToInstance(User, (response as any).data as object);
-};
-
-const updateUser = async (params: Partial<User>): Promise<Partial<User>> => {
-  const updatedEntity = new User(params);
-  const response = await apiPromiseService.put(`/users/${updatedEntity.id}`, instanceToPlain(updatedEntity));
-
-  return response ? plainToInstance(User, (response as any).data as object) : updatedEntity;
-};
-
-const deleteUser = async (id: number): Promise<void> => {
-  await apiPromiseService.delete(`/users/${id}`);
-};
 
 export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User'> }): ReactElement {
   const id = props.route.params?.id;
@@ -51,7 +26,7 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
 
   const { data: user } = useQuery({
     queryKey: ['user', id],
-    queryFn: () => getUser(id),
+    queryFn: () => userPromiseService.get(id),
     enabled: !!id,
     onSuccess: (data) => {
       queryClient.setQueryData(['user', id], (oldData) => merge(oldData, data));
@@ -64,7 +39,7 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
     isSuccess: isCreateSuccess,
     error
   } = useMutation<User, unknown, User>({
-    mutationFn: (user) => createUser(user),
+    mutationFn: (user) => userPromiseService.create(user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
     }
@@ -74,8 +49,8 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
     mutate: updateMutate,
     isLoading: isUpdating,
     isSuccess: isUpdateSuccess
-  } = useMutation<Partial<User>, unknown, Partial<User>>({
-    mutationFn: (user) => updateUser(user),
+  } = useMutation<EntityPartial<User>, unknown, EntityPartial<User>>({
+    mutationFn: (user) => userPromiseService.update(user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
       queryClient.invalidateQueries({ queryKey: ['user', id] });
@@ -87,7 +62,7 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
     isLoading: isDeleting,
     isSuccess: isDeleteSuccess
   } = useMutation<void, unknown, number>({
-    mutationFn: (id) => deleteUser(id),
+    mutationFn: (id) => userPromiseService.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
     }
