@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { RouteProp } from '@react-navigation/native';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
+import { merge } from 'lodash';
 import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
@@ -51,7 +52,10 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
   const { data: user } = useQuery({
     queryKey: ['user', id],
     queryFn: () => getUser(id),
-    enabled: !!id
+    enabled: !!id,
+    onSuccess: (data) => {
+      queryClient.setQueryData(['user', id], (oldData) => merge(oldData, data));
+    }
   });
 
   const {

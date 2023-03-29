@@ -1,6 +1,6 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
-import { isUndefined, omitBy } from 'lodash';
+import { isUndefined, last, omitBy } from 'lodash';
 import React, { ReactElement, useState } from 'react';
 import { apiPromiseService } from '@shared/api/promise-service';
 import { AppButton } from '@shared/button';
@@ -40,10 +40,17 @@ export function HomeScreen(): ReactElement {
   const translate = useTranslation('MAIN.HOME');
   const [isRefetching, setIsRefetching] = useState<boolean>(false);
 
+  const queryClient = useQueryClient();
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage, refetch } = useInfiniteQuery({
     queryKey: ['users'],
     queryFn: ({ pageParam = 1 }) => searchUsers({ page: pageParam }),
-    getNextPageParam: (lastPage) => lastPage.currentPage + 1
+    getNextPageParam: (lastPage) => lastPage.currentPage + 1,
+    onSuccess: (data) => {
+      const lastPage = last(data.pages);
+      for (const item of lastPage.data) {
+        queryClient.setQueryData(['user', item.id], item);
+      }
+    }
   });
 
   const items = data?.pages.flatMap((response) => response.data);
