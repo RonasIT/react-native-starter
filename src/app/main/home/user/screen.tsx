@@ -1,13 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RouteProp } from '@react-navigation/native';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { merge } from 'lodash';
 import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Keyboard } from 'react-native-ui-lib';
 import { useDispatch } from 'react-redux';
-import { EntityPartial } from '@shared/base-entity/types';
+import { useCreate, useGet, useUpdate, useDelete } from '@shared/base-entity/hooks';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
@@ -22,15 +20,12 @@ import { UserScreenActions } from './shared/store';
 export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User'> }): ReactElement {
   const id = props.route.params?.id;
   const translate = useTranslation('MAIN.USER');
-  const queryClient = useQueryClient();
 
-  const { data: user } = useQuery({
-    queryKey: ['user', id],
-    queryFn: () => userPromiseService.get(id),
-    enabled: !!id,
-    onSuccess: (data) => {
-      queryClient.setQueryData(['user', id], (oldData) => merge(oldData, data));
-    }
+  const { data: user } = useGet<User>({
+    entityName: 'user',
+    id,
+    entityService: userPromiseService,
+    enabled: !!id
   });
 
   const {
@@ -38,35 +33,19 @@ export function UserScreen(props: { route: RouteProp<HomeNavigationParams, 'User
     isLoading: isCreating,
     isSuccess: isCreateSuccess,
     error
-  } = useMutation<User, unknown, User>({
-    mutationFn: (user) => userPromiseService.create(user),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    }
-  });
+  } = useCreate<User>({ entityName: 'user', entityService: userPromiseService });
 
   const {
     mutate: updateMutate,
     isLoading: isUpdating,
     isSuccess: isUpdateSuccess
-  } = useMutation<EntityPartial<User>, unknown, EntityPartial<User>>({
-    mutationFn: (user) => userPromiseService.update(user),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-      queryClient.invalidateQueries({ queryKey: ['user', id] });
-    }
-  });
+  } = useUpdate<User>({ entityName: 'user', entityService: userPromiseService });
 
   const {
     mutate: deleteMutate,
     isLoading: isDeleting,
     isSuccess: isDeleteSuccess
-  } = useMutation<void, unknown, number>({
-    mutationFn: (id) => userPromiseService.delete(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    }
-  });
+  } = useDelete<User>({ entityName: 'user', entityService: userPromiseService });
 
   const form = useForm({
     defaultValues: new UserForm(),
