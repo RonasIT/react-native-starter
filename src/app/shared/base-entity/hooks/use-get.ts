@@ -27,7 +27,7 @@ export function useGet<TEntity extends Entity = Entity, TEntityRequest extends E
     queryKey: [`${entityName}Get`, id],
     queryFn: () => entityService.get(id, entityRequest),
     onSuccess: (newData) => {
-      queryClient.setQueryData([`${entityName}Get`, id], (oldData) => merge(oldData, newData));
+      queryClient.setQueriesData([`${entityName}Get`, id], (oldData) => merge(oldData, newData));
     },
     ...restParams
   });

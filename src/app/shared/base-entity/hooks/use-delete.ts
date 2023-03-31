@@ -28,11 +28,12 @@ export function useDelete<TEntity extends Entity = Entity>({
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: [`${entityName}Search`] });
 
-      const searchInfiniteData = queryClient.getQueryData<InfiniteData<PaginationResponse<TEntity>>>([`${entityName}SearchInfinite`]);
-      if (searchInfiniteData) {
-        queryClient.setQueryData<InfiniteData<PaginationResponse<TEntity>>>([`${entityName}SearchInfinite`], {
-          ...searchInfiniteData,
-          pages: searchInfiniteData.pages.map((response) => response.data.find((item) => item.id === id)
+      const searchInfiniteQueries = queryClient.getQueriesData<InfiniteData<PaginationResponse<TEntity>>>([`${entityName}SearchInfinite`]);
+      for (const query of searchInfiniteQueries) {
+        const [queryKey, queryData] = query;
+        queryClient.setQueryData<InfiniteData<PaginationResponse<TEntity>>>(queryKey, {
+          ...queryData,
+          pages: queryData.pages.map((response) => response.data.find((item) => item.id === id)
             ? {
               ...response,
               data: response.data.filter((item) => item.id !== id)

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Keyboard } from 'react-native-ui-lib';
 import { useDispatch } from 'react-redux';
-import { useCreate, useGet, useUpdate, useDelete } from '@shared/base-entity/hooks';
+import { useCreate, useDelete, useGet, useUpdate } from '@shared/base-entity/hooks';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';

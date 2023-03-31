@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { Entity, EntityName } from '@shared/base-entity/config';
-import { EntityPromiseService } from '@shared/base-entity/promise-service';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
+import { Entity, EntityName } from '../config';
+import { EntityPromiseService } from '../promise-service';
 
 interface UseSearchParams<
   TEntity extends Entity = Entity,
@@ -25,7 +25,7 @@ export function useSearch<
   const queryClient = useQueryClient();
 
   return useQuery<PaginationResponse<TEntity>, AxiosError>({
-    queryKey: [`${entityName}Search`],
+    queryKey: [`${entityName}Search`, searchRequest],
     queryFn: () => entityService.search(searchRequest),
     onSuccess: (response) => {
       for (const item of response.data) {

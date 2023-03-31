@@ -1,15 +1,3 @@
-/* const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage, refetch } = useInfiniteQuery({
-    queryKey: ['users'],
-    queryFn: ({ pageParam = 1 }) => userPromiseService.search({ page: pageParam }),
-    getNextPageParam: (lastPage) => lastPage.currentPage + 1,
-    onSuccess: (data) => {
-      const lastPage = last(data.pages);
-      for (const item of lastPage.data) {
-        queryClient.setQueryData(['user', item.id], item);
-      }
-    }
-  });*/
-
 import {
   useInfiniteQuery,
   UseInfiniteQueryOptions,
@@ -17,7 +5,7 @@ import {
   useQueryClient
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { last } from 'lodash';
+import { last, omit } from 'lodash';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
 import { EntityPromiseService } from '../promise-service';
@@ -46,10 +34,10 @@ export function useSearchInfinite<
   const queryClient = useQueryClient();
 
   return useInfiniteQuery<PaginationResponse<TEntity>, AxiosError>({
-    queryKey: [`${entityName}SearchInfinite`],
+    queryKey: [`${entityName}SearchInfinite`, omit(searchRequest, 'page')],
     queryFn: ({ pageParam = 1 }) => entityService.search({
-      page: pageParam,
-      ...searchRequest
+      ...searchRequest,
+      page: pageParam
     }),
     getNextPageParam: (lastResponse) => lastResponse.currentPage + 1,
     getPreviousPageParam: (lastResponse) => lastResponse.currentPage - 1,
