@@ -1,5 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useSearchInfinite } from '@shared/base-entity/hooks';
 import { AppButton } from '@shared/button';
 import { useTranslation } from '@shared/i18n';
@@ -13,16 +12,11 @@ import { HomeListItem } from './shared/components';
 export function HomeScreen(): ReactElement {
   const translate = useTranslation('MAIN.HOME');
   const [isRefetching, setIsRefetching] = useState<boolean>(false);
-  const queryClient = useQueryClient();
 
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage, refetch } = useSearchInfinite<User>({
     entityName: 'user',
     entityService: userPromiseService
   });
-
-  useEffect(() => {
-    console.log(queryClient.getQueryCache());
-  }, [data]);
 
   const items = data?.pages.flatMap((response) => response.data);
 
