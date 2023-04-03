@@ -24,7 +24,6 @@ const defaultExpoConfig: ExpoConfig = {
   slug: 'react-native-starter-dev',
   scheme: 'rnstarterdev',
   owner: 'ronas_it',
-  entryPoint: 'index.js',
   version: '0.0.1',
   runtimeVersion: {
     policy: 'sdkVersion'
