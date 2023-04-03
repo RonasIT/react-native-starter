@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
 import { EntityPromiseService } from '../promise-service';
+import { queriesKeys } from '../queries-keys';
 
 interface UseSearchParams<
   TEntity extends Entity = Entity,
@@ -25,11 +26,11 @@ export function useSearch<
   const queryClient = useQueryClient();
 
   return useQuery<PaginationResponse<TEntity>, AxiosError>({
-    queryKey: [`${entityName}Search`, searchRequest],
+    ...queriesKeys[entityName].search(searchRequest),
     queryFn: () => entityService.search(searchRequest),
     onSuccess: (response) => {
       for (const item of response.data) {
-        queryClient.setQueryData([`${entityName}Get`, item.id], item);
+        queryClient.setQueryData(queriesKeys[entityName].get(item.id).queryKey, item);
       }
     },
     ...restParams

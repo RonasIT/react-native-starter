@@ -7,10 +7,12 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ClassConstructor } from 'class-transformer';
+import { compact } from 'lodash';
 import { PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
 import { EntityRequest } from '../models';
 import { EntityPromiseService } from '../promise-service';
+import { queriesKeys } from '../queries-keys';
 
 interface UseCreateParams<TEntity extends Entity = Entity, TEntityRequest extends EntityRequest = EntityRequest>
   extends Omit<UseMutationOptions<TEntity, AxiosError, TEntity>, 'mutationFn'> {
@@ -29,17 +31,20 @@ export function useCreate<TEntity extends Entity = Entity, TEntityRequest extend
   return useMutation<TEntity, AxiosError, TEntity>({
     mutationFn: (params) => entityService.create(params),
     onSuccess: async (createdEntity) => {
-      queryClient.invalidateQueries({ queryKey: [`${entityName}Search`] });
+      queryClient.invalidateQueries(compact(queriesKeys[entityName].search().queryKey));
 
-      const searchInfiniteQueries = queryClient.getQueriesData<InfiniteData<PaginationResponse<TEntity>>>([`${entityName}SearchInfinite`]);
+      const searchInfiniteQueries = queryClient.getQueriesData<InfiniteData<PaginationResponse<TEntity>>>(
+        compact(queriesKeys[entityName].searchInfinite().queryKey)
+      );
+
       for (const query of searchInfiniteQueries) {
         const [queryKey, queryData] = query;
 
-        const originalArgs = queryKey[1];
+        const originalArgs = queryKey[2];
         const entityRequest = new entityGetRequestConstructor(originalArgs);
 
         const fullEntity = await queryClient.fetchQuery<TEntity>(
-          [`${entityName}Get`, createdEntity.id, entityRequest],
+          queriesKeys[entityName].get(createdEntity.id).queryKey,
           {
             queryFn: () => entityService.get(createdEntity.id, entityRequest)
           }

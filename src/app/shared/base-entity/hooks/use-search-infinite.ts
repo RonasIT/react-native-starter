@@ -9,6 +9,7 @@ import { last, omit } from 'lodash';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
 import { EntityPromiseService } from '../promise-service';
+import { queriesKeys } from '../queries-keys';
 
 interface UseSearchInfiniteParams<
   TEntity extends Entity = Entity,
@@ -34,7 +35,7 @@ export function useSearchInfinite<
   const queryClient = useQueryClient();
 
   return useInfiniteQuery<PaginationResponse<TEntity>, AxiosError>({
-    queryKey: [`${entityName}SearchInfinite`, omit(searchRequest, 'page')],
+    ...queriesKeys[entityName].searchInfinite(omit(searchRequest, 'page')),
     queryFn: ({ pageParam = 1 }) => entityService.search({
       ...searchRequest,
       page: pageParam
@@ -44,7 +45,7 @@ export function useSearchInfinite<
     onSuccess: (data) => {
       const lastResponse = last(data.pages);
       for (const item of lastResponse.data) {
-        queryClient.setQueryData([`${entityName}Get`, item.id], item);
+        queryClient.setQueryData(queriesKeys[entityName].get(item.id).queryKey, item);
       }
     },
     ...restParams
