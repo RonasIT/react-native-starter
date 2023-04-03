@@ -29,6 +29,10 @@ export function HomeScreen(): ReactElement {
     }
   };
 
+  const loadMore = (): void => {
+    fetchNextPage();
+  };
+
   const navigateToUser = (): void => appNavigationService.navigate('User');
 
   return (
@@ -39,7 +43,7 @@ export function HomeScreen(): ReactElement {
         isLoading={isLoading || isFetchingNextPage}
         isRefreshing={isRefetching}
         canLoadMore={hasNextPage}
-        onEndReached={() => fetchNextPage()}
+        onEndReached={loadMore}
         onRefresh={refetchItems}
         ListHeaderComponent={
           <AppButton

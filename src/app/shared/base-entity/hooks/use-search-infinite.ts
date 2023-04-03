@@ -5,7 +5,7 @@ import {
   useQueryClient
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { last, omit } from 'lodash';
+import { first, last, omit } from 'lodash';
 import { PaginationRequest, PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
 import { EntityPromiseService } from '../promise-service';
@@ -40,8 +40,8 @@ export function useSearchInfinite<
       ...searchRequest,
       page: pageParam
     }),
-    getNextPageParam: (lastResponse) => lastResponse.currentPage + 1,
-    getPreviousPageParam: (lastResponse) => lastResponse.currentPage - 1,
+    getNextPageParam: (_, responses) => last(responses).currentPage + 1,
+    getPreviousPageParam: (_, responses) => first(responses).currentPage - 1,
     onSuccess: (data) => {
       const lastResponse = last(data.pages);
       for (const item of lastResponse.data) {
