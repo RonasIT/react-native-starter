@@ -415,6 +415,7 @@ exports[`Home screen should match the snapshot 1`] = `
                             <RCTRefreshControl />
                             <View>
                               <View
+                                onFocusCapture={[Function]}
                                 onLayout={[Function]}
                                 style={null}
                               >
@@ -501,6 +502,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                 </View>
                               </View>
                               <View
+                                onFocusCapture={[Function]}
                                 onLayout={[Function]}
                                 style={null}
                               >
@@ -586,13 +588,6 @@ exports[`Home screen should match the snapshot 1`] = `
                                   </Text>
                                 </View>
                               </View>
-                              <View
-                                style={
-                                  {
-                                    "height": 0,
-                                  }
-                                }
-                              />
                             </View>
                           </RCTScrollView>
                         </View>
