@@ -33,6 +33,7 @@ export function useUpdate<TEntity extends Entity = Entity, TEntityRequest extend
     mutationFn: (params) => entityService.update(params),
     onSuccess: async (_, params) => {
       // TODO: Fix typings
+      // TODO: Ability to invalidate keys for other endpoints
       queryClient.invalidateQueries(compact(queriesKeys[entityName].search().queryKey));
 
       const searchInfiniteQueries = queryClient.getQueriesData<InfiniteData<PaginationResponse<TEntity>>>(

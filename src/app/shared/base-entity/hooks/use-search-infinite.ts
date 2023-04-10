@@ -16,6 +16,7 @@ interface UseSearchInfiniteParams<
   TSearchRequest extends Record<string, any> = PaginationRequest
 > extends Omit<
     UseInfiniteQueryOptions<PaginationResponse<TEntity>, AxiosError>,
+    // TODO: Allow customizing 'queryKey' to distinct cache for queries with different params
     'queryKey' | 'queryFn' | 'getNextPageParam' | 'getPreviousPageParam'
   > {
   entityName: EntityName;
