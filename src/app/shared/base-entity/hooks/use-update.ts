@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ClassConstructor } from 'class-transformer';
-import { compact } from 'lodash';
+import { compact, last } from 'lodash';
 import { EntityRequest } from '@shared/base-entity/models';
 import { PaginationResponse } from '@shared/pagination';
 import { Entity, EntityName } from '../config';
@@ -31,7 +31,8 @@ export function useUpdate<TEntity extends Entity = Entity, TEntityRequest extend
 
   return useMutation<EntityPartial<TEntity>, AxiosError, EntityPartial<TEntity>>({
     mutationFn: (params) => entityService.update(params),
-    onSuccess: async (updatedEntity, params) => {
+    onSuccess: async (_, params) => {
+      // TODO: Fix typings
       queryClient.invalidateQueries(compact(queriesKeys[entityName].search().queryKey));
 
       const searchInfiniteQueries = queryClient.getQueriesData<InfiniteData<PaginationResponse<TEntity>>>(
@@ -41,7 +42,8 @@ export function useUpdate<TEntity extends Entity = Entity, TEntityRequest extend
       for (const query of searchInfiniteQueries) {
         const [queryKey, queryData] = query;
 
-        const originalArgs = queryKey[2];
+        // TODO: Test other params combinations
+        const originalArgs = last(queryKey);
         const entityRequest = new entityGetRequestConstructor(originalArgs);
 
         const fullEntity = await queryClient.fetchQuery<TEntity>(queriesKeys[entityName].get(params.id).queryKey, {

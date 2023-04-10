@@ -1,3 +1,4 @@
+import { EntityRequest } from '@shared/base-entity/models';
 import { EntityPromiseService } from '@shared/base-entity/promise-service';
 import { Pagination, PaginationResponse } from '@shared/pagination';
 import { User } from './models';
@@ -35,8 +36,8 @@ class UserPromiseService extends EntityPromiseService<User> {
     return { data, ...pagination };
   }
 
-  public async get(id: number): Promise<User> {
-    const response = await super.get(id);
+  public async get(id: number, params?: EntityRequest): Promise<User> {
+    const response = await super.get(id, params);
 
     return (response as any as UserResponse).data;
   }
