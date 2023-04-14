@@ -8,11 +8,11 @@ import { Image, Keyboard } from 'react-native-ui-lib';
 import { assets } from '@assets/index';
 import { AppVersion } from '@shared/app-version';
 import { AppButton } from '@shared/button';
-import { useTranslation } from '@shared/i18n';
 import { InputFormGroup } from '@shared/input-form-group';
 import { AppScreen } from '@shared/screen';
 import { AppText } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
+import { useTranslation } from '../../../libs/shared/utils/i18n';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
 

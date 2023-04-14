@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { AppActivityIndicator } from '@shared/activity-indicator';
 import { AppButton } from '@shared/button';
-import { useTranslation } from '@shared/i18n';
 import { AppScreen } from '@shared/screen';
 import { AppText } from '@shared/text';
 import { commonStyle, createStyles } from '@styles';
+import { useTranslation } from '../../../libs/shared/utils/i18n';
 import { profileScreenFacade } from './facade';
 
 export function ProfileScreen(): ReactElement {

@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { ReactElement } from 'react';
-import { useTranslation } from '@shared/i18n';
+import { useTranslation } from '../../libs/shared/utils/i18n';
 import { LoginScreen } from './login/screen';
 
 export type AccountAccessNavigationParams = {

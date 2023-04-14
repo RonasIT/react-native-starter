@@ -1,7 +1,7 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { immerable } from 'immer';
 import { DateTime } from 'luxon';
-import { TransformDate } from '@shared/class-transformer';
+import { TransformDate } from '../../../../libs/shared/utils/class-transformer';
 
 export abstract class BaseEntity<TID = string | number> {
   public [immerable] = true;

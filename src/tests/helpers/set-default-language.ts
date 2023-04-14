@@ -1,4 +1,4 @@
-import { i18n } from '@shared/i18n/i18n';
+import { i18n } from '../../libs/shared/utils/i18n/i18n';
 
 export function setDefaultLanguage(): object {
   const defaultLanguage = 'en';

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useTranslation } from '@shared/i18n';
+import { useTranslation } from '../../../../../libs/shared/utils/i18n';
 
 export class LoginForm {
   public email: string;
