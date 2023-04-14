@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { AppActivityIndicator } from '@shared/activity-indicator';
-import { AppButton } from '@shared/button';
-import { AppScreen } from '@shared/screen';
-import { AppText } from '@shared/text';
-import { commonStyle, createStyles } from '@styles';
+import { commonStyle, createStyles } from '../../../libs/shared/ui/styles';
+import { AppActivityIndicator } from '../../../libs/shared/ui/ui-kit/activity-indicator';
+import { AppButton } from '../../../libs/shared/ui/ui-kit/button';
+import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
+import { AppText } from '../../../libs/shared/ui/ui-kit/text';
 import { useTranslation } from '../../../libs/shared/utils/i18n';
 import { profileScreenFacade } from './facade';
 

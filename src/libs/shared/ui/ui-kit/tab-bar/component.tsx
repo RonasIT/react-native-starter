@@ -1,8 +1,8 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { AppText } from '@shared/text';
-import { colors, createStyles } from '@styles';
+import { colors, createStyles } from '../../styles';
+import { AppText } from '../text';
 
 export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps): ReactElement {
   const tabBarItems = useMemo(

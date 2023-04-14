@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import React, { ReactElement } from 'react';
 import { Platform, TextStyle } from 'react-native';
-import { AppText } from '@shared/text';
-import { createStyles, fontSizes } from '@styles';
+import { createStyles, fontSizes } from '../../styles';
+import { AppText } from '../text';
 
 export function AppVersion(props: { style?: TextStyle }): ReactElement {
   const versionName = `v${Constants.expoConfig.version} (${Platform.select({

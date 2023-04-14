@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { AppText } from '@shared/text';
 import { User } from '@shared/user';
-import { colors, createStyles } from '@styles';
+import { colors, createStyles } from '../../../../../../libs/shared/ui/styles';
+import { AppText } from '../../../../../../libs/shared/ui/ui-kit/text';
 
 export function HomeListItem({ item }: { item: User }): ReactElement {
   return (

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { ImageStyle } from 'react-native';
-import { Icons } from '@assets/icons';
+import { Icons } from '../icons';
 
 interface Props {
   name: keyof typeof Icons;
