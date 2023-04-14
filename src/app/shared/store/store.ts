@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createEpicMiddleware } from 'redux-observable';
+import reactotron from '../../reactotron-config';
 import { rootEpic } from './epics';
 import { rootReducer } from './reducer';
 import { storeRef } from './store-ref';
@@ -14,7 +15,8 @@ export function createStore(): typeof store {
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware),
+    enhancers: [reactotron.createEnhancer()]
   });
 
   epicMiddleware.run(rootEpic);

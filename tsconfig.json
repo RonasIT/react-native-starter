@@ -9,6 +9,7 @@
     ],
     "target": "ES2015",
     "moduleResolution": "node",
+    "module": "ES2020",
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,

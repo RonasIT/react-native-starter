@@ -7,6 +7,9 @@ import * as Sentry from 'sentry-expo';
 import { createStore } from '@store/store';
 import { App } from './app';
 import { appConfig, appEnv } from './constants';
+if (__DEV__) {
+  import('./reactotron-config');
+}
 
 const store = createStore();
 
