@@ -1,5 +1,5 @@
-import { BaseListedEntitySelectors } from '@shared/base-listed-entity-store/store';
-import { AppState } from '@store';
+import { BaseListedEntitySelectors } from '../../../../../libs/shared/data-access/base-listed-entity-store';
+import { AppState } from '../../../../../libs/shared/data-access/store';
 import { HomeScreenState } from './reducer';
 
 const selectFeature = (state: AppState): HomeScreenState => state.homeScreen;

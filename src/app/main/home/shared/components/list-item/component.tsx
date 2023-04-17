@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { User } from '@shared/user';
+import { User } from '@shared/../../../../../../libs/shared/data-access/user';
 import { colors, createStyles } from '../../../../../../libs/shared/ui/styles';
 import { AppText } from '../../../../../../libs/shared/ui/ui-kit/text';
 

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { AuthActions } from '@shared/auth';
-import { ProfileSelectors } from '@shared/profile';
-import { User } from '@shared/user';
-import { storeRef } from '@store/store-ref';
+import { AuthActions } from '../../../libs/shared/data-access/auth';
+import { ProfileSelectors } from '../../../libs/shared/data-access/profile';
+import { storeRef } from '../../../libs/shared/data-access/store/store-ref';
+import { User } from '../../../libs/shared/data-access/user';
 
 class ProfileScreenFacade {
   public get profile(): User {

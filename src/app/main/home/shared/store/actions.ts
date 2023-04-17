@@ -1,4 +1,4 @@
-import { BaseListedEntityActions } from '@shared/base-listed-entity-store/store/actions';
+import { BaseListedEntityActions } from '../../../../../libs/shared/data-access/base-listed-entity-store';
 import { HomeScreenState } from './reducer';
 
 class HomeScreenActions extends BaseListedEntityActions<HomeScreenState> {

@@ -3,8 +3,8 @@ import {
   baseEntityStoreReducer,
   BaseListedEntityState,
   baseListedInitialState
-} from '@shared/base-listed-entity-store/store';
-import { User } from '@shared/user';
+} from '../../../../../libs/shared/data-access/base-listed-entity-store';
+import { User } from '../../../../../libs/shared/data-access/user';
 import { homeScreenActions } from './actions';
 
 export type HomeScreenState = BaseListedEntityState<User>;

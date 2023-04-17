@@ -2,11 +2,11 @@ import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-na
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@shared/api';
-import { authService } from '@shared/auth';
 import { appNavigationService } from '@shared/navigation';
 import { userPaginationResponse, validCredentials } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
+import { apiService } from '../../../libs/shared/data-access/api';
+import { authService } from '../../../libs/shared/data-access/auth';
 import { LoginScreen } from './screen';
 
 describe('Login screen', () => {

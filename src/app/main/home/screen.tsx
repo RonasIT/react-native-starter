@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
 import { homeScreenFacade } from '@app/main/home/facade';
-import { User } from '@shared/user';
+import { User } from '@shared/../../../libs/shared/data-access/user';
+import { ItemsList } from '../../../libs/shared/features/items-list';
 import { commonStyle } from '../../../libs/shared/ui/styles';
-import { ItemsList } from '../../../libs/shared/ui/ui-kit/items-list';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
 import { HomeListItem } from './shared/components';
 
