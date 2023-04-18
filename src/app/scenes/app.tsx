@@ -4,13 +4,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { AccountAccessNavigation } from '@app/account-access/navigation';
-import { useLanguage } from '../libs/shared/features/i18n';
-import { authenticatedScreenListeners, navigationRef, navigationTheme } from '../libs/shared/features/navigation';
-import { colors } from '../libs/shared/ui/styles';
-import { AppActivityIndicator } from '../libs/shared/ui/ui-kit/activity-indicator';
+import { AccountAccessNavigation } from '@app/scenes/account-access/navigation';
+import { useLanguage } from '../../libs/shared/features/i18n';
+import { authenticatedScreenListeners, navigationRef, navigationTheme } from '../../libs/shared/features/navigation';
+import { colors } from '../../libs/shared/ui/styles';
+import { AppActivityIndicator } from '../../libs/shared/ui/ui-kit/activity-indicator';
+import { appLinking } from '../linking';
 import { appFacade } from './facade';
-import { appLinking } from './linking';
 import { MainNavigation } from './main/navigation';
 
 const Stack = createStackNavigator();
@@ -18,9 +18,9 @@ const setLanguage = useLanguage(
   {
     en: {
       ...require('@assets/i18n/en.json'),
-      ...require('../libs/auth/assets/i18n/en.json'),
-      ...require('../libs/profile/assets/i18n/en.json'),
-      ...require('../libs/shared/assets/i18n/en.json')
+      ...require('../../libs/auth/assets/i18n/en.json'),
+      ...require('../../libs/profile/assets/i18n/en.json'),
+      ...require('../../libs/shared/assets/i18n/en.json')
     }
   },
   'en'

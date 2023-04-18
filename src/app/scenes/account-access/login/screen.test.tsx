@@ -4,9 +4,9 @@ import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { userPaginationResponse, validCredentials } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
-import { apiService } from '../../../libs/shared/data-access/api';
-import { authService } from '../../../libs/shared/data-access/auth';
-import { appNavigationService } from '../../../libs/shared/features/navigation';
+import { apiService } from '../../../../libs/shared/data-access/api';
+import { authService } from '../../../../libs/shared/data-access/auth';
+import { appNavigationService } from '../../../../libs/shared/features/navigation';
 import { LoginScreen } from './screen';
 
 describe('Login screen', () => {

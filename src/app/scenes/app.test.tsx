@@ -4,7 +4,7 @@ import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { TestRootComponent } from '@tests/helpers';
-import { apiService } from '../libs/shared/data-access/api';
+import { apiService } from '../../libs/shared/data-access/api';
 import { App } from './app';
 
 describe('App', () => {

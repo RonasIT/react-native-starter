@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { AuthSelectors } from '../libs/shared/data-access/auth';
-import { AppActions } from '../libs/shared/data-access/store';
-import { storeRef } from '../libs/shared/data-access/store/store-ref';
+import { AuthSelectors } from '../../libs/shared/data-access/auth';
+import { AppActions } from '../../libs/shared/data-access/store';
+import { storeRef } from '../../libs/shared/data-access/store/store-ref';
 
 class AppFacade {
   public get isAuthenticated(): boolean {

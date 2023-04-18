@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 import { userService } from '@shared/../../../libs/shared/data-access/user';
 import { userPaginationResponse } from '@tests/fixtures';
 import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
-import { apiService } from '../../../libs/shared/data-access/api';
+import { apiService } from '../../../../libs/shared/data-access/api';
 import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
