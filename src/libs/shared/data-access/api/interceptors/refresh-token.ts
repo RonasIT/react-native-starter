@@ -1,7 +1,7 @@
 import { AxiosError, AxiosRequestConfig } from 'axios';
 import { lastValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { appConfig } from '@app/constants';
+import { apiConfig } from '../config';
 import { ApiResponseStatus } from '../enums';
 
 export const refreshTokenInterceptor =
@@ -14,9 +14,9 @@ export const refreshTokenInterceptor =
   }) => (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
     const accessToken = options.getToken();
     const isTokenExpired = options.checkIsTokenExpired(accessToken);
-    const shouldRefreshToken = isTokenExpired && !!accessToken && !appConfig.api.publicEndpoints.includes(config.url);
+    const shouldRefreshToken = isTokenExpired && !!accessToken && !apiConfig.publicEndpoints.includes(config.url);
 
-    if (shouldRefreshToken && !config.url.includes(appConfig.api.refreshTokenEndpoint)) {
+    if (shouldRefreshToken && !config.url.includes(apiConfig.refreshTokenEndpoint)) {
       return lastValueFrom(
         options.refreshToken().pipe(
           map((token) => {

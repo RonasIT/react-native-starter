@@ -4,7 +4,7 @@ import { AxiosObservable } from 'axios-observable/dist/axios-observable.interfac
 import { Platform } from 'react-native';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { appConfig } from '@app/constants';
+import { apiConfig } from './config';
 import { ApiCall } from './types';
 
 export class ApiService {
@@ -16,7 +16,7 @@ export class ApiService {
 
   private readonly httpClient: Axios;
 
-  constructor(baseURL: string = appConfig.api.root, baseConfig?: AxiosRequestConfig) {
+  constructor(baseURL: string = apiConfig.root, baseConfig?: AxiosRequestConfig) {
     const config: AxiosRequestConfig = {
       baseURL,
       headers: { 'user-platform': Platform.OS },

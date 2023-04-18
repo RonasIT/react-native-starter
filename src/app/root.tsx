@@ -3,21 +3,16 @@ import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import * as Sentry from 'sentry-expo';
 import { createStore } from '../libs/shared/data-access/store/store';
 import { App } from './app';
-import { appConfig, appEnv } from './constants';
 
 const store = createStore();
 
 export default function Root(): ReactElement {
-  if (appConfig.sentry.enabled) {
-    Sentry.init({
-      environment: appEnv,
-      dsn: appConfig.sentry.dsn,
-      enableInExpoDevelopment: false
-    });
-  }
+  // TODO: Uncomment this to use Sentry or remove
+  // if (sentryConfig.enabled) {
+  //   Sentry.init(sentryConfig);
+  // }
 
   const [areFontsReady] = useFonts({
     SFProDisplayBold: require('@assets/fonts/SF-Pro-Display-Bold.otf'),

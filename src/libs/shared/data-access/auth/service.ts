@@ -1,8 +1,7 @@
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
-import { appConfig } from '@app/constants';
-import { apiService } from '../api';
+import { apiService, apiConfig } from '../api';
 import { profileService } from '../profile';
 import { AuthCredentials, AuthResponse } from './models';
 
@@ -29,7 +28,7 @@ class AuthService {
 
   public refreshToken(): Observable<string> {
     if (!this.tokenRefresh$) {
-      this.tokenRefresh$ = apiService.get(appConfig.api.refreshTokenEndpoint, {}, { fullResponse: true }).pipe(
+      this.tokenRefresh$ = apiService.get(apiConfig.refreshTokenEndpoint, {}, { fullResponse: true }).pipe(
         share(),
         map((response) => {
           const authorizationHeader: string | null = response.headers?.authorization;

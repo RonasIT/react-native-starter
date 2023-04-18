@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
-import { appConfig } from '@app/constants';
+import { apiConfig } from '../config';
 import { ApiResponseStatus } from '../enums';
 
 export const unauthorizedInterceptor =
   (options: { onError: (error?: AxiosError) => void }) => (error: any): Promise<never> => {
-    const { publicEndpoints } = appConfig.api;
+    const { publicEndpoints } = apiConfig;
 
     if (
       error.response?.status === ApiResponseStatus.UNAUTHORIZED &&
