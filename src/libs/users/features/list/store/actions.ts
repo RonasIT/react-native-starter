@@ -1,4 +1,4 @@
-import { BaseListedEntityActions } from '../../../shared/data-access/base-listed-entity-store';
+import { BaseListedEntityActions } from '../../../../shared/data-access/base-listed-entity-store';
 import { UsersListState } from './reducer';
 
 class UsersListActions extends BaseListedEntityActions<UsersListState> {

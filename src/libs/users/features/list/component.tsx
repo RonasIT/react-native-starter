@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
-import { User } from '../../shared/data-access/user';
-import { ItemsList } from '../../shared/features/items-list';
-import { commonStyle } from '../../shared/ui/styles';
+import { User } from '../../../shared/data-access/user';
+import { ItemsList } from '../../../shared/features/items-list';
+import { commonStyle } from '../../../shared/ui/styles';
 import { UsersListItem } from '../list-item';
 import { usersListFacade } from './facade';
 

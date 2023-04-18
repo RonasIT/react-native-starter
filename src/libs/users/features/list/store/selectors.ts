@@ -1,5 +1,5 @@
-import { BaseListedEntitySelectors } from '../../../shared/data-access/base-listed-entity-store';
-import { AppState } from '../../../shared/data-access/store';
+import { BaseListedEntitySelectors } from '../../../../shared/data-access/base-listed-entity-store';
+import { AppState } from '../../../../shared/data-access/store';
 import { UsersListState } from './reducer';
 
 const selectFeature = (state: AppState): UsersListState => state.usersList;
