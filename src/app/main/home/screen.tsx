@@ -1,34 +1,11 @@
-import React, { ReactElement, useEffect } from 'react';
-import { homeScreenFacade } from '@app/main/home/facade';
-import { User } from '@shared/../../../libs/shared/data-access/user';
-import { ItemsList } from '../../../libs/shared/features/items-list';
-import { commonStyle } from '../../../libs/shared/ui/styles';
+import React, { ReactElement } from 'react';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
-import { HomeListItem } from './shared/components';
+import { UsersList } from '../../../libs/users/list';
 
 export function HomeScreen(): ReactElement {
-  const { items, isLoading, isRefreshing, pagination } = homeScreenFacade;
-  const refreshItems = (): void => homeScreenFacade.refreshItems();
-  const loadMore = (): void => homeScreenFacade.loadItems(pagination.currentPage + 1);
-
-  useEffect(() => {
-    homeScreenFacade.loadItems();
-  }, []);
-
   return (
     <AppScreen testID='home-screen'>
-      <ItemsList<User>
-        data={items}
-        renderItem={HomeListItem}
-        isLoading={isLoading}
-        isRefreshing={isRefreshing}
-        canLoadMore={pagination.currentPage < pagination.lastPage}
-        onEndReached={loadMore}
-        onRefresh={refreshItems}
-        containerStyle={commonStyle.container}
-        numColumns={1}
-        testID='users-list'
-      />
+      <UsersList />
     </AppScreen>
   );
 }
