@@ -4,7 +4,7 @@ import * as Permissions from 'expo-permissions';
 import { Platform } from 'react-native';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { apiService } from '../../../libs/shared/data-access/api';
+import { apiService } from '../../data-access/api';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { useTranslation } from '../../../utils/i18n';
+import { useTranslation } from '../../../features/i18n';
 import { createStyles } from '../../styles';
 import { AppText } from '../text';
 

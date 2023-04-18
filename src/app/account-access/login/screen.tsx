@@ -6,13 +6,13 @@ import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Image, Keyboard } from 'react-native-ui-lib';
 import { assets } from '@assets/index';
+import { useTranslation } from '../../../libs/shared/features/i18n';
 import { commonStyle, createStyles } from '../../../libs/shared/ui/styles';
 import { AppVersion } from '../../../libs/shared/ui/ui-kit/app-version';
 import { AppButton } from '../../../libs/shared/ui/ui-kit/button';
 import { InputFormGroup } from '../../../libs/shared/ui/ui-kit/input-form-group';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
 import { AppText } from '../../../libs/shared/ui/ui-kit/text';
-import { useTranslation } from '../../../libs/shared/utils/i18n';
 import { loginScreenFacade } from './facade';
 import { LoginForm } from './shared/forms';
 
