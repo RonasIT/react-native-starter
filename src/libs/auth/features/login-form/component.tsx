@@ -16,7 +16,7 @@ import { loginScreenFacade } from './facade';
 import { LoginFormSchema } from './forms';
 
 export function LoginForm(): JSX.Element {
-  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
+  const translate = useTranslation('AUTH.LOGIN_FORM');
   const { isSubmitting } = loginScreenFacade;
   const appName = Constants.expoConfig.name;
 

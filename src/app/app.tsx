@@ -16,7 +16,12 @@ import { MainNavigation } from './main/navigation';
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
   {
-    en: require('@assets/i18n/en.json')
+    en: {
+      ...require('@assets/i18n/en.json'),
+      ...require('../libs/auth/assets/i18n/en.json'),
+      ...require('../libs/profile/assets/i18n/en.json'),
+      ...require('../libs/shared/assets/i18n/en.json')
+    }
   },
   'en'
 );

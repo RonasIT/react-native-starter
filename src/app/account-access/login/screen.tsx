@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm } from '../../../libs/account-access/features/login-form';
+import { LoginForm } from '../../../libs/auth/features/login-form';
 import { commonStyle } from '../../../libs/shared/ui/styles';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
 

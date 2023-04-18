@@ -7,7 +7,7 @@ import { profileDetailsFacade } from './facade';
 
 export function ProfileDetails(): ReactElement {
   const { profile, logout } = profileDetailsFacade;
-  const translate = useTranslation('MAIN.PROFILE');
+  const translate = useTranslation('PROFILE.DETAILS');
 
   return (
     <>
