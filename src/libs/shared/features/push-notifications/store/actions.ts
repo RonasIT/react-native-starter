@@ -1,4 +1,4 @@
-import { defineAction } from '../../../data-access/store/utils';
+import { defineAction } from '@shared/data-access/store/utils';
 
 export class PushNotificationsActions {
   public static subscribe = defineAction<{ pushToken: string }>(

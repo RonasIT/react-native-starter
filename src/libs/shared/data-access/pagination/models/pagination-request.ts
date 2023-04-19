@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { TransformBoolean } from '../../../utils/class-transformer';
+import { TransformBoolean } from '@shared/utils/class-transformer';
 
 export class PaginationRequest<
   TRelation extends string = string,

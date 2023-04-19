@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Store } from 'redux';
-import { Entity } from '../base-entity/config';
-import { Pagination } from '../pagination';
+import { Entity } from '@shared/data-access/base-entity/config';
+import { Pagination } from '@shared/data-access/pagination';
 import { BaseListedEntityActions, BaseListedEntitySelectors, BaseListedEntityState } from './store';
 
 export abstract class BaseListedEntityFacade<

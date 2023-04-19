@@ -1,7 +1,7 @@
 import { delay, filter, map, tap } from 'rxjs/operators';
-import { AuthActions } from '../../../data-access/auth/store/actions';
-import { AppActions } from '../../../data-access/store/actions';
-import { Epics } from '../../../data-access/store/types/epics';
+import { AuthActions } from '@shared/data-access/auth/store/actions';
+import { AppActions } from '@shared/data-access/store/actions';
+import { Epics } from '@shared/data-access/store/types/epics';
 import { appNavigationService } from '../service';
 
 export const appNavigationEpics: Epics = {

@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { AppState } from '../../store';
+import { AppState } from '@shared/data-access/store';
 import { ProfileState } from './reducer';
 
 const selectFeature = (state: AppState): ProfileState => state.profile;

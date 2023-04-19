@@ -1,8 +1,8 @@
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
-import { apiService, apiConfig } from '../api';
-import { profileService } from '../profile';
+import { apiService, apiConfig } from '@shared/data-access/api';
+import { profileService } from '@shared/data-access/profile';
 import { AuthCredentials, AuthResponse } from './models';
 
 class AuthService {

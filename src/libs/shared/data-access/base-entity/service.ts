@@ -2,9 +2,9 @@ import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transf
 import { isUndefined, omitBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { ApiService, apiService } from '../api';
-import { PaginationRequest, PaginationResponse } from '../pagination';
-import { storeRef } from '../store/store-ref';
+import { ApiService, apiService } from '@shared/data-access/api';
+import { PaginationRequest, PaginationResponse } from '@shared/data-access/pagination';
+import { storeRef } from '@shared/data-access/store/store-ref';
 import { createEntityInstance, Entity, EntityName } from './config';
 import { BaseEntityPlain, EntityRequest } from './models';
 import { EntityStoreActions } from './store/actions';

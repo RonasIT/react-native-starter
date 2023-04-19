@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { ReactElement } from 'react';
-import { useTranslation } from '../../../libs/shared/features/i18n';
-import { colors } from '../../../libs/shared/ui/styles';
-import { Icon } from '../../../libs/shared/ui/ui-kit/icon';
-import { AppTabBar } from '../../../libs/shared/ui/ui-kit/tab-bar';
+import { useTranslation } from '@shared/features/i18n';
+import { colors } from '@shared/ui/styles';
+import { Icon } from '@shared/ui/ui-kit/icon';
+import { AppTabBar } from '@shared/ui/ui-kit/tab-bar';
 import { HomeScreen } from './home/screen';
 import { ProfileScreen } from './profile/screen';
 

@@ -1,7 +1,7 @@
 import { filter, map } from 'rxjs/operators';
-import { AuthActions } from '../../auth/store/actions';
-import { Epics } from '../../store';
-import { AppActions } from '../../store/actions';
+import { AuthActions } from '@shared/data-access/auth/store/actions';
+import { Epics } from '@shared/data-access/store';
+import { AppActions } from '@shared/data-access/store/actions';
 import { appStorageService } from '../service';
 
 export const appStorageEpics: Epics = {

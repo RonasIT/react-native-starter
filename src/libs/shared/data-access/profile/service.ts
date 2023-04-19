@@ -1,8 +1,8 @@
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { apiService } from '../api';
-import { User } from '../user';
+import { apiService } from '@shared/data-access/api';
+import { User } from '@shared/data-access/user';
 
 class ProfileService {
   // TODO: Demo code. Remove in a real app.

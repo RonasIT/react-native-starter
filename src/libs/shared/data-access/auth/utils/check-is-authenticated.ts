@@ -1,4 +1,4 @@
-import { storeRef } from '../../store/store-ref';
+import { storeRef } from '@shared/data-access/store/store-ref';
 import { AuthActions } from '../store/actions';
 import { AuthSelectors } from '../store/selectors';
 

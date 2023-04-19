@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { useTranslation } from '../../../shared/features/i18n';
-import { AppActivityIndicator } from '../../../shared/ui/ui-kit/activity-indicator';
-import { AppButton } from '../../../shared/ui/ui-kit/button';
-import { AppText } from '../../../shared/ui/ui-kit/text';
+import { useTranslation } from '@shared/features/i18n';
+import { AppActivityIndicator } from '@shared/ui/ui-kit/activity-indicator';
+import { AppButton } from '@shared/ui/ui-kit/button';
+import { AppText } from '@shared/ui/ui-kit/text';
 import { profileDetailsFacade } from './facade';
 
 export function ProfileDetails(): ReactElement {

@@ -1,4 +1,4 @@
-import { checkIsAuthenticated } from '../../../data-access/auth';
+import { checkIsAuthenticated } from '@shared/data-access/auth';
 
 export const authenticatedScreenListeners = {
   state: (): void => {

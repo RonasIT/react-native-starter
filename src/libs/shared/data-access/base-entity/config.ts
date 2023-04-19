@@ -1,7 +1,7 @@
 import { EntityState } from '@reduxjs/toolkit';
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
-import { User } from '../user/models/user';
+import { User } from '@shared/data-access/user/models/user';
 import { BaseEntityPlain } from './models';
 
 export type Entities = {

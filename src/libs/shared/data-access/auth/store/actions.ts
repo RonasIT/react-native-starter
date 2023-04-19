@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { defineAction } from '../../store/utils';
+import { defineAction } from '@shared/data-access/store/utils';
 import { AuthCredentials, AuthResponse } from '../models';
 
 export class AuthActions {

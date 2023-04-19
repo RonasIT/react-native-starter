@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { BaseEntity } from '../../base-entity/models';
+import { BaseEntity } from '@shared/data-access/base-entity/models';
 
 export class User extends BaseEntity<number> {
   @Expose()

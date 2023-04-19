@@ -1,4 +1,4 @@
-import { usersListReducer } from '../../../users/features/list/store/reducer';
+import { usersListReducer } from '@libs/users/features/list/store/reducer';
 import { authReducer } from '../auth/store/reducer';
 import { entityStoreReducer } from '../base-entity/store/reducer';
 import { profileReducer } from '../profile/store/reducer';
