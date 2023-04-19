@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+import { apiConfig } from '../config';
 
 export const tokenInterceptor =
   (getToken: () => string) => (config: AxiosRequestConfig): AxiosRequestConfig => {
@@ -8,7 +9,7 @@ export const tokenInterceptor =
 
     const token = getToken();
 
-    if (token) {
+    if (token && !apiConfig.publicEndpoints.includes(config.url)) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
