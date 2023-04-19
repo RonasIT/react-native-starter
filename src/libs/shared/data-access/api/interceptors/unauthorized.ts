@@ -1,13 +1,12 @@
-import { AxiosError } from 'axios';
+import { AxiosError, HttpStatusCode } from 'axios';
 import { apiConfig } from '../config';
-import { ApiResponseStatus } from '../enums';
 
 export const unauthorizedInterceptor =
   (options: { onError: (error?: AxiosError) => void }) => (error: any): Promise<never> => {
     const { publicEndpoints } = apiConfig;
 
     if (
-      error.response?.status === ApiResponseStatus.UNAUTHORIZED &&
+      error.response?.status === HttpStatusCode.Unauthorized &&
       !publicEndpoints.includes(error.response.config.url)
     ) {
       options.onError(error);

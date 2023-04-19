@@ -1,8 +1,7 @@
-import { AxiosError, AxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosRequestConfig, HttpStatusCode } from 'axios';
 import { lastValueFrom, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { apiConfig } from '../config';
-import { ApiResponseStatus } from '../enums';
 
 export const refreshTokenInterceptor =
   (options: {
@@ -26,7 +25,7 @@ export const refreshTokenInterceptor =
             return config;
           }),
           catchError((error: AxiosError) => {
-            if ([ApiResponseStatus.BAD_REQUEST, ApiResponseStatus.UNAUTHORIZED].includes(error?.response?.status)) {
+            if ([HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized].includes(error?.response?.status)) {
               options.onError(error);
             }
 
