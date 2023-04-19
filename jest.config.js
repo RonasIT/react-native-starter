@@ -17,11 +17,8 @@ module.exports = {
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/app.config.ts',
-    '<rootDir>/src/configurations/',
     '<rootDir>/src/tests/',
-    '<rootDir>/src/app/index.tsx',
-    '<rootDir>/src/app/shared/store',
-    '<rootDir>/src/app/(.*)/index.ts'
+    '<rootDir>/src/(.*)/index.ts'
   ],
   coverageThreshold: {
     global: {

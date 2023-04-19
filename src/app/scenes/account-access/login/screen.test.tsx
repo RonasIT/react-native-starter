@@ -60,8 +60,8 @@ describe('Login screen', () => {
     await waitFor(() => {
       const emailError = component.getByTestId('email-input.validationMessage');
       const passwordError = component.getByTestId('password-input.validationMessage');
-      expect(emailError.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
-      expect(passwordError.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
+      expect(emailError.children[0]).toBe(translation.AUTH.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
+      expect(passwordError.children[0]).toBe(translation.AUTH.VALIDATION.TEXT_VALIDATION_REQUIRED_FIELD);
     });
   });
 
@@ -71,7 +71,7 @@ describe('Login screen', () => {
 
     await waitFor(() => {
       const error = component.getByTestId('email-input.validationMessage');
-      expect(error.children[0]).toBe(translation.COMMON.VALIDATION.TEXT_VALIDATION_EMAIL);
+      expect(error.children[0]).toBe(translation.AUTH.VALIDATION.TEXT_VALIDATION_EMAIL);
     });
   });
 
