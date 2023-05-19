@@ -2,7 +2,7 @@ import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-na
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@libs/shared/data-access/api';
+import { apiService } from '@libs/shared/data-access/api-client';
 import { authService } from '@libs/shared/data-access/auth';
 import { appNavigationService } from '@libs/shared/features/navigation';
 import { userPaginationResponse, validCredentials } from '@tests/fixtures';

@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { merge } from 'lodash';
+import { User } from '@libs/shared/data-access/api/user/models';
 import { AuthActions } from '@libs/shared/data-access/auth/store/actions';
-import { User } from '@libs/shared/data-access/user';
 import { ProfileActions } from './actions';
 
 export interface ProfileState {

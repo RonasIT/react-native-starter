@@ -1,26 +1,46 @@
-import React, { ReactElement, useEffect } from 'react';
-import { User } from '@libs/shared/data-access/user';
+import { AnyAction } from '@reduxjs/toolkit';
+import { last } from 'lodash';
+import React, { ReactElement, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { userApi } from '@libs/shared/data-access/api/user/api';
+import { User } from '@libs/shared/data-access/api/user/models';
+import { PaginationRequest } from '@libs/shared/data-access/entity-api';
 import { ItemsList } from '@libs/shared/features/items-list';
 import { commonStyle } from '@libs/shared/ui/styles';
 import { UsersListItem } from '@libs/users/features/list-item';
-import { usersListFacade } from './facade';
 
 export function UsersList(): ReactElement {
-  const { items, isLoading, isRefreshing, pagination } = usersListFacade;
-  const refreshItems = (): void => usersListFacade.refreshItems();
-  const loadMore = (): void => usersListFacade.loadItems(pagination.currentPage + 1);
+  const [searchParams, setSearchParams] = useState<PaginationRequest>({ page: 1 });
+  const { data, isFetching, isLoading } = userApi.useSearchInfiniteQuery(searchParams);
 
-  useEffect(() => {
-    usersListFacade.loadItems();
-  }, []);
+  const items = data?.flatMap((response) => response.data) || [];
+  const areUsersLoading = isLoading || (isFetching && searchParams.page > 1);
+
+  const dispatch = useDispatch();
+
+  const refreshItems = async (): Promise<void> => {
+    for (const response of data) {
+      await dispatch(
+        userApi.endpoints.searchInfinite.initiate({
+          ...searchParams,
+          page: response.currentPage
+        }) as unknown as AnyAction
+      );
+    }
+  };
+
+  const loadMore = (): void => {
+    if (!isFetching && !isLoading) {
+      setSearchParams((params) => ({ ...params, page: params.page + 1 }));
+    }
+  };
 
   return (
     <ItemsList<User>
       data={items}
       renderItem={UsersListItem}
-      isLoading={isLoading}
-      isRefreshing={isRefreshing}
-      canLoadMore={pagination.currentPage < pagination.lastPage}
+      isLoading={areUsersLoading}
+      canLoadMore={last(data)?.currentPage < last(data)?.lastPage}
       onEndReached={loadMore}
       onRefresh={refreshItems}
       containerStyle={commonStyle.container}
