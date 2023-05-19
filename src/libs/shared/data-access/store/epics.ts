@@ -1,7 +1,7 @@
 import { values } from 'lodash';
 import { combineEpics, Epic } from 'redux-observable';
+import { appNavigationEpics } from '@libs/shared/features/navigation/store/epics';
 import { usersListEpics } from '@libs/users/features/list/store/epics';
-import { appNavigationEpics } from '@shared/features/navigation/store/epics';
 import { authEpics } from '../auth/store/epics';
 import { profileEpics } from '../profile/store/epics';
 import { appStorageEpics } from '../storage/store';

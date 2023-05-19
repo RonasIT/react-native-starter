@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer';
-import { User } from '@shared/data-access/user';
+import { User } from '@libs/shared/data-access/user';
 
 export class AuthResponse {
   @Type(() => User)

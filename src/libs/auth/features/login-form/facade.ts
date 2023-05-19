@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { AuthCredentials } from '@shared/data-access/auth/models';
-import { AuthActions, AuthSelectors } from '@shared/data-access/auth/store';
-import { storeRef } from '@shared/data-access/store/store-ref';
+import { AuthCredentials } from '@libs/shared/data-access/auth/models';
+import { AuthActions, AuthSelectors } from '@libs/shared/data-access/auth/store';
+import { storeRef } from '@libs/shared/data-access/store/store-ref';
 import { LoginFormSchema } from './forms';
 
 class LoginScreenFacade {

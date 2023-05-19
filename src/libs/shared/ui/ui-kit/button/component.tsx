@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { BackgroundColorModifier, Button, ButtonProps, MarginModifiers } from 'react-native-ui-lib';
-import { colors, createStyles, fontFamilies, fontSizes } from '@shared/ui/styles';
-import { AppActivityIndicator } from '@shared/ui/ui-kit/activity-indicator';
+import { colors, createStyles, fontFamilies, fontSizes } from '@libs/shared/ui/styles';
+import { AppActivityIndicator } from '@libs/shared/ui/ui-kit/activity-indicator';
 
 type AppButtonProps = Omit<ButtonProps, keyof MarginModifiers | keyof BackgroundColorModifier> & {
   isLoading?: boolean;

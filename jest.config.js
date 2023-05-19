@@ -26,7 +26,6 @@ module.exports = {
     }
   },
   moduleNameMapper: {
-    '^@shared/(.*)$': '<rootDir>/src/libs/shared/$1',
     '^@libs/(.*)$': '<rootDir>/src/libs/$1',
     '^@app/(.*)$': '<rootDir>/src/app/$1',
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',

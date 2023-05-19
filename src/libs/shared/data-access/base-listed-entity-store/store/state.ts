@@ -1,5 +1,5 @@
-import { Entity } from '@shared/data-access/base-entity/config';
-import { Pagination, PaginationRequest } from '@shared/data-access/pagination';
+import { Entity } from '@libs/shared/data-access/base-entity/config';
+import { Pagination, PaginationRequest } from '@libs/shared/data-access/pagination';
 
 export interface BaseListedEntityState<
   TEntity extends Entity = Entity,

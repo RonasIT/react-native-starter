@@ -3,8 +3,8 @@ import React, { ComponentProps, ReactElement, useMemo, useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { NativeSyntheticEvent, TextInputFocusEventData, TouchableOpacity, View } from 'react-native';
 import { ColorsModifiers, Incubator, MarginModifiers, TextField, TypographyModifiers } from 'react-native-ui-lib';
-import { commonStyle, createStyles } from '@shared/ui/styles';
-import { Icon } from '@shared/ui/ui-kit/icon';
+import { commonStyle, createStyles } from '@libs/shared/ui/styles';
+import { Icon } from '@libs/shared/ui/ui-kit/icon';
 
 export type InputFormGroupProps<T = FieldValues> = Omit<
   ComponentProps<typeof TextField>,

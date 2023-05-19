@@ -1,6 +1,6 @@
 import { createSelector, Selector } from '@reduxjs/toolkit';
 import { isFunction } from 'lodash';
-import { AppState } from '@shared/data-access/store';
+import { AppState } from '@libs/shared/data-access/store';
 import { createEntityInstance, Entities, Entity, EntityName } from '../config';
 import { entityAdapterSelectors } from './adapter';
 import { entityNames } from './state';

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-import { createStyles } from '@shared/ui/styles';
+import { createStyles } from '@libs/shared/ui/styles';
 
 interface Props {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
-import { defineAction } from '@shared/data-access/store/utils';
-import { User } from '@shared/data-access/user';
+import { defineAction } from '@libs/shared/data-access/store/utils';
+import { User } from '@libs/shared/data-access/user';
 
 export class ProfileActions {
   public static refreshProfile = defineAction(

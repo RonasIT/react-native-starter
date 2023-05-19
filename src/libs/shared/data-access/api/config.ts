@@ -1,4 +1,4 @@
-import { appEnv } from '@shared/utils/app-env';
+import { appEnv } from '@libs/shared/utils/app-env';
 
 // TODO: Demo configuration. Update in a real app
 export const apiConfig = {

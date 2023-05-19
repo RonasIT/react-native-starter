@@ -1,6 +1,6 @@
 import { map, Observable } from 'rxjs';
-import { EntityService } from '@shared/data-access/base-entity/service';
-import { Pagination, PaginationResponse } from '@shared/data-access/pagination';
+import { EntityService } from '@libs/shared/data-access/base-entity/service';
+import { Pagination, PaginationResponse } from '@libs/shared/data-access/pagination';
 import { User } from './models';
 
 class UserService extends EntityService<User> {

@@ -11,8 +11,8 @@ jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation');
 
-jest.mock('@shared/ui/ui-kit/svg', () => ({ Svg: MockReactElement }));
-jest.mock('@shared/ui/ui-kit/icons', () => ({ Icons: {} }));
+jest.mock('@libs/shared/ui/ui-kit/svg', () => ({ Svg: MockReactElement }));
+jest.mock('@libs/shared/ui/ui-kit/icons', () => ({ Icons: {} }));
 
 jest.mock('react-native-keyboard-aware-scroll-view', () => {
   const KeyboardAwareScrollView = require('react-native').ScrollView;

@@ -1,4 +1,4 @@
-import { Svg } from '@shared/ui/ui-kit/svg';
+import { Svg } from '@libs/shared/ui/ui-kit/svg';
 
 export const Icons = {
   eye: Svg(require('../../../assets/icons/eye.svg')),

@@ -20,7 +20,6 @@ module.exports = function (api) {
             '.json'
           ],
           alias: {
-            '@shared': './src/libs/shared',
             '@libs': './src/libs',
             '@configurations': './src/configurations/configuration',
             '@assets': './src/assets',

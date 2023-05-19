@@ -2,9 +2,9 @@ import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-na
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@shared/data-access/api';
-import { authService } from '@shared/data-access/auth';
-import { appNavigationService } from '@shared/features/navigation';
+import { apiService } from '@libs/shared/data-access/api';
+import { authService } from '@libs/shared/data-access/auth';
+import { appNavigationService } from '@libs/shared/features/navigation';
 import { userPaginationResponse, validCredentials } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { LoginScreen } from './screen';

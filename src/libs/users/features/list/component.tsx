@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
+import { User } from '@libs/shared/data-access/user';
+import { ItemsList } from '@libs/shared/features/items-list';
+import { commonStyle } from '@libs/shared/ui/styles';
 import { UsersListItem } from '@libs/users/features/list-item';
-import { User } from '@shared/data-access/user';
-import { ItemsList } from '@shared/features/items-list';
-import { commonStyle } from '@shared/ui/styles';
 import { usersListFacade } from './facade';
 
 export function UsersList(): ReactElement {

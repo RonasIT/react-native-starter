@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
-import { Entity, EntityName } from '@shared/data-access/base-entity/config';
-import { EntityStoreActions } from '@shared/data-access/base-entity/store';
-import { EntityPartial } from '@shared/data-access/base-entity/types';
-import { PaginationResponse } from '@shared/data-access/pagination';
-import { defineAction } from '@shared/data-access/store/utils';
+import { Entity, EntityName } from '@libs/shared/data-access/base-entity/config';
+import { EntityStoreActions } from '@libs/shared/data-access/base-entity/store';
+import { EntityPartial } from '@libs/shared/data-access/base-entity/types';
+import { PaginationResponse } from '@libs/shared/data-access/pagination';
+import { defineAction } from '@libs/shared/data-access/store/utils';
 import { BaseListedEntityState } from './state';
 
 export abstract class BaseListedEntityActions<

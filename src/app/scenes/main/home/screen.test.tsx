@@ -4,8 +4,8 @@ import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-na
 import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@shared/data-access/api';
-import { userService } from '@shared/data-access/user';
+import { apiService } from '@libs/shared/data-access/api';
+import { userService } from '@libs/shared/data-access/user';
 import { userPaginationResponse } from '@tests/fixtures';
 import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import { HomeScreen } from './screen';

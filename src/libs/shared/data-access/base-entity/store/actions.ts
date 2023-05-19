@@ -1,4 +1,4 @@
-import { defineAction } from '@shared/data-access/store/utils';
+import { defineAction } from '@libs/shared/data-access/store/utils';
 import { EntityName } from '../config';
 import { BaseEntityPlain } from '../models';
 import { EntityPartial } from '../types';

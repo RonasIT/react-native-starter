@@ -96,7 +96,6 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
     //         url: 'https://your-sentry-url',
     //         organization: 'your-sentry-organization',
     //         project: 'your-sentry-project',
-    //         authToken: 'your-sentry-token'
     //       }
     //     }
     //   ]

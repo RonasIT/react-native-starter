@@ -1,15 +1,15 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { apiService } from '@shared/data-access/api';
+import { apiService } from '@libs/shared/data-access/api';
 import {
   refreshTokenInterceptor,
   tokenInterceptor,
   unauthorizedInterceptor
-} from '@shared/data-access/api/interceptors';
-import { formDataInterceptor } from '@shared/data-access/api/interceptors/form-data';
-import { appStorageService } from '@shared/data-access/storage';
-import { AppActions } from '@shared/data-access/store/actions';
-import { Epics } from '@shared/data-access/store/types';
+} from '@libs/shared/data-access/api/interceptors';
+import { formDataInterceptor } from '@libs/shared/data-access/api/interceptors/form-data';
+import { appStorageService } from '@libs/shared/data-access/storage';
+import { AppActions } from '@libs/shared/data-access/store/actions';
+import { Epics } from '@libs/shared/data-access/store/types';
 import { authService } from '../service';
 import { checkIsTokenExpired } from '../utils/check-is-token-expired';
 import { AuthActions } from './actions';
