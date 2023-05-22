@@ -7,7 +7,7 @@ import { User } from '@libs/shared/data-access/api/user/models';
 import { PaginationRequest } from '@libs/shared/data-access/entity-api';
 import { ItemsList } from '@libs/shared/features/items-list';
 import { commonStyle } from '@libs/shared/ui/styles';
-import { UsersListItem } from '@libs/users/features/list-item';
+import { Item } from './components';
 
 export function UsersList(): ReactElement {
   const [searchParams, setSearchParams] = useState<PaginationRequest>({ page: 1 });
@@ -38,7 +38,7 @@ export function UsersList(): ReactElement {
   return (
     <ItemsList<User>
       data={items}
-      renderItem={UsersListItem}
+      renderItem={Item}
       isLoading={areUsersLoading}
       canLoadMore={last(data)?.currentPage < last(data)?.lastPage}
       onEndReached={loadMore}

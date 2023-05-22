@@ -1,10 +1,10 @@
+import { User } from '@libs/shared/data-access/user';
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { User } from '@libs/shared/data-access/user';
 import { colors, createStyles } from '@libs/shared/ui/styles';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
 
-export function UsersListItem({ item }: { item: User }): ReactElement {
+export function Item({ item }: { item: User }): ReactElement {
   return (
     <View style={style.itemContainer} testID='user-item'>
       <AppText variant='larger' numberOfLines={1}>
