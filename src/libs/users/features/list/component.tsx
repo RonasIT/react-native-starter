@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { User } from '@libs/shared/data-access/user';
 import { ItemsList } from '@libs/shared/features/items-list';
 import { commonStyle } from '@libs/shared/ui/styles';
-import { UsersListItem } from '@libs/users/features/list-item';
+import { Item } from './components';
 import { usersListFacade } from './facade';
 
 export function UsersList(): ReactElement {
@@ -17,7 +17,7 @@ export function UsersList(): ReactElement {
   return (
     <ItemsList<User>
       data={items}
-      renderItem={UsersListItem}
+      renderItem={Item}
       isLoading={isLoading}
       isRefreshing={isRefreshing}
       canLoadMore={pagination.currentPage < pagination.lastPage}
