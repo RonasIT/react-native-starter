@@ -24,7 +24,7 @@ export const appLinking: LinkingOptions<object> = {
       Main: {
         initialRouteName: 'Home',
         screens: <ScreenRoutingOptions<MainNavigationParams>>{
-          Home: 'tab-one',
+          HomeNavigation: 'tab-one',
           Profile: 'tab-two'
         }
       }

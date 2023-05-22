@@ -6,7 +6,8 @@ export function setDefaultLanguage(): object {
     ...require(`../../assets/i18n/${defaultLanguage}.json`),
     ...require(`../../libs/auth/assets/i18n/${defaultLanguage}.json`),
     ...require(`../../libs/profile/assets/i18n/${defaultLanguage}.json`),
-    ...require(`../../libs/shared/assets/i18n/${defaultLanguage}.json`)
+    ...require(`../../libs/shared/assets/i18n/${defaultLanguage}.json`),
+    ...require(`../../libs/users/assets/i18n/${defaultLanguage}.json`)
   };
   i18n.translations = {
     en: translation

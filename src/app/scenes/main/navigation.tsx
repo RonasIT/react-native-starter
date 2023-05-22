@@ -1,21 +1,21 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { ReactElement } from 'react';
+import { HomeNavigation } from '@app/scenes/main/home/navigation';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { colors } from '@libs/shared/ui/styles';
 import { Icon } from '@libs/shared/ui/ui-kit/icon';
 import { AppTabBar } from '@libs/shared/ui/ui-kit/tab-bar';
-import { HomeScreen } from './home/screen';
 import { ProfileScreen } from './profile/screen';
 
 export type MainNavigationParams = {
-  Home: undefined;
+  HomeNavigation: undefined;
   Profile: undefined;
 };
 
 const Tab = createBottomTabNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
-  const initialRouteName = 'Home';
+  const initialRouteName = 'HomeNavigation';
   const translate = useTranslation('MAIN.NAVIGATION');
 
   return (
@@ -24,13 +24,13 @@ export function MainNavigation(): ReactElement {
       initialRouteName={initialRouteName}
       backBehavior='none'>
       <Tab.Screen
-        name='Home'
+        name='HomeNavigation'
         options={{
           tabBarIcon: ({ focused }) => <Icon name='home' stroke={focused ? colors.primary : colors.white} />,
           headerTitleAlign: 'left',
           title: translate('TEXT_HOME')
         }}
-        component={HomeScreen}
+        component={HomeNavigation}
       />
       <Tab.Screen
         name='Profile'

@@ -20,7 +20,8 @@ const setLanguage = useLanguage(
       ...require('@assets/i18n/en.json'),
       ...require('../../libs/auth/assets/i18n/en.json'),
       ...require('../../libs/profile/assets/i18n/en.json'),
-      ...require('../../libs/shared/assets/i18n/en.json')
+      ...require('../../libs/shared/assets/i18n/en.json'),
+      ...require('../../libs/users/assets/i18n/en.json')
     }
   },
   'en'
