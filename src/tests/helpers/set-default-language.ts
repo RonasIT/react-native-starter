@@ -1,8 +1,13 @@
-import { i18n } from '@shared/i18n/i18n';
+import { i18n } from '@libs/shared/features/i18n/i18n';
 
 export function setDefaultLanguage(): object {
   const defaultLanguage = 'en';
-  const translation = require(`../../assets/i18n/${defaultLanguage}.json`);
+  const translation = {
+    ...require(`../../assets/i18n/${defaultLanguage}.json`),
+    ...require(`../../libs/auth/assets/i18n/${defaultLanguage}.json`),
+    ...require(`../../libs/profile/assets/i18n/${defaultLanguage}.json`),
+    ...require(`../../libs/shared/assets/i18n/${defaultLanguage}.json`)
+  };
   i18n.translations = {
     en: translation
   };

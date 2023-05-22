@@ -1,8 +1,8 @@
 import { getStateFromPath, PathConfig } from '@react-navigation/native';
 import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/types';
 import * as Linking from 'expo-linking';
-import { MainNavigationParams } from '@app/main/navigation';
-import { AccountAccessNavigationParams } from './account-access/navigation';
+import { AccountAccessNavigationParams } from './scenes/account-access/navigation';
+import { MainNavigationParams } from './scenes/main/navigation';
 
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
 type ScreenRoutingOptions<T extends object> = {

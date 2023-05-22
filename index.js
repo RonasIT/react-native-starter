@@ -1,4 +1,4 @@
 import { registerRootComponent } from 'expo';
-import Root from './src/app/root';
+import Root from '@app/scenes/root';
 
 registerRootComponent(Root);
