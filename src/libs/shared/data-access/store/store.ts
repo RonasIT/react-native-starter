@@ -4,7 +4,6 @@ import { OmitIndexSignature } from 'type-fest';
 import { userApi } from '@libs/shared/data-access/api/user/api';
 import { rootEpic } from './epics';
 import { rootReducer } from './reducer';
-import { storeRef } from './store-ref';
 
 export function createStore(context?: unknown): typeof store {
   const epicMiddleware = createEpicMiddleware({
@@ -23,9 +22,6 @@ export function createStore(context?: unknown): typeof store {
   });
 
   epicMiddleware.run(rootEpic);
-
-  storeRef.dispatch = store.dispatch;
-  storeRef.getState = store.getState;
 
   return store;
 }

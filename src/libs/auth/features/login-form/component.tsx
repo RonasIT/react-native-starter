@@ -5,23 +5,26 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Image, Keyboard } from 'react-native-ui-lib';
+import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '@libs/auth/assets';
+import { AuthCredentials } from '@libs/shared/data-access/auth';
+import { AuthActions, AuthSelectors } from '@libs/shared/data-access/auth/store';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { createStyles } from '@libs/shared/ui/styles';
 import { AppVersion } from '@libs/shared/ui/ui-kit/app-version';
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
 import { InputFormGroup } from '@libs/shared/ui/ui-kit/input-form-group';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
-import { loginScreenFacade } from './facade';
 import { LoginFormSchema } from './forms';
 
 export function LoginForm(): JSX.Element {
   const translate = useTranslation('AUTH.LOGIN_FORM');
-  const { isSubmitting } = loginScreenFacade;
+  const isSubmitting = useSelector(AuthSelectors.isAuthorizing);
   const appName = Constants.expoConfig.name;
+  const dispatch = useDispatch();
 
   function formSubmitted(values: LoginFormSchema): void {
-    loginScreenFacade.authorize(values);
+    dispatch(AuthActions.authorize(new AuthCredentials(values)));
   }
 
   const form = useForm<LoginFormSchema>({
