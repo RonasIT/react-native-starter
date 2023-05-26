@@ -28,6 +28,7 @@ describe('Home screen', () => {
   }
 
   beforeAll(() => {
+    // TODO: change mock implementation
     jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
       if (endpoint === '/users') {
         return of(userPaginationResponse) as Observable<any>;
