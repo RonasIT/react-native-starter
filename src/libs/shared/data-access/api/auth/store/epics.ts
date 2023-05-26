@@ -1,15 +1,12 @@
-import { of } from 'rxjs';
-import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { isAnyOf } from '@reduxjs/toolkit';
+import { delay, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { apiService } from '@libs/shared/data-access/api-client';
-import {
-  tokenInterceptor,
-  unauthorizedInterceptor
-} from '@libs/shared/data-access/api-client/interceptors';
+import { tokenInterceptor, unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
 import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
 import { Epics } from '@libs/shared/data-access/store/types';
-import { authService } from '../service';
+import { authAPI } from '../api';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
@@ -57,16 +54,8 @@ export const authEpics: Epics = {
     map(() => AuthActions.tokenLoaded())
   ),
 
-  authorize: (action$) => action$.pipe(
-    filter(AuthActions.authorize.match),
-    exhaustMap((action) => authService.demoAuthorize({ ...action.payload }).pipe(
-      map((response) => AuthActions.authorizeSuccess(response)),
-      catchError((error) => of(AuthActions.authorizeFailure(error)))
-    ))
-  ),
-
   authorizeSuccess: (action$) => action$.pipe(
-    filter(AuthActions.authorizeSuccess.match),
+    filter(isAnyOf(authAPI.endpoints.authorize.matchFulfilled, authAPI.endpoints.demoAuthorize.matchFulfilled)),
     map(({ payload }) => AuthActions.saveToken({ token: payload.token }))
   ),
 

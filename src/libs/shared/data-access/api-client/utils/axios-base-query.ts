@@ -1,5 +1,5 @@
 import { RawAxiosRequestHeaders } from 'axios';
-import { AuthSelectors } from '@libs/shared/data-access/auth/store/selectors';
+import { AuthSelectors } from '@libs/shared/data-access/api/auth/store/selectors';
 import { AppState } from '@libs/shared/data-access/store/types';
 import { AxiosBaseQueryArgs, BaseQueryFunction, createAxiosBaseQuery } from '../../entity-api';
 import { apiService } from '../service';

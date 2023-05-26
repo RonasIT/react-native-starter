@@ -1,6 +1,8 @@
 import { configureStore, MiddlewareArray, Reducer, StateFromReducersMapObject } from '@reduxjs/toolkit';
 import { createEpicMiddleware } from 'redux-observable';
 import { OmitIndexSignature } from 'type-fest';
+import { authAPI } from '@libs/shared/data-access/api/auth/api';
+import { profileAPI } from '@libs/shared/data-access/api/profile/api';
 import { userApi } from '@libs/shared/data-access/api/user/api';
 import { rootEpic } from './epics';
 import { rootReducer } from './reducer';
@@ -17,6 +19,8 @@ export function createStore(context?: unknown): typeof store {
     reducer: rootReducer as unknown as Reducer<StateFromReducersMapObject<OmitIndexSignature<typeof rootReducer>>>,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, thunk: { extraArgument: context } }).concat(
       epicMiddleware,
+      authAPI.middleware,
+      profileAPI.middleware,
       userApi.middleware
     ) as MiddlewareArray<any>
   });

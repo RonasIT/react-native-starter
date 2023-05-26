@@ -6,7 +6,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { AccountAccessNavigation } from '@app/scenes/account-access/navigation';
-import { AuthSelectors } from '@libs/shared/data-access/auth';
+import { AuthSelectors } from '@libs/shared/data-access/api/auth/store';
 import { AppActions, AppState } from '@libs/shared/data-access/store';
 import { useLanguage } from '@libs/shared/features/i18n';
 import { createAuthenticatedScreenListeners, navigationRef, navigationTheme } from '@libs/shared/features/navigation';

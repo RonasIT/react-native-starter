@@ -5,10 +5,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Image, Keyboard } from 'react-native-ui-lib';
-import { useDispatch, useSelector } from 'react-redux';
 import { assets } from '@libs/auth/assets';
-import { AuthCredentials } from '@libs/shared/data-access/auth';
-import { AuthActions, AuthSelectors } from '@libs/shared/data-access/auth/store';
+import { authAPI } from '@libs/shared/data-access/api/auth/api';
+import { AuthCredentials } from '@libs/shared/data-access/api/auth/models';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { createStyles } from '@libs/shared/ui/styles';
 import { AppVersion } from '@libs/shared/ui/ui-kit/app-version';
@@ -19,12 +18,11 @@ import { LoginFormSchema } from './forms';
 
 export function LoginForm(): JSX.Element {
   const translate = useTranslation('AUTH.LOGIN_FORM');
-  const isSubmitting = useSelector(AuthSelectors.isAuthorizing);
+  const [authorize, { isLoading }] = authAPI.useDemoAuthorizeMutation();
   const appName = Constants.expoConfig.name;
-  const dispatch = useDispatch();
 
   function formSubmitted(values: LoginFormSchema): void {
-    dispatch(AuthActions.authorize(new AuthCredentials(values)));
+    authorize(new AuthCredentials(values));
   }
 
   const form = useForm<LoginFormSchema>({
@@ -56,7 +54,7 @@ export function LoginForm(): JSX.Element {
       />
       <View style={style.footer}>
         <AppButton
-          isLoading={isSubmitting}
+          isLoading={isLoading}
           disabled={!isEmpty(formState.errors) && formState.isSubmitted}
           testID='submit-button'
           label={translate('BUTTON_SUBMIT')}
