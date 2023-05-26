@@ -1,10 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, MiddlewareArray, Reducer, StateFromReducersMapObject } from '@reduxjs/toolkit';
 import { createEpicMiddleware } from 'redux-observable';
+import { OmitIndexSignature } from 'type-fest';
+import { userApi } from '@libs/shared/data-access/api/user/api';
 import { rootEpic } from './epics';
 import { rootReducer } from './reducer';
-import { storeRef } from './store-ref';
 
-export function createStore(): typeof store {
+export function createStore(context?: unknown): typeof store {
   const epicMiddleware = createEpicMiddleware({
     dependencies: {
       useDispatch: () => store.dispatch,
@@ -13,14 +14,14 @@ export function createStore(): typeof store {
   });
 
   const store = configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }).concat(epicMiddleware)
+    reducer: rootReducer as unknown as Reducer<StateFromReducersMapObject<OmitIndexSignature<typeof rootReducer>>>,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, thunk: { extraArgument: context } }).concat(
+      epicMiddleware,
+      userApi.middleware
+    ) as MiddlewareArray<any>
   });
 
   epicMiddleware.run(rootEpic);
-
-  storeRef.dispatch = store.dispatch;
-  storeRef.getState = store.getState;
 
   return store;
 }

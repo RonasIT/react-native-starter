@@ -1,17 +1,29 @@
 import React, { ReactElement } from 'react';
-import { View } from 'react-native';
-import { User } from '@libs/shared/data-access/user';
+import { TouchableOpacity } from 'react-native';
+import { User } from '@libs/shared/data-access/api/user/models';
 import { colors, createStyles } from '@libs/shared/ui/styles';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
 
-export function Item({ item }: { item: User }): ReactElement {
+interface ItemProps {
+  user: User;
+  onPress: (userID: number) => void;
+}
+
+export function Item({ user, onPress }: ItemProps): ReactElement {
+  const handlePress = (): void => {
+    onPress(user.id);
+  };
+
   return (
-    <View style={style.itemContainer} testID='user-item'>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={style.itemContainer}
+      testID='user-item'>
       <AppText variant='larger' numberOfLines={1}>
-        #{item.id}: {item.name}
+        #{user.id}: {user.name}
       </AppText>
-      <AppText numberOfLines={1}>Email: {item.email}</AppText>
-    </View>
+      <AppText numberOfLines={1}>Email: {user.email}</AppText>
+    </TouchableOpacity>
   );
 }
 

@@ -4,35 +4,41 @@ import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { AccountAccessNavigation } from '@app/scenes/account-access/navigation';
+import { AuthSelectors } from '@libs/shared/data-access/auth';
+import { AppActions, AppState } from '@libs/shared/data-access/store';
 import { useLanguage } from '@libs/shared/features/i18n';
-import { authenticatedScreenListeners, navigationRef, navigationTheme } from '@libs/shared/features/navigation';
+import { createAuthenticatedScreenListeners, navigationRef, navigationTheme } from '@libs/shared/features/navigation';
 import { colors } from '@libs/shared/ui/styles';
 import { AppActivityIndicator } from '@libs/shared/ui/ui-kit/activity-indicator';
 import { appLinking } from '../linking';
-import { appFacade } from './facade';
 import { MainNavigation } from './main/navigation';
 
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
   {
     en: {
-      ...require('@assets/i18n/en.json'),
-      ...require('../../libs/auth/assets/i18n/en.json'),
-      ...require('../../libs/profile/assets/i18n/en.json'),
-      ...require('../../libs/shared/assets/i18n/en.json')
+      ...require('@i18n/scenes/en.json'),
+      ...require('@i18n/auth/en.json'),
+      ...require('@i18n/profile/en.json'),
+      ...require('@i18n/shared/en.json'),
+      ...require('@i18n/users/en.json')
     }
   },
   'en'
 );
 
 export function App(): ReactElement {
-  const { isTokenLoaded, isAuthenticated } = appFacade;
+  const isTokenLoaded = useSelector(AuthSelectors.isTokenLoaded);
+  const isAuthenticated = useSelector(AuthSelectors.isAuthenticated);
   const statusBarHeight = useSafeAreaInsets().top;
+  const dispatch = useDispatch();
+  const store = useStore<AppState>();
   setLanguage('en');
 
   useEffect(() => {
-    appFacade.init();
+    dispatch(AppActions.init());
   }, []);
 
   return (
@@ -55,7 +61,8 @@ export function App(): ReactElement {
             <Stack.Screen
               name='Main'
               component={MainNavigation}
-              listeners={authenticatedScreenListeners} />
+              listeners={createAuthenticatedScreenListeners(store)}
+            />
           </Stack.Navigator>
         ) : (
           <AppActivityIndicator />

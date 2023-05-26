@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@libs/shared/data-access/api';
+import { apiService } from '@libs/shared/data-access/api-client';
 import { TestRootComponent } from '@tests/helpers';
 import { App } from './app';
 

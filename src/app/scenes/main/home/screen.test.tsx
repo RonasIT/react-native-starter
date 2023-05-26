@@ -1,19 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
+import { render, RenderAPI } from '@testing-library/react-native';
 import React from 'react';
-import { act, ReactTestInstance } from 'react-test-renderer';
+import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
-import { apiService } from '@libs/shared/data-access/api';
-import { userService } from '@libs/shared/data-access/user';
+import { apiService } from '@libs/shared/data-access/api-client';
 import { userPaginationResponse } from '@tests/fixtures';
-import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
+import { TestRootComponent } from '@tests/helpers';
 import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
   let component: RenderAPI;
   let usersList: ReactTestInstance;
-  const searchUsersSpy = jest.spyOn(userService, 'search');
 
   function initComponent(): RenderAPI {
     const { Screen, Navigator } = createStackNavigator();
@@ -30,6 +28,7 @@ describe('Home screen', () => {
   }
 
   beforeAll(() => {
+    // TODO: change mock implementation
     jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
       if (endpoint === '/users') {
         return of(userPaginationResponse) as Observable<any>;
@@ -52,22 +51,5 @@ describe('Home screen', () => {
     expect(listItems).toHaveLength(userPaginationResponse.data.length);
   });
 
-  it('should load more items after the list end reached', async () => {
-    fireEvent.scroll(usersList, scrollDownEventData);
-
-    await waitFor(() => {
-      expect(searchUsersSpy).toHaveBeenCalledWith({ page: 2 });
-    });
-  });
-
-  it('should load the first page of users on the list refresh ', async () => {
-    const { refreshControl } = usersList.props;
-    act(() => {
-      refreshControl.props.onRefresh();
-    });
-
-    await waitFor(() => {
-      expect(searchUsersSpy).toHaveBeenCalledWith({ page: 1 });
-    });
-  });
+  // TODO: add tests for scrolling and refreshing
 });

@@ -1,17 +1,15 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { apiService } from '@libs/shared/data-access/api';
+import { apiService } from '@libs/shared/data-access/api-client';
 import {
-  refreshTokenInterceptor,
   tokenInterceptor,
   unauthorizedInterceptor
-} from '@libs/shared/data-access/api/interceptors';
-import { formDataInterceptor } from '@libs/shared/data-access/api/interceptors/form-data';
+} from '@libs/shared/data-access/api-client/interceptors';
+import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
 import { Epics } from '@libs/shared/data-access/store/types';
 import { authService } from '../service';
-import { checkIsTokenExpired } from '../utils/check-is-token-expired';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
@@ -25,7 +23,8 @@ export const authEpics: Epics = {
 
       apiService.useInterceptors({
         request: [
-          [
+          // TODO: use this interceptor in a real app
+          /*[
             refreshTokenInterceptor({
               onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
               onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
@@ -33,7 +32,7 @@ export const authEpics: Epics = {
               checkIsTokenExpired,
               refreshToken: () => authService.refreshToken()
             })
-          ],
+          ],*/
           [tokenInterceptor(getToken)],
           [formDataInterceptor()]
         ],
