@@ -19,11 +19,11 @@ const Stack = createStackNavigator();
 const setLanguage = useLanguage(
   {
     en: {
-      ...require('@assets/i18n/en.json'),
-      ...require('../../libs/auth/assets/i18n/en.json'),
-      ...require('../../libs/profile/assets/i18n/en.json'),
-      ...require('../../libs/shared/assets/i18n/en.json'),
-      ...require('../../libs/users/assets/i18n/en.json')
+      ...require('@i18n/scenes/en.json'),
+      ...require('@i18n/auth/en.json'),
+      ...require('@i18n/profile/en.json'),
+      ...require('@i18n/shared/en.json'),
+      ...require('@i18n/users/en.json')
     }
   },
   'en'
