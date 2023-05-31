@@ -36,7 +36,7 @@ See `package.json` for pre-defined scripts. You can run them using `npm run {scr
 - Format code: `format`.
 - Run tests: `test`.
 - Run necessary code checks: `verify`. Run `verify:ts` to verify Typescript, and `verify:cycles`
-for circular dependencies check.
+  for circular dependencies check.
 - Run builds for _both_ platforms: `build:{environment}`. Pass `-p {android|ios}` to run a platform-specific build.
 - Submit iOS build to AppStore Connect: `submit:ios:{environment}`.
 - Publish OTA-update: `update:{environment}`.

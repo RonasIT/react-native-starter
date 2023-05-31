@@ -84,6 +84,7 @@ export function createEntityAPI<
             dispatch(
               api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                 const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === createdEntity.data.id));
+
                 if (responseIndex === -1) {
                   (draft[0].data as Array<TEntity>).unshift(fullEntity);
                 }
@@ -274,6 +275,7 @@ export function createEntityAPI<
               dispatch(
                 api.util.updateQueryData('search', originalArgs, (draft) => {
                   const itemIndex = (draft.data as Array<TEntity>).findIndex((item) => item.id === fullEntity.id);
+
                   if (itemIndex !== -1) {
                     (draft.data as Array<TEntity>)[itemIndex] = fullEntity;
                   }
@@ -283,6 +285,7 @@ export function createEntityAPI<
               dispatch(
                 api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                   const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === fullEntity.id));
+
                   if (responseIndex !== -1) {
                     const responseItems = draft[responseIndex].data as Array<TEntity>;
                     draft[responseIndex].data = responseItems.map((item) => item.id === fullEntity.id ? fullEntity : item);
@@ -320,6 +323,7 @@ export function createEntityAPI<
             const patchSearchResult = dispatch(
               api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                 const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === id));
+
                 if (responseIndex !== -1) {
                   const responseItems = draft[responseIndex].data as Array<TEntity>;
                   draft[responseIndex].data = responseItems.filter((item) => item.id !== id);

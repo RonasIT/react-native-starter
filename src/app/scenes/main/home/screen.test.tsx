@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { render, RenderAPI } from '@testing-library/react-native';
 import React from 'react';
-import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { userPaginationResponse } from '@tests/fixtures';
@@ -11,7 +10,6 @@ import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
   let component: RenderAPI;
-  let usersList: ReactTestInstance;
 
   function initComponent(): RenderAPI {
     const { Screen, Navigator } = createStackNavigator();
