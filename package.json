@@ -28,8 +28,8 @@
     "submit:ios:dev": "cross-env APP_ENV=development eas submit --no-wait -p ios --profile=development",
     "submit:ios:prod": "cross-env APP_ENV=production eas submit --no-wait -p ios --profile=production",
     "eject": "expo eject",
-    "lint": "eslint --ext .ts,.tsx ./",
-    "format": "npx prettier --write **/*.{ts,tsx} && npx prettier --write *.{ts,tsx} && npm run lint -- --fix",
+    "lint": "eslint ./",
+    "format": "npx prettier --write . && npm run lint -- --fix",
     "verify": "npm run verify:ts && npm run verify:cycles",
     "verify:ts": "npx tsc",
     "verify:cycles": "dpdm --no-warning --no-tree --transform --progress false index.js --exclude \".*?/?models/.*\\.tsx?|node_modules\" --exit-code circular:1",
@@ -126,9 +126,7 @@
     "typescript": "^4.9.4"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "eslint --cache --fix"
-    ]
+    "*.{ts,tsx,js,html,json,md}": "prettier --write",
+    "*.{ts,tsx,js}": "eslint --cache --fix"
   }
 }
