@@ -12,13 +12,6 @@
         "APP_ENV": "development"
       }
     },
-    "preview": {
-      "channel": "preview",
-      "distribution": "internal",
-      "env": {
-        "APP_ENV": "production"
-      }
-    },
     "production": {
       "channel": "production",
       "distribution": "store",
@@ -35,9 +28,5 @@
         "appleTeamId": "YOURTEAMID"
       }
     }
-  },
-  "cli": {
-    "version": ">= 0.44.0",
-    "requireCommit": false
   }
 }

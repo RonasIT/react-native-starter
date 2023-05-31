@@ -51,12 +51,6 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       resizeMode: 'contain',
       backgroundColor: '#000000'
     },
-    assetBundlePatterns: [
-      './src/assets/images/*',
-      './src/libs/account-access/assets/images/*',
-      './src/assets/fonts/*',
-      './src/assets/i18n/*'
-    ],
     userInterfaceStyle: 'dark',
     ios: {
       buildNumber: '1',
