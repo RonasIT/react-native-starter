@@ -3,10 +3,7 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "target": "ES2015",
     "moduleResolution": "node",
     "noEmit": true,
@@ -18,27 +15,11 @@
     "strictNullChecks": false,
     "baseUrl": "./",
     "paths": {
-      "@store": [
-        "src/app/shared/store"
-      ],
-      "@store/*": [
-        "src/app/shared/store/*"
-      ],
-      "@shared/*": [
-        "src/app/shared/*"
-      ],
-      "@assets/*": [
-        "src/assets/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@tests/*": [
-        "src/tests/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ]
+      "@libs/*": ["src/libs/*"],
+      "@assets/*": ["src/assets/*"],
+      "@tests/*": ["src/tests/*"],
+      "@app/*": ["src/app/*"],
+      "@i18n/*": ["src/i18n/*"]
     }
   },
   "extends": "expo/tsconfig.base"

@@ -1,22 +1,33 @@
 export const userPaginationResponse = {
-  meta: {
-    pagination: {
-      limit: 2,
-      page: 1,
-      pages: 1280,
-      total: 2555
-    }
-  },
   data: [
     {
-      id: 1,
-      name: 'Test 1',
-      email: 'test1@test.com'
+      email: 'test@test.com',
+      gender: 'female',
+      id: 2358991,
+      name: 'Devak Kakkar',
+      status: 'inactive'
     },
     {
-      id: 2,
-      name: 'Test 2',
-      email: 'test2@test.com'
+      email: 'test2@test.com',
+      gender: 'female',
+      id: 2358990,
+      name: 'Chiranjeev Nehru DVM',
+      status: 'active'
+    },
+    {
+      email: 'test3@test.com',
+      gender: 'male',
+      id: 2358989,
+      name: 'Dayaananda Bhat',
+      status: 'active'
     }
-  ]
+  ],
+  meta: {
+    pagination: {
+      limit: 3,
+      page: 1,
+      pages: 288,
+      total: 2878
+    }
+  }
 };
