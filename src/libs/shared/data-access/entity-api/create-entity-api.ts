@@ -3,7 +3,7 @@ import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transf
 import { isUndefined, last, merge, omit, omitBy, pickBy } from 'lodash';
 import { EntityTagID } from './enums';
 import { BaseEntity, EntityRequest, PaginationRequest, PaginationResponse } from './models';
-import { EntityApi, EntityPartial } from './types';
+import { EntityPartial } from './types';
 import { BaseQueryFunction, createApiCreator, createEntityInstance, normalizeObject } from './utils';
 
 export function createEntityAPI<
@@ -18,7 +18,7 @@ export function createEntityAPI<
   entityConstructor: ClassConstructor<TEntity>;
   entitySearchRequestConstructor?: ClassConstructor<TSearchRequest>;
   entityGetRequestConstructor?: ClassConstructor<TEntityRequest>;
-}): EntityApi<TEntity, TSearchRequest, TEntityRequest> {
+}): typeof api {
   const {
     entityName,
     baseEndpoint,
@@ -338,5 +338,5 @@ export function createEntityAPI<
     })
   });
 
-  return api as unknown as EntityApi<TEntity, TSearchRequest, TEntityRequest>;
+  return api;
 }
