@@ -178,7 +178,7 @@ export function createEntityAPI<
             } as PaginationResponse<TEntity>
           ];
         },
-        providesTags: (result) => result[0]?.data
+        providesTags: (result) => result?.[0]?.data
           ? [
             { type: entityName, id: EntityTagID.LIST },
             ...result[0].data.map((item) => ({ type: entityName, id: item.id }))

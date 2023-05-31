@@ -349,8 +349,29 @@ exports[`Home screen should match the snapshot 1`] = `
                           testID="home-screen"
                         >
                           <RCTScrollView
-                            ListEmptyComponent={<ItemsListEmptyState />}
-                            ListFooterComponent={false}
+                            ListEmptyComponent={false}
+                            ListFooterComponent={
+                              <AppActivityIndicator
+                                color="#26a0f8"
+                                size="large"
+                                style={
+                                  {
+                                    "marginVertical": 16,
+                                  }
+                                }
+                              />
+                            }
+                            ListHeaderComponent={
+                              <AppButton
+                                label="[missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]"
+                                onPress={[Function]}
+                                style={
+                                  {
+                                    "marginBottom": 16,
+                                  }
+                                }
+                              />
+                            }
                             contentContainerStyle={
                               [
                                 {
@@ -362,32 +383,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                 },
                               ]
                             }
-                            data={
-                              [
-                                User {
-                                  "createdAt": undefined,
-                                  "deletedAt": undefined,
-                                  "email": "test1@test.com",
-                                  "id": 1,
-                                  "isDeleting": undefined,
-                                  "isUpdating": undefined,
-                                  "name": "Test 1",
-                                  "updatedAt": undefined,
-                                  Symbol(immer-draftable): true,
-                                },
-                                User {
-                                  "createdAt": undefined,
-                                  "deletedAt": undefined,
-                                  "email": "test2@test.com",
-                                  "id": 2,
-                                  "isDeleting": undefined,
-                                  "isUpdating": undefined,
-                                  "name": "Test 2",
-                                  "updatedAt": undefined,
-                                  Symbol(immer-draftable): true,
-                                },
-                              ]
-                            }
+                            data={[]}
                             getItem={[Function]}
                             getItemCount={[Function]}
                             keyExtractor={[Function]}
@@ -415,19 +411,53 @@ exports[`Home screen should match the snapshot 1`] = `
                             <RCTRefreshControl />
                             <View>
                               <View
-                                onFocusCapture={[Function]}
                                 onLayout={[Function]}
-                                style={null}
                               >
                                 <View
-                                  style={
+                                  accessibilityRole="button"
+                                  accessibilityState={
                                     {
-                                      "borderBottomColor": "#FFFFFF",
-                                      "borderBottomWidth": 2,
-                                      "paddingVertical": 8,
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
                                     }
                                   }
-                                  testID="user-item"
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onLayout={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "alignItems": "center",
+                                      "backgroundColor": "#26a0f8",
+                                      "borderRadius": 12,
+                                      "flexDirection": "row",
+                                      "justifyContent": "center",
+                                      "marginBottom": 16,
+                                      "minWidth": 90,
+                                      "opacity": 1,
+                                      "paddingHorizontal": 15,
+                                      "paddingVertical": 13,
+                                      "width": "100%",
+                                    }
+                                  }
                                 >
                                   <Text
                                     numberOfLines={1}
@@ -448,145 +478,53 @@ exports[`Home screen should match the snapshot 1`] = `
                                         undefined,
                                         [
                                           {
-                                            "fontFamily": "SFProDisplayRegular",
-                                            "fontSize": 22.4,
-                                            "lineHeight": 24.64,
-                                          },
-                                          {
-                                            "color": "#FFFFFF",
-                                          },
-                                          undefined,
-                                        ],
-                                      ]
-                                    }
-                                  >
-                                    #
-                                    1
-                                    : 
-                                    Test 1
-                                  </Text>
-                                  <Text
-                                    numberOfLines={1}
-                                    style={
-                                      [
-                                        {
-                                          "backgroundColor": "transparent",
-                                          "color": "#20303C",
-                                          "textAlign": "left",
-                                        },
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        [
-                                          {
-                                            "fontFamily": "SFProTextRegular",
+                                            "backgroundColor": "transparent",
+                                            "flex": 0,
+                                            "flexDirection": "row",
+                                            "fontFamily": "System",
                                             "fontSize": 16,
-                                            "lineHeight": 29.44,
+                                            "fontWeight": "400",
+                                            "lineHeight": 24,
                                           },
                                           {
                                             "color": "#FFFFFF",
                                           },
                                           undefined,
+                                          undefined,
+                                          [
+                                            {
+                                              "fontFamily": "SFProTextSemiBold",
+                                              "fontSize": 18.4,
+                                              "fontWeight": "600",
+                                              "lineHeight": 30,
+                                              "textAlign": "center",
+                                            },
+                                            {
+                                              "color": "#FFFFFF",
+                                            },
+                                            undefined,
+                                          ],
                                         ],
                                       ]
                                     }
+                                    testID="undefined.label"
                                   >
-                                    Email: 
-                                    test1@test.com
+                                    [missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]
                                   </Text>
                                 </View>
                               </View>
                               <View
-                                onFocusCapture={[Function]}
                                 onLayout={[Function]}
-                                style={null}
                               >
-                                <View
+                                <ActivityIndicator
+                                  color="#26a0f8"
+                                  size="large"
                                   style={
                                     {
-                                      "borderBottomColor": "#FFFFFF",
-                                      "borderBottomWidth": 2,
-                                      "paddingVertical": 8,
+                                      "marginVertical": 16,
                                     }
                                   }
-                                  testID="user-item"
-                                >
-                                  <Text
-                                    numberOfLines={1}
-                                    style={
-                                      [
-                                        {
-                                          "backgroundColor": "transparent",
-                                          "color": "#20303C",
-                                          "textAlign": "left",
-                                        },
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        [
-                                          {
-                                            "fontFamily": "SFProDisplayRegular",
-                                            "fontSize": 22.4,
-                                            "lineHeight": 24.64,
-                                          },
-                                          {
-                                            "color": "#FFFFFF",
-                                          },
-                                          undefined,
-                                        ],
-                                      ]
-                                    }
-                                  >
-                                    #
-                                    2
-                                    : 
-                                    Test 2
-                                  </Text>
-                                  <Text
-                                    numberOfLines={1}
-                                    style={
-                                      [
-                                        {
-                                          "backgroundColor": "transparent",
-                                          "color": "#20303C",
-                                          "textAlign": "left",
-                                        },
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        undefined,
-                                        [
-                                          {
-                                            "fontFamily": "SFProTextRegular",
-                                            "fontSize": 16,
-                                            "lineHeight": 29.44,
-                                          },
-                                          {
-                                            "color": "#FFFFFF",
-                                          },
-                                          undefined,
-                                        ],
-                                      ]
-                                    }
-                                  >
-                                    Email: 
-                                    test2@test.com
-                                  </Text>
-                                </View>
+                                />
                               </View>
                             </View>
                           </RCTScrollView>
