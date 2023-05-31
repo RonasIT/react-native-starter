@@ -349,18 +349,8 @@ exports[`Home screen should match the snapshot 1`] = `
                           testID="home-screen"
                         >
                           <RCTScrollView
-                            ListEmptyComponent={false}
-                            ListFooterComponent={
-                              <AppActivityIndicator
-                                color="#26a0f8"
-                                size="large"
-                                style={
-                                  {
-                                    "marginVertical": 16,
-                                  }
-                                }
-                              />
-                            }
+                            ListEmptyComponent={<ItemsListEmptyState />}
+                            ListFooterComponent={false}
                             ListHeaderComponent={
                               <AppButton
                                 label="[missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]"
@@ -383,7 +373,43 @@ exports[`Home screen should match the snapshot 1`] = `
                                 },
                               ]
                             }
-                            data={[]}
+                            data={
+                              [
+                                User {
+                                  "createdAt": undefined,
+                                  "deletedAt": undefined,
+                                  "email": "test@test.com",
+                                  "gender": "female",
+                                  "id": 2358991,
+                                  "name": "Devak Kakkar",
+                                  "status": "inactive",
+                                  "updatedAt": undefined,
+                                  Symbol(immer-draftable): true,
+                                },
+                                User {
+                                  "createdAt": undefined,
+                                  "deletedAt": undefined,
+                                  "email": "test2@test.com",
+                                  "gender": "female",
+                                  "id": 2358990,
+                                  "name": "Chiranjeev Nehru DVM",
+                                  "status": "active",
+                                  "updatedAt": undefined,
+                                  Symbol(immer-draftable): true,
+                                },
+                                User {
+                                  "createdAt": undefined,
+                                  "deletedAt": undefined,
+                                  "email": "test3@test.com",
+                                  "gender": "male",
+                                  "id": 2358989,
+                                  "name": "Dayaananda Bhat",
+                                  "status": "active",
+                                  "updatedAt": undefined,
+                                  Symbol(immer-draftable): true,
+                                },
+                              ]
+                            }
                             getItem={[Function]}
                             getItemCount={[Function]}
                             keyExtractor={[Function]}
@@ -479,7 +505,6 @@ exports[`Home screen should match the snapshot 1`] = `
                                         [
                                           {
                                             "backgroundColor": "transparent",
-                                            "flex": 0,
                                             "flexDirection": "row",
                                             "fontFamily": "System",
                                             "fontSize": 16,
@@ -514,17 +539,349 @@ exports[`Home screen should match the snapshot 1`] = `
                                 </View>
                               </View>
                               <View
+                                onFocusCapture={[Function]}
                                 onLayout={[Function]}
+                                style={null}
                               >
-                                <ActivityIndicator
-                                  color="#26a0f8"
-                                  size="large"
-                                  style={
+                                <View
+                                  accessibilityState={
                                     {
-                                      "marginVertical": 16,
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
                                     }
                                   }
-                                />
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "borderBottomColor": "#FFFFFF",
+                                      "borderBottomWidth": 2,
+                                      "opacity": 1,
+                                      "paddingVertical": 8,
+                                    }
+                                  }
+                                  testID="user-item"
+                                >
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    #
+                                    2358991
+                                    : 
+                                    Devak Kakkar
+                                  </Text>
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    Email: 
+                                    test@test.com
+                                  </Text>
+                                </View>
+                              </View>
+                              <View
+                                onFocusCapture={[Function]}
+                                onLayout={[Function]}
+                                style={null}
+                              >
+                                <View
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "borderBottomColor": "#FFFFFF",
+                                      "borderBottomWidth": 2,
+                                      "opacity": 1,
+                                      "paddingVertical": 8,
+                                    }
+                                  }
+                                  testID="user-item"
+                                >
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    #
+                                    2358990
+                                    : 
+                                    Chiranjeev Nehru DVM
+                                  </Text>
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    Email: 
+                                    test2@test.com
+                                  </Text>
+                                </View>
+                              </View>
+                              <View
+                                onFocusCapture={[Function]}
+                                onLayout={[Function]}
+                                style={null}
+                              >
+                                <View
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "borderBottomColor": "#FFFFFF",
+                                      "borderBottomWidth": 2,
+                                      "opacity": 1,
+                                      "paddingVertical": 8,
+                                    }
+                                  }
+                                  testID="user-item"
+                                >
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    #
+                                    2358989
+                                    : 
+                                    Dayaananda Bhat
+                                  </Text>
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    Email: 
+                                    test3@test.com
+                                  </Text>
+                                </View>
                               </View>
                             </View>
                           </RCTScrollView>

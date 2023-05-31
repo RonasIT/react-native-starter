@@ -46,6 +46,8 @@ exports[`Login screen should match the snapshot 1`] = `
               undefined,
               undefined,
               undefined,
+              undefined,
+              undefined,
               false,
               {
                 "height": 56,
@@ -105,6 +107,7 @@ exports[`Login screen should match the snapshot 1`] = `
                 {
                   "marginBottom": 19.2,
                 },
+                undefined,
               ],
             ]
           }
@@ -245,7 +248,9 @@ exports[`Login screen should match the snapshot 1`] = `
                         {},
                         undefined,
                       ],
+                      undefined,
                     ],
+                    false,
                   ]
                 }
                 testID="email-input"
@@ -294,6 +299,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   undefined,
                   [
                     {
+                      "flexShrink": 1,
                       "minHeight": 20,
                     },
                     {
@@ -325,6 +331,7 @@ exports[`Login screen should match the snapshot 1`] = `
                 {
                   "marginBottom": 19.2,
                 },
+                undefined,
               ],
             ]
           }
@@ -466,7 +473,9 @@ exports[`Login screen should match the snapshot 1`] = `
                         {},
                         undefined,
                       ],
+                      undefined,
                     ],
+                    false,
                   ]
                 }
                 testID="password-input"
@@ -555,6 +564,7 @@ exports[`Login screen should match the snapshot 1`] = `
                   undefined,
                   [
                     {
+                      "flexShrink": 1,
                       "minHeight": 20,
                     },
                     {
@@ -643,7 +653,6 @@ exports[`Login screen should match the snapshot 1`] = `
                   [
                     {
                       "backgroundColor": "transparent",
-                      "flex": 0,
                       "flexDirection": "row",
                       "fontFamily": "System",
                       "fontSize": 16,

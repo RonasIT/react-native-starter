@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { render, RenderAPI } from '@testing-library/react-native';
+import { AxiosResponse } from 'axios';
 import React from 'react';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
@@ -26,17 +27,15 @@ describe('Home screen', () => {
   }
 
   beforeAll(() => {
-    // TODO: change mock implementation
-    jest.spyOn(apiService, 'get').mockImplementation((endpoint) => {
-      if (endpoint === '/users') {
-        return of(userPaginationResponse) as Observable<any>;
+    jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
+      if (config.method === 'get' && config.url === '/users') {
+        return of({ data: userPaginationResponse }) as Observable<AxiosResponse>;
       }
     });
   });
 
   beforeEach(() => {
     component = initComponent();
-    usersList = component.getByTestId('users-list');
   });
 
   it('should match the snapshot', () => {
