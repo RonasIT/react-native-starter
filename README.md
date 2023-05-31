@@ -10,6 +10,7 @@ Ronas IT template for React Native + Expo projects.
 - Testing environment setup with simple tests examples
 - SVG setup
 - Common modules and basic components for a quick start
+- Redux setup and entities CRUD implementation using [RTK](https://redux-toolkit.js.org/) **[Work-in-progress]**
 
 \+ Demo app that interacts with some open API.
 
@@ -18,11 +19,9 @@ Ronas IT template for React Native + Expo projects.
 1. Make sure you have [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
 2. Init your project:
 
-```sh
-
-expo init your-app-name --npm -t @ronas-it/react-native-starter@latest
-
-```
+   ```sh
+   npx create-expo-app -t @ronas-it/react-native-starter
+   ```
 
 3. Follow `TODO`s in generated project to update app configuration and clean up demo code.
 
