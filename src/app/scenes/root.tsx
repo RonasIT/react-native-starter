@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'expo-dev-client';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

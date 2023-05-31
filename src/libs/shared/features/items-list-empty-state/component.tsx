@@ -7,6 +7,7 @@ import { AppText } from '@libs/shared/ui/ui-kit/text';
 interface Props {
   title?: string;
 }
+
 export function ItemsListEmptyState({ title }: Props): ReactElement {
   const translate = useTranslation('SHARED.ITEMS_LIST_EMPTY_STATE');
 

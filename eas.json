@@ -2,9 +2,7 @@
   "build": {
     "development": {
       "channel": "development",
-      "android": {
-        "distribution": "internal"
-      },
+      "distribution": "internal",
       "ios": {
         "distribution": "store"
       },
@@ -12,11 +10,11 @@
         "APP_ENV": "development"
       }
     },
-    "preview": {
-      "channel": "preview",
-      "distribution": "internal",
-      "env": {
-        "APP_ENV": "production"
+    "debug": {
+      "extends": "development",
+      "developmentClient": true,
+      "ios": {
+        "distribution": "internal"
       }
     },
     "production": {
@@ -35,9 +33,5 @@
         "appleTeamId": "YOURTEAMID"
       }
     }
-  },
-  "cli": {
-    "version": ">= 0.44.0",
-    "requireCommit": false
   }
 }

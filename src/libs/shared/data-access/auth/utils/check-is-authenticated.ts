@@ -6,6 +6,7 @@ import { AuthSelectors } from '../store/selectors';
 export const checkIsAuthenticated =
   (store: Partial<Store<AppState>>) => (unauthenticateOnFail = true): boolean => {
     const isAuthenticated = AuthSelectors.isAuthenticated(store.getState());
+
     if (!isAuthenticated && unauthenticateOnFail) {
       store.dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true }));
     }

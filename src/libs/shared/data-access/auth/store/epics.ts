@@ -1,10 +1,7 @@
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { apiService } from '@libs/shared/data-access/api-client';
-import {
-  tokenInterceptor,
-  unauthorizedInterceptor
-} from '@libs/shared/data-access/api-client/interceptors';
+import { tokenInterceptor, unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
 import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
