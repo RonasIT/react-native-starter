@@ -2,14 +2,19 @@
   "build": {
     "development": {
       "channel": "development",
-      "android": {
-        "distribution": "internal"
-      },
+      "distribution": "internal",
       "ios": {
         "distribution": "store"
       },
       "env": {
         "APP_ENV": "development"
+      }
+    },
+    "debug": {
+      "extends": "development",
+      "developmentClient": true,
+      "ios": {
+        "distribution": "internal"
       }
     },
     "production": {
