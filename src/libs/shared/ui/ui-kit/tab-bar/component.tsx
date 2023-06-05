@@ -19,6 +19,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
           navigation.navigate(route.name);
         }
       };
+
       const onLongPress = (): void => {
         navigation.emit({ type: 'tabLongPress', target: route.key });
       };

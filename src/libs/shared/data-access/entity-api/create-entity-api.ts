@@ -3,7 +3,7 @@ import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transf
 import { isUndefined, last, merge, omit, omitBy, pickBy } from 'lodash';
 import { EntityTagID } from './enums';
 import { BaseEntity, EntityRequest, PaginationRequest, PaginationResponse } from './models';
-import { EntityApi, EntityPartial } from './types';
+import { EntityPartial } from './types';
 import { BaseQueryFunction, createApiCreator, createEntityInstance, normalizeObject } from './utils';
 
 export function createEntityAPI<
@@ -18,7 +18,7 @@ export function createEntityAPI<
   entityConstructor: ClassConstructor<TEntity>;
   entitySearchRequestConstructor?: ClassConstructor<TSearchRequest>;
   entityGetRequestConstructor?: ClassConstructor<TEntityRequest>;
-}): EntityApi<TEntity, TSearchRequest, TEntityRequest> {
+}): typeof api {
   const {
     entityName,
     baseEndpoint,
@@ -84,6 +84,7 @@ export function createEntityAPI<
             dispatch(
               api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                 const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === createdEntity.data.id));
+
                 if (responseIndex === -1) {
                   (draft[0].data as Array<TEntity>).unshift(fullEntity);
                 }
@@ -178,7 +179,7 @@ export function createEntityAPI<
             } as PaginationResponse<TEntity>
           ];
         },
-        providesTags: (result) => result[0]?.data
+        providesTags: (result) => result?.[0]?.data
           ? [
             { type: entityName, id: EntityTagID.LIST },
             ...result[0].data.map((item) => ({ type: entityName, id: item.id }))
@@ -274,6 +275,7 @@ export function createEntityAPI<
               dispatch(
                 api.util.updateQueryData('search', originalArgs, (draft) => {
                   const itemIndex = (draft.data as Array<TEntity>).findIndex((item) => item.id === fullEntity.id);
+
                   if (itemIndex !== -1) {
                     (draft.data as Array<TEntity>)[itemIndex] = fullEntity;
                   }
@@ -283,6 +285,7 @@ export function createEntityAPI<
               dispatch(
                 api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                   const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === fullEntity.id));
+
                   if (responseIndex !== -1) {
                     const responseItems = draft[responseIndex].data as Array<TEntity>;
                     draft[responseIndex].data = responseItems.map((item) => item.id === fullEntity.id ? fullEntity : item);
@@ -320,6 +323,7 @@ export function createEntityAPI<
             const patchSearchResult = dispatch(
               api.util.updateQueryData('searchInfinite', originalArgs, (draft) => {
                 const responseIndex = draft.findIndex((response) => (response.data as Array<TEntity>).find((item) => item.id === id));
+
                 if (responseIndex !== -1) {
                   const responseItems = draft[responseIndex].data as Array<TEntity>;
                   draft[responseIndex].data = responseItems.filter((item) => item.id !== id);
@@ -334,5 +338,5 @@ export function createEntityAPI<
     })
   });
 
-  return api as unknown as EntityApi<TEntity, TSearchRequest, TEntityRequest>;
+  return api;
 }

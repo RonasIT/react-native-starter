@@ -351,6 +351,17 @@ exports[`Home screen should match the snapshot 1`] = `
                           <RCTScrollView
                             ListEmptyComponent={<ItemsListEmptyState />}
                             ListFooterComponent={false}
+                            ListHeaderComponent={
+                              <AppButton
+                                label="[missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]"
+                                onPress={[Function]}
+                                style={
+                                  {
+                                    "marginBottom": 16,
+                                  }
+                                }
+                              />
+                            }
                             contentContainerStyle={
                               [
                                 {
@@ -367,11 +378,11 @@ exports[`Home screen should match the snapshot 1`] = `
                                 User {
                                   "createdAt": undefined,
                                   "deletedAt": undefined,
-                                  "email": "test1@test.com",
-                                  "id": 1,
-                                  "isDeleting": undefined,
-                                  "isUpdating": undefined,
-                                  "name": "Test 1",
+                                  "email": "test@test.com",
+                                  "gender": "female",
+                                  "id": 2358991,
+                                  "name": "Devak Kakkar",
+                                  "status": "inactive",
                                   "updatedAt": undefined,
                                   Symbol(immer-draftable): true,
                                 },
@@ -379,10 +390,21 @@ exports[`Home screen should match the snapshot 1`] = `
                                   "createdAt": undefined,
                                   "deletedAt": undefined,
                                   "email": "test2@test.com",
-                                  "id": 2,
-                                  "isDeleting": undefined,
-                                  "isUpdating": undefined,
-                                  "name": "Test 2",
+                                  "gender": "female",
+                                  "id": 2358990,
+                                  "name": "Chiranjeev Nehru DVM",
+                                  "status": "active",
+                                  "updatedAt": undefined,
+                                  Symbol(immer-draftable): true,
+                                },
+                                User {
+                                  "createdAt": undefined,
+                                  "deletedAt": undefined,
+                                  "email": "test3@test.com",
+                                  "gender": "male",
+                                  "id": 2358989,
+                                  "name": "Dayaananda Bhat",
+                                  "status": "active",
                                   "updatedAt": undefined,
                                   Symbol(immer-draftable): true,
                                 },
@@ -415,15 +437,145 @@ exports[`Home screen should match the snapshot 1`] = `
                             <RCTRefreshControl />
                             <View>
                               <View
+                                onLayout={[Function]}
+                              >
+                                <View
+                                  accessibilityRole="button"
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onLayout={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "alignItems": "center",
+                                      "backgroundColor": "#26a0f8",
+                                      "borderRadius": 12,
+                                      "flexDirection": "row",
+                                      "justifyContent": "center",
+                                      "marginBottom": 16,
+                                      "minWidth": 90,
+                                      "opacity": 1,
+                                      "paddingHorizontal": 15,
+                                      "paddingVertical": 13,
+                                      "width": "100%",
+                                    }
+                                  }
+                                >
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "backgroundColor": "transparent",
+                                            "flexDirection": "row",
+                                            "fontFamily": "System",
+                                            "fontSize": 16,
+                                            "fontWeight": "400",
+                                            "lineHeight": 24,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                          undefined,
+                                          [
+                                            {
+                                              "fontFamily": "SFProTextSemiBold",
+                                              "fontSize": 18.4,
+                                              "fontWeight": "600",
+                                              "lineHeight": 30,
+                                              "textAlign": "center",
+                                            },
+                                            {
+                                              "color": "#FFFFFF",
+                                            },
+                                            undefined,
+                                          ],
+                                        ],
+                                      ]
+                                    }
+                                    testID="undefined.label"
+                                  >
+                                    [missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]
+                                  </Text>
+                                </View>
+                              </View>
+                              <View
                                 onFocusCapture={[Function]}
                                 onLayout={[Function]}
                                 style={null}
                               >
                                 <View
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
                                   style={
                                     {
                                       "borderBottomColor": "#FFFFFF",
                                       "borderBottomWidth": 2,
+                                      "opacity": 1,
                                       "paddingVertical": 8,
                                     }
                                   }
@@ -461,9 +613,9 @@ exports[`Home screen should match the snapshot 1`] = `
                                     }
                                   >
                                     #
-                                    1
+                                    2358991
                                     : 
-                                    Test 1
+                                    Devak Kakkar
                                   </Text>
                                   <Text
                                     numberOfLines={1}
@@ -497,7 +649,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                     }
                                   >
                                     Email: 
-                                    test1@test.com
+                                    test@test.com
                                   </Text>
                                 </View>
                               </View>
@@ -507,10 +659,38 @@ exports[`Home screen should match the snapshot 1`] = `
                                 style={null}
                               >
                                 <View
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
                                   style={
                                     {
                                       "borderBottomColor": "#FFFFFF",
                                       "borderBottomWidth": 2,
+                                      "opacity": 1,
                                       "paddingVertical": 8,
                                     }
                                   }
@@ -548,9 +728,9 @@ exports[`Home screen should match the snapshot 1`] = `
                                     }
                                   >
                                     #
-                                    2
+                                    2358990
                                     : 
-                                    Test 2
+                                    Chiranjeev Nehru DVM
                                   </Text>
                                   <Text
                                     numberOfLines={1}
@@ -585,6 +765,121 @@ exports[`Home screen should match the snapshot 1`] = `
                                   >
                                     Email: 
                                     test2@test.com
+                                  </Text>
+                                </View>
+                              </View>
+                              <View
+                                onFocusCapture={[Function]}
+                                onLayout={[Function]}
+                                style={null}
+                              >
+                                <View
+                                  accessibilityState={
+                                    {
+                                      "busy": undefined,
+                                      "checked": undefined,
+                                      "disabled": undefined,
+                                      "expanded": undefined,
+                                      "selected": undefined,
+                                    }
+                                  }
+                                  accessibilityValue={
+                                    {
+                                      "max": undefined,
+                                      "min": undefined,
+                                      "now": undefined,
+                                      "text": undefined,
+                                    }
+                                  }
+                                  accessible={true}
+                                  collapsable={false}
+                                  focusable={true}
+                                  onClick={[Function]}
+                                  onResponderGrant={[Function]}
+                                  onResponderMove={[Function]}
+                                  onResponderRelease={[Function]}
+                                  onResponderTerminate={[Function]}
+                                  onResponderTerminationRequest={[Function]}
+                                  onStartShouldSetResponder={[Function]}
+                                  style={
+                                    {
+                                      "borderBottomColor": "#FFFFFF",
+                                      "borderBottomWidth": 2,
+                                      "opacity": 1,
+                                      "paddingVertical": 8,
+                                    }
+                                  }
+                                  testID="user-item"
+                                >
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProDisplayRegular",
+                                            "fontSize": 22.4,
+                                            "lineHeight": 24.64,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    #
+                                    2358989
+                                    : 
+                                    Dayaananda Bhat
+                                  </Text>
+                                  <Text
+                                    numberOfLines={1}
+                                    style={
+                                      [
+                                        {
+                                          "backgroundColor": "transparent",
+                                          "color": "#20303C",
+                                          "textAlign": "left",
+                                        },
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        undefined,
+                                        [
+                                          {
+                                            "fontFamily": "SFProTextRegular",
+                                            "fontSize": 16,
+                                            "lineHeight": 29.44,
+                                          },
+                                          {
+                                            "color": "#FFFFFF",
+                                          },
+                                          undefined,
+                                        ],
+                                      ]
+                                    }
+                                  >
+                                    Email: 
+                                    test3@test.com
                                   </Text>
                                 </View>
                               </View>
