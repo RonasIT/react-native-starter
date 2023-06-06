@@ -1,6 +1,6 @@
 import { instanceToPlain, plainToInstance } from 'class-transformer';
-import { createAppApi } from '@libs/shared/data-access/api-client';
 import { User } from '@libs/shared/data-access/api/user/models';
+import { createAppApi } from '@libs/shared/data-access/api-client';
 import { profileAPI } from '../profile/api';
 import { AuthCredentials, AuthResponse } from './models';
 
@@ -19,7 +19,7 @@ export const authAPI = createAppApi({
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
-        dispatch(profileAPI.util.upsertQueryData('getDemo', null, data.user));
+        dispatch(profileAPI.util.upsertQueryData('getDemo', undefined, data.user));
       }
     }),
     authorize: builder.mutation<AuthResponse, AuthCredentials>({
@@ -30,7 +30,7 @@ export const authAPI = createAppApi({
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
-        dispatch(profileAPI.util.upsertQueryData('get', null, data.user));
+        dispatch(profileAPI.util.upsertQueryData('get', undefined, data.user));
       },
       transformResponse: (response) => plainToInstance(AuthResponse, response)
     })
