@@ -15,13 +15,18 @@ export function createStore(context?: unknown): typeof store {
     }
   });
 
+  const middlewares = [epicMiddleware, userApi.middleware, authAPI.middleware, profileAPI.middleware];
+
+  if (__DEV__) {
+    /* eslint-disable @typescript-eslint/no-var-requires */
+    const createDebugger = require('redux-flipper').default;
+    middlewares.push(createDebugger());
+  }
+
   const store = configureStore({
     reducer: rootReducer as unknown as Reducer<StateFromReducersMapObject<OmitIndexSignature<typeof rootReducer>>>,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, thunk: { extraArgument: context } }).concat(
-      epicMiddleware,
-      authAPI.middleware,
-      profileAPI.middleware,
-      userApi.middleware
+      middlewares
     ) as MiddlewareArray<any>
   });
 
