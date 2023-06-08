@@ -75,6 +75,7 @@ describe('Login screen', () => {
   });
 
   it('should init authorization with valid credentials and subscribe to push notifications', async () => {
+    const demoAuthorizeSpy = jest.spyOn(apiService.httpClient, 'request');
     const navigateSpy = jest.spyOn(appNavigationService, 'resetToRoute');
 
     fireEvent.changeText(emailInput, validCredentials.email);
@@ -83,7 +84,11 @@ describe('Login screen', () => {
 
     await waitFor(
       () => {
-        // TODO: check authorization
+        expect(demoAuthorizeSpy).toHaveBeenCalledWith({
+          method: 'get',
+          url: '/users',
+          headers: {}
+        });
         expect(navigateSpy).toHaveBeenCalledWith('Main');
       },
       { timeout: 7000 }
