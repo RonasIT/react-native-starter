@@ -1,7 +1,7 @@
 import { isAnyOf } from '@reduxjs/toolkit';
 import { delay, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { apiService } from '@libs/shared/data-access/api-client';
-import { tokenInterceptor, unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
+import { unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
 import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
@@ -11,28 +11,13 @@ import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
 export const authEpics: Epics = {
-  onInit: (action$, _, { useDispatch, useGetState }) => action$.pipe(
+  onInit: (action$, _, { useDispatch }) => action$.pipe(
     filter(AppActions.init.match),
     tap(() => {
-      const getState = useGetState();
-      const getToken = (): string => AuthSelectors.token(getState());
       const dispatch = useDispatch();
 
       apiService.useInterceptors({
-        request: [
-          // TODO: use this interceptor in a real app
-          /*[
-            refreshTokenInterceptor({
-              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
-              onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
-              getToken,
-              checkIsTokenExpired,
-              refreshToken: () => authService.refreshToken()
-            })
-          ],*/
-          [tokenInterceptor(getToken)],
-          [formDataInterceptor()]
-        ],
+        request: [[formDataInterceptor()]],
         response: [
           [
             undefined,
