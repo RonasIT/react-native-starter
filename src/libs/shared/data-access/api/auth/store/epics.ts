@@ -11,27 +11,13 @@ import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
 
 export const authEpics: Epics = {
-  onInit: (action$, _, { useDispatch, useGetState }) => action$.pipe(
+  onInit: (action$, _, { useDispatch }) => action$.pipe(
     filter(AppActions.init.match),
     tap(() => {
-      const getState = useGetState();
-      const getToken = (): string => AuthSelectors.token(getState());
       const dispatch = useDispatch();
 
       apiService.useInterceptors({
-        request: [
-          // TODO: use this interceptor in a real app
-          /*[
-            refreshTokenInterceptor({
-              onError: () => dispatch(AuthActions.unauthorize({ keepInterruptedNavigation: true })),
-              onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
-              getToken,
-              checkIsTokenExpired,
-              refreshToken: () => authService.refreshToken()
-            })
-          ],*/
-          [formDataInterceptor()]
-        ],
+        request: [[formDataInterceptor()]],
         response: [
           [
             undefined,

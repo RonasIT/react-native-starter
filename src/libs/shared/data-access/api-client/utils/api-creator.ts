@@ -1,6 +1,6 @@
 import { createApiCreator } from '@libs/shared/data-access/entity-api';
-import { axiosBaseQuery } from './axios-base-query';
+import { axiosBaseQueryWithTokenRefresh } from './axios-base-query-with-token-refresh';
 
 export const createAppApi = createApiCreator({
-  baseQuery: axiosBaseQuery
+  baseQuery: axiosBaseQueryWithTokenRefresh
 });
