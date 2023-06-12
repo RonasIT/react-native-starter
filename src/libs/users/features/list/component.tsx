@@ -59,6 +59,7 @@ export function UsersList({ onCreateButtonPress, onItemPress }: UsersListProps):
           label={translate('BUTTON_CREATE_USER')}
           onPress={onCreateButtonPress}
           style={style.createUserButton}
+          testID='create-user-button'
         />
       }
       containerStyle={commonStyle.container}
