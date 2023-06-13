@@ -33,7 +33,7 @@
     "verify": "npm run verify:ts && npm run verify:cycles",
     "verify:ts": "npx tsc",
     "verify:cycles": "dpdm --no-warning --no-tree --transform --progress false index.js --exclude \".*?/?models/.*\\.tsx?|node_modules\" --exit-code circular:1",
-    "test": "jest --config jest.config.js --detectOpenHandles",
+    "test": "cross-env NO_FLIPPER=1 jest --config jest.config.js --detectOpenHandles",
     "prepare": "husky install",
     "prepack": "node scripts/prepack.js && npm pkg set 'scripts.postinstall'='npx rimraf app.json scripts && npm pkg delete 'scripts.prepack' 'scripts.postpack' 'scripts.postinstall''",
     "postpack": "node scripts/postpack.js && npm pkg delete 'scripts.postinstall'"

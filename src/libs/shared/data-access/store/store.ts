@@ -17,7 +17,7 @@ export function createStore(context?: unknown): typeof store {
 
   const middlewares = [epicMiddleware, userApi.middleware, authAPI.middleware, profileAPI.middleware];
 
-  if (__DEV__) {
+  if (__DEV__ && !!process.env.NO_FLIPPER) {
     /* eslint-disable @typescript-eslint/no-var-requires */
     const createDebugger = require('redux-flipper').default;
     middlewares.push(createDebugger());
