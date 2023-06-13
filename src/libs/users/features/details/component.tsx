@@ -65,7 +65,10 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   return (
     <>
       <ScrollView>
-        <AppText variant='large' style={style.title}>
+        <AppText
+          variant='large'
+          style={style.title}
+          testID='title'>
           {id ? translate('TEXT_EDIT') : translate('TEXT_CREATE')}
         </AppText>
         <InputFormGroup
@@ -74,25 +77,33 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           autoCapitalize='none'
           keyboardType='email-address'
           control={control}
+          testID='email-input'
         />
         <InputFormGroup
           label={translate('TEXT_NAME')}
           name='name'
-          control={control} />
+          control={control}
+          testID='name-input' />
         <InputFormGroup
           label={translate('TEXT_GENDER')}
           name='gender'
-          control={control} />
+          control={control}
+          testID='gender-input' />
         <InputFormGroup
           label={translate('TEXT_STATUS')}
           name='status'
-          control={control} />
+          control={control}
+          testID='status-input' />
         {error && (
           <AppText style={style.error}>
             {translate('TEXT_ERROR')}: {JSON.stringify(error)}
           </AppText>
         )}
-        {(isCreateSuccess || isUpdateSuccess) && <AppText style={style.success}>{translate('TEXT_SUCCESS')}</AppText>}
+        {(isCreateSuccess || isUpdateSuccess) && (
+          <AppText style={style.success} testID='success-message'>
+            {translate('TEXT_SUCCESS')}
+          </AppText>
+        )}
         <View style={style.footer}>
           {id && (
             <AppButton
@@ -109,6 +120,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
             label={translate('BUTTON_SAVE')}
             onPress={handleSubmit(formSubmitted)}
             style={style.button}
+            testID='save-button'
           />
         </View>
       </ScrollView>

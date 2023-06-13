@@ -70,3 +70,15 @@ jest.mock('expo-linking', () => {
 
   return module;
 }); //TODO workaround https://github.com/expo/expo/issues/18742#issuecomment-1234290449
+
+class File extends Blob {
+  public lastModified: number;
+  public name: string;
+  public webkitRelativePath: string;
+
+  constructor(fileBits: Array<BlobPart>, fileName: string, options?: FilePropertyBag) {
+    super(fileBits, options);
+  }
+}
+
+globalThis.File = File;

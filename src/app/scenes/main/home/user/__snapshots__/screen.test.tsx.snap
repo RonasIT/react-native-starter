@@ -1,0 +1,1082 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User screen Without params should match the snapshot 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flex": 1,
+        },
+        {
+          "paddingHorizontal": 24,
+        },
+      ]
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <Text
+          style={
+            [
+              {
+                "backgroundColor": "transparent",
+                "color": "#20303C",
+                "textAlign": "left",
+              },
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              [
+                {
+                  "fontFamily": "SFProDisplayBold",
+                  "fontSize": 24.8,
+                  "lineHeight": 39.36,
+                },
+                {
+                  "color": "#FFFFFF",
+                },
+                {
+                  "marginVertical": 32,
+                },
+              ],
+            ]
+          }
+          testID="title"
+        >
+          Create user
+        </Text>
+        <View
+          style={
+            [
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              [
+                {},
+                undefined,
+                {
+                  "marginBottom": 19.2,
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <Text
+            color="#20303C"
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "color": "#20303C",
+                  "textAlign": "left",
+                },
+                undefined,
+                {
+                  "color": "#20303C",
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                [
+                  {
+                    "minHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "SFProDisplayRegular",
+                    "fontSize": 22.4,
+                    "lineHeight": 24.64,
+                    "marginBottom": 8,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+            testID="email-input.label"
+          >
+            Email
+          </Text>
+          <View
+            centerV={true}
+            row={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                },
+                [
+                  {},
+                  [
+                    [
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#18191F",
+                        "borderColor": "#18191F",
+                        "borderRadius": 10,
+                        "borderWidth": 1,
+                        "flexDirection": "row",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                        "position": "relative",
+                        "width": "100%",
+                      },
+                      false,
+                      false,
+                      undefined,
+                      undefined,
+                      undefined,
+                    ],
+                    undefined,
+                  ],
+                ],
+              ]
+            }
+          >
+            <View
+              flexG={true}
+              style={
+                [
+                  undefined,
+                  undefined,
+                  {
+                    "flexGrow": 1,
+                  },
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  undefined,
+                ]
+              }
+            >
+              <TextInput
+                accessibilityState={
+                  {
+                    "disabled": false,
+                  }
+                }
+                autoCapitalize="none"
+                editable={true}
+                keyboardType="email-address"
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                style={
+                  [
+                    {
+                      "flexGrow": 1,
+                      "paddingBottom": 0,
+                      "paddingTop": 0,
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#20303C",
+                    },
+                    [
+                      {},
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flex": 1,
+                          "fontSize": 18.4,
+                          "height": 54,
+                          "paddingBottom": 15,
+                          "paddingTop": 15,
+                        },
+                        {},
+                        undefined,
+                      ],
+                      undefined,
+                    ],
+                    false,
+                  ]
+                }
+                testID="email-input"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+          </View>
+          <View
+            row={true}
+            spread={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              $textDangerLight={true}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "color": "#20303C",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                  {
+                    "color": "#FC3D2F",
+                  },
+                  undefined,
+                  undefined,
+                  {},
+                  undefined,
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "flexShrink": 1,
+                      "minHeight": 20,
+                    },
+                    {
+                      "color": "#FF003D",
+                      "fontFamily": "SFProTextRegular",
+                      "fontSize": 16,
+                      "lineHeight": 29.44,
+                    },
+                  ],
+                ]
+              }
+              testID="email-input.validationMessage"
+            />
+          </View>
+        </View>
+        <View
+          style={
+            [
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              [
+                {},
+                undefined,
+                {
+                  "marginBottom": 19.2,
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <Text
+            color="#20303C"
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "color": "#20303C",
+                  "textAlign": "left",
+                },
+                undefined,
+                {
+                  "color": "#20303C",
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                [
+                  {
+                    "minHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "SFProDisplayRegular",
+                    "fontSize": 22.4,
+                    "lineHeight": 24.64,
+                    "marginBottom": 8,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+            testID="name-input.label"
+          >
+            Name
+          </Text>
+          <View
+            centerV={true}
+            row={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                },
+                [
+                  {},
+                  [
+                    [
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#18191F",
+                        "borderColor": "#18191F",
+                        "borderRadius": 10,
+                        "borderWidth": 1,
+                        "flexDirection": "row",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                        "position": "relative",
+                        "width": "100%",
+                      },
+                      false,
+                      false,
+                      undefined,
+                      undefined,
+                      undefined,
+                    ],
+                    undefined,
+                  ],
+                ],
+              ]
+            }
+          >
+            <View
+              flexG={true}
+              style={
+                [
+                  undefined,
+                  undefined,
+                  {
+                    "flexGrow": 1,
+                  },
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  undefined,
+                ]
+              }
+            >
+              <TextInput
+                accessibilityState={
+                  {
+                    "disabled": false,
+                  }
+                }
+                editable={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                style={
+                  [
+                    {
+                      "flexGrow": 1,
+                      "paddingBottom": 0,
+                      "paddingTop": 0,
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#20303C",
+                    },
+                    [
+                      {},
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flex": 1,
+                          "fontSize": 18.4,
+                          "height": 54,
+                          "paddingBottom": 15,
+                          "paddingTop": 15,
+                        },
+                        {},
+                        undefined,
+                      ],
+                      undefined,
+                    ],
+                    false,
+                  ]
+                }
+                testID="name-input"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+          </View>
+          <View
+            row={true}
+            spread={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              $textDangerLight={true}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "color": "#20303C",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                  {
+                    "color": "#FC3D2F",
+                  },
+                  undefined,
+                  undefined,
+                  {},
+                  undefined,
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "flexShrink": 1,
+                      "minHeight": 20,
+                    },
+                    {
+                      "color": "#FF003D",
+                      "fontFamily": "SFProTextRegular",
+                      "fontSize": 16,
+                      "lineHeight": 29.44,
+                    },
+                  ],
+                ]
+              }
+              testID="name-input.validationMessage"
+            />
+          </View>
+        </View>
+        <View
+          style={
+            [
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              [
+                {},
+                undefined,
+                {
+                  "marginBottom": 19.2,
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <Text
+            color="#20303C"
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "color": "#20303C",
+                  "textAlign": "left",
+                },
+                undefined,
+                {
+                  "color": "#20303C",
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                [
+                  {
+                    "minHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "SFProDisplayRegular",
+                    "fontSize": 22.4,
+                    "lineHeight": 24.64,
+                    "marginBottom": 8,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+            testID="gender-input.label"
+          >
+            Gender (male or female)
+          </Text>
+          <View
+            centerV={true}
+            row={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                },
+                [
+                  {},
+                  [
+                    [
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#18191F",
+                        "borderColor": "#18191F",
+                        "borderRadius": 10,
+                        "borderWidth": 1,
+                        "flexDirection": "row",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                        "position": "relative",
+                        "width": "100%",
+                      },
+                      false,
+                      false,
+                      undefined,
+                      undefined,
+                      undefined,
+                    ],
+                    undefined,
+                  ],
+                ],
+              ]
+            }
+          >
+            <View
+              flexG={true}
+              style={
+                [
+                  undefined,
+                  undefined,
+                  {
+                    "flexGrow": 1,
+                  },
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  undefined,
+                ]
+              }
+            >
+              <TextInput
+                accessibilityState={
+                  {
+                    "disabled": false,
+                  }
+                }
+                editable={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                style={
+                  [
+                    {
+                      "flexGrow": 1,
+                      "paddingBottom": 0,
+                      "paddingTop": 0,
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#20303C",
+                    },
+                    [
+                      {},
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flex": 1,
+                          "fontSize": 18.4,
+                          "height": 54,
+                          "paddingBottom": 15,
+                          "paddingTop": 15,
+                        },
+                        {},
+                        undefined,
+                      ],
+                      undefined,
+                    ],
+                    false,
+                  ]
+                }
+                testID="gender-input"
+                underlineColorAndroid="transparent"
+                value={null}
+              />
+            </View>
+          </View>
+          <View
+            row={true}
+            spread={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              $textDangerLight={true}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "color": "#20303C",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                  {
+                    "color": "#FC3D2F",
+                  },
+                  undefined,
+                  undefined,
+                  {},
+                  undefined,
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "flexShrink": 1,
+                      "minHeight": 20,
+                    },
+                    {
+                      "color": "#FF003D",
+                      "fontFamily": "SFProTextRegular",
+                      "fontSize": 16,
+                      "lineHeight": 29.44,
+                    },
+                  ],
+                ]
+              }
+              testID="gender-input.validationMessage"
+            />
+          </View>
+        </View>
+        <View
+          style={
+            [
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              [
+                {},
+                undefined,
+                {
+                  "marginBottom": 19.2,
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          <Text
+            color="#20303C"
+            style={
+              [
+                {
+                  "backgroundColor": "transparent",
+                  "color": "#20303C",
+                  "textAlign": "left",
+                },
+                undefined,
+                {
+                  "color": "#20303C",
+                },
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                [
+                  {
+                    "minHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "SFProDisplayRegular",
+                    "fontSize": 22.4,
+                    "lineHeight": 24.64,
+                    "marginBottom": 8,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+            testID="status-input.label"
+          >
+            Status (active or inactive)
+          </Text>
+          <View
+            centerV={true}
+            row={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                },
+                [
+                  {},
+                  [
+                    [
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#18191F",
+                        "borderColor": "#18191F",
+                        "borderRadius": 10,
+                        "borderWidth": 1,
+                        "flexDirection": "row",
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                        "position": "relative",
+                        "width": "100%",
+                      },
+                      false,
+                      false,
+                      undefined,
+                      undefined,
+                      undefined,
+                    ],
+                    undefined,
+                  ],
+                ],
+              ]
+            }
+          >
+            <View
+              flexG={true}
+              style={
+                [
+                  undefined,
+                  undefined,
+                  {
+                    "flexGrow": 1,
+                  },
+                  undefined,
+                  {},
+                  {},
+                  {},
+                  undefined,
+                ]
+              }
+            >
+              <TextInput
+                accessibilityState={
+                  {
+                    "disabled": false,
+                  }
+                }
+                editable={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                style={
+                  [
+                    {
+                      "flexGrow": 1,
+                      "paddingBottom": 0,
+                      "paddingTop": 0,
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "#20303C",
+                    },
+                    [
+                      {},
+                      undefined,
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "flex": 1,
+                          "fontSize": 18.4,
+                          "height": 54,
+                          "paddingBottom": 15,
+                          "paddingTop": 15,
+                        },
+                        {},
+                        undefined,
+                      ],
+                      undefined,
+                    ],
+                    false,
+                  ]
+                }
+                testID="status-input"
+                underlineColorAndroid="transparent"
+                value={null}
+              />
+            </View>
+          </View>
+          <View
+            row={true}
+            spread={true}
+            style={
+              [
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {},
+                {},
+                {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              $textDangerLight={true}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "color": "#20303C",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                  {
+                    "color": "#FC3D2F",
+                  },
+                  undefined,
+                  undefined,
+                  {},
+                  undefined,
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "flexShrink": 1,
+                      "minHeight": 20,
+                    },
+                    {
+                      "color": "#FF003D",
+                      "fontFamily": "SFProTextRegular",
+                      "fontSize": 16,
+                      "lineHeight": 29.44,
+                    },
+                  ],
+                ]
+              }
+              testID="status-input.validationMessage"
+            />
+          </View>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "marginTop": 24,
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onLayout={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#26a0f8",
+                "borderRadius": 12,
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "minWidth": 90,
+                "opacity": 1,
+                "paddingHorizontal": 15,
+                "paddingVertical": 13,
+                "width": "100%",
+              }
+            }
+            testID="save-button"
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                [
+                  {
+                    "backgroundColor": "transparent",
+                    "color": "#20303C",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  [
+                    {
+                      "backgroundColor": "transparent",
+                      "flexDirection": "row",
+                      "fontFamily": "System",
+                      "fontSize": 16,
+                      "fontWeight": "400",
+                      "lineHeight": 24,
+                    },
+                    {
+                      "color": "#FFFFFF",
+                    },
+                    undefined,
+                    undefined,
+                    [
+                      {
+                        "fontFamily": "SFProTextSemiBold",
+                        "fontSize": 18.4,
+                        "fontWeight": "600",
+                        "lineHeight": 30,
+                        "textAlign": "center",
+                      },
+                      {
+                        "color": "#FFFFFF",
+                      },
+                      false,
+                    ],
+                  ],
+                ]
+              }
+              testID="save-button.label"
+            >
+              Save
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <KeyboardTrackingViewTemp
+      pointerEvents="none"
+      scrollToFocusedInput={true}
+      style={
+        {
+          "backgroundColor": "transparent",
+          "bottom": 0,
+          "height": 0.5,
+          "left": 0,
+          "position": "absolute",
+          "width": 750,
+        }
+      }
+      useSafeArea={false}
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
