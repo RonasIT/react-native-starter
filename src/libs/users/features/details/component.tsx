@@ -112,6 +112,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
               onPress={deleteButtonPressed}
               style={[style.button, style.deleteButton]}
               theme='secondary'
+              testID='delete-button'
             />
           )}
           <AppButton

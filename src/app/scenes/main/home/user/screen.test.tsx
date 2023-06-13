@@ -4,18 +4,21 @@ import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
-import { userEntityResponse } from '@tests/fixtures';
+import { user, userEntityResponse } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { UserScreen } from './screen';
+import SpyInstance = jest.SpyInstance;
 
 describe('User screen', () => {
   let component: RenderAPI;
+  let title: ReactTestInstance;
   let saveButton: ReactTestInstance;
   let emailInput: ReactTestInstance;
   let nameInput: ReactTestInstance;
   let genderInput: ReactTestInstance;
   let statusInput: ReactTestInstance;
   let translation: Record<string, any>;
+  let requestSpy: SpyInstance;
 
   function initComponent(userID?: number): RenderAPI {
     return render(
@@ -31,23 +34,28 @@ describe('User screen', () => {
     );
   }
 
+  function getComponentElements(component: RenderAPI): void {
+    title = component.getByTestId('title');
+    emailInput = component.getByTestId('email-input');
+    nameInput = component.getByTestId('name-input');
+    genderInput = component.getByTestId('gender-input');
+    statusInput = component.getByTestId('status-input');
+    saveButton = component.getByTestId('save-button');
+  }
+
   beforeAll(() => {
-    jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
-      if (config.method === 'post' && config.url === '/users') {
+    requestSpy = jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
+      if (config.url.includes('/users') && config.method !== 'delete') {
         return of({ data: userEntityResponse }) as Observable<AxiosResponse>;
       }
     });
     translation = setDefaultLanguage();
   });
 
-  describe('Without params', () => {
+  describe('without params', () => {
     beforeEach(() => {
       component = initComponent();
-      emailInput = component.getByTestId('email-input');
-      nameInput = component.getByTestId('name-input');
-      genderInput = component.getByTestId('gender-input');
-      statusInput = component.getByTestId('status-input');
-      saveButton = component.getByTestId('save-button');
+      getComponentElements(component);
     });
 
     it('should match the snapshot', () => {
@@ -56,7 +64,6 @@ describe('User screen', () => {
     });
 
     it('should render the title with the correct text', () => {
-      const title = component.getByTestId('title');
       expect(title).toHaveTextContent(translation.USERS.DETAILS.TEXT_CREATE);
     });
 
@@ -114,8 +121,7 @@ describe('User screen', () => {
     });
 
     it('should create a user and show a success message by submitting the valid form', async () => {
-      const createSpy = jest.spyOn(apiService.httpClient, 'request');
-      const { email, name, gender, status } = userEntityResponse.data;
+      const { email, name, gender, status } = user;
 
       fireEvent.changeText(emailInput, email);
       fireEvent.changeText(nameInput, name);
@@ -126,11 +132,83 @@ describe('User screen', () => {
       await waitFor(() => {
         const successMessage = component.getByTestId('success-message');
         expect(successMessage).toBeVisible();
-        expect(createSpy).toHaveBeenCalledWith(
+        expect(requestSpy).toHaveBeenCalledWith(
           expect.objectContaining({
             method: 'post',
             url: '/users',
             data: expect.objectContaining({ email, name, gender, status })
+          })
+        );
+      });
+    });
+  });
+
+  describe('with params', () => {
+    let deleteButton: ReactTestInstance;
+
+    beforeEach(() => {
+      component = initComponent(user.id);
+      getComponentElements(component);
+      deleteButton = component.getByTestId('delete-button');
+    });
+
+    it('should match the snapshot', () => {
+      const tree = component.toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+
+    it('should render the title with the correct text', () => {
+      expect(title).toHaveTextContent(translation.USERS.DETAILS.TEXT_EDIT);
+    });
+
+    it('should load a user and fill the text inputs', () => {
+      expect(requestSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          method: 'get',
+          url: `/users/${user.id}`
+        })
+      );
+      expect(emailInput).toHaveProp('value', user.email);
+      expect(nameInput).toHaveProp('value', user.name);
+      expect(genderInput).toHaveProp('value', user.gender);
+      expect(statusInput).toHaveProp('value', user.status);
+    });
+
+    it('should render the "Save" and "Delete" buttons', () => {
+      expect(saveButton).toBeVisible();
+      expect(deleteButton).toBeVisible();
+    });
+
+    it('should update the user and show a success message by submitting the valid form', async () => {
+      const { email, name, gender, status } = user;
+
+      fireEvent.changeText(emailInput, email);
+      fireEvent.changeText(nameInput, name);
+      fireEvent.changeText(genderInput, gender);
+      fireEvent.changeText(statusInput, status);
+      fireEvent.press(saveButton);
+
+      await waitFor(() => {
+        const successMessage = component.getByTestId('success-message');
+        expect(successMessage).toBeVisible();
+        expect(requestSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'put',
+            url: `/users/${user.id}`,
+            data: expect.objectContaining({ email, name, gender, status })
+          })
+        );
+      });
+    });
+
+    it('should delete the user by pressing the "Delete" button', async () => {
+      fireEvent.press(deleteButton);
+
+      await waitFor(() => {
+        expect(requestSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'delete',
+            url: `/users/${user.id}`
           })
         );
       });
