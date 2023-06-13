@@ -2,7 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { AxiosResponse } from 'axios';
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { View } from 'react-native';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
@@ -10,23 +11,24 @@ import { navigationRef } from '@libs/shared/features/navigation';
 import { userPaginationResponse } from '@tests/fixtures';
 import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import { HomeScreen } from './screen';
-import SpyInstance = jest.SpyInstance;
 
 describe('Home screen', () => {
   let component: RenderAPI;
   let usersList: ReactTestInstance;
   let createUserButton: ReactTestInstance;
-  let navigateSpy: SpyInstance;
+  let navigateSpy: jest.SpyInstance;
   const searchUsersSpy = jest.spyOn(apiService.httpClient, 'request');
 
   function initComponent(): RenderAPI {
     const { Screen, Navigator } = createStackNavigator();
+    const UserScreen = (): ReactElement => <View />;
 
     return render(
       <TestRootComponent>
         <NavigationContainer ref={navigationRef}>
           <Navigator>
             <Screen name='Home' component={HomeScreen} />
+            <Screen name='User' component={UserScreen} />
           </Navigator>
         </NavigationContainer>
       </TestRootComponent>
@@ -45,7 +47,7 @@ describe('Home screen', () => {
     component = initComponent();
     usersList = component.getByTestId('users-list');
     createUserButton = component.getByTestId('create-user-button');
-    navigateSpy = jest.spyOn(navigationRef.current, 'navigate');
+    navigateSpy = jest.spyOn(navigationRef.current, 'navigate').mockImplementation(jest.fn);
   });
 
   it('should match the snapshot', () => {
