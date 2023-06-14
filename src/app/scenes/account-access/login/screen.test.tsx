@@ -45,12 +45,12 @@ describe('Login screen', () => {
   });
 
   it('should have two text inputs', () => {
-    expect(emailInput).toBeDefined();
-    expect(passwordInput).toBeDefined();
+    expect(emailInput).toBeVisible();
+    expect(passwordInput).toBeVisible();
   });
 
   it('should have a submit button', () => {
-    expect(submitButton).toBeDefined();
+    expect(submitButton).toBeVisible();
   });
 
   it('should render validation errors by submitting the empty form', async () => {

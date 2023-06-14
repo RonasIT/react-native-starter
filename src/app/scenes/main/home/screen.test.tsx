@@ -58,7 +58,7 @@ describe('Home screen', () => {
   });
 
   it('should render the button "Create user"', () => {
-    expect(createUserButton).toBeDefined();
+    expect(createUserButton).toBeVisible();
   });
 
   it('should load more items after the list end reached', async () => {
