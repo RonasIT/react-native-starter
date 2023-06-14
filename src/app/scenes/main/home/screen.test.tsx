@@ -2,8 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
 import { AxiosResponse } from 'axios';
-import React, { ReactElement } from 'react';
-import { View } from 'react-native';
+import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
@@ -21,14 +20,12 @@ describe('Home screen', () => {
 
   function initComponent(): RenderAPI {
     const { Screen, Navigator } = createStackNavigator();
-    const UserScreen = (): ReactElement => <View />;
 
     return render(
       <TestRootComponent>
         <NavigationContainer ref={navigationRef}>
           <Navigator>
             <Screen name='Home' component={HomeScreen} />
-            <Screen name='User' component={UserScreen} />
           </Navigator>
         </NavigationContainer>
       </TestRootComponent>
