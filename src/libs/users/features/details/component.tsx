@@ -31,12 +31,14 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   });
   const { handleSubmit, formState, control } = form;
 
-  if (user) {
-    form.setValue('name', user.name);
-    form.setValue('email', user.email);
-    form.setValue('gender', user.gender);
-    form.setValue('status', user.status);
-  }
+  useEffect(() => {
+    if (user) {
+      form.setValue('name', user.name);
+      form.setValue('email', user.email);
+      form.setValue('gender', user.gender);
+      form.setValue('status', user.status);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (id) {

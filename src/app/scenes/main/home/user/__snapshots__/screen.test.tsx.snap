@@ -225,7 +225,7 @@ exports[`User screen with params should match the snapshot 1`] = `
                 }
                 testID="email-input"
                 underlineColorAndroid="transparent"
-                value="test@test.com"
+                value=""
               />
             </View>
           </View>
@@ -447,7 +447,7 @@ exports[`User screen with params should match the snapshot 1`] = `
                 }
                 testID="name-input"
                 underlineColorAndroid="transparent"
-                value="Devak Kakkar"
+                value=""
               />
             </View>
           </View>
@@ -669,7 +669,7 @@ exports[`User screen with params should match the snapshot 1`] = `
                 }
                 testID="gender-input"
                 underlineColorAndroid="transparent"
-                value="female"
+                value={null}
               />
             </View>
           </View>
@@ -891,7 +891,7 @@ exports[`User screen with params should match the snapshot 1`] = `
                 }
                 testID="status-input"
                 underlineColorAndroid="transparent"
-                value="inactive"
+                value={null}
               />
             </View>
           </View>
