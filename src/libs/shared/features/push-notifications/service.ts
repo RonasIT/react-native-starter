@@ -2,9 +2,6 @@ import * as Linking from 'expo-linking';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import { Platform } from 'react-native';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { apiService } from '@libs/shared/data-access/api-client';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -15,12 +12,6 @@ Notifications.setNotificationHandler({
 });
 
 class PushNotificationsService {
-  public get pushToken(): string {
-    return this._pushToken;
-  }
-
-  private _pushToken?: string;
-
   public async obtainPushNotificationsToken(): Promise<string> {
     let token: string;
 
@@ -52,23 +43,6 @@ class PushNotificationsService {
     }
 
     return token;
-  }
-
-  public subscribeDevice(token: string): Observable<void> {
-    return apiService.post('api/exponent/devices/subscribe', { expo_token: token }).pipe(
-      tap(() => (this._pushToken = token)),
-      catchError((error) => {
-        delete this._pushToken;
-
-        return throwError(() => error);
-      })
-    );
-  }
-
-  public unsubscribeDevice(): Observable<void> {
-    delete this._pushToken;
-
-    return apiService.post('api/exponent/devices/unsubscribe');
   }
 
   public async handleLastNotificationResponse(): Promise<void> {
