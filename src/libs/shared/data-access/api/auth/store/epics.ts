@@ -1,7 +1,7 @@
 import { isAnyOf } from '@reduxjs/toolkit';
 import { delay, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { apiService } from '@libs/shared/data-access/api-client';
-import { unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
+import { tokenInterceptor, unauthorizedInterceptor } from '@libs/shared/data-access/api-client/interceptors';
 import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
@@ -30,6 +30,7 @@ export const authEpics: Epics = {
               refreshToken: () => authService.refreshToken()
             })
           ],*/
+          [tokenInterceptor(getToken)],
           [formDataInterceptor()]
         ],
         response: [
