@@ -27,7 +27,7 @@ export const authEpics: Epics = {
               onSuccess: (token: string) => dispatch(AuthActions.saveToken({ token })),
               getToken,
               checkIsTokenExpired,
-              refreshToken: () => authService.refreshToken()
+              refreshToken: () => refreshToken(apiService.httpClient)
             })
           ],*/
           [tokenInterceptor(getToken)],
