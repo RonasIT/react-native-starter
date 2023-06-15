@@ -3,7 +3,7 @@ import { last } from 'lodash';
 import React, { ReactElement, useState } from 'react';
 import { ListRenderItemInfo } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { userApi } from '@libs/shared/data-access/api/user/api';
+import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { PaginationRequest } from '@libs/shared/data-access/entity-api';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -20,7 +20,7 @@ interface UsersListProps {
 export function UsersList({ onCreateButtonPress, onItemPress }: UsersListProps): ReactElement {
   const translate = useTranslation('USERS.LIST');
   const [searchParams, setSearchParams] = useState<PaginationRequest>({ page: 1 });
-  const { data, isFetching, isLoading } = userApi.useSearchInfiniteQuery(searchParams);
+  const { data, isFetching, isLoading } = userAPI.useSearchInfiniteQuery(searchParams);
 
   const items = data?.flatMap((response) => response.data) || [];
   const areUsersLoading = isLoading || (isFetching && searchParams.page > 1);
@@ -30,7 +30,7 @@ export function UsersList({ onCreateButtonPress, onItemPress }: UsersListProps):
   const refreshItems = async (): Promise<void> => {
     for (const response of data) {
       await dispatch(
-        userApi.endpoints.searchInfinite.initiate({
+        userAPI.endpoints.searchInfinite.initiate({
           ...searchParams,
           page: response.currentPage
         }) as unknown as AnyAction

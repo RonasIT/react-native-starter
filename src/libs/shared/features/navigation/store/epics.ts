@@ -1,12 +1,14 @@
+import { isAnyOf } from '@reduxjs/toolkit';
 import { delay, filter, map, tap } from 'rxjs/operators';
-import { AuthActions } from '@libs/shared/data-access/auth/store/actions';
+import { authAPI } from '@libs/shared/data-access/api/auth/api';
+import { AuthActions } from '@libs/shared/data-access/api/auth/store/actions';
 import { AppActions } from '@libs/shared/data-access/store/actions';
 import { Epics } from '@libs/shared/data-access/store/types/epics';
 import { appNavigationService } from '../service';
 
 export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$) => action$.pipe(
-    filter(AuthActions.authorizeSuccess.match),
+    filter(isAnyOf(authAPI.endpoints.authorize.matchFulfilled, authAPI.endpoints.demoAuthorize.matchFulfilled)),
     delay(100),
     tap(() => {
       const interruptedNavigation = appNavigationService.savedState;
