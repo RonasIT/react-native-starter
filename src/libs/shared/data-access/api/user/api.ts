@@ -21,7 +21,7 @@ class UserResponse {
   }
 }
 
-export const userApi = createEntityAPI<User>({
+export const userAPI = createEntityAPI<User>({
   entityName: 'user',
   baseApiCreator: createAppApi,
   baseQuery: axiosBaseQuery,

@@ -1,9 +1,10 @@
 import { isAnyOf } from '@reduxjs/toolkit';
 import { of } from 'rxjs';
 import { catchError, delay, exhaustMap, filter, map, switchMap } from 'rxjs/operators';
-import { AuthActions } from '@libs/shared/data-access/auth/store/actions';
-import { AuthSelectors } from '@libs/shared/data-access/auth/store/selectors';
-import { ProfileActions } from '@libs/shared/data-access/profile/store/actions';
+import { authAPI } from '@libs/shared/data-access/api/auth/api';
+import { AuthActions } from '@libs/shared/data-access/api/auth/store/actions';
+import { AuthSelectors } from '@libs/shared/data-access/api/auth/store/selectors';
+import { profileAPI } from '@libs/shared/data-access/api/profile/api';
 import { AppActions } from '@libs/shared/data-access/store/actions';
 import { Epics } from '@libs/shared/data-access/store/types';
 import { pushNotificationsService } from '../service';
@@ -15,8 +16,10 @@ export const pushNotificationsEpics: Epics = {
   subscribe: (action$, state$, { useDispatch }) => action$.pipe(
     filter(
       isAnyOf(
-        AuthActions.authorizeSuccess,
-        ProfileActions.refreshProfileSuccess,
+        authAPI.endpoints.authorize.matchFulfilled,
+        profileAPI.endpoints.get.matchFulfilled,
+        authAPI.endpoints.demoAuthorize.matchFulfilled,
+        profileAPI.endpoints.getDemo.matchFulfilled,
         PushNotificationsActions.reSubscribe
       )
     ),
