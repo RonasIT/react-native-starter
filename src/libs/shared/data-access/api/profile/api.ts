@@ -3,9 +3,11 @@ import { pickBy } from 'lodash';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { createAppApi } from '@libs/shared/data-access/api-client';
 
+const tag = 'profile';
+
 export const profileAPI = createAppApi({
   reducerPath: 'profile',
-  tagTypes: ['profile'],
+  tagTypes: [tag],
   endpoints: (builder) => ({
     // TODO: Demo code. Remove in a real app.
     getDemo: builder.query<User, void>({
@@ -14,7 +16,7 @@ export const profileAPI = createAppApi({
         url: '/users'
       }),
       transformResponse: (response: { data: Array<object> }) => plainToInstance(User, response.data[0]),
-      providesTags: ['profile']
+      providesTags: [tag]
     }),
     get: builder.query<User, void>({
       query: () => ({
@@ -22,7 +24,7 @@ export const profileAPI = createAppApi({
         url: '/profile'
       }),
       transformResponse: (response) => plainToInstance(User, response),
-      providesTags: ['profile']
+      providesTags: [tag]
     }),
     update: builder.mutation<User, User>({
       query: (params) => {
