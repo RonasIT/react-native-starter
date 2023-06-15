@@ -7,6 +7,6 @@ export const apiConfig = {
     staging: '',
     production: ''
   }),
-  publicEndpoints: ['/login', '/users'],
+  publicEndpoints: ['/login'],
   refreshTokenEndpoint: 'auth/refresh'
 };
