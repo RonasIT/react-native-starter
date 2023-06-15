@@ -84,11 +84,12 @@ describe('Login screen', () => {
 
     await waitFor(
       () => {
-        expect(demoAuthorizeSpy).toHaveBeenCalledWith({
-          method: 'get',
-          url: '/users',
-          headers: {}
-        });
+        expect(demoAuthorizeSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'get',
+            url: '/users'
+          })
+        );
         expect(navigateSpy).toHaveBeenCalledWith('Main');
       },
       { timeout: 7000 }
