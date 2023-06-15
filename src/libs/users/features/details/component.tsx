@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Keyboard } from 'react-native-ui-lib';
-import { userApi } from '@libs/shared/data-access/api/user/api';
+import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { colors, createStyles } from '@libs/shared/ui/styles';
@@ -20,10 +20,10 @@ interface UserDetailsProps {
 export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): ReactElement {
   const translate = useTranslation('USERS.DETAILS');
 
-  const [loadUser, { data: user }] = userApi.useLazyGetQuery();
-  const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userApi.useCreateMutation();
-  const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userApi.useUpdateMutation();
-  const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userApi.useDeleteMutation();
+  const [loadUser, { data: user }] = userAPI.useLazyGetQuery();
+  const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userAPI.useCreateMutation();
+  const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userAPI.useUpdateMutation();
+  const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userAPI.useDeleteMutation();
 
   const form = useForm({
     defaultValues: new UserSchema(),
