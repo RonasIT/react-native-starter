@@ -360,6 +360,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                     "marginBottom": 16,
                                   }
                                 }
+                                testID="create-user-button"
                               />
                             }
                             contentContainerStyle={
@@ -484,6 +485,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                       "width": "100%",
                                     }
                                   }
+                                  testID="create-user-button"
                                 >
                                   <Text
                                     numberOfLines={1}
@@ -532,7 +534,7 @@ exports[`Home screen should match the snapshot 1`] = `
                                         ],
                                       ]
                                     }
-                                    testID="undefined.label"
+                                    testID="create-user-button.label"
                                   >
                                     [missing "en.USERS.LIST.BUTTON_CREATE_USER" translation]
                                   </Text>

@@ -45,12 +45,12 @@ describe('Login screen', () => {
   });
 
   it('should have two text inputs', () => {
-    expect(emailInput).toBeDefined();
-    expect(passwordInput).toBeDefined();
+    expect(emailInput).toBeVisible();
+    expect(passwordInput).toBeVisible();
   });
 
   it('should have a submit button', () => {
-    expect(submitButton).toBeDefined();
+    expect(submitButton).toBeVisible();
   });
 
   it('should render validation errors by submitting the empty form', async () => {
@@ -75,6 +75,7 @@ describe('Login screen', () => {
   });
 
   it('should init authorization with valid credentials and subscribe to push notifications', async () => {
+    const demoAuthorizeSpy = jest.spyOn(apiService.httpClient, 'request');
     const navigateSpy = jest.spyOn(appNavigationService, 'resetToRoute');
 
     fireEvent.changeText(emailInput, validCredentials.email);
@@ -83,7 +84,12 @@ describe('Login screen', () => {
 
     await waitFor(
       () => {
-        // TODO: check authorization
+        expect(demoAuthorizeSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'get',
+            url: '/users'
+          })
+        );
         expect(navigateSpy).toHaveBeenCalledWith('Main');
       },
       { timeout: 7000 }

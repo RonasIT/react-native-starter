@@ -1,9 +1,11 @@
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
+import { AxiosResponse } from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
 import { apiService } from '@libs/shared/data-access/api-client';
+import { userPaginationResponse } from '@tests/fixtures';
 import { TestRootComponent } from '@tests/helpers';
 import { App } from './app';
 
@@ -26,8 +28,10 @@ describe('App', () => {
       }
     });
 
-    jest.spyOn(apiService, 'get').mockImplementation(() => {
-      return of({}) as Observable<any>;
+    jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
+      if (config.method === 'get' && config.url === '/users') {
+        return of({ data: userPaginationResponse }) as Observable<AxiosResponse>;
+      }
     });
   });
 
