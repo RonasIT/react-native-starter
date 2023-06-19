@@ -40,8 +40,10 @@ describe('Home screen', () => {
     });
   });
 
-  beforeEach(() => {
-    component = initComponent();
+  beforeEach(async () => {
+    await waitFor(() => {
+      component = initComponent();
+    });
     usersList = component.getByTestId('users-list');
     createUserButton = component.getByTestId('create-user-button');
     navigateSpy = jest.spyOn(navigationRef.current, 'navigate').mockImplementation(jest.fn);

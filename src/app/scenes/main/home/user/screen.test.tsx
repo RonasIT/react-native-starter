@@ -146,8 +146,10 @@ describe('User screen', () => {
   describe('with params', () => {
     let deleteButton: ReactTestInstance;
 
-    beforeEach(() => {
-      component = initComponent(user.id);
+    beforeEach(async () => {
+      await waitFor(() => {
+        component = initComponent(user.id);
+      });
       getComponentElements(component);
       deleteButton = component.getByTestId('delete-button');
     });
