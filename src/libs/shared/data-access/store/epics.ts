@@ -1,9 +1,9 @@
 import { values } from 'lodash';
 import { combineEpics, Epic } from 'redux-observable';
-import { appNavigationEpics } from '@libs/shared/features/navigation/store/epics';
-import { authEpics } from '../auth/store/epics';
-import { profileEpics } from '../profile/store/epics';
-import { appStorageEpics } from '../storage/store';
+import { authEpics } from '@libs/shared/data-access/api/auth/store/epics';
+import { profileEpics } from '@libs/shared/data-access/api/profile/store/epics';
+import { appStorageEpics } from '@libs/shared/data-access/storage/store';
+import { appNavigationEpics } from '@libs/shared/features/navigation/store';
 
 export const rootEpic = combineEpics(
   ...values<Epic>(appStorageEpics),

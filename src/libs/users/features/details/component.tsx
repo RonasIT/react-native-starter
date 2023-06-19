@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Keyboard } from 'react-native-ui-lib';
-import { userApi } from '@libs/shared/data-access/api/user/api';
+import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { colors, createStyles } from '@libs/shared/ui/styles';
@@ -20,10 +20,10 @@ interface UserDetailsProps {
 export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): ReactElement {
   const translate = useTranslation('USERS.DETAILS');
 
-  const [loadUser, { data: user }] = userApi.useLazyGetQuery();
-  const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userApi.useCreateMutation();
-  const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userApi.useUpdateMutation();
-  const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userApi.useDeleteMutation();
+  const { data: user } = userAPI.useGetQuery({ id }, { skip: !id });
+  const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userAPI.useCreateMutation();
+  const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userAPI.useUpdateMutation();
+  const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userAPI.useDeleteMutation();
 
   const form = useForm({
     defaultValues: new UserSchema(),
@@ -31,18 +31,14 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   });
   const { handleSubmit, formState, control } = form;
 
-  if (user) {
-    form.setValue('name', user.name);
-    form.setValue('email', user.email);
-    form.setValue('gender', user.gender);
-    form.setValue('status', user.status);
-  }
-
   useEffect(() => {
-    if (id) {
-      loadUser({ id });
+    if (user) {
+      form.setValue('name', user.name);
+      form.setValue('email', user.email);
+      form.setValue('gender', user.gender);
+      form.setValue('status', user.status);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (isDeleteSuccess) {
@@ -65,7 +61,10 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   return (
     <>
       <ScrollView>
-        <AppText variant='large' style={style.title}>
+        <AppText
+          variant='large'
+          style={style.title}
+          testID='title'>
           {id ? translate('TEXT_EDIT') : translate('TEXT_CREATE')}
         </AppText>
         <InputFormGroup
@@ -74,25 +73,33 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           autoCapitalize='none'
           keyboardType='email-address'
           control={control}
+          testID='email-input'
         />
         <InputFormGroup
           label={translate('TEXT_NAME')}
           name='name'
-          control={control} />
+          control={control}
+          testID='name-input' />
         <InputFormGroup
           label={translate('TEXT_GENDER')}
           name='gender'
-          control={control} />
+          control={control}
+          testID='gender-input' />
         <InputFormGroup
           label={translate('TEXT_STATUS')}
           name='status'
-          control={control} />
+          control={control}
+          testID='status-input' />
         {error && (
           <AppText style={style.error}>
             {translate('TEXT_ERROR')}: {JSON.stringify(error)}
           </AppText>
         )}
-        {(isCreateSuccess || isUpdateSuccess) && <AppText style={style.success}>{translate('TEXT_SUCCESS')}</AppText>}
+        {(isCreateSuccess || isUpdateSuccess) && (
+          <AppText style={style.success} testID='success-message'>
+            {translate('TEXT_SUCCESS')}
+          </AppText>
+        )}
         <View style={style.footer}>
           {id && (
             <AppButton
@@ -101,6 +108,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
               onPress={deleteButtonPressed}
               style={[style.button, style.deleteButton]}
               theme='secondary'
+              testID='delete-button'
             />
           )}
           <AppButton
@@ -109,6 +117,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
             label={translate('BUTTON_SAVE')}
             onPress={handleSubmit(formSubmitted)}
             style={style.button}
+            testID='save-button'
           />
         </View>
       </ScrollView>
