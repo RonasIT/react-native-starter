@@ -14,6 +14,7 @@ web-build/
 .vscode
 .idea
 .tmp
+.reassure
 
 # Added for compatibility with expo-cli. Please use app.config.ts instead.
 app.json

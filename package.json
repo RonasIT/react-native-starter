@@ -34,6 +34,7 @@
     "verify:ts": "npx tsc",
     "verify:cycles": "dpdm --no-warning --no-tree --transform --progress false index.js --exclude \".*?/?models/.*\\.tsx?|node_modules\" --exit-code circular:1",
     "test": "cross-env NO_FLIPPER=1 jest --config jest.config.js --detectOpenHandles",
+    "perf-test": "cross-env NO_FLIPPER=1 reassure",
     "prepare": "husky install",
     "prepack": "node scripts/prepack.js && npm pkg set 'scripts.postinstall'='npx rimraf app.json scripts && npm pkg delete 'scripts.prepack' 'scripts.postpack' 'scripts.postinstall''",
     "postpack": "node scripts/postpack.js && npm pkg delete 'scripts.postinstall'"
@@ -125,6 +126,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "react-test-renderer": "^18.2.0",
+    "reassure": "^0.9.1",
     "ts-jest": "^29.1.0",
     "type-fest": "^3.0.0",
     "typescript": "^4.9.4"
