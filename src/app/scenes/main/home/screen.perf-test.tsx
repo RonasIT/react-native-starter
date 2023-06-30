@@ -55,14 +55,21 @@ describe('Home screen', () => {
 
   it('refresh', async () => {
     const scenario = async (): Promise<void> => {
+      const searchUsersSpy = jest.spyOn(apiService.httpClient, 'request');
       const usersList = screen.getByTestId('users-list');
       const { refreshControl } = usersList.props;
       act(() => {
         refreshControl.props.onRefresh();
       });
 
-      await waitFor(async () => {
-        await screen.findAllByTestId('user-item');
+      await waitFor(() => {
+        expect(searchUsersSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'get',
+            url: '/users',
+            params: { page: 1 }
+          })
+        );
       });
     };
 
@@ -75,7 +82,8 @@ describe('Home screen', () => {
       fireEvent.scroll(usersList, scrollDownEventData);
 
       await waitFor(async () => {
-        await screen.findAllByTestId('user-item');
+        const listItems = screen.getAllByTestId('user-item');
+        expect(listItems).toHaveLength(userPaginationResponse.data.length * 2);
       });
     };
 

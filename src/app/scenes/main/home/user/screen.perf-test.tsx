@@ -70,10 +70,37 @@ describe('User screen', () => {
   });*/
 
   it('initial render with params', async () => {
-    await measurePerformance(initComponent(user.id));
+    const scenario = async (): Promise<void> => {
+      await waitFor(() => {
+        expect(screen.getByTestId('email-input')).toHaveProp('value', user.email);
+        expect(screen.getByTestId('name-input')).toHaveProp('value', user.name);
+        expect(screen.getByTestId('gender-input')).toHaveProp('value', user.gender);
+        expect(screen.getByTestId('status-input')).toHaveProp('value', user.status);
+      });
+    };
+
+    await measurePerformance(initComponent(user.id), { scenario });
   });
 
   it('submit valid form to update a user', async () => {
     await measurePerformance(initComponent(user.id), { scenario: submitValidFormScenario });
+  });
+
+  it('delete user', async () => {
+    const scenario = async (): Promise<void> => {
+      const requestSpy = jest.spyOn(apiService.httpClient, 'request');
+      fireEvent.press(screen.getByTestId('delete-button'));
+
+      await waitFor(() => {
+        expect(requestSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            method: 'delete',
+            url: `/users/${user.id}`
+          })
+        );
+      });
+    };
+
+    await measurePerformance(initComponent(user.id), { scenario });
   });
 });
