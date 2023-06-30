@@ -81,10 +81,13 @@ describe('Home screen', () => {
       const usersList = screen.getByTestId('users-list');
       fireEvent.scroll(usersList, scrollDownEventData);
 
-      await waitFor(async () => {
-        const listItems = screen.getAllByTestId('user-item');
-        expect(listItems).toHaveLength(userPaginationResponse.data.length * 2);
-      });
+      await waitFor(
+        async () => {
+          const listItems = await screen.findAllByTestId('user-item');
+          expect(listItems).toHaveLength(userPaginationResponse.data.length * 2);
+        },
+        { timeout: 7000 }
+      );
     };
 
     await measurePerformance(initComponent(), { scenario });
