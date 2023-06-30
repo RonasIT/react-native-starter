@@ -29,7 +29,22 @@ describe('Home screen', () => {
   beforeAll(() => {
     jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
       if (config.method === 'get' && config.url === '/users') {
-        return of({ data: userPaginationResponse }) as Observable<AxiosResponse>;
+        const page = config.params.page;
+
+        const response = {
+          data: userPaginationResponse.data.map((user, _, users) => ({
+            ...user,
+            id: user.id + users.length * (page - 1)
+          })),
+          meta: {
+            pagination: {
+              ...userPaginationResponse.meta.pagination,
+              page
+            }
+          }
+        };
+
+        return of({ data: response }) as Observable<AxiosResponse>;
       }
     });
   });
