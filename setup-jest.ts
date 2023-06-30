@@ -3,7 +3,10 @@ import 'reflect-metadata';
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock.js';
 import '@testing-library/jest-native/extend-expect';
 import 'react-native-gesture-handler/jestSetup';
+import { configure } from 'reassure';
 import { MockReactElement } from '@tests/mocks';
+
+configure({ testingLibrary: 'react-native' });
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
