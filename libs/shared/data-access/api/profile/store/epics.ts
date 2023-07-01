@@ -1,9 +1,9 @@
+import { AnyAction } from '@reduxjs/toolkit';
+import { filter, map, withLatestFrom } from 'rxjs/operators';
 import { AuthSelectors } from '@libs/shared/data-access/api/auth/store';
 import { AuthActions } from '@libs/shared/data-access/api/auth/store/actions';
 import { profileAPI } from '@libs/shared/data-access/api/profile/api';
 import { Epics } from '@libs/shared/data-access/store/types';
-import { AnyAction } from '@reduxjs/toolkit';
-import { filter, map, withLatestFrom } from 'rxjs/operators';
 
 export const profileEpics: Epics = {
   refreshOnSaveToken: (action$, state$) => action$.pipe(

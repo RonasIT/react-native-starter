@@ -1,5 +1,5 @@
-import { pushNotificationAPI } from '@libs/shared/data-access/api/push-notification/api';
 import { useEffect, useState } from 'react';
+import { pushNotificationAPI } from '@libs/shared/data-access/api/push-notification/api';
 import { pushNotificationsService } from '../service';
 
 export const useSubscribeNotifications = (accessToken?: string): void => {

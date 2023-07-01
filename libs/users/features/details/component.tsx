@@ -1,4 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { ReactElement, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { ScrollView, View } from 'react-native';
+import { Keyboard } from 'react-native-ui-lib';
 import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -6,10 +10,6 @@ import { colors, createStyles } from '@libs/shared/ui/styles';
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
 import { InputFormGroup } from '@libs/shared/ui/ui-kit/input-form-group';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
-import React, { ReactElement, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { ScrollView, View } from 'react-native';
-import { Keyboard } from 'react-native-ui-lib';
 import { UserSchema } from './forms';
 
 interface UserDetailsProps {

@@ -1,3 +1,5 @@
+import { MutationDefinition, QueryDefinition } from '@reduxjs/toolkit/dist/query/react';
+import { plainToInstance } from 'class-transformer';
 import { axiosBaseQuery, createAppApi } from '@libs/shared/data-access/api-client';
 import {
   createEntityAPI,
@@ -7,8 +9,6 @@ import {
   BaseQueryFunction,
   EntityPartial
 } from '@libs/shared/data-access/entity-api';
-import { MutationDefinition, QueryDefinition } from '@reduxjs/toolkit/dist/query/react';
-import { plainToInstance } from 'class-transformer';
 import { User } from './models';
 
 // TODO: Demo class. Remove in real app

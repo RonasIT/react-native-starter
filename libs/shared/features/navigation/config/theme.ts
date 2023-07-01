@@ -1,5 +1,5 @@
-import { colors } from '@libs/shared/ui/styles';
 import { DefaultTheme, Theme } from '@react-navigation/native';
+import { colors } from '@libs/shared/ui/styles';
 
 export const navigationTheme: Theme = {
   ...DefaultTheme,

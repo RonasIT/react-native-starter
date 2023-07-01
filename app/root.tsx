@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import 'expo-dev-client';
-import { createStore } from '@libs/shared/data-access/store/store';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
+import { createStore } from '@libs/shared/data-access/store/store';
 import { App } from './app';
 
 const store = createStore();

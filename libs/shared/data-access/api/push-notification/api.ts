@@ -1,6 +1,6 @@
-import { axiosBaseQuery, createAppApi } from '@libs/shared/data-access/api-client';
 import { retry } from '@reduxjs/toolkit/query';
 import { instanceToPlain } from 'class-transformer';
+import { axiosBaseQuery, createAppApi } from '@libs/shared/data-access/api-client';
 import { PushNotificationSubscriptionRequest } from './models';
 
 export const pushNotificationAPI = createAppApi({

@@ -1,9 +1,9 @@
+import { isAnyOf } from '@reduxjs/toolkit';
+import { delay, filter, map, tap } from 'rxjs/operators';
 import { authAPI } from '@libs/shared/data-access/api/auth/api';
 import { AuthActions } from '@libs/shared/data-access/api/auth/store/actions';
 import { AppActions } from '@libs/shared/data-access/store/actions';
 import { Epics } from '@libs/shared/data-access/store/types/epics';
-import { isAnyOf } from '@reduxjs/toolkit';
-import { delay, filter, map, tap } from 'rxjs/operators';
 import { appNavigationService } from '../service';
 
 export const appNavigationEpics: Epics = {

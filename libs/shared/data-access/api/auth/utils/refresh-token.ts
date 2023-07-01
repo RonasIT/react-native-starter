@@ -1,7 +1,7 @@
-import { apiConfig } from '@libs/shared/data-access/api-client';
 import AxiosObservable from 'axios-observable';
 import { Observable } from 'rxjs';
 import { map, share, tap } from 'rxjs/operators';
+import { apiConfig } from '@libs/shared/data-access/api-client';
 
 let tokenRefresh$: Observable<string>;
 

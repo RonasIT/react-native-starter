@@ -1,5 +1,5 @@
-import { useTranslation } from '@libs/shared/features/i18n';
 import * as Yup from 'yup';
+import { useTranslation } from '@libs/shared/features/i18n';
 
 export class LoginFormSchema {
   public email: string;

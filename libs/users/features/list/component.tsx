@@ -1,3 +1,8 @@
+import { AnyAction } from '@reduxjs/toolkit';
+import { last } from 'lodash';
+import React, { ReactElement, useState } from 'react';
+import { ListRenderItemInfo } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { PaginationRequest } from '@libs/shared/data-access/entity-api';
@@ -5,11 +10,6 @@ import { useTranslation } from '@libs/shared/features/i18n';
 import { ItemsList } from '@libs/shared/features/items-list';
 import { commonStyle, createStyles } from '@libs/shared/ui/styles';
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
-import { AnyAction } from '@reduxjs/toolkit';
-import { last } from 'lodash';
-import React, { ReactElement, useState } from 'react';
-import { ListRenderItemInfo } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { Item } from './components';
 
 interface UsersListProps {

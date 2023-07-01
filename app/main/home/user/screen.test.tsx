@@ -1,11 +1,11 @@
-import { apiService } from '@libs/shared/data-access/api-client';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { user, userEntityResponse } from '@tests/fixtures';
-import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { AxiosResponse } from 'axios';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import { apiService } from '@libs/shared/data-access/api-client';
+import { user, userEntityResponse } from '@tests/fixtures';
+import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
 import { UserScreen } from './screen';
 import SpyInstance = jest.SpyInstance;
 

@@ -1,12 +1,12 @@
+import { useScrollToTop } from '@react-navigation/native';
+import { noop } from 'lodash';
+import React, { ReactElement, useCallback, useRef } from 'react';
+import { FlatList, FlatListProps, ViewStyle } from 'react-native';
 import { BaseEntity } from '@libs/shared/data-access/entity-api';
 import { ItemsListEmptyState } from '@libs/shared/features/items-list-empty-state';
 import { colors, createStyles } from '@libs/shared/ui/styles';
 import { AppActivityIndicator } from '@libs/shared/ui/ui-kit/activity-indicator';
 import { AppRefreshControl } from '@libs/shared/ui/ui-kit/refresh-control';
-import { useScrollToTop } from '@react-navigation/native';
-import { noop } from 'lodash';
-import React, { ReactElement, useCallback, useRef } from 'react';
-import { FlatList, FlatListProps, ViewStyle } from 'react-native';
 
 export interface ItemsListProps<T> extends FlatListProps<T> {
   isLoading?: boolean;

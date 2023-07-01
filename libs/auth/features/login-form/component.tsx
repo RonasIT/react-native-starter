@@ -1,4 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import Constants from 'expo-constants';
+import { isEmpty } from 'lodash';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { ScrollView, View } from 'react-native';
+import { Image, Keyboard } from 'react-native-ui-lib';
 import { assets } from '@libs/auth/assets';
 import { authAPI } from '@libs/shared/data-access/api/auth/api';
 import { AuthCredentials } from '@libs/shared/data-access/api/auth/models';
@@ -8,12 +14,6 @@ import { AppVersion } from '@libs/shared/ui/ui-kit/app-version';
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
 import { InputFormGroup } from '@libs/shared/ui/ui-kit/input-form-group';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
-import Constants from 'expo-constants';
-import { isEmpty } from 'lodash';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { ScrollView, View } from 'react-native';
-import { Image, Keyboard } from 'react-native-ui-lib';
 import { LoginFormSchema } from './forms';
 
 export function LoginForm(): JSX.Element {

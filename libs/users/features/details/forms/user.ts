@@ -1,6 +1,6 @@
+import * as Yup from 'yup';
 import { UserGender, UserStatus } from '@libs/shared/data-access/api/user/enums';
 import { useTranslation } from '@libs/shared/features/i18n';
-import * as Yup from 'yup';
 
 export class UserSchema {
   public email: string;

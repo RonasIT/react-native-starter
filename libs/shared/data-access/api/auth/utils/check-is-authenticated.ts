@@ -1,5 +1,5 @@
-import { AppState } from '@libs/shared/data-access/store';
 import { Store } from '@reduxjs/toolkit';
+import { AppState } from '@libs/shared/data-access/store';
 import { AuthActions } from '../store/actions';
 import { AuthSelectors } from '../store/selectors';
 

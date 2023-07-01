@@ -1,8 +1,8 @@
+import React, { ReactElement } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { colors, createStyles } from '@libs/shared/ui/styles';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
-import React, { ReactElement } from 'react';
-import { TouchableOpacity } from 'react-native';
 
 interface ItemProps {
   user: User;

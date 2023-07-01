@@ -1,7 +1,7 @@
-import { User } from '@libs/shared/data-access/api/user/models';
-import { createAppApi } from '@libs/shared/data-access/api-client';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { pickBy } from 'lodash';
+import { User } from '@libs/shared/data-access/api/user/models';
+import { createAppApi } from '@libs/shared/data-access/api-client';
 
 const tag = 'profile';
 

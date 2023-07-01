@@ -1,6 +1,6 @@
-import { colors, typographies } from '@libs/shared/ui/styles';
 import React, { ReactElement } from 'react';
 import { ColorsModifiers, MarginModifiers, Text, TextProps, TypographyModifiers } from 'react-native-ui-lib';
+import { colors, typographies } from '@libs/shared/ui/styles';
 
 export type AppTextProps = Omit<
   TextProps,

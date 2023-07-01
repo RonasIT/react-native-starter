@@ -1,14 +1,14 @@
-import { apiService } from '@libs/shared/data-access/api-client';
-import { navigationRef } from '@libs/shared/features/navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { userPaginationResponse } from '@tests/fixtures';
-import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import { AxiosResponse } from 'axios';
 import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import { apiService } from '@libs/shared/data-access/api-client';
+import { navigationRef } from '@libs/shared/features/navigation';
+import { userPaginationResponse } from '@tests/fixtures';
+import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
 import { HomeScreen } from './screen';
 
 describe('Home screen', () => {
