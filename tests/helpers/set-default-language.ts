@@ -3,7 +3,7 @@ import { i18n } from '@libs/shared/features/i18n/i18n';
 export function setDefaultLanguage(): object {
   const defaultLanguage = 'en';
   const translation = {
-    ...require(`../../i18n/scenes/${defaultLanguage}.json`),
+    ...require(`../../i18n/app/${defaultLanguage}.json`),
     ...require(`../../i18n/auth/${defaultLanguage}.json`),
     ...require(`../../i18n/profile/${defaultLanguage}.json`),
     ...require(`../../i18n/shared/${defaultLanguage}.json`),

@@ -1,6 +1,6 @@
 import { ExpoConfig } from '@expo/config';
 import { EASConfig } from 'expo-constants/build/Constants.types';
-import { AppEnv } from './src/libs/shared/utils/app-env/env';
+import { AppEnv } from './libs/shared/utils/app-env/env';
 
 export type AppEnvName = 'development' | 'staging' | 'production';
 export type AppExpoConfig = ReturnType<typeof createConfig>;
@@ -8,11 +8,7 @@ export type AppExpoConfig = ReturnType<typeof createConfig>;
 const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig } & typeof extra } => {
   const appEnv = new AppEnv((process.env.APP_ENV as AppEnvName) || 'development');
 
-  const projectId = appEnv.select({
-    development: '46e76b70-a4ff-4935-83ca-aaae5a36d7f0',
-    staging: 'STAGING_PROJECT_ID',
-    production: 'PRODUCTION_PROJECT_ID'
-  });
+  const projectId = '46e76b70-a4ff-4935-83ca-aaae5a36d7f0';
 
   const extra = {
     env: appEnv.current,
@@ -45,9 +41,9 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
     },
     orientation: 'portrait',
     backgroundColor: '#000000',
-    icon: './src/assets/images/icon.png',
+    icon: './assets/images/icon.png',
     splash: {
-      image: './src/assets/images/splash.png',
+      image: './assets/images/splash.png',
       resizeMode: 'contain',
       backgroundColor: '#000000'
     },
@@ -75,7 +71,7 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       permissions: []
     },
     web: {
-      favicon: './src/assets/images/favicon.png'
+      favicon: './assets/images/favicon.png'
     },
     packagerOpts: {
       config: 'metro.config.js',

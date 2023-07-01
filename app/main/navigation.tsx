@@ -1,10 +1,10 @@
-import { HomeNavigation } from '@app/scenes/main/home/navigation';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { ReactElement } from 'react';
+import { HomeNavigation } from '@app/main/home/navigation';
 import { useTranslation } from '@libs/shared/features/i18n';
 import { colors } from '@libs/shared/ui/styles';
 import { Icon } from '@libs/shared/ui/ui-kit/icon';
 import { AppTabBar } from '@libs/shared/ui/ui-kit/tab-bar';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { ReactElement } from 'react';
 import { ProfileScreen } from './profile/screen';
 
 export type MainNavigationParams = {
