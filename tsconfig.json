@@ -2,17 +2,10 @@
   "compilerOptions": {
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "target": "ES2015",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
       "@libs/*": ["libs/*"],

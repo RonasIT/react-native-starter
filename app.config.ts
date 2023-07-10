@@ -21,11 +21,7 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       staging: 'RN Starter Stg',
       production: 'RN Starter Prod'
     }),
-    slug: appEnv.select({
-      development: 'react-native-starter-dev',
-      staging: 'react-native-starter-stg',
-      production: 'react-native-starter-prod'
-    }),
+    slug: 'react-native-starter-dev',
     scheme: appEnv.select({
       development: 'rnstarterdev',
       staging: 'rnstarterstg',
