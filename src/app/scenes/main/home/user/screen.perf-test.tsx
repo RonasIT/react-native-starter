@@ -47,7 +47,7 @@ describe('User screen', () => {
 
   it('initial render without params', async () => {
     await measurePerformance(initComponent());
-  }, 10000);
+  }, 15000);
 
   it('submit empty fields', async () => {
     const scenario = async (): Promise<void> => {

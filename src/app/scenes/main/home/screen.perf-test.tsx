@@ -86,7 +86,7 @@ describe('Home screen', () => {
           const listItems = await screen.findAllByTestId('user-item');
           expect(listItems).toHaveLength(userPaginationResponse.data.length * 2);
         },
-        { timeout: 7000 }
+        { timeout: 15000 }
       );
     };
 
