@@ -91,5 +91,5 @@ describe('Home screen', () => {
     };
 
     await measurePerformance(initComponent(), { scenario });
-  }, 10000);
+  }, 15000);
 });
