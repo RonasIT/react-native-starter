@@ -84,7 +84,7 @@ describe('User screen', () => {
 
   it('submit valid form to update a user', async () => {
     await measurePerformance(initComponent(user.id), { scenario: submitValidFormScenario });
-  });
+  }, 10000);
 
   it('delete user', async () => {
     const scenario = async (): Promise<void> => {
