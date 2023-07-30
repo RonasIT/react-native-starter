@@ -52,10 +52,7 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
         staging: 'com.ronasit.rnstarter.stg',
         production: 'com.ronasit.rnstarter'
       }),
-      backgroundColor: '#000000',
-      config: {
-        usesNonExemptEncryption: false
-      }
+      backgroundColor: '#000000'
     },
     android: {
       versionCode: 1,
@@ -68,10 +65,6 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
     },
     web: {
       favicon: './assets/images/favicon.png'
-    },
-    packagerOpts: {
-      config: 'metro.config.js',
-      sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
     },
     // TODO: Configure this to use Sentry or remove
     // hooks: {
