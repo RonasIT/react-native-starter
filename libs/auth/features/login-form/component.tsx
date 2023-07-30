@@ -5,7 +5,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
 import { Image, Keyboard } from 'react-native-ui-lib';
-import { assets } from '@libs/auth/assets';
 import { authAPI } from '@libs/shared/data-access/api/auth/api';
 import { AuthCredentials } from '@libs/shared/data-access/api/auth/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -33,7 +32,7 @@ export function LoginForm(): JSX.Element {
 
   return (
     <ScrollView contentContainerStyle={style.content}>
-      <Image source={assets.brand.logo} style={style.logo} />
+      <Image source={require('/libs/shared/ui/ui-kit/assets/images/logo.png')} style={style.logo} />
       <AppText style={style.title} variant='largest'>
         {translate('TEXT_TITLE', { value: appName })}
       </AppText>

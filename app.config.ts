@@ -37,9 +37,9 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
     },
     orientation: 'portrait',
     backgroundColor: '#000000',
-    icon: './assets/images/icon.png',
+    icon: './libs/shared/ui/ui-kit/assets/images/icon.png',
     splash: {
-      image: './assets/images/splash.png',
+      image: './libs/shared/ui/ui-kit/assets/images/splash.png',
       resizeMode: 'contain',
       backgroundColor: '#000000'
     },
@@ -64,7 +64,7 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       permissions: []
     },
     web: {
-      favicon: './assets/images/favicon.png'
+      favicon: './libs/shared/ui/ui-kit/assets/images/favicon.png'
     },
     // TODO: Configure this to use Sentry or remove
     // hooks: {
