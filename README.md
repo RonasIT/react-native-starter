@@ -8,7 +8,6 @@ Ronas IT template for React Native + Expo projects.
 - Feature-oriented project structure
 - Code linting and formatting using ESlint & Prettier (with pre-commit auto-formatting)
 - Testing environment setup with simple tests examples
-- SVG setup
 - Common modules and basic components for a quick start
 - Redux setup and entities CRUD implementation using [RTK](https://redux-toolkit.js.org/) **[Work-in-progress]**
 

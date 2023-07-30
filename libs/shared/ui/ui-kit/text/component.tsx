@@ -12,7 +12,7 @@ export type AppTextProps = Omit<
 
 export function AppText({
   children,
-  color = 'white',
+  color = 'textPrimary',
   variant = 'small',
   style,
   ...restProps

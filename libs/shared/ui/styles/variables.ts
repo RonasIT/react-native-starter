@@ -3,6 +3,7 @@ import { createStyles } from './extended-stylesheet';
 export const colors = {
   background: '#000000',
   backgroundSecondary: '#18191F',
+  textPrimary: '#FFFFFF',
   white: '#FFFFFF',
   primary: '#26a0f8',
   danger: '#FF003D'

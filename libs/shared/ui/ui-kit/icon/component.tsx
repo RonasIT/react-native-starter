@@ -1,14 +1,12 @@
 import { ReactElement } from 'react';
-import { ImageStyle } from 'react-native';
-import { Icons } from '@libs/shared/ui/ui-kit/icons';
+import { SvgProps } from 'react-native-svg';
+import { colors } from '../../styles';
+import { IconName, Icons } from '../assets/icons';
 
-interface Props {
-  name: keyof typeof Icons;
-  fill?: string;
-  stroke?: string;
-  style?: ImageStyle;
+export interface IconProps extends SvgProps {
+  name: IconName;
 }
 
-export function Icon({ name, fill, stroke, style }: Props): ReactElement {
-  return name in Icons ? Icons[name]({ fill, stroke, style }) : null;
+export function Icon({ name, color = colors.textPrimary, ...restProps }: IconProps): ReactElement | null {
+  return name in Icons ? Icons[name]({ color, ...restProps }) : null;
 }
