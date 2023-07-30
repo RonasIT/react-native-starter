@@ -9,7 +9,6 @@
     "baseUrl": "./",
     "paths": {
       "@libs/*": ["libs/*"],
-      "@assets/*": ["assets/*"],
       "@tests/*": ["tests/*"],
       "@app/*": ["app/*"],
       "@i18n/*": ["i18n/*"]
