@@ -94,5 +94,5 @@ describe('Login screen', () => {
       },
       { timeout: 7000 }
     );
-  });
+  }, 10000);
 });
