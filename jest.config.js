@@ -16,7 +16,6 @@ const config = {
     '^@libs/(.*)$': '<rootDir>/libs/$1',
     '^@app/(.*)$': '<rootDir>/app/$1',
     '^@i18n/(.*)$': '<rootDir>/i18n/$1',
-    '^@assets/(.*)$': '<rootDir>/assets/$1',
     '^@tests/(.*)$': '<rootDir>/tests/$1'
   }
 };
