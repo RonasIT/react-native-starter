@@ -26,7 +26,7 @@ export function MainNavigation(): ReactElement {
       <Tab.Screen
         name='HomeNavigation'
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='home' stroke={focused ? colors.primary : colors.white} />,
+          tabBarIcon: ({ focused }) => <Icon name='home' color={focused ? colors.primary : colors.white} />,
           headerTitleAlign: 'left',
           title: translate('TEXT_HOME')
         }}
@@ -35,7 +35,7 @@ export function MainNavigation(): ReactElement {
       <Tab.Screen
         name='Profile'
         options={{
-          tabBarIcon: ({ focused }) => <Icon name='user' stroke={focused ? colors.primary : colors.white} />,
+          tabBarIcon: ({ focused }) => <Icon name='user' color={focused ? colors.primary : colors.white} />,
           headerTitleAlign: 'left',
           title: translate('TEXT_PROFILE')
         }}
