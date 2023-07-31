@@ -10,11 +10,10 @@ module.exports = function (api) {
           root: ['./'],
           extensions: ['.ios.ts', '.android.ts', '.ts', '.ios.tsx', '.android.tsx', '.tsx', '.jsx', '.js', '.json'],
           alias: {
-            '@libs': './src/libs',
-            '@i18n': './src/i18n',
-            '@assets': './src/assets',
-            '@tests': './src/tests',
-            '@app': './src/app'
+            '@libs': './libs',
+            '@i18n': './i18n',
+            '@tests': './tests',
+            '@app': './app'
           }
         }
       ],

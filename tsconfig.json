@@ -2,24 +2,16 @@
   "compilerOptions": {
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "target": "ES2015",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "baseUrl": "./",
     "paths": {
-      "@libs/*": ["src/libs/*"],
-      "@assets/*": ["src/assets/*"],
-      "@tests/*": ["src/tests/*"],
-      "@app/*": ["src/app/*"],
-      "@i18n/*": ["src/i18n/*"]
+      "@libs/*": ["libs/*"],
+      "@tests/*": ["tests/*"],
+      "@app/*": ["app/*"],
+      "@i18n/*": ["i18n/*"]
     }
   },
   "extends": "expo/tsconfig.base"
