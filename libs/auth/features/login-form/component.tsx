@@ -1,10 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Constants from 'expo-constants';
 import { isEmpty } from 'lodash';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
-import { Image, Keyboard } from 'react-native-ui-lib';
 import { authAPI } from '@libs/shared/data-access/api/auth/api';
 import { AuthCredentials } from '@libs/shared/data-access/api/auth/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -15,9 +14,13 @@ import { InputFormGroup } from '@libs/shared/ui/ui-kit/input-form-group';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
 import { LoginFormSchema } from './forms';
 
-export function LoginForm(): JSX.Element {
+interface LoginFormProps {
+  onLoginSuccess: () => void;
+}
+
+export function LoginForm({ onLoginSuccess }: LoginFormProps): JSX.Element {
   const translate = useTranslation('AUTH.LOGIN_FORM');
-  const [authorize, { isLoading }] = authAPI.useDemoAuthorizeMutation();
+  const [authorize, { isLoading, isSuccess }] = authAPI.useDemoAuthorizeMutation();
   const appName = Constants.expoConfig.name;
 
   function formSubmitted(values: LoginFormSchema): void {
@@ -30,9 +33,14 @@ export function LoginForm(): JSX.Element {
   });
   const { handleSubmit, formState, control } = form;
 
+  useEffect(() => {
+    if (isSuccess) {
+      onLoginSuccess();
+    }
+  }, [isSuccess]);
+
   return (
     <ScrollView contentContainerStyle={style.content}>
-      <Image source={require('/libs/shared/ui/ui-kit/assets/images/logo.png')} style={style.logo} />
       <AppText style={style.title} variant='largest'>
         {translate('TEXT_TITLE', { value: appName })}
       </AppText>
@@ -61,7 +69,6 @@ export function LoginForm(): JSX.Element {
         />
       </View>
       <AppVersion />
-      <Keyboard.KeyboardAwareInsetsView />
     </ScrollView>
   );
 }

@@ -2,11 +2,13 @@ import { fireEvent, render, RenderAPI, waitFor } from '@testing-library/react-na
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import LoginScreen from '@app/(auth)';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { appNavigationService } from '@libs/shared/features/navigation';
 import { userPaginationResponse, validCredentials } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
-import { LoginScreen } from './screen';
+
+//TODO fix tests for Expo Router
 
 describe('Login screen', () => {
   let component: RenderAPI;

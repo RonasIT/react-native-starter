@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
-import { Keyboard } from 'react-native-ui-lib';
 import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -90,7 +89,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           name='status'
           control={control}
           testID='status-input' />
-        {error && (
+        {!!error && (
           <AppText style={style.error}>
             {translate('TEXT_ERROR')}: {JSON.stringify(error)}
           </AppText>
@@ -101,7 +100,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           </AppText>
         )}
         <View style={style.footer}>
-          {id && (
+          {!!id && (
             <AppButton
               isLoading={isDeleting}
               label={translate('BUTTON_DELETE')}
@@ -121,7 +120,6 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           />
         </View>
       </ScrollView>
-      <Keyboard.KeyboardAwareInsetsView />
     </>
   );
 }

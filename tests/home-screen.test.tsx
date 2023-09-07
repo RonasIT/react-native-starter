@@ -5,11 +5,13 @@ import { AxiosResponse } from 'axios';
 import React from 'react';
 import { act, ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import HomeScreen from '@app/(main)/home';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { navigationRef } from '@libs/shared/features/navigation';
 import { userPaginationResponse } from '@tests/fixtures';
 import { scrollDownEventData, TestRootComponent } from '@tests/helpers';
-import { HomeScreen } from './screen';
+
+//TODO fix tests for Expo Router
 
 describe('Home screen', () => {
   let component: RenderAPI;

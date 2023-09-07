@@ -4,10 +4,12 @@ import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import { App } from '@app/_layout';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { userPaginationResponse } from '@tests/fixtures';
 import { TestRootComponent } from '@tests/helpers';
-import { App } from './app';
+
+//TODO fix tests for Expo Router
 
 describe('App', () => {
   let component: RenderAPI;

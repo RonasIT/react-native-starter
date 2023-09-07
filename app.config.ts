@@ -16,6 +16,9 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
   };
 
   return {
+    experiments: {
+      tsconfigPaths: true
+    },
     name: appEnv.select({
       development: 'RN Starter Dev',
       staging: 'RN Starter Stg',
@@ -63,8 +66,10 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       }),
       permissions: []
     },
+    plugins: ['expo-localization', 'sentry-expo'],
     web: {
-      favicon: './libs/shared/ui/ui-kit/assets/images/favicon.png'
+      favicon: './libs/shared/ui/ui-kit/assets/images/favicon.png',
+      bundler: 'metro'
     },
     // TODO: Configure this to use Sentry or remove
     // hooks: {
