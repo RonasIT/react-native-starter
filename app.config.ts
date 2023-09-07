@@ -5,7 +5,10 @@ import { AppEnv } from './libs/shared/utils/app-env/env';
 export type AppEnvName = 'development' | 'staging' | 'production';
 export type AppExpoConfig = ReturnType<typeof createConfig>;
 
-const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig } & typeof extra } => {
+const createConfig = (): Omit<ExpoConfig, 'extra'> & {
+  extra: { eas: EASConfig } & typeof extra;
+  experiments: { tsconfigPaths: boolean };
+} => {
   const appEnv = new AppEnv((process.env.APP_ENV as AppEnvName) || 'development');
 
   const projectId = '46e76b70-a4ff-4935-83ca-aaae5a36d7f0';
