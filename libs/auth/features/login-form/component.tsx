@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
+import { Image } from 'react-native-ui-lib';
 import { authAPI } from '@libs/shared/data-access/api/auth/api';
 import { AuthCredentials } from '@libs/shared/data-access/api/auth/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -41,6 +42,7 @@ export function LoginForm({ onLoginSuccess }: LoginFormProps): JSX.Element {
 
   return (
     <ScrollView contentContainerStyle={style.content}>
+      <Image source={require('@libs/shared/ui/ui-kit/assets/images/logo.png')} style={style.logo} />
       <AppText style={style.title} variant='largest'>
         {translate('TEXT_TITLE', { value: appName })}
       </AppText>
