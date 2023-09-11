@@ -5,7 +5,7 @@ import { StorageItem } from './item';
 export class SecureStorageItem implements StorageItem {
   constructor(private key: string) {}
 
-  public async set(value: string): Promise<void> {
+  public async set(value: string | null): Promise<void> {
     if (isNil(value)) {
       await this.remove();
     } else {

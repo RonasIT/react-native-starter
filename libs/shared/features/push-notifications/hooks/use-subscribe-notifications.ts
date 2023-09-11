@@ -10,7 +10,7 @@ export const useSubscribeNotifications = (accessToken?: string): void => {
   const [unsubscribeDevice] = pushNotificationAPI.useUnsubscribeDeviceMutation();
 
   const handleSubscribeDevice = async (): Promise<void> => {
-    const expoToken = await pushNotificationsService.obtainPushNotificationsToken();
+    const expoToken = await pushNotificationsService.obtainPushNotificationsToken('expo');
 
     if (expoToken) {
       setExpoPushToken(expoToken);

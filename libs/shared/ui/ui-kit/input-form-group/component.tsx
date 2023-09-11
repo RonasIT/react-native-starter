@@ -6,7 +6,7 @@ import { ColorsModifiers, Incubator, MarginModifiers, TextField, TypographyModif
 import { commonStyle, createStyles } from '@libs/shared/ui/styles';
 import { Icon } from '@libs/shared/ui/ui-kit/icon';
 
-export type InputFormGroupProps<T = FieldValues> = Omit<
+export type InputFormGroupProps<T extends FieldValues = FieldValues> = Omit<
   ComponentProps<typeof TextField>,
   keyof TypographyModifiers | keyof ColorsModifiers | keyof MarginModifiers
 > & {
@@ -17,7 +17,7 @@ export type InputFormGroupProps<T = FieldValues> = Omit<
   onClickTrailingAccessory?: () => void;
 };
 
-export function InputFormGroup<T = FieldValues>({
+export function InputFormGroup<T extends FieldValues = FieldValues>({
   name,
   control,
   fieldStyle,

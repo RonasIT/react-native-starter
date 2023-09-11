@@ -19,7 +19,7 @@ interface UserDetailsProps {
 export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): ReactElement {
   const translate = useTranslation('USERS.DETAILS');
 
-  const { data: user } = userAPI.useGetQuery({ id }, { skip: !id });
+  const { data: user } = userAPI.useGetQuery({ id: id as number }, { skip: !id });
   const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userAPI.useCreateMutation();
   const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userAPI.useUpdateMutation();
   const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userAPI.useDeleteMutation();
@@ -54,7 +54,9 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   };
 
   const deleteButtonPressed = (): void => {
-    deleteUser(user.id);
+    if (user) {
+      deleteUser(user.id);
+    }
   };
 
   return (

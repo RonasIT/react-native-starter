@@ -5,7 +5,7 @@ export class AuthActions {
     '[Auth] Unauthorize'
   );
 
-  public static saveToken = defineAction<{ token: string }>(
+  public static saveToken = defineAction<{ token: string | null }>(
     '[Auth] Save token'
   );
 

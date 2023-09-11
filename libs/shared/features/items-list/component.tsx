@@ -1,5 +1,4 @@
 import { useScrollToTop } from '@react-navigation/native';
-import { noop } from 'lodash';
 import React, { ReactElement, useCallback, useRef } from 'react';
 import { FlatList, FlatListProps, ViewStyle } from 'react-native';
 import { BaseEntity } from '@libs/shared/data-access/entity-api';
@@ -26,20 +25,13 @@ export function ItemsList<T extends BaseEntity>({
   canLoadMore,
   ListEmptyComponent = <ItemsListEmptyState />,
   keyExtractor,
-  onEndReached = noop,
-  onRefresh = noop,
   containerStyle,
+  onRefresh,
   testID,
   ...restProps
 }: ItemsListProps<T>): ReactElement {
   const scrollableViewRef = useRef(null);
   const listKeyExtractor = useCallback(keyExtractor || defaultKeyExtractor, [keyExtractor]);
-
-  const listEndReached = (): void => {
-    if (canLoadMore && !isLoading) {
-      onEndReached(null);
-    }
-  };
 
   useScrollToTop(scrollableViewRef);
 
@@ -48,14 +40,15 @@ export function ItemsList<T extends BaseEntity>({
       ref={scrollableViewRef}
       data={data}
       contentContainerStyle={[style.itemsList, containerStyle]}
-      ListEmptyComponent={!isLoading && ListEmptyComponent}
+      ListEmptyComponent={!isLoading ? ListEmptyComponent : null}
       ListFooterComponent={
-        isLoading && <AppActivityIndicator
-          size={'large'}
-          style={style.activityIndicator}
-          color={colors.primary} />
+        isLoading ? (
+          <AppActivityIndicator
+            size={'large'}
+            style={style.activityIndicator}
+            color={colors.primary} />
+        ) : null
       }
-      onEndReached={listEndReached}
       refreshControl={<AppRefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}
       keyExtractor={listKeyExtractor}
       testID={testID}

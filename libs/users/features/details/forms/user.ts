@@ -4,8 +4,11 @@ import { useTranslation } from '@libs/shared/features/i18n';
 
 export class UserSchema {
   public email: string;
+
   public name: string;
+
   public gender: UserGender;
+
   public status: UserStatus;
 
   public static get validationSchema(): Yup.SchemaOf<UserSchema> {
@@ -28,7 +31,5 @@ export class UserSchema {
   constructor() {
     this.email = '';
     this.name = '';
-    this.gender = null;
-    this.status = null;
   }
 }

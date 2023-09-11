@@ -21,7 +21,7 @@ interface LoginFormProps {
 export function LoginForm({ onLoginSuccess }: LoginFormProps): JSX.Element {
   const translate = useTranslation('AUTH.LOGIN_FORM');
   const [authorize, { isLoading, isSuccess }] = authAPI.useDemoAuthorizeMutation();
-  const appName = Constants.expoConfig.name;
+  const appName = Constants?.expoConfig?.name;
 
   function formSubmitted(values: LoginFormSchema): void {
     authorize(new AuthCredentials(values));

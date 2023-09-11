@@ -1,9 +1,9 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 
 export const formDataInterceptor =
   () => (config: AxiosRequestConfig): AxiosRequestConfig => {
-    if (config.data instanceof FormData) {
-      config.headers['Content-Type'] = 'multipart/form-data';
+    if (config.data instanceof FormData && config.headers) {
+      (config?.headers as RawAxiosRequestHeaders)['Content-Type'] = 'multipart/form-data';
     }
 
     return config;

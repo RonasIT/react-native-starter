@@ -48,9 +48,11 @@ describe('User screen', () => {
 
   beforeAll(() => {
     requestSpy = jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
-      if (config.url.includes('/users') && config.method !== 'delete') {
-        return of({ data: userEntityResponse }) as Observable<AxiosResponse>;
+      if (config.url && config.url.includes('/users') && config.method !== 'delete') {
+        return of({ data: userEntityResponse }) as Observable<AxiosResponse<unknown>>;
       }
+
+      return of({} as AxiosResponse<unknown>);
     });
     translation = setDefaultLanguage();
   });

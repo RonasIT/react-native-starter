@@ -7,13 +7,13 @@ import React, { ReactElement, useEffect } from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { AppActions } from '@libs/shared/data-access/store';
 import { createStore } from '@libs/shared/data-access/store/store';
-import { useLanguage } from '@libs/shared/features/i18n';
+import { setLanguage } from '@libs/shared/features/i18n';
 import { navigationTheme } from '@libs/shared/features/navigation';
 import { fonts } from '@libs/shared/ui/ui-kit/assets/fonts';
 
 const store = createStore();
 
-const setLanguage = useLanguage(
+const useLanguage = setLanguage(
   {
     en: {
       ...require('@i18n/app/en.json'),
@@ -26,9 +26,9 @@ const setLanguage = useLanguage(
   'en'
 );
 
-export function App(): ReactElement | null {
+export function App(): ReactElement {
   const dispatch = useDispatch();
-  setLanguage('en');
+  useLanguage('en');
 
   useEffect(() => {
     dispatch(AppActions.init());
@@ -41,7 +41,7 @@ export function App(): ReactElement | null {
   );
 }
 
-export default function RootLayout(): ReactElement {
+export default function RootLayout(): ReactElement | null {
   // TODO: Uncomment this to use Sentry or remove
   // if (sentryConfig.enabled) {
   //   Sentry.init(sentryConfig);

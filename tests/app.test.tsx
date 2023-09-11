@@ -9,8 +9,6 @@ import { apiService } from '@libs/shared/data-access/api-client';
 import { userPaginationResponse } from '@tests/fixtures';
 import { TestRootComponent } from '@tests/helpers';
 
-//TODO fix tests for Expo Router
-
 describe('App', () => {
   let component: RenderAPI;
   let tabBarItems: Array<ReactTestInstance>;
@@ -27,12 +25,16 @@ describe('App', () => {
     jest.spyOn(SecureStore, 'getItemAsync').mockImplementation((key) => {
       if (key === 'token') {
         return Promise.resolve('some-demo-token');
+      } else {
+        return Promise.resolve(null);
       }
     });
 
     jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
       if (config.method === 'get' && config.url === '/users') {
         return of({ data: userPaginationResponse }) as Observable<AxiosResponse>;
+      } else {
+        return of({}) as Observable<AxiosResponse>;
       }
     });
   });

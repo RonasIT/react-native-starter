@@ -42,7 +42,7 @@ export const profileAPI = createAppApi({
         dispatch(
           profileAPI.util.updateQueryData(
             'get',
-            null,
+            undefined,
             (data) => new User({
               ...data,
               ...args

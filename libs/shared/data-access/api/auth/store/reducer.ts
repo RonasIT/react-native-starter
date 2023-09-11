@@ -2,12 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthActions } from './actions';
 
 export interface AuthState {
-  token?: string;
+  token: string | null;
   isTokenLoaded: boolean;
 }
 
 const initialState: AuthState = {
-  isTokenLoaded: false
+  isTokenLoaded: false,
+  token: null
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
