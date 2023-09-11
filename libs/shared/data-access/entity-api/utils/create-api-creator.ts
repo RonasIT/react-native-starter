@@ -16,16 +16,18 @@ export const createApiCreator = <
     TagTypes extends string = never
   >(
     createApiOptions: SetOptional<CreateApiOptions<BaseQuery, Definitions, ReducerPath, TagTypes>, 'baseQuery'>
-  ) => {
+  ): typeof api => {
     if (!commonCreateApiOptions.baseQuery && !createApiOptions.baseQuery) {
       throw new Error('Passing baseQuery is required in createApiCreator. Either pass it in commonOptions or in args');
     }
 
-    return createApi({ ...commonCreateApiOptions, ...createApiOptions } as CreateApiOptions<
+    const api = createApi({ ...commonCreateApiOptions, ...createApiOptions } as CreateApiOptions<
       BaseQuery,
       Definitions,
       ReducerPath,
       TagTypes
     >);
+
+    return api;
   };
 };

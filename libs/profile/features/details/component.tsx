@@ -7,13 +7,18 @@ import { AppActivityIndicator } from '@libs/shared/ui/ui-kit/activity-indicator'
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
 
-export function ProfileDetails(): ReactElement {
+interface ProfileDetailsProps {
+  onLogout: () => void;
+}
+
+export function ProfileDetails({ onLogout }: ProfileDetailsProps): ReactElement {
   const { data: profile } = profileAPI.useGetDemoQuery();
   const translate = useTranslation('PROFILE.DETAILS');
   const dispatch = useDispatch();
 
   const logout = (): void => {
     dispatch(AuthActions.unauthorize({}));
+    onLogout();
   };
 
   return (

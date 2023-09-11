@@ -5,7 +5,10 @@ import { AppEnv } from './libs/shared/utils/app-env/env';
 export type AppEnvName = 'development' | 'staging' | 'production';
 export type AppExpoConfig = ReturnType<typeof createConfig>;
 
-const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig } & typeof extra } => {
+const createConfig = (): Omit<ExpoConfig, 'extra'> & {
+  extra: { eas: EASConfig } & typeof extra;
+  experiments: { tsconfigPaths: boolean };
+} => {
   const appEnv = new AppEnv((process.env.APP_ENV as AppEnvName) || 'development');
 
   const projectId = '46e76b70-a4ff-4935-83ca-aaae5a36d7f0';
@@ -16,6 +19,9 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
   };
 
   return {
+    experiments: {
+      tsconfigPaths: true
+    },
     name: appEnv.select({
       development: 'RN Starter Dev',
       staging: 'RN Starter Stg',
@@ -63,8 +69,10 @@ const createConfig = (): Omit<ExpoConfig, 'extra'> & { extra: { eas: EASConfig }
       }),
       permissions: []
     },
+    plugins: ['expo-localization', 'sentry-expo'],
     web: {
-      favicon: './libs/shared/ui/ui-kit/assets/images/favicon.png'
+      favicon: './libs/shared/ui/ui-kit/assets/images/favicon.png',
+      bundler: 'metro'
     },
     // TODO: Configure this to use Sentry or remove
     // hooks: {

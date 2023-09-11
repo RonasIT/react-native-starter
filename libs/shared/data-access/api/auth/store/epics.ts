@@ -15,7 +15,7 @@ export const authEpics: Epics = {
     filter(AppActions.init.match),
     tap(() => {
       const getState = useGetState();
-      const getToken = (): string => AuthSelectors.token(getState());
+      const getToken = (): string | null => AuthSelectors.token(getState());
       const dispatch = useDispatch();
 
       apiService.useInterceptors({

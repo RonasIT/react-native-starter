@@ -11,5 +11,5 @@ export const useLastPushNotificationResponse = (): Notifications.NotificationRes
     }
   }, [lastNotificationResponse]);
 
-  return lastNotificationResponse;
+  return lastNotificationResponse as Notifications.NotificationResponse;
 };

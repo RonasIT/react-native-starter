@@ -8,24 +8,32 @@ export const refreshTokenInterceptor =
     onSuccess: (token: string) => void;
     onError: (error?: AxiosError) => void;
     refreshToken: () => Observable<string>;
-    checkIsTokenExpired: (token: string) => boolean;
-    getToken: () => string;
+    checkIsTokenExpired: (token: string | null) => boolean;
+    getToken: () => string | null;
   }) => (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
     const accessToken = options.getToken();
     const isTokenExpired = options.checkIsTokenExpired(accessToken);
-    const shouldRefreshToken = isTokenExpired && !!accessToken && !apiConfig.publicEndpoints.includes(config.url);
+    const shouldRefreshToken =
+      isTokenExpired && !!accessToken && !apiConfig.publicEndpoints.includes(config.url as string);
 
-    if (shouldRefreshToken && !config.url.includes(apiConfig.refreshTokenEndpoint)) {
+    if (shouldRefreshToken && !config.url?.includes(apiConfig.refreshTokenEndpoint)) {
       return lastValueFrom(
         options.refreshToken().pipe(
           map((token) => {
             options.onSuccess(token);
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers = {
+              ...config.headers,
+              Authorization: `Bearer ${token}`
+            };
 
             return config;
           }),
           catchError((error: AxiosError) => {
-            if ([HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized].includes(error?.response?.status)) {
+            if (
+              [HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized].includes(
+                error?.response?.status as HttpStatusCode
+              )
+            ) {
               options.onError(error);
             }
 

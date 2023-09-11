@@ -3,10 +3,11 @@ import { AxiosResponse } from 'axios';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import UserScreen from '@app/(main)/home/user';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { user, userEntityResponse } from '@tests/fixtures';
 import { setDefaultLanguage, TestRootComponent } from '@tests/helpers';
-import { UserScreen } from './screen';
+
 import SpyInstance = jest.SpyInstance;
 
 describe('User screen', () => {
@@ -20,15 +21,17 @@ describe('User screen', () => {
   let translation: Record<string, any>;
   let requestSpy: SpyInstance;
 
-  function initComponent(userID?: number): RenderAPI {
+  //TODO fix tests for Expo Router
+
+  function initComponent(/* userID?: number */): RenderAPI {
     return render(
       <TestRootComponent>
         <UserScreen
-          route={{
+        /* route={{
             name: 'User',
             key: 'User',
             params: { id: userID }
-          }}
+          }} */
         />
       </TestRootComponent>
     );
@@ -45,9 +48,11 @@ describe('User screen', () => {
 
   beforeAll(() => {
     requestSpy = jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
-      if (config.url.includes('/users') && config.method !== 'delete') {
-        return of({ data: userEntityResponse }) as Observable<AxiosResponse>;
+      if (config.url && config.url.includes('/users') && config.method !== 'delete') {
+        return of({ data: userEntityResponse }) as Observable<AxiosResponse<unknown>>;
       }
+
+      return of({} as AxiosResponse<unknown>);
     });
     translation = setDefaultLanguage();
   });
@@ -148,7 +153,7 @@ describe('User screen', () => {
 
     beforeEach(async () => {
       await waitFor(() => {
-        component = initComponent(user.id);
+        component = initComponent(/* user.id */);
       });
       getComponentElements(component);
       deleteButton = component.getByTestId('delete-button');

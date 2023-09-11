@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
@@ -12,23 +13,21 @@ Notifications.setNotificationHandler({
 });
 
 class PushNotificationsService {
-  public async obtainPushNotificationsToken(): Promise<string> {
-    let token: string;
+  public async obtainPushNotificationsToken(tokenType: 'expo' | 'device'): Promise<string | null> {
+    let token = null;
 
     if (Platform.OS === 'android' || Platform.OS === 'ios') {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
 
       if (existingStatus !== Permissions.PermissionStatus.GRANTED) {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-
-      if (finalStatus !== Permissions.PermissionStatus.GRANTED) {
         return null;
       }
 
-      token = (await Notifications.getExpoPushTokenAsync())?.data;
+      token = (
+        tokenType === 'expo'
+          ? await Notifications.getExpoPushTokenAsync({ projectId: Constants?.expoConfig?.extra?.eas.projectId }) //TODO Expo 49 workaround https://github.com/expo/expo/issues/23225#issuecomment-1624028839
+          : await Notifications.getDevicePushTokenAsync()
+      )?.data;
     } else {
       alert('Must use physical device for Push Notifications');
     }
@@ -47,7 +46,10 @@ class PushNotificationsService {
 
   public async handleLastNotificationResponse(): Promise<void> {
     const response = await Notifications.getLastNotificationResponseAsync();
-    this.handleNotificationResponse(response);
+
+    if (response) {
+      this.handleNotificationResponse(response);
+    }
   }
 
   public handleNotificationResponse = (_: Notifications.NotificationResponse): void => {

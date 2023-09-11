@@ -5,7 +5,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "baseUrl": "./",
     "paths": {
       "@libs/*": ["libs/*"],

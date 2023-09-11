@@ -4,10 +4,10 @@ import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { ReactTestInstance } from 'react-test-renderer';
 import { Observable, of } from 'rxjs';
+import { App } from '@app/_layout';
 import { apiService } from '@libs/shared/data-access/api-client';
 import { userPaginationResponse } from '@tests/fixtures';
 import { TestRootComponent } from '@tests/helpers';
-import { App } from './app';
 
 describe('App', () => {
   let component: RenderAPI;
@@ -25,12 +25,16 @@ describe('App', () => {
     jest.spyOn(SecureStore, 'getItemAsync').mockImplementation((key) => {
       if (key === 'token') {
         return Promise.resolve('some-demo-token');
+      } else {
+        return Promise.resolve(null);
       }
     });
 
     jest.spyOn(apiService.httpClient, 'request').mockImplementation((config) => {
       if (config.method === 'get' && config.url === '/users') {
         return of({ data: userPaginationResponse }) as Observable<AxiosResponse>;
+      } else {
+        return of({}) as Observable<AxiosResponse>;
       }
     });
   });

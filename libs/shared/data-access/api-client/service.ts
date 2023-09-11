@@ -9,9 +9,13 @@ import { ApiCall } from './types';
 
 export class ApiService {
   public readonly post: ApiCall;
+
   public readonly get: ApiCall;
+
   public readonly patch: ApiCall;
+
   public readonly put: ApiCall;
+
   public readonly delete: ApiCall;
 
   public readonly httpClient: Axios;
@@ -40,13 +44,13 @@ export class ApiService {
     request?: Array<Parameters<AxiosInterceptorManager<AxiosRequestConfig>['use']>>;
     response?: Array<Parameters<AxiosInterceptorManager<AxiosResponse>['use']>>;
   }): void {
-    if (interceptors.request.length) {
+    if (interceptors?.request?.length) {
       interceptors.request.forEach((interceptorPair) => {
         this.httpClient.interceptors.request.use(...interceptorPair);
       });
     }
 
-    if (interceptors.response.length) {
+    if (interceptors?.response?.length) {
       interceptors.response.forEach((interceptorPair) => {
         this.httpClient.interceptors.response.use(...interceptorPair);
       });

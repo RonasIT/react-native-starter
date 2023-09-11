@@ -1,11 +1,9 @@
 {
-  "ACCOUNT_ACCESS": {
-    "NAVIGATION": {
+  "APP": {
+    "AUTH_LAYOUT": {
       "TEXT_LOG_IN": "Log in"
-    }
-  },
-  "MAIN": {
-    "NAVIGATION": {
+    },
+    "MAIN_LAYOUT": {
       "TEXT_HOME": "Home",
       "TEXT_PROFILE": "Profile"
     }

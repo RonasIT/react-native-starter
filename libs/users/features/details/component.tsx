@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { ReactElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
-import { Keyboard } from 'react-native-ui-lib';
 import { userAPI } from '@libs/shared/data-access/api/user/api';
 import { User } from '@libs/shared/data-access/api/user/models';
 import { useTranslation } from '@libs/shared/features/i18n';
@@ -20,7 +19,7 @@ interface UserDetailsProps {
 export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): ReactElement {
   const translate = useTranslation('USERS.DETAILS');
 
-  const { data: user } = userAPI.useGetQuery({ id }, { skip: !id });
+  const { data: user } = userAPI.useGetQuery({ id: id as number }, { skip: !id });
   const [createUser, { isLoading: isCreating, isSuccess: isCreateSuccess, error }] = userAPI.useCreateMutation();
   const [updateUser, { isLoading: isUpdating, isSuccess: isUpdateSuccess }] = userAPI.useUpdateMutation();
   const [deleteUser, { isLoading: isDeleting, isSuccess: isDeleteSuccess }] = userAPI.useDeleteMutation();
@@ -55,7 +54,9 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   };
 
   const deleteButtonPressed = (): void => {
-    deleteUser(user.id);
+    if (user) {
+      deleteUser(user.id);
+    }
   };
 
   return (
@@ -90,7 +91,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           name='status'
           control={control}
           testID='status-input' />
-        {error && (
+        {!!error && (
           <AppText style={style.error}>
             {translate('TEXT_ERROR')}: {JSON.stringify(error)}
           </AppText>
@@ -101,7 +102,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           </AppText>
         )}
         <View style={style.footer}>
-          {id && (
+          {!!id && (
             <AppButton
               isLoading={isDeleting}
               label={translate('BUTTON_DELETE')}
@@ -121,7 +122,6 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           />
         </View>
       </ScrollView>
-      <Keyboard.KeyboardAwareInsetsView />
     </>
   );
 }
