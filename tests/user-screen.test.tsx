@@ -23,7 +23,7 @@ describe('User screen', () => {
 
   //TODO fix tests for Expo Router
 
-  function initComponent(userID?: number): RenderAPI {
+  function initComponent(/* userID?: number */): RenderAPI {
     return render(
       <TestRootComponent>
         <UserScreen
@@ -153,7 +153,7 @@ describe('User screen', () => {
 
     beforeEach(async () => {
       await waitFor(() => {
-        component = initComponent(user.id);
+        component = initComponent(/* user.id */);
       });
       getComponentElements(component);
       deleteButton = component.getByTestId('delete-button');

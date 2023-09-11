@@ -54,7 +54,10 @@ export type EntityApi<
     TEndpointDefinitions & TNewDefinitions
   >;
 
-  enhanceEndpoints<TNewTagTypes extends string = never, TNewDefinitions extends EndpointDefinitions = never>(_: {
+  enhanceEndpoints<
+    TNewTagTypes extends string = never,
+    TNewDefinitions extends EndpointDefinitions = EndpointDefinitions
+  >(_: {
     addTagTypes?: Array<TNewTagTypes>;
     endpoints?: UpdateDefinitions<
       TEndpointDefinitions,
