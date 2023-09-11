@@ -55,6 +55,7 @@
     "expo-application": "~5.3.0",
     "expo-constants": "~14.4.2",
     "expo-device": "~5.4.0",
+    "expo-image": "~1.3.2",
     "expo-linking": "~5.0.2",
     "expo-localization": "~14.3.0",
     "expo-notifications": "~0.20.1",
@@ -75,7 +76,6 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.31.3",
     "react-native": "0.72.4",
-    "react-native-expo-image-cache": "^4.1.0",
     "react-native-extended-stylesheet": "^0.12.0",
     "react-native-flipper": "^0.193.0",
     "react-native-gesture-handler": "~2.12.0",
@@ -95,8 +95,7 @@
     "rxjs": "^7.5.7",
     "sentry-expo": "~7.0.0",
     "sort-object-keys": "^1.1.3",
-    "yup": "^0.32.11",
-    "expo-image": "~1.3.2"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
