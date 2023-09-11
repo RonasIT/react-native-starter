@@ -53,8 +53,8 @@ export type EntityApi<
     TOmitEndpoints,
     TEndpointDefinitions & TNewDefinitions
   >;
-  //TODO fix lint warning
-  enhanceEndpoints<TNewTagTypes extends string = never, TNewDefinitions extends EndpointDefinitions = never>(_: {
+
+  enhanceEndpoints<TNewTagTypes extends string = never, TNewDefinitions extends TEndpointDefinitions = never>(_: {
     addTagTypes?: Array<TNewTagTypes>;
     endpoints?: UpdateDefinitions<
       TEndpointDefinitions,
@@ -65,7 +65,14 @@ export type EntityApi<
           [K in keyof TNewDefinitions]?: Partial<TNewDefinitions[K]> | ((definition: TNewDefinitions[K]) => void);
         }
       : never;
-  }): EntityApi<TEntity, TSearchResponse, TSearchRequest, TEntityRequest, TOmitEndpoints, TEndpointDefinitions>;
+  }): EntityApi<
+    TEntity,
+    TSearchResponse,
+    TSearchRequest,
+    TEntityRequest,
+    TOmitEndpoints,
+    TNewDefinitions | TEndpointDefinitions
+  >;
 } & { util: EntityApiUtils<TEntity, TSearchRequest> };
 
 export type EntityEndpointName = keyof EntityEndpointsDefinitions<BaseEntity>;

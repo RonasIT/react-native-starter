@@ -1,8 +1,8 @@
+import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
 import { RefetchConfigOptions, SubscriptionOptions } from '@reduxjs/toolkit/dist/query/core/apiState';
 import { omit, range } from 'lodash';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store/types';
 import { BaseEntity, PaginationRequest, PaginationResponse } from '../models';
 import { EntityApi, EntityMutationEndpointName } from '../types';
 
@@ -18,7 +18,8 @@ export const useInfiniteQuery = <
     initialParams?: TRequest,
     queryOptions?: Partial<SubscriptionOptions & RefetchConfigOptions & { skip?: boolean }>
   ): typeof result => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
+
   const [searchRequest, setSearchRequest] = useState<TRequest>(initialParams as TRequest);
   const { data, isFetching, ...restEndpointData } = entityApi.useSearchInfiniteQuery(searchRequest, queryOptions);
   const [isFetchingNextPage, setIsFetchingNextPage] = useState(false);
