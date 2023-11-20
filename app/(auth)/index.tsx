@@ -1,8 +1,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { LoginForm } from '@libs/auth/features/login-form';
-import { commonStyle } from '@libs/shared/ui/styles';
-import { AppScreen } from '@libs/shared/ui/ui-kit/screen';
+import { GlueStackAppScreen } from '@libs/shared/ui/ui-kit/screen/gluestack-component';
 
 export default function LoginScreen(): JSX.Element {
   const router = useRouter();
@@ -12,8 +11,8 @@ export default function LoginScreen(): JSX.Element {
   };
 
   return (
-    <AppScreen style={commonStyle.container}>
+    <GlueStackAppScreen>
       <LoginForm onLoginSuccess={handleLoginSuccess} />
-    </AppScreen>
+    </GlueStackAppScreen>
   );
 }

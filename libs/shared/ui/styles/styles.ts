@@ -17,6 +17,9 @@ export const commonStyle = createStyles({
   container: {
     paddingHorizontal: spacings.contentOffset
   },
+  fullHeight: {
+    flex: 1
+  },
   formInput: {
     color: colors.white,
     fontSize: fontSizes.medium,

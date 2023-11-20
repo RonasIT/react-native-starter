@@ -9,6 +9,7 @@ import { AppActions } from '@libs/shared/data-access/store';
 import { createStore } from '@libs/shared/data-access/store/store';
 import { setLanguage } from '@libs/shared/features/i18n';
 import { navigationTheme } from '@libs/shared/features/navigation';
+import { AppThemeProvider } from '@libs/shared/ui/styles/theme-provider';
 import { fonts } from '@libs/shared/ui/ui-kit/assets/fonts';
 
 const store = createStore();
@@ -36,7 +37,9 @@ export function App(): ReactElement {
 
   return (
     <ThemeProvider value={navigationTheme}>
-      <Slot />
+      <AppThemeProvider>
+        <Slot />
+      </AppThemeProvider>
     </ThemeProvider>
   );
 }
