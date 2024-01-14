@@ -1,8 +1,7 @@
-import { GluestackUIProvider, Theme } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { noop } from 'lodash';
 import React, { ReactElement, createContext, useState } from 'react';
 import { config } from 'gluestack/gluestack-ui.config';
-import { commonStyle } from './styles';
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -31,11 +30,7 @@ export function AppThemeProvider({ children }: ThemeProviderProps): ReactElement
         theme,
         onToggleTheme: handleToggleTheme
       }}>
-      <GluestackUIProvider config={config}>
-        <Theme style={commonStyle.fullHeight} name={theme}>
-          {children}
-        </Theme>
-      </GluestackUIProvider>
+      <GluestackUIProvider config={config}>{children}</GluestackUIProvider>
     </AppThemeContext.Provider>
   );
 }

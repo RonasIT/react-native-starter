@@ -1,7 +1,7 @@
 import { AnimationResolver } from '@gluestack-style/animation-resolver';
 import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 import { createConfig, createComponents } from '@gluestack-style/react';
-import * as componentsTheme from './theme';
+import * as componentsTheme from '@plambir93kek/config/src/theme';
 
 export const gluestackUIConfig = createConfig({
   aliases: {
@@ -34,7 +34,7 @@ export const gluestackUIConfig = createConfig({
       grey: '#808080',
 
       textColor: '#FFFFFF',
-      backgroundColor: '#FFFFFF'
+      backgroundColor: '$black'
     },
     space: {
       x24: 24,
@@ -71,21 +71,7 @@ export const gluestackUIConfig = createConfig({
       largest: 28
     }
   } as const,
-  plugins: [new AnimationResolver(MotionAnimationDriver)],
-  themes: {
-    light: {
-      colors: {
-        $textColor: '$black',
-        $backgroundColor: '$white'
-      }
-    },
-    dark: {
-      colors: {
-        $textColor: '$white',
-        $backgroundColor: '$black'
-      }
-    }
-  }
+  plugins: [new AnimationResolver(MotionAnimationDriver)]
 });
 
 type Config = typeof gluestackUIConfig; // Assuming `config` is defined elsewhere

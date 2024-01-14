@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
 import { LoginFormSchema } from '@libs/auth/features/login-form/forms';
 import { commonStyle, createStyles } from '@libs/shared/ui/styles';
-import { GlueStackButton } from '@libs/shared/ui/ui-kit/button/gluestack-component';
+import { GluestackButton } from '@libs/shared/ui/ui-kit/button/gluestack-component';
 import { GluestackInputFormGroup } from '@libs/shared/ui/ui-kit/input-form-group/gluestack-component';
 import { GlueStackAppScreen } from '@libs/shared/ui/ui-kit/screen/gluestack-component';
 
@@ -16,8 +16,8 @@ export default function GlueStackScreen(): ReactElement {
 
   return (
     <GlueStackAppScreen style={[commonStyle.container, style.container]}>
-      <GlueStackButton title='Primary' />
-      <GlueStackButton size='small' title='Small' />
+      <GluestackButton title='Primary' />
+      <GluestackButton size='small' title='Small' />
       <GluestackInputFormGroup name='email' control={form.control} />
       <Text size='largest'>Largest Text</Text>
       <Text size='larger'>Larger Text</Text>
