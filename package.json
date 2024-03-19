@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/RonasIT/react-native-starter.git"
   },
-  "version": "3.3.0",
+  "version": "3.4.0",
   "main": "expo-router/entry",
   "scripts": {
     "start": "cross-env APP_ENV=development npx expo start",
