@@ -31,15 +31,15 @@ export const refreshTokenInterceptor =
           catchError((error: AxiosError) => {
             if (
               [HttpStatusCode.BadRequest, HttpStatusCode.Unauthorized].includes(
-                error?.response?.status as HttpStatusCode
+                error?.response?.status as HttpStatusCode,
               )
             ) {
               options.onError(error);
             }
 
             return throwError(() => error);
-          })
-        )
+          }),
+        ),
       );
     }
 

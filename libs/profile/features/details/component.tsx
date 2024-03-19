@@ -22,13 +22,13 @@ export function ProfileDetails({ onLogout }: ProfileDetailsProps): ReactElement 
   };
 
   return (
-    <>
+    <React.Fragment>
       {profile ? (
         <AppText variant='largest'>{translate('TEXT_GREETING', { name: profile?.name })}</AppText>
       ) : (
         <AppActivityIndicator />
       )}
       <AppButton label={translate('BUTTON_LOGOUT')} onPress={logout} />
-    </>
+    </React.Fragment>
   );
 }

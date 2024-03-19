@@ -6,7 +6,7 @@ export const createEntityInstance = <TEntity, TPlain extends object = object>(
   options: {
     fromInstancePartial?: boolean;
     convertFromInstance?: ClassConstructor<any>;
-  } = { fromInstancePartial: false }
+  } = { fromInstancePartial: false },
 ): TEntity => {
   if (data instanceof entityConstructor) {
     return data as TEntity;
@@ -19,6 +19,6 @@ export const createEntityInstance = <TEntity, TPlain extends object = object>(
   return plainToInstance(
     entityConstructor as ClassConstructor<TEntity>,
     options.convertFromInstance ? instanceToPlain(new options.convertFromInstance(data)) : data,
-    { excludeExtraneousValues: true, exposeUnsetFields: false }
+    { excludeExtraneousValues: true, exposeUnsetFields: false },
   ) as TEntity;
 };

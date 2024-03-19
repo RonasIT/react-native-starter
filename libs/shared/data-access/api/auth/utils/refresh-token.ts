@@ -16,7 +16,7 @@ export function refreshToken(httpClient: AxiosObservable): Observable<string> {
       }),
       tap(() => {
         tokenRefresh$ = null;
-      })
+      }),
     );
   }
 

@@ -22,14 +22,14 @@ type StyleSet<T = any> = {
   [K in keyof T]: T[K] extends number
     ? T[K]
     : T[K] extends string
-    ? T[K]
-    : T[K] extends StyleFunction<number>
-    ? number
-    : T[K] extends StyleFunction<string>
-    ? string
-    : T[K] extends MediaQuery
-    ? AnyStyleSet
-    : AnyStyle;
+      ? T[K]
+      : T[K] extends StyleFunction<number>
+        ? number
+        : T[K] extends StyleFunction<string>
+          ? string
+          : T[K] extends MediaQuery
+            ? AnyStyleSet
+            : AnyStyle;
 };
 
 export interface MediaQuery {

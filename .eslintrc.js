@@ -1,33 +1,33 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
-    project: 'tsconfig.json',
+    project: 'tsconfig(.*)?.json',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   ignorePatterns: ['node_modules', 'dist', 'coverage', '.eslintrc.js', '.expo', '.expo-shared', 'web-build'],
   settings: {
     react: {
-      version: 'detect'
+      version: 'detect',
     },
     'react-native/style-sheet-object-names': ['EStyleSheet'],
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true
+        alwaysTryTypes: true,
       },
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
-    }
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   plugins: ['@typescript-eslint', 'unused-imports', 'react', 'react-hooks', 'react-native', 'import'],
   extends: [
@@ -35,7 +35,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    'prettier'
+    'prettier',
   ],
   rules: {
     indent: ['warn', 2, { SwitchCase: 1 }],
@@ -54,16 +54,16 @@ module.exports = {
     'padding-line-between-statements': [
       'warn',
       { blankLine: 'always', prev: '*', next: 'return' },
-      { blankLine: 'always', prev: '*', next: 'multiline-block-like' }
+      { blankLine: 'always', prev: '*', next: 'multiline-block-like' },
     ],
     '@typescript-eslint/no-use-before-define': ['warn', { variables: false }],
-    '@typescript-eslint/lines-between-class-members': ['warn', { exceptAfterSingleLine: true }],
+    '@typescript-eslint/lines-between-class-members': ['warn', 'always', { exceptAfterSingleLine: true }],
     '@typescript-eslint/no-inferrable-types': ['warn', { ignoreParameters: true }],
     '@typescript-eslint/explicit-module-boundary-types': ['warn', { allowArgumentsExplicitlyTypedAsAny: true }],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-member-accessibility': [
       'warn',
-      { accessibility: 'explicit', overrides: { constructors: 'no-public' } }
+      { accessibility: 'explicit', overrides: { constructors: 'no-public' } },
     ],
     '@typescript-eslint/explicit-function-return-type': ['warn', { allowExpressions: true }],
     '@typescript-eslint/no-var-requires': 'off',
@@ -79,6 +79,12 @@ module.exports = {
           'public-instance-field',
           'protected-instance-field',
           'private-instance-field',
+          'public-static-accessor',
+          'protected-static-accessor',
+          'private-static-accessor',
+          'public-instance-accessor',
+          'protected-instance-accessor',
+          'private-instance-accessor',
           'public-constructor',
           'protected-constructor',
           'private-constructor',
@@ -87,47 +93,47 @@ module.exports = {
           'protected-static-method',
           'protected-instance-method',
           'private-static-method',
-          'private-instance-method'
-        ]
-      }
+          'private-instance-method',
+        ],
+      },
     ],
     '@typescript-eslint/naming-convention': [
       'warn',
       {
         selector: 'typeLike',
-        format: ['PascalCase']
+        format: ['PascalCase'],
       },
       {
         selector: ['parameter'],
         format: ['camelCase', 'PascalCase'],
-        leadingUnderscore: 'allow'
+        leadingUnderscore: 'allow',
       },
       {
         selector: ['classProperty'],
         format: ['camelCase', 'snake_case'],
-        leadingUnderscore: 'allow'
+        leadingUnderscore: 'allow',
       },
       {
         selector: ['method', 'accessor'],
-        format: ['camelCase']
+        format: ['camelCase'],
       },
       {
         selector: ['function', 'typeProperty'],
-        format: ['camelCase', 'PascalCase']
+        format: ['camelCase', 'PascalCase'],
       },
       {
         selector: 'variable',
-        format: ['camelCase', 'PascalCase', 'UPPER_CASE']
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
       },
       {
         selector: 'enumMember',
-        format: ['UPPER_CASE']
-      }
+        format: ['UPPER_CASE'],
+      },
     ],
     'unused-imports/no-unused-imports-ts': 'warn',
     'unused-imports/no-unused-vars-ts': [
       'warn',
-      { vars: 'all', varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true }
+      { vars: 'all', varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true },
     ],
     'jsx-quotes': ['warn', 'prefer-single'],
     'react/jsx-boolean-value': 'off',
@@ -138,31 +144,35 @@ module.exports = {
     'react-native/no-unused-styles': 'warn',
     'react-native/no-inline-styles': 'warn',
     'react-native/no-single-element-style-arrays': 'warn',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-fragments': ['warn', 'element'],
     'import/newline-after-import': 'warn',
-    'import/no-unresolved': 'warn',
+    'import/no-unresolved': 'error',
+    'import/no-cycle': 'error',
     'import/order': [
       'warn',
       {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
-        alphabetize: { order: 'asc' }
-      }
+        alphabetize: { order: 'asc' },
+      },
     ],
-    'import/no-duplicates': 'warn'
+    'import/no-duplicates': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
   },
   overrides: [
     {
       files: ['*.js'],
       rules: {
         '@typescript-eslint/explicit-member-accessibility': 'off',
-        '@typescript-eslint/explicit-function-return-type': 'off'
-      }
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
     },
     {
       files: ['*actions.ts'],
       rules: {
         'function-call-argument-newline': ['warn', 'always'],
-        'function-paren-newline': ['warn', { minItems: 1 }]
-      }
+        'function-paren-newline': ['warn', { minItems: 1 }],
+      },
     },
     {
       files: ['*selectors.ts'],
@@ -170,8 +180,8 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         'function-call-argument-newline': ['warn', 'always'],
-        'function-paren-newline': ['warn', 'multiline-arguments']
-      }
-    }
-  ]
+        'function-paren-newline': ['warn', 'multiline-arguments'],
+      },
+    },
+  ],
 };

@@ -17,7 +17,7 @@ describe('App', () => {
     return render(
       <TestRootComponent>
         <App />
-      </TestRootComponent>
+      </TestRootComponent>,
     );
   }
 

@@ -3,7 +3,6 @@ import { ClassConstructor, instanceToPlain, plainToInstance } from 'class-transf
 import { merge, omit, pickBy } from 'lodash';
 import { EntityTagID } from './enums';
 import { BaseEntity, EntityRequest, PaginationRequest, PaginationResponse } from './models';
-import { EntityApi, EntityEndpointName, EntityPartial } from './types';
 import {
   BaseQueryFunction,
   createApiCreator,
@@ -11,13 +10,14 @@ import {
   createEntityInstance,
   prepareRequestParams
 } from './utils';
+import type { EntityApi, EntityEndpointName, EntityPartial } from './types';
 
 export function createEntityApi<
   TEntity extends BaseEntity,
   TSearchRequest extends PaginationRequest = PaginationRequest,
   TEntityRequest extends EntityRequest = EntityRequest,
   TSearchResponse extends PaginationResponse<TEntity> = PaginationResponse<TEntity>,
-  TOmitEndpoints extends Readonly<Array<EntityEndpointName>> = never
+  TOmitEndpoints extends Readonly<Array<EntityEndpointName>> = never,
 >({
   omitEndpoints,
   ...options

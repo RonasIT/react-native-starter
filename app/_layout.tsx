@@ -23,7 +23,7 @@ const useLanguage = setLanguage(
       ...require('@i18n/users/en.json')
     }
   },
-  'en'
+  'en',
 );
 
 export function App(): ReactElement {

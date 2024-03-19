@@ -46,8 +46,8 @@ export const profileAPI = createAppApi({
             (data) => new User({
               ...data,
               ...args
-            })
-          )
+            }),
+          ),
         );
       }
     })

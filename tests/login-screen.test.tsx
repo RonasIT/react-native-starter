@@ -20,7 +20,7 @@ describe('Login screen', () => {
     return render(
       <TestRootComponent>
         <LoginScreen />
-      </TestRootComponent>
+      </TestRootComponent>,
     );
   }
 
@@ -91,11 +91,11 @@ describe('Login screen', () => {
           expect.objectContaining({
             method: 'get',
             url: '/users'
-          })
+          }),
         );
         /* expect(navigateSpy).toHaveBeenCalledWith('Main'); */
       },
-      { timeout: 7000 }
+      { timeout: 7000 },
     );
   }, 10000);
 });
