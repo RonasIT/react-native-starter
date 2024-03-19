@@ -1,7 +1,7 @@
 import { Store } from '@reduxjs/toolkit';
-import { AppState } from '@libs/shared/data-access/store';
 import { AuthActions } from '../store/actions';
 import { AuthSelectors } from '../store/selectors';
+import type { AppState } from '@libs/shared/data-access/store';
 
 export const checkIsAuthenticated =
   (store: Partial<Store<AppState>>) => (unauthenticateOnFail = true): boolean => {

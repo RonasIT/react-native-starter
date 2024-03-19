@@ -9,14 +9,14 @@ import { EntityApi, EntityMutationEndpointName } from '../types';
 export const useInfiniteQuery = <
   TEntity extends BaseEntity,
   TRequest extends PaginationRequest,
-  TPaginationResponse extends PaginationResponse<TEntity> = PaginationResponse<TEntity>
+  TPaginationResponse extends PaginationResponse<TEntity> = PaginationResponse<TEntity>,
 >(
     entityApi: Pick<
     EntityApi<TEntity, TPaginationResponse, TRequest, any, Array<EntityMutationEndpointName>>,
     'useSearchInfiniteQuery' | 'endpoints' | 'util'
   >,
     initialParams?: TRequest,
-    queryOptions?: Partial<SubscriptionOptions & RefetchConfigOptions & { skip?: boolean }>
+    queryOptions?: Partial<SubscriptionOptions & RefetchConfigOptions & { skip?: boolean }>,
   ): typeof result => {
   const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
 
@@ -68,16 +68,16 @@ export const useInfiniteQuery = <
             draft.data = [];
             draft.minPage = page;
             draft.pagination.currentPage = page;
-          })
+          }),
         );
         setSearchRequest(({ ...rest }) => ({ ...rest, page }));
       }
 
       return dispatch(
-        entityApi.endpoints.searchInfinite.initiate({ ...searchRequest, page: 1 }, { forceRefetch: true })
+        entityApi.endpoints.searchInfinite.initiate({ ...searchRequest, page: 1 }, { forceRefetch: true }),
       );
     },
-    [searchRequest, entityApi]
+    [searchRequest, entityApi],
   );
 
   const refetch = useCallback(() => {

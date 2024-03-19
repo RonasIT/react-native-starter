@@ -61,17 +61,17 @@ export class ApiService {
     function apiCall<T = any>(
       endpoint: string,
       data?: any,
-      options?: AxiosRequestConfig & { fullResponse?: false }
+      options?: AxiosRequestConfig & { fullResponse?: false },
     ): Observable<T>;
     function apiCall<T = any>(
       endpoint: string,
       data?: any,
-      options?: AxiosRequestConfig & { fullResponse: true }
+      options?: AxiosRequestConfig & { fullResponse: true },
     ): AxiosObservable<T>;
     function apiCall<T = any>(
       endpoint: string,
       data?: any,
-      options?: AxiosRequestConfig & { fullResponse?: boolean }
+      options?: AxiosRequestConfig & { fullResponse?: boolean },
     ): Observable<T> | AxiosObservable<T> {
       const payload = ['get', 'delete'].includes(method) ? { params: data } : { data };
 

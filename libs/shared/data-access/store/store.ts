@@ -26,7 +26,7 @@ export function createStore(context?: unknown): typeof store {
   const store = configureStore({
     reducer: rootReducer as unknown as Reducer<StateFromReducersMapObject<OmitIndexSignature<typeof rootReducer>>>,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, thunk: { extraArgument: context } }).concat(
-      middlewares
+      middlewares,
     ) as MiddlewareArray<any>
   });
 

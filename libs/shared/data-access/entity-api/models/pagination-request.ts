@@ -4,7 +4,7 @@ import { TransformRelations, TransformBoolean } from '@libs/shared/utils/class-t
 export class PaginationRequest<
   TRelation extends string = string,
   TOrderBy extends string = string,
-  TWithCount extends string = string
+  TWithCount extends string = string,
 > {
   @Expose()
   public query?: string;

@@ -7,5 +7,5 @@ import { appStorageEpics } from '@libs/shared/data-access/storage/store';
 export const rootEpic = combineEpics(
   ...values<Epic>(appStorageEpics),
   ...values<Epic>(profileEpics),
-  ...values<Epic>(authEpics)
+  ...values<Epic>(authEpics),
 );

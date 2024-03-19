@@ -60,7 +60,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
   };
 
   return (
-    <>
+    <React.Fragment>
       <ScrollView>
         <AppText
           variant='large'
@@ -122,7 +122,7 @@ export function UserDetails({ id, onSuccessfulDelete }: UserDetailsProps): React
           />
         </View>
       </ScrollView>
-    </>
+    </React.Fragment>
   );
 }
 

@@ -42,7 +42,7 @@ export function AppTabBar({ state, descriptors, navigation }: BottomTabBarProps)
         </TouchableOpacity>
       );
     }),
-    [descriptors, navigation, state.index, state.routes]
+    [descriptors, navigation, state.index, state.routes],
   );
 
   return (

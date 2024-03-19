@@ -54,7 +54,7 @@ export function InputFormGroup<T extends FieldValues = FieldValues>({
         <Icon name={isSecured ? 'eye' : 'eyeHide'} />
       </TouchableOpacity>
     ),
-    [isPassword, isSecured]
+    [isPassword, isSecured],
   );
 
   function handleBlur(): void {
@@ -91,10 +91,10 @@ export function InputFormGroup<T extends FieldValues = FieldValues>({
       validationMessageStyle={commonStyle.formGroupError}
       secureTextEntry={isSecured && isPassword}
       trailingAccessory={
-        <>
+        <React.Fragment>
           {renderedEyeIcon}
           {renderedTrailingAccessory}
-        </>
+        </React.Fragment>
       }
       {...restProps}
     />

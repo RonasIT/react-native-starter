@@ -33,7 +33,7 @@ describe('User screen', () => {
             params: { id: userID }
           }} */
         />
-      </TestRootComponent>
+      </TestRootComponent>,
     );
   }
 
@@ -142,7 +142,7 @@ describe('User screen', () => {
             method: 'post',
             url: '/users',
             data: expect.objectContaining({ email, name, gender, status })
-          })
+          }),
         );
       });
     });
@@ -173,7 +173,7 @@ describe('User screen', () => {
         expect.objectContaining({
           method: 'get',
           url: `/users/${user.id}`
-        })
+        }),
       );
       expect(emailInput).toHaveProp('value', user.email);
       expect(nameInput).toHaveProp('value', user.name);
@@ -203,7 +203,7 @@ describe('User screen', () => {
             method: 'put',
             url: `/users/${user.id}`,
             data: expect.objectContaining({ email, name, gender, status })
-          })
+          }),
         );
       });
     });
@@ -216,7 +216,7 @@ describe('User screen', () => {
           expect.objectContaining({
             method: 'delete',
             url: `/users/${user.id}`
-          })
+          }),
         );
       });
     });

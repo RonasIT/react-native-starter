@@ -29,7 +29,7 @@ describe('Home screen', () => {
             <Screen name='Home' component={HomeScreen} />
           </Navigator>
         </NavigationContainer>
-      </TestRootComponent>
+      </TestRootComponent>,
     );
   }
 
@@ -75,7 +75,7 @@ describe('Home screen', () => {
           method: 'get',
           url: '/users',
           params: { page: 2 }
-        })
+        }),
       );
     });
   });
@@ -92,7 +92,7 @@ describe('Home screen', () => {
           method: 'get',
           url: '/users',
           params: { page: 1 }
-        })
+        }),
       );
     });
   });

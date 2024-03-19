@@ -16,7 +16,7 @@ export type EntityEndpointsDefinitions<
   TEntity extends BaseEntity,
   TSearchResponse extends PaginationResponse<TEntity> = PaginationResponse<TEntity>,
   TSearchRequest extends object = PaginationRequest,
-  TEntityRequest extends object = EntityRequest
+  TEntityRequest extends object = EntityRequest,
 > = {
   create: MutationDefinition<Partial<TEntity>, BaseQueryFunction, string, TEntity>;
   search: QueryDefinition<TSearchRequest, BaseQueryFunction, string, PaginationResponse<TEntity>>;
@@ -37,7 +37,7 @@ export type EntityApi<
   > = Omit<
     EntityEndpointsDefinitions<TEntity, TSearchResponse, TSearchRequest, TEntityRequest>,
     TOmitEndpoints extends Readonly<Array<EntityEndpointName>> ? TOmitEndpoints[number] : never
-  >
+  >,
 > = Omit<
   Api<BaseQueryFunction, TEndpointDefinitions, string, string, typeof coreModuleName | typeof reactHooksModuleName>,
   'injectEndpoints' | 'enhanceEndpoints'

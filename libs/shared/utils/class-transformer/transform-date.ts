@@ -12,14 +12,14 @@ export function TransformDate(format?: string, withTime: boolean = true): (targe
 
       return value;
     },
-    { toPlainOnly: true }
+    { toPlainOnly: true },
   );
 
   const toClass = Transform(
     ({ value }) => value ? (format ? DateTime.fromFormat(value, format).toLocal() : DateTime.fromISO(value).toLocal()) : value,
     {
       toClassOnly: true
-    }
+    },
   );
 
   return (target: any, key: string): void => {

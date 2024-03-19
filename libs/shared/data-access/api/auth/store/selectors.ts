@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { AppState } from '@libs/shared/data-access/store';
 import { AuthState } from './reducer';
+import type { AppState } from '@libs/shared/data-access/store';
 
 const selectFeature = (state: AppState): AuthState => state.auth;
 

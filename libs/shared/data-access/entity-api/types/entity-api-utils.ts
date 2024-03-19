@@ -7,15 +7,15 @@ import { EntityPartial } from './entity-partial';
 export type EntityApiUtils<TEntity extends BaseEntity, TSearchRequest extends PaginationRequest = PaginationRequest> = {
   patchEntityQueries: (
     entityData: EntityPartial<TEntity>,
-    endpointLifecycle: Pick<LifecycleApi, 'dispatch' | 'getState'>
+    endpointLifecycle: Pick<LifecycleApi, 'dispatch' | 'getState'>,
   ) => Promise<Array<PatchCollection>>;
   clearEntityQueries: (
     entityId: TEntity['id'],
-    endpointLifecycle: Pick<LifecycleApi, 'dispatch' | 'getState'>
+    endpointLifecycle: Pick<LifecycleApi, 'dispatch' | 'getState'>,
   ) => Promise<Array<PatchCollection>>;
   handleEntityCreate: (
     arg: Partial<TEntity>,
-    endpointLifecycle: MutationLifecycleApi<typeof arg, BaseQueryFunction, TEntity | void, string>
+    endpointLifecycle: MutationLifecycleApi<typeof arg, BaseQueryFunction, TEntity | void, string>,
   ) => void | Promise<void>;
   handleEntitySearch: (
     arg: TSearchRequest,
@@ -24,7 +24,7 @@ export type EntityApiUtils<TEntity extends BaseEntity, TSearchRequest extends Pa
       BaseQueryFunction,
       PaginationResponse<TEntity>,
       string
-    >
+    >,
   ) => void | Promise<void>;
   handleEntityUpdate: (
     arg: EntityPartial<TEntity> | TEntity['id'],
@@ -33,10 +33,10 @@ export type EntityApiUtils<TEntity extends BaseEntity, TSearchRequest extends Pa
       BaseQueryFunction,
       EntityPartial<TEntity> | void,
       string
-    >
+    >,
   ) => void | Promise<void>;
   handleEntityDelete: (
     arg: TEntity['id'],
-    endpointLifecycle: { optimistic?: boolean } & MutationLifecycleApi<typeof arg, BaseQueryFunction, void, string>
+    endpointLifecycle: { optimistic?: boolean } & MutationLifecycleApi<typeof arg, BaseQueryFunction, void, string>,
   ) => void | Promise<void>;
 };

@@ -5,10 +5,10 @@ import { tokenInterceptor, unauthorizedInterceptor } from '@libs/shared/data-acc
 import { formDataInterceptor } from '@libs/shared/data-access/api-client/interceptors/form-data';
 import { appStorageService } from '@libs/shared/data-access/storage';
 import { AppActions } from '@libs/shared/data-access/store/actions';
-import { Epics } from '@libs/shared/data-access/store/types';
 import { authAPI } from '../api';
 import { AuthActions } from './actions';
 import { AuthSelectors } from './selectors';
+import type { Epics } from '@libs/shared/data-access/store/types';
 
 export const authEpics: Epics = {
   onInit: (action$, _, { useDispatch, useGetState }) => action$.pipe(
@@ -44,25 +44,25 @@ export const authEpics: Epics = {
       });
     }),
     switchMap(() => appStorageService.token.get()),
-    map((token) => AuthActions.saveToken({ token }))
+    map((token) => AuthActions.saveToken({ token })),
   ),
 
   saveToken: (action$, state$) => action$.pipe(
     filter(AuthActions.saveToken.match),
     withLatestFrom(state$),
     filter(([_, state]) => !AuthSelectors.isTokenLoaded(state)),
-    map(() => AuthActions.tokenLoaded())
+    map(() => AuthActions.tokenLoaded()),
   ),
 
   authorizeSuccess: (action$) => action$.pipe(
     filter(isAnyOf(authAPI.endpoints.authorize.matchFulfilled, authAPI.endpoints.demoAuthorize.matchFulfilled)),
-    map(({ payload }) => AuthActions.saveToken({ token: payload.token }))
+    map(({ payload }) => AuthActions.saveToken({ token: payload.token })),
   ),
 
   unauthorize: (action$, state$) => action$.pipe(
     filter(AuthActions.unauthorize.match),
     delay(300),
     withLatestFrom(state$),
-    map(() => AuthActions.clearToken())
+    map(() => AuthActions.clearToken()),
   )
 };

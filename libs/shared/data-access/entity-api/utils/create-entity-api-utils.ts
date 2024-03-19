@@ -2,20 +2,20 @@ import { PatchCollection } from '@reduxjs/toolkit/dist/query/core/buildThunks';
 import { ClassConstructor } from 'class-transformer';
 import { merge } from 'lodash';
 import { BaseEntity, EntityRequest, PaginationRequest, PaginationResponse } from '../models';
-import {
+import { createEntityInstance } from './create-entity-instance';
+import type {
   EntityApi,
   EntityApiUtils,
   EntityMutationEndpointName,
   EntityPartial,
   EntityQueryEndpointName
 } from '../types';
-import { createEntityInstance } from './create-entity-instance';
 
 export const createEntityApiUtils = <
   TEntity extends BaseEntity,
   TPaginationRequest extends PaginationResponse<TEntity> = PaginationResponse<TEntity>,
   TSearchRequest extends PaginationRequest = PaginationRequest,
-  TEntityRequest extends EntityRequest = EntityRequest
+  TEntityRequest extends EntityRequest = EntityRequest,
 >(options: {
   api: EntityApi<TEntity, TPaginationRequest, TSearchRequest, TEntityRequest, Array<EntityMutationEndpointName>>;
   entitySearchRequestConstructor?: ClassConstructor<TSearchRequest> | typeof PaginationRequest;
@@ -55,7 +55,7 @@ export const createEntityApiUtils = <
             } else {
               merge(endpointData, entityData);
             }
-          }
+          },
         );
 
         const patchResult = dispatch(action);
@@ -85,7 +85,7 @@ export const createEntityApiUtils = <
                 endpointData.data.splice(existingItemIndex, 1);
               }
             }
-          }
+          },
         );
 
         const patchResult = dispatch(action);
@@ -111,7 +111,7 @@ export const createEntityApiUtils = <
       const entityRequest = createEntityInstance<TEntityRequest>(
         entityGetRequestConstructor as ClassConstructor<TEntityRequest>,
         request,
-        { convertFromInstance: entitySearchRequestConstructor as ClassConstructor<TSearchRequest> }
+        { convertFromInstance: entitySearchRequestConstructor as ClassConstructor<TSearchRequest> },
       );
 
       for (const entity of response.data) {
