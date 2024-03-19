@@ -30,7 +30,7 @@
     "submit:ios:prod": "cross-env APP_ENV=production eas submit --no-wait -p ios --profile=production",
     "lint": "eslint ./",
     "format": "npx prettier --write . && npm run lint -- --fix",
-    "verify:ts": "npx tsc",
+    "verify": "npx tsc",
     "test": "cross-env NO_FLIPPER=1 jest --config jest.config.js --detectOpenHandles",
     "prepare": "husky install",
     "prepack": "node scripts/prepack.js && npm pkg set 'scripts.postinstall'='npx rimraf app.json scripts && npm pkg delete 'scripts.prepack' 'scripts.postpack' 'scripts.postinstall''",

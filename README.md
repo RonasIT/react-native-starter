@@ -33,7 +33,7 @@ See `package.json` for pre-defined scripts. You can run them using `npm run {scr
 - `lint` - Lint code
 - `format` - Run code autoformat
 - `test` - Run tests
-- `verify:ts` - verify Typescript compilation
+- `verify` - Verify Typescript compilation
 - `build:{environment}` - Create builds for _both_ platforms
   - Pass `-p {android|ios}` to run a platform-specific build
   - To create a [Development client](https://docs.expo.dev/develop/development-builds/introduction/) build run `build:debug`
