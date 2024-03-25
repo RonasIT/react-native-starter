@@ -30,10 +30,9 @@ See `package.json` for pre-defined scripts. You can run them using `npm run {scr
 - `start` - Start local `development`-env server to develop with [Expo Go](https://docs.expo.dev/get-started/expo-go/)
   - Run server locally for other environments: `start:{environment}`
   - To develop with [Development client](https://docs.expo.dev/develop/development-builds/introduction/) start server with `--dev-client` flag
-- `lint` - Lint code
+- `lint` - Run necessary code checks
 - `format` - Run code autoformat
 - `test` - Run tests
-- `verify` - Verify Typescript compilation
 - `build:{environment}` - Create builds for _both_ platforms
   - Pass `-p {android|ios}` to run a platform-specific build
   - To create a [Development client](https://docs.expo.dev/develop/development-builds/introduction/) build run `build:debug`
