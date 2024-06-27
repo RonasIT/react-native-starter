@@ -1,0 +1,37 @@
+{
+  "build": {
+    "development": {
+      "channel": "development",
+      "distribution": "internal",
+      "ios": {
+        "distribution": "store"
+      },
+      "env": {
+        "APP_ENV": "development"
+      }
+    },
+    "debug": {
+      "extends": "development",
+      "developmentClient": true,
+      "ios": {
+        "distribution": "internal"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "distribution": "store",
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  },
+  "submit": {
+    "development": {
+      "ios": {
+        "appleId": "your-apple.id@com",
+        "ascAppId": "1234567890",
+        "appleTeamId": "YOURTEAMID"
+      }
+    }
+  }
+}

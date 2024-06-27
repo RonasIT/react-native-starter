@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": true,
+    "baseUrl": "./",
+    "paths": {
+      "@libs/*": ["libs/*"],
+      "@tests/*": ["tests/*"],
+      "@app/*": ["app/*"],
+      "@i18n/*": ["i18n/*"]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}
