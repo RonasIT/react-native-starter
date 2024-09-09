@@ -1,16 +1,20 @@
 import 'reflect-metadata';
 
+import { useAuth } from '@clerk/clerk-expo';
 import { ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Slot } from 'expo-router';
+import { Slot, useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import React, { ReactElement, useEffect } from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { AppActions } from '@libs/shared/data-access/store';
 import { createStore } from '@libs/shared/data-access/store/store';
+import { AppClerkProvider } from '@libs/shared/features/clerk';
 import { setLanguage } from '@libs/shared/features/i18n';
 import { navigationTheme } from '@libs/shared/features/navigation';
 import { fonts } from '@libs/shared/ui/ui-kit/assets/fonts';
 
+SplashScreen.preventAutoHideAsync();
 const store = createStore();
 
 const useLanguage = setLanguage(
@@ -29,10 +33,19 @@ const useLanguage = setLanguage(
 export function App(): ReactElement {
   const dispatch = useDispatch();
   useLanguage('en');
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(AppActions.init());
   }, []);
+
+  useEffect(() => {
+    if (isSignedIn) {
+      router.replace('(main)/home');
+    }
+    SplashScreen.hideAsync();
+  }, [isSignedIn]);
 
   return (
     <ThemeProvider value={navigationTheme}>
@@ -54,8 +67,10 @@ export default function RootLayout(): ReactElement | null {
   }
 
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <AppClerkProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </AppClerkProvider>
   );
 }

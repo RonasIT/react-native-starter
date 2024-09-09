@@ -22,8 +22,7 @@ export const commonStyle = createStyles({
     fontSize: fontSizes.medium,
     height: 54,
     paddingTop: 15,
-    paddingBottom: 15,
-    flex: 1
+    paddingBottom: 15
   },
   formInputDisabled: {
     opacity: 0.5

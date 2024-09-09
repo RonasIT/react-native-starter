@@ -1,23 +1,43 @@
+import { useAuth } from '@clerk/clerk-expo';
 import { useRouter } from 'expo-router';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { ClerkChangeEmail } from '@libs/auth/features/change-email';
+import { ClerkChangePhone } from '@libs/auth/features/change-phone';
+import { getUser } from '@libs/auth/utils/get-user';
+import { AppButton } from '@libs/shared/ui/ui-kit/button';
+import { AppText } from '@libs/shared/ui/ui-kit/text';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
-import { UsersList } from '../../../libs/users/features/list';
 
 export default function HomeScreen(): ReactElement {
+  const { getToken, signOut } = useAuth();
   const router = useRouter();
 
-  const navigateToUserCreation = (): void => router.push('(main)/home/user');
+  const [user, setUser] = useState<any>();
 
-  const navigateToUserDetails = (userID: number): void => {
-    router.push({
-      pathname: '(main)/home/user',
-      params: { id: userID }
-    });
+  const handleLogout = async (): Promise<void> => {
+    await signOut();
+    router.replace('/');
   };
+
+  useEffect(() => {
+    const fetchUser = async (): Promise<void> => {
+      const token = await getToken();
+
+      if (token) {
+        const user = await getUser(token);
+        setUser(JSON.stringify(user));
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <AppScreen testID='home-screen'>
-      <UsersList onCreateButtonPress={navigateToUserCreation} onItemPress={navigateToUserDetails} />
+      <AppText>{user}</AppText>
+      <AppButton label={'Logout'} onPress={handleLogout} />
+      <ClerkChangePhone />
+      <ClerkChangeEmail />
     </AppScreen>
   );
 }

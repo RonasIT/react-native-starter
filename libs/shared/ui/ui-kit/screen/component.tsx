@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { ScrollView, StyleProp, ViewStyle } from 'react-native';
 import { createStyles } from '@libs/shared/ui/styles';
 
 interface Props {
@@ -11,14 +11,12 @@ interface Props {
 
 export function AppScreen({ children, style: elementStyle = {}, testID }: Props): ReactElement {
   return (
-    <View style={[style.screen, elementStyle]} testID={testID}>
+    <ScrollView contentContainerStyle={[style.screen, elementStyle]} testID={testID}>
       {children}
-    </View>
+    </ScrollView>
   );
 }
 
 const style = createStyles({
-  screen: {
-    flex: 1
-  }
+  screen: {}
 });

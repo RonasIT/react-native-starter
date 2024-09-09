@@ -14,7 +14,8 @@
       "extends": "development",
       "developmentClient": true,
       "ios": {
-        "distribution": "internal"
+        "distribution": "internal",
+        "simulator": true
       }
     },
     "production": {
