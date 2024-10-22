@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { ClerkChangeEmail } from '@libs/auth/features/change-email';
 import { ClerkChangePhone } from '@libs/auth/features/change-phone';
-import { getUser } from '@libs/auth/utils/get-user';
+import { getProfile } from '@libs/auth/utils/get-user';
 import { AppButton } from '@libs/shared/ui/ui-kit/button';
 import { AppText } from '@libs/shared/ui/ui-kit/text';
 import { AppScreen } from '../../../libs/shared/ui/ui-kit/screen';
@@ -24,7 +24,7 @@ export default function HomeScreen(): ReactElement {
       const token = await getToken();
 
       if (token) {
-        const user = await getUser(token);
+        const user = await getProfile(token);
         setUser(JSON.stringify(user));
       }
     };

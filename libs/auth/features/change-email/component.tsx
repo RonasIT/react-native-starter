@@ -29,12 +29,6 @@ export function ClerkChangeEmail({ onSuccess }: LoginFormProps): JSX.Element {
     const emailToVerify = clerkUser?.emailAddresses.find((email) => email.id === emailToUpdateId);
     const verifiedEmail = await emailToVerify?.attemptVerification({ code });
     await clerkUser?.update({ primaryEmailAddressId: verifiedEmail?.id });
-    const updatedUser = await clerkUser?.reload();
-    updatedUser?.emailAddresses.forEach((email) => {
-      if (email.id !== emailToUpdateId) {
-        email.destroy();
-      }
-    });
     onSuccess?.();
     Alert.alert('Email updated');
   };

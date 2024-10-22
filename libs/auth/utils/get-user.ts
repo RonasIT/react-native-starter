@@ -1,11 +1,14 @@
-export const getUser = async (token: string): Promise<any> => {
+export const getProfile = async (token: string): Promise<any> => {
   try {
-    const res = await fetch(`https://774f-107-178-218-214.ngrok-free.app/v0.1/auth-with/clerk?session_token=${token}`, {
-      method: 'post'
+    const res = await fetch(`API_URL/profile`, {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
     const json = await res.json();
 
-    return json?.user;
+    return json;
   } catch (error) {
     console.log(error);
   }
