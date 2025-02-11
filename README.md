@@ -2,6 +2,12 @@
 
 Ronas IT template for React Native + Expo projects.
 
+## Deprecated
+
+**This template is now deprecated.\
+For new projects please use our code generators package:
+https://github.com/RonasIT/nx-generators**
+
 ## What's included
 
 - Build and submit configuration templates
